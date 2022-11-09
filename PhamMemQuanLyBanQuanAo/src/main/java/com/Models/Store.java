@@ -1,0 +1,39 @@
+package com.Models;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.sql.Date;
+import java.util.List;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table
+public class Store implements Serializable {
+
+    @Id
+    @GenericGenerator(name = "generator", strategy = "guid", parameters = {})
+    @GeneratedValue(generator = "generator")
+    @Column(name = "Id", columnDefinition = "uniqueidentifier")
+    private String id;
+
+    @Column(name = "Code", columnDefinition = "Varchar(20)", unique = true)
+    private String code;
+
+    @Column(name = "Name", columnDefinition = "Nvarchar(MAX)")
+    private String name;
+
+    @Column(name = "Address", columnDefinition = "Nvarchar(MAX)")
+    private String diaChi;
+
+    @OneToMany(mappedBy = "store", fetch = FetchType.LAZY)
+    private List<Staff> listNhanVien;
+}
