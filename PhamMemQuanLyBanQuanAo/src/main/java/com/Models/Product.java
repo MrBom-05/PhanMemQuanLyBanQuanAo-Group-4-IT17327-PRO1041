@@ -16,19 +16,20 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table
-public class SanPham implements Serializable {
+public class Product implements Serializable {
 
     @Id
     @GenericGenerator(name = "generator", strategy = "guid", parameters = {})
     @GeneratedValue(generator = "generator")
-    @Column(name = "id", columnDefinition = "uniqueidentifier")
+    @Column(name = "Id", columnDefinition = "uniqueidentifier")
     private String id;
 
-    @Column(name = "Ma", columnDefinition = "Varchar(20)", unique = true)
-    private String ma;
+    @Column(name = "Code", columnDefinition = "Varchar(20)", unique = true)
+    private String code;
 
-    @Column(name = "Ten", columnDefinition = "Nvarchar(30)")
-    private String ten;
-    @OneToMany(mappedBy = "sanPham", fetch = FetchType.EAGER)
-    private List<SanPhamChiTiet> listSanPhamChiTiet;
+    @Column(name = "Name", columnDefinition = "Nvarchar(30)")
+    private String name;
+
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    private List<ProductDetails> listProductDetails;
 }

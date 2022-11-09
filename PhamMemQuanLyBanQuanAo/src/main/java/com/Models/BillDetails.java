@@ -13,21 +13,21 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Entity
 @Table
-public class HoaDonChiTiet implements Serializable {
+public class BillDetails implements Serializable {
 
     @Id
     @ManyToOne
     @JoinColumn(name = "idHoaDon")
-    private HoaDon hoaDon;
+    private Bill bill;
 
     @Id
     @ManyToOne
     @JoinColumn(name = "idSanPhamChiTiet")
-    private SanPhamChiTiet sanPhamChiTiet;
+    private ProductDetails productDetails;
 
-    @Column(name = "SoLuong")
-    private int soLuongTon;
+    @Column(name = "Amount")
+    private int amount;
 
-    @Column(name = "DonGia", columnDefinition = "Decimal(20,0)")
-    private Float donGia;
+    @Column(name = "UnitPrice", columnDefinition = "Decimal(20,0)")
+    private Float unitPrice;
 }
