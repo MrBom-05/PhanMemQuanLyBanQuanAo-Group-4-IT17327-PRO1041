@@ -16,5 +16,5 @@ import java.io.Serializable;
 @Entity
 @Table
 public class HoaDon implements Serializable {
-
+//    rttrrt
 }
