@@ -50,6 +50,10 @@ public class Staff implements Serializable {
     @Column(name = "Status")
     private int status;
 
+    @ManyToOne
+    @JoinColumn(name = "IdStore")
+    private Store store;
+
     @OneToMany(mappedBy = "staff", fetch = FetchType.LAZY)
     private List<Bill> listBill;
 
