@@ -27,16 +27,16 @@ public class HibernateUtil {
 //        properties.put(Environment.HBM2DDL_AUTO, "create");
 
         conf.setProperties(properties);
-//        conf.addAnnotatedClass(ChiTietSP.class);
-//        conf.addAnnotatedClass(ChucVu.class);
-//        conf.addAnnotatedClass(CuaHang.class);
-//        conf.addAnnotatedClass(DongSP.class);
-//        conf.addAnnotatedClass(GioHang.class);
-//        conf.addAnnotatedClass(GioHangChiTiet.class);
-//        conf.addAnnotatedClass(HoaDon.class);
-//        conf.addAnnotatedClass(HoaDonChiTiet.class);
-//        conf.addAnnotatedClass(KhachHang.class);
-//        conf.addAnnotatedClass(MauSac.class);
+        conf.addAnnotatedClass(Bill.class);
+        conf.addAnnotatedClass(BillDetails.class);
+        conf.addAnnotatedClass(Color.class);
+        conf.addAnnotatedClass(Customer.class);
+        conf.addAnnotatedClass(Product.class);
+        conf.addAnnotatedClass(ProductDetails.class);
+        conf.addAnnotatedClass(ProductType.class);
+        conf.addAnnotatedClass(Size.class);
+        conf.addAnnotatedClass(Staff.class);
+        conf.addAnnotatedClass(User.class);
 //        conf.addAnnotatedClass(NhanVien.class);
 //        conf.addAnnotatedClass(NSX.class);
 //        conf.addAnnotatedClass(SanPham.class);
