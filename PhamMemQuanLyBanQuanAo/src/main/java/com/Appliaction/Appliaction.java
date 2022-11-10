@@ -2,6 +2,6 @@ package com.Appliaction;
 
 public class Appliaction {
     public static void main(String[] args) {
-        // Dcm anhkon
+        //  anhkon  ft kynn
     }
 }
