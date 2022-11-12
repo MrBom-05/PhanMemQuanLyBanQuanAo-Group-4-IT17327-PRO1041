@@ -42,6 +42,10 @@ public class Bill implements Serializable {
     @Column(name = "DateOfPayment")
     private Date dateOfPayment;
 
+    @ManyToOne
+    @JoinColumn(name = "IdPromotion")
+    private Promotion promotion;
+
     @Column(name = "Status")
     private int status;
 
