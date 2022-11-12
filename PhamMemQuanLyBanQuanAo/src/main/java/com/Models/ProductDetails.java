@@ -50,6 +50,9 @@ public class ProductDetails implements Serializable {
     @Column(name = "ExportPrice", columnDefinition = "Decimal(20,0)")
     private Float exportPrice;
 
+    @Column(name = "Status")
+    private int status;
+
     @OneToMany(mappedBy = "productDetails", fetch = FetchType.LAZY)
     private List<BillDetails> listBillDetails;
 }
