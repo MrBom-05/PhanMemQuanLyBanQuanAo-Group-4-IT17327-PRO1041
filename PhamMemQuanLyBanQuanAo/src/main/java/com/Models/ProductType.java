@@ -30,6 +30,9 @@ public class ProductType implements Serializable {
     @Column(name = "Name", columnDefinition = "Nvarchar(30)")
     private String name;
 
+    @Column(name = "Status")
+    private int status;
+
     @OneToMany(mappedBy = "productType", fetch = FetchType.LAZY)
     private List<ProductDetails> listProductDetails;
 }
