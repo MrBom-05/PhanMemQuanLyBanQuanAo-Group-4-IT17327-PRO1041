@@ -1,11 +1,10 @@
 package com.Models;
 
 import lombok.AllArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table
-public class Color implements Serializable {
+public class Store implements Serializable {
 
     @Id
     @GenericGenerator(name = "generator", strategy = "guid", parameters = {})
@@ -28,12 +27,18 @@ public class Color implements Serializable {
     @Column(name = "Code", columnDefinition = "Varchar(20)", unique = true)
     private String code;
 
-    @Column(name = "Name", columnDefinition = "Nvarchar(30)")
+    @Column(name = "Name", columnDefinition = "Nvarchar(MAX)")
     private String name;
+
+    @Column(name = "Address", columnDefinition = "Nvarchar(MAX)")
+    private String diaChi;
 
     @Column(name = "Status")
     private int status;
 
-    @OneToMany(mappedBy = "color", fetch = FetchType.LAZY)
-    private List<ProductDetails> listProductDetails;
+    @OneToMany(mappedBy = "store", fetch = FetchType.LAZY)
+    private List<Staff> listStaff;
+
+    @OneToOne(mappedBy = "storeOwner")
+    private Staff staff;
 }

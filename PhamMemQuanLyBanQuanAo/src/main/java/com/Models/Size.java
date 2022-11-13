@@ -28,6 +28,9 @@ public class Size implements Serializable{
     @Column(name = "Name", columnDefinition = "Nvarchar(30)")
     private String name;
 
+    @Column(name = "Status")
+    private int status;
+
     @OneToMany(mappedBy = "size", fetch = FetchType.LAZY)
     private List<ProductDetails> listProductDetails;
 }
