@@ -24,7 +24,7 @@ public class HibernateUtil {
         properties.put(Environment.PASS, "123");
         properties.put(Environment.SHOW_SQL, "true");
 //        gen DB tự động
-//        properties.put(Environment.HBM2DDL_AUTO, "create");
+        properties.put(Environment.HBM2DDL_AUTO, "create");
 
         conf.setProperties(properties);
         conf.addAnnotatedClass(Bill.class);
@@ -34,12 +34,11 @@ public class HibernateUtil {
         conf.addAnnotatedClass(Product.class);
         conf.addAnnotatedClass(ProductDetails.class);
         conf.addAnnotatedClass(ProductType.class);
+        conf.addAnnotatedClass(Promotion.class);
+        conf.addAnnotatedClass(Role.class);
         conf.addAnnotatedClass(Size.class);
         conf.addAnnotatedClass(Staff.class);
-        conf.addAnnotatedClass(User.class);
         conf.addAnnotatedClass(Store.class);
-        conf.addAnnotatedClass(Role.class);
-        conf.addAnnotatedClass(Promotion.class);
 
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .applySettings(conf.getProperties()).build();
