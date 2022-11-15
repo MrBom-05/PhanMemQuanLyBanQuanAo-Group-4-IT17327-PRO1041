@@ -42,6 +42,15 @@ public class Bill implements Serializable {
     @Column(name = "DateOfPayment")
     private Date dateOfPayment;
 
+    @Column(name = "DeliveryDate")
+    private Date deliveryDate;
+
+    @Column(name = "ReceivedDate")
+    private Date receivedDate;
+
+    @Column(name = "ExpectedDate")
+    private Date ExpectedDate;
+
     @ManyToOne
     @JoinColumn(name = "IdPromotion")
     private Promotion promotion;
@@ -49,9 +58,12 @@ public class Bill implements Serializable {
     @Column(name = "Status")
     private int status;
 
+    @Column(name = "Note", columnDefinition = "Nvarchar(50)")
+    private String note;
+
     @Column(name = "PhoneNumber", columnDefinition = "Varchar(30)")
     private String phoneNumber;
 
     @OneToMany(mappedBy = "bill", fetch = FetchType.LAZY)
-    private List<BillDetails> listHoaDonChiTiet;
+    private List<BillDetails> listBillDetails;
 }
