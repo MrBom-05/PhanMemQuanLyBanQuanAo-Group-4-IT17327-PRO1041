@@ -8,7 +8,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.List;
 
 @Getter
@@ -34,6 +33,12 @@ public class Store implements Serializable {
     @Column(name = "Address", columnDefinition = "Nvarchar(MAX)")
     private String diaChi;
 
+    @Column(name = "Status")
+    private int status;
+
     @OneToMany(mappedBy = "store", fetch = FetchType.LAZY)
-    private List<Staff> listNhanVien;
+    private List<Staff> listStaff;
+
+    @OneToOne(mappedBy = "storeOwner")
+    private Staff staff;
 }

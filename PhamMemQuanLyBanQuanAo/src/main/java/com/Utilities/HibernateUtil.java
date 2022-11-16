@@ -29,17 +29,12 @@ public class HibernateUtil {
         conf.setProperties(properties);
         conf.addAnnotatedClass(Bill.class);
         conf.addAnnotatedClass(BillDetails.class);
-        conf.addAnnotatedClass(Color.class);
         conf.addAnnotatedClass(Customer.class);
         conf.addAnnotatedClass(Product.class);
         conf.addAnnotatedClass(ProductDetails.class);
-        conf.addAnnotatedClass(ProductType.class);
-        conf.addAnnotatedClass(Size.class);
+        conf.addAnnotatedClass(Promotion.class);
         conf.addAnnotatedClass(Staff.class);
-        conf.addAnnotatedClass(User.class);
         conf.addAnnotatedClass(Store.class);
-//        conf.addAnnotatedClass(NSX.class);
-//        conf.addAnnotatedClass(SanPham.class);
 
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .applySettings(conf.getProperties()).build();

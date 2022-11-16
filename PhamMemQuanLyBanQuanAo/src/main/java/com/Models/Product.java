@@ -24,11 +24,11 @@ public class Product implements Serializable {
     @Column(name = "Id", columnDefinition = "uniqueidentifier")
     private String id;
 
-    @Column(name = "Code", columnDefinition = "Varchar(20)", unique = true)
-    private String code;
-
     @Column(name = "Name", columnDefinition = "Nvarchar(30)")
     private String name;
+
+    @Column(name = "Status")
+    private int status;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     private List<ProductDetails> listProductDetails;
