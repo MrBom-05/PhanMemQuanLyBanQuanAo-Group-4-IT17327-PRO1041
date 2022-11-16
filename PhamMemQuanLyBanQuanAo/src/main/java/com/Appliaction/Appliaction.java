@@ -1,7 +1,10 @@
 package com.Appliaction;
 
+import com.Views.Login;
+
+
 public class Appliaction {
     public static void main(String[] args) {
-        //  anhkon  ft kynn
+       new Login().setVisible(true);
     }
 }

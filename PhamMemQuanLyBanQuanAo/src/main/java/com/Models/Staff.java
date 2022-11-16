@@ -47,6 +47,9 @@ public class Staff implements Serializable {
     @Column(name = "Email", columnDefinition = "Varchar(MAX)")
     private String email;
 
+    @Column(name = "Password", columnDefinition = "Varchar(MAX)")
+    private String password;
+
     @Column(name = "Status")
     private int status;
 
@@ -58,13 +61,9 @@ public class Staff implements Serializable {
     @JoinColumn(name = "IdStoreOwner", referencedColumnName = "Id")
     private Store storeOwner;
 
-    @ManyToOne
-    @JoinColumn(name = "IdRole")
-    private Role role;
+    @Column(name = "Role")
+    private int role;
 
     @OneToMany(mappedBy = "staff", fetch = FetchType.LAZY)
     private List<Bill> listBill;
-
-    @OneToOne(mappedBy = "staff")
-    private User user;
 }
