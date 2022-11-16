@@ -5,6 +5,7 @@ import com.Views.Login;
 
 public class Appliaction {
     public static void main(String[] args) {
-       new Login().setVisible(true);
+        // test
+        new Login().setVisible(true);
     }
 }
