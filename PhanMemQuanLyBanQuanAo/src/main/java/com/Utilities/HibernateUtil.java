@@ -29,10 +29,13 @@ public class HibernateUtil {
         conf.setProperties(properties);
         conf.addAnnotatedClass(Bill.class);
         conf.addAnnotatedClass(BillDetails.class);
+        conf.addAnnotatedClass(Color.class);
         conf.addAnnotatedClass(Customer.class);
         conf.addAnnotatedClass(Product.class);
         conf.addAnnotatedClass(ProductDetails.class);
+        conf.addAnnotatedClass(ProductType.class);
         conf.addAnnotatedClass(Promotion.class);
+        conf.addAnnotatedClass(Size.class);
         conf.addAnnotatedClass(Staff.class);
         conf.addAnnotatedClass(Store.class);
 

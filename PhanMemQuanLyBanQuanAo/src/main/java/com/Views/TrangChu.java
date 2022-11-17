@@ -52,6 +52,7 @@ public class TrangChu extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         panelHoaDon = new javax.swing.JPanel();
+        btnCuaHang = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -69,31 +70,38 @@ public class TrangChu extends javax.swing.JFrame {
             }
         });
 
+        btnThongKe.setBackground(new java.awt.Color(246, 248, 250));
         btnThongKe.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/thongke.png"))); // NOI18N
         btnThongKe.setText("Thống Kê");
         btnThongKe.setToolTipText("");
 
+        btnSanPham.setBackground(new java.awt.Color(246, 248, 250));
         btnSanPham.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSanPham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/sanpham.png"))); // NOI18N
         btnSanPham.setText("Sản Phẩm");
 
+        btnHoaDon.setBackground(new java.awt.Color(246, 248, 250));
         btnHoaDon.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/hoadon.png"))); // NOI18N
         btnHoaDon.setText("Hóa Đơn");
 
+        btnLichSu.setBackground(new java.awt.Color(246, 248, 250));
         btnLichSu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnLichSu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/lichsu.png"))); // NOI18N
         btnLichSu.setText("Lịch Sử");
 
+        btnKhuyenMai.setBackground(new java.awt.Color(246, 248, 250));
         btnKhuyenMai.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnKhuyenMai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/khuyenmai.png"))); // NOI18N
         btnKhuyenMai.setText("Khuyến Mãi");
 
+        btnNhanVien.setBackground(new java.awt.Color(246, 248, 250));
         btnNhanVien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nhanvien.png"))); // NOI18N
         btnNhanVien.setText("Nhân Viên");
 
+        btnKhachHang.setBackground(new java.awt.Color(246, 248, 250));
         btnKhachHang.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnKhachHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/khachhang.png"))); // NOI18N
         btnKhachHang.setText("Khách Hàng");
@@ -101,10 +109,12 @@ public class TrangChu extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logo.jpg"))); // NOI18N
 
+        jButton1.setBackground(new java.awt.Color(246, 248, 250));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/doimatkhau.png"))); // NOI18N
         jButton1.setText("Đổi mật khẩu");
 
+        jButton2.setBackground(new java.awt.Color(246, 248, 250));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/dangxuat.png"))); // NOI18N
         jButton2.setText("Đăng Xuất");
@@ -402,6 +412,11 @@ public class TrangChu extends javax.swing.JFrame {
 
         panelMain.add(panelHoaDon, "card4");
 
+        btnCuaHang.setBackground(new java.awt.Color(246, 248, 250));
+        btnCuaHang.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCuaHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cuahang.png"))); // NOI18N
+        btnCuaHang.setText("Cửa Hàng");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -427,7 +442,8 @@ public class TrangChu extends javax.swing.JFrame {
                             .addComponent(btnLichSu, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCuaHang, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -461,6 +477,8 @@ public class TrangChu extends javax.swing.JFrame {
                         .addComponent(btnNhanVien)
                         .addGap(38, 38, 38)
                         .addComponent(btnKhachHang)
+                        .addGap(34, 34, 34)
+                        .addComponent(btnCuaHang)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -503,6 +521,7 @@ public class TrangChu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCuaHang;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnHoaDon;
     private javax.swing.JButton btnKhachHang;
