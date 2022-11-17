@@ -28,6 +28,9 @@ public class Promotion implements Serializable {
 
     @Column(name = "Name", columnDefinition = "Nvarchar(MAX)")
     private String name;
+    
+    @Column(name = "decreaseNumber")
+    private Float DecreaseNumber;
 
     @Column(name = "StartDay")
     private Date startDay;
