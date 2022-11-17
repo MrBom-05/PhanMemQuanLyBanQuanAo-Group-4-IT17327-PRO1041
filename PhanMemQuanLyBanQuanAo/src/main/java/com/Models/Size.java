@@ -29,9 +29,15 @@ public class Size implements Serializable {
     @Column(name = "Name", columnDefinition = "Nvarchar(30)")
     private String name;
 
-    @Column(name = "Status")
-    private int status;
+    public Size(String code, String name) {
+        this.code = code;
+        this.name = name;
+    }
+    
+    
 
     @OneToMany(mappedBy = "size", fetch = FetchType.LAZY)
     private List<ProductDetails> listProductDetails;
+    
+    
 }
