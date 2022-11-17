@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table
-public class Product implements Serializable {
+public class ProductType implements Serializable {
 
     @Id
     @GenericGenerator(name = "generator", strategy = "guid", parameters = {})
@@ -32,6 +32,6 @@ public class Product implements Serializable {
     @Column(name = "Status")
     private int status;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "productType", fetch = FetchType.LAZY)
     private List<ProductDetails> listProductDetails;
 }
