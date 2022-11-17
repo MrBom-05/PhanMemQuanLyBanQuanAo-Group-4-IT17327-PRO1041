@@ -33,11 +33,8 @@ public class Size implements Serializable {
         this.code = code;
         this.name = name;
     }
-    
-    
 
     @OneToMany(mappedBy = "size", fetch = FetchType.LAZY)
     private List<ProductDetails> listProductDetails;
-    
-    
+
 }

@@ -8,26 +8,27 @@ import java.util.List;
 
 public class StoreServiceImplement implements StoreService {
 
-    private StoreRepository lstRepo = new StoreRepository();
+    private StoreRepository storeRepository = new StoreRepository();
 
     @Override
-    public boolean them(Store st) {
-        return lstRepo.them(st);
+    public boolean insert(Store store) {
+        return storeRepository.insert(store);
     }
 
     @Override
-    public boolean sua(String ma, Store st) {
-        return lstRepo.sua(ma, st);
+    public boolean sua(String ma, Store store) {
+        return storeRepository.update(ma, store);
     }
 
     @Override
     public List<Store> getList() {
-        return lstRepo.getList();
+        return storeRepository.getList();
     }
 
     @Override
-    public ArrayList<Store> timKiem(String ten) {
-        return lstRepo.timKiem(ten);
+    public List<Store> search(String ten) {
+//        return storeRepository.timKiem(ten);
+        return null;
     }
 
 }
