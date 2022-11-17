@@ -1,0 +1,119 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]" date="1668670533452" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 11/17/2022 2:35 PM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Models/Color.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Models/Color.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]/Color.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Views/Login.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Views/Login.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]/Login.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Views/TrangChu.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Views/TrangChu.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]/TrangChu.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Views/Login$3.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Views/Login$3.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]/Login$3.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Utilities/LogicUtil$1.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Utilities/LogicUtil$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]/LogicUtil$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Views/QRCode.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Views/QRCode.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]/QRCode.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Models/Promotion.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Models/Promotion.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]/Promotion.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Models/Store.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Models/Store.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]/Store.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Models/BillDetails.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Models/BillDetails.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]/BillDetails.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Models/Customer.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Models/Customer.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]/Customer.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Views/TrangChu$1.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Views/TrangChu$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]/TrangChu$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Models/Staff.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Models/Staff.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]/Staff.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Models/ProductType.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Models/ProductType.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]/ProductType.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Views/QRCode$1.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Views/QRCode$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]/QRCode$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Utilities/HibernateUtil.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Utilities/HibernateUtil.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]/HibernateUtil.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Models/Bill.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Models/Bill.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]/Bill.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Models/Product.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Models/Product.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]/Product.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Views/Login$1.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Views/Login$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]/Login$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Appliaction/Appliaction.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Appliaction/Appliaction.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]/Appliaction.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Utilities/LogicUtil.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Utilities/LogicUtil.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]/LogicUtil.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Views/Login$2.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Views/Login$2.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]/Login$2.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Models/ProductDetails.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Models/ProductDetails.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]/ProductDetails.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/Models/Size.class" />
+    <option name="AFTER_PATH" value="target/classes/com/Models/Size.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2022_2_35_PM_[Changes]/Size.class" />
+  </binary>
+</changelist>
