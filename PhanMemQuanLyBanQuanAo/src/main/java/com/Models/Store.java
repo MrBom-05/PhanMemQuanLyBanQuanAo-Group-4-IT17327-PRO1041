@@ -36,6 +36,13 @@ public class Store implements Serializable {
     @Column(name = "Status")
     private int status;
 
+    public Store(String code, String name, String diaChi, int status) {
+        this.code = code;
+        this.name = name;
+        this.diaChi = diaChi;
+        this.status = status;
+    }
+
     @OneToMany(mappedBy = "store", fetch = FetchType.LAZY)
     private List<Staff> listStaff;
 
