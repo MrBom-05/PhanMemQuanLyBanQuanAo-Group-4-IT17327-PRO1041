@@ -241,13 +241,13 @@ public class StoreView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        String ma = txtTimKiem.getText();
-        loadData(stsv.timKiem(ma));
+//        String ma = txtTimKiem.getText();
+//        loadData(stsv.timKiem(ma));
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         Store st = getData();
-        stsv.them(st);
+        stsv.insert(st);
         JOptionPane.showMessageDialog(this, "Thêm thành công");
         loadData(stsv.getList());
     }//GEN-LAST:event_btnThemActionPerformed

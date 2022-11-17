@@ -30,6 +30,10 @@ public class Bill implements Serializable {
     private Customer customer;
 
     @ManyToOne
+    @JoinColumn(name = "IdStore")
+    private Store store;
+
+    @ManyToOne
     @JoinColumn(name = "IdStaff")
     private Staff staff;
 

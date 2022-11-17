@@ -7,30 +7,30 @@ import com.Services.ColorService;
 import java.util.List;
 
 public class ColorServiceImplement implements ColorService {
-    private ColorRepository repository = new ColorRepository();
+    private ColorRepository colorRepository = new ColorRepository();
 
     @Override
     public List<Color> getList() {
-        return repository.getList();
-    }
-
-   @Override
-    public Boolean insert(Color color) {
-        return repository.them(color);
+        return colorRepository.getList();
     }
 
     @Override
-    public Boolean update(Color color, String id) {
-       return repository.sua(color, id);
+    public boolean insert(Color color) {
+        return colorRepository.insert(color);
     }
-//
+
     @Override
-    public Boolean delete(String id) {
-        return repository.xoa(id);
+    public boolean update(Color color, String id) {
+        return colorRepository.update(color, id);
+    }
+
+    @Override
+    public boolean delete(String id) {
+        return colorRepository.delete(id);
     }
 
 //    @Override
 //    public List<String> check(String ma) {
 //        return repository.check(ma);
-//    }  
+//    }
 }
