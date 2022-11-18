@@ -1,5 +1,6 @@
 package com.Services.Implements;
 
+import com.CustomModels.StoreCustomModel;
 import com.Models.Store;
 import com.Repositories.StoreRepository;
 import com.Services.StoreService;
@@ -21,7 +22,7 @@ public class StoreServiceImplement implements StoreService {
     }
 
     @Override
-    public List<Store> getList() {
+    public List<StoreCustomModel> getList() {
         return storeRepository.getList();
     }
 

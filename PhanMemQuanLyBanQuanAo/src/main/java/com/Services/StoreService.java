@@ -1,5 +1,6 @@
 package com.Services;
 
+import com.CustomModels.StoreCustomModel;
 import com.Models.Store;
 
 import java.util.List;
@@ -12,5 +13,5 @@ public interface StoreService {
 
     List<Store> search(String ten);
 
-    public List<Store> getList();
+    public List<StoreCustomModel> getList();
 }

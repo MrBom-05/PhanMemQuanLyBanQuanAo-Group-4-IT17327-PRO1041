@@ -4,6 +4,7 @@
  */
 package com.Views;
 
+import com.CustomModels.StoreCustomModel;
 import com.Models.Store;
 import com.Services.Implements.StoreServiceImplement;
 import java.util.ArrayList;
@@ -27,18 +28,18 @@ public class StoreView extends javax.swing.JFrame {
      */
     public StoreView() {
         initComponents();
-        loadData((ArrayList<Store>) stsv.getList());
+        loadData(stsv.getList());
     }
 
-    public void loadData(List<Store> lstNV) {
+    public void loadData(List<StoreCustomModel> lstNV) {
         defaultTableModel = (DefaultTableModel) tblBang.getModel();
         defaultTableModel.setRowCount(0);
-        for (Store st : lstNV) {
+        for (StoreCustomModel st : lstNV) {
             defaultTableModel.addRow(new Object[]{
-                st.getCode(),
-                st.getName(),
+                st.getMa(),
+                st.getTen(),
                 st.getDiaChi(),
-                st.getStatus() == 1 ? "Hoạt động" : "Ngừng hoạt động",});
+                st.getTrangThai()== 1 ? "Hoạt động" : "Ngừng hoạt động",});
         }
     }
 

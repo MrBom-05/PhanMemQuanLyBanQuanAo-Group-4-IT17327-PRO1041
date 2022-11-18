@@ -1,5 +1,6 @@
 package com.Repositories;
 
+import com.CustomModels.StoreCustomModel;
 import com.Models.Store;
 import com.Utilities.HibernateUtil;
 import java.util.List;
@@ -10,14 +11,19 @@ import org.hibernate.Transaction;
 
 public class StoreRepository {
 
-    public List<Store> getList() {
+    public List<StoreCustomModel> getList() {
         Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery("from Store");
-        List<Store> list = query.getResultList();
+        Query query = session.createQuery(
+                "select  new com.CustomModels.StoreCustomModel("
+                        + " s.code,s.diaChi,s.name,s.status ) "
+                        + " from com.Models.Store s");
+        List<StoreCustomModel> list = query.getResultList();
         return list;
+
     }
 
-    public boolean insert(Store store) {
+
+public boolean insert(Store store) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
@@ -66,4 +72,3 @@ public class StoreRepository {
         return results;
     }
 }
-
