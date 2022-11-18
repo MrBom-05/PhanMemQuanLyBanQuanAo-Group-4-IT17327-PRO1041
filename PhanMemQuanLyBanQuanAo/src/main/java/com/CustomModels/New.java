@@ -9,5 +9,4 @@ package com.CustomModels;
  * @author Nguyen Ngoc Ky
  */
 public class New {
-    
 }
