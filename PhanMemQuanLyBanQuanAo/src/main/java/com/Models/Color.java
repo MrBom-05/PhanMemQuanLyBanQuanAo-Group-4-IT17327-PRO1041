@@ -29,9 +29,12 @@ public class Color implements Serializable {
     @Column(name = "Name", columnDefinition = "Nvarchar(30)")
     private String name;
 
-    @Column(name = "Status")
-    private int status;
+    public Color(String code, String name) {
+        this.code = code;
+        this.name = name;
+    }
 
     @OneToMany(mappedBy = "color", fetch = FetchType.LAZY)
     private List<ProductDetails> listProductDetails;
+
 }
