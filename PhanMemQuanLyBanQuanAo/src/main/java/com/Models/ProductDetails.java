@@ -22,9 +22,15 @@ public class ProductDetails implements Serializable {
     @Column(name = "Id", columnDefinition = "uniqueidentifier")
     private String id;
 
+    @Column(name = "Code", columnDefinition = "Varchar(20)", unique = true)
+    private String code;
+
+    @Column(name = "Name", columnDefinition = "Nvarchar(30)")
+    private String name;
+
     @ManyToOne
-    @JoinColumn(name = "IdProduct")
-    private Product product;
+    @JoinColumn(name = "IdSubstance")
+    private Substance substance;
 
     @ManyToOne
     @JoinColumn(name = "IdSize")
