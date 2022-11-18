@@ -33,6 +33,9 @@ public class Store implements Serializable {
     @Column(name = "Address", columnDefinition = "Nvarchar(MAX)")
     private String diaChi;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "IdStoreOwner", referencedColumnName = "Id")
+    private Staff staffOwner;
     @Column(name = "Status")
     private int status;
 
@@ -46,6 +49,6 @@ public class Store implements Serializable {
     @OneToMany(mappedBy = "store", fetch = FetchType.LAZY)
     private List<Staff> listStaff;
 
-    @OneToOne(mappedBy = "storeOwner")
-    private Staff staff;
+    @OneToMany(mappedBy = "store", fetch = FetchType.LAZY)
+    private List<Bill> listBill;
 }
