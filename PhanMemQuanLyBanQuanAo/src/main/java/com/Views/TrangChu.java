@@ -1025,20 +1025,7 @@ public class TrangChu extends javax.swing.JFrame {
         }
     }
 
-    private void btnNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienActionPerformed
-        panelMain.removeAll();
-        panelMain.repaint();
-        panelMain.revalidate();
-        panelMain.add(panelNhanVien);
-        panelMain.repaint();
-        panelMain.revalidate();
-        txtMaNhanVienPanelNhanVien.setEditable(false);
-        addCbbCuaHangPanelNhanVien(staffService.getNameStore());
-        loadDataNhanVien(staffService.getList());
-        rdoNamPanelNhanVien.setSelected(true);
-    }//GEN-LAST:event_btnNhanVienActionPerformed
-
-    public String CodeStaffTangDan() {
+    public String codeStaffTangDan() {
         String code = "";
         List<StaffCustomModel> list = staffService.getList();
         if (list.size() == 0) {
@@ -1066,8 +1053,7 @@ public class TrangChu extends javax.swing.JFrame {
     }
 
     private Staff getPanelNhanVien() {
-        String maNV = CodeStaffTangDan();
-        ;
+        String maNV = codeStaffTangDan();
         String ho = txtHoPanelNhanVien.getText();
         String ten = txtTenPanelNhanVien.getText();
         String gioiTinh = rdoNamPanelNhanVien.isSelected() ? "Nam" : "Nữ";
@@ -1088,14 +1074,28 @@ public class TrangChu extends javax.swing.JFrame {
         } else if (sdt.matches("^[0-9]{10}$") == false) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng số điện thoại");
             return null;
-        } else if (ngaySinh.matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}$") == false) {
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng ngày sinh");
-            return null;
         }
+//        else if (ngaySinh.matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}$") == false) {
+//            JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng ngày sinh");
+//            return null;
+//        }
 
         Date date = Date.valueOf(ngaySinh);
         return new Staff("newid()", maNV, ten, ho, gioiTinh, date, diaChi, sdt, email, matKhau, 1, store, chucVu);
     }
+
+    private void btnNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienActionPerformed
+        panelMain.removeAll();
+        panelMain.repaint();
+        panelMain.revalidate();
+        panelMain.add(panelNhanVien);
+        panelMain.repaint();
+        panelMain.revalidate();
+        txtMaNhanVienPanelNhanVien.setEditable(false);
+        addCbbCuaHangPanelNhanVien(staffService.getNameStore());
+        loadDataNhanVien(staffService.getList());
+        rdoNamPanelNhanVien.setSelected(true);
+    }//GEN-LAST:event_btnNhanVienActionPerformed
 
     private void btnXoaFormPanelNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaFormPanelNhanVienActionPerformed
         clearPanelNhanVien();
@@ -1114,7 +1114,10 @@ public class TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThemPanelNhanVienActionPerformed
 
     private void btnSuaPanelNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaPanelNhanVienActionPerformed
-        // TODO add your handling code here:
+        if (txtMaNhanVienPanelNhanVien.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(this, "Chưa chọn nhân viên nào trên table");
+            return;
+        }
         Staff staff = getPanelNhanVien();
         if (staff == null) return;
         if (staffService.update(txtMaNhanVienPanelNhanVien.getText(), staff)) {
@@ -1127,25 +1130,30 @@ public class TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSuaPanelNhanVienActionPerformed
 
     private void btnAnPanelNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnPanelNhanVienActionPerformed
-        // TODO add your handling code here:
-        if (staffService.hideOrShow(txtMaNhanVienPanelNhanVien.getText(), 0)) {
-            loadDataNhanVien(staffService.getList());
-            JOptionPane.showMessageDialog(this, "Ẩn Thành Công");
+        int confirm = JOptionPane.showConfirmDialog(this, "Bạn muốn ẩn Nhân Viên này không ?", "Thông báo", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            if (staffService.hideOrShow(txtMaNhanVienPanelNhanVien.getText(), 0)) {
+                loadDataNhanVien(staffService.getList());
+                clearPanelNhanVien();
+                JOptionPane.showMessageDialog(this, "Ẩn Thành Công");
+            } else {
+                JOptionPane.showMessageDialog(this, "Ẩn Thất Bại");
+            }
         } else {
-            JOptionPane.showMessageDialog(this, "Ẩn Thất Bại");
+            return;
         }
     }//GEN-LAST:event_btnAnPanelNhanVienActionPerformed
 
     private void btnXemNhanVienDaNghiPanelNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemNhanVienDaNghiPanelNVActionPerformed
-        // TODO add your handling code here:
+        new XemNhanVienAn().setVisible(true);
     }//GEN-LAST:event_btnXemNhanVienDaNghiPanelNVActionPerformed
 
     private void tblNhanVienPanelNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienPanelNhanVienMouseClicked
-        // TODO add your handling code here:
         int row = tblNhanVienPanelNhanVien.getSelectedRow();
         if (row == -1) return;
         txtMaNhanVienPanelNhanVien.setText(tblNhanVienPanelNhanVien.getValueAt(row, 1).toString());
-        txtHoPanelNhanVien.setText(tblNhanVienPanelNhanVien.getValueAt(row, 2).toString());
+        txtHoPanelNhanVien.setText(staffService.getByFisrtName(tblNhanVienPanelNhanVien.getValueAt(row, 1).toString()));
+        txtTenPanelNhanVien.setText(staffService.getByLastName(tblNhanVienPanelNhanVien.getValueAt(row, 1).toString()));
         txtNgaySinhNhanVienPanelNhanVien.setDate(Date.valueOf(tblNhanVienPanelNhanVien.getValueAt(row, 3).toString()));
         rdoNamPanelNhanVien.setSelected(tblNhanVienPanelNhanVien.getValueAt(row, 4).toString().equals("Nam"));
         rdoNuPanelNhanVien.setSelected(tblNhanVienPanelNhanVien.getValueAt(row, 4).toString().equals("Nữ"));
@@ -1153,7 +1161,8 @@ public class TrangChu extends javax.swing.JFrame {
         txtEmailPanelNhanVien.setText(tblNhanVienPanelNhanVien.getValueAt(row, 6).toString());
         txtDiaChiPanelNhanVien.setText(tblNhanVienPanelNhanVien.getValueAt(row, 7).toString());
         cbbChucVuPanelNhanVien.setSelectedItem(tblNhanVienPanelNhanVien.getValueAt(row, 8).toString());
-        cbbCuaHangPanelNhanVien.setSelectedItem(tblNhanVienPanelNhanVien.getValueAt(row, 9).toString());
+        defaultComboBoxModel = (DefaultComboBoxModel) cbbCuaHangPanelNhanVien.getModel();
+        defaultComboBoxModel.setSelectedItem(staffService.getList().get(row).getTenCuaHang());
     }//GEN-LAST:event_tblNhanVienPanelNhanVienMouseClicked
 
 

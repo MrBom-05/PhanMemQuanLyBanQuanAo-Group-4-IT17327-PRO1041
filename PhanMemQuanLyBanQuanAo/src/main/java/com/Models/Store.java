@@ -54,7 +54,7 @@ public class Store implements Serializable {
 
     @Override
     public String toString() {
-        return code + name;
+        return code + " " + name;
     }
 
 }

@@ -19,4 +19,8 @@ public interface StaffService {
     public List<Store> getNameStore();
 
     public List<StaffCustomModel> getListStaffOff();
+
+    public String getByFisrtName(String code);
+
+    public String getByLastName(String code);
 }
