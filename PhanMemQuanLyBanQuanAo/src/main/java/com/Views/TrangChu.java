@@ -1038,7 +1038,7 @@ public class TrangChu extends javax.swing.JFrame {
         rdoNamPanelNhanVien.setSelected(true);
     }//GEN-LAST:event_btnNhanVienActionPerformed
 
-    public String CodeStaffTangDan() {
+    public String codeStaffTangDan() {
         String code = "";
         List<StaffCustomModel> list = staffService.getList();
         if (list.size() == 0) {
