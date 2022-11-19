@@ -57,13 +57,28 @@ public class Staff implements Serializable {
     @JoinColumn(name = "IdStore")
     private Store store;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "IdStoreOwner", referencedColumnName = "Id")
-    private Store storeOwner;
-
     @Column(name = "Role")
     private int role;
 
     @OneToMany(mappedBy = "staff", fetch = FetchType.LAZY)
     private List<Bill> listBill;
+
+    @OneToOne(mappedBy = "staffOwner")
+    private Store storeOwner;
+
+    public Staff(String id, String code, String firstName, String lastName, String sex, Date dateOfBirth, String address, String phoneNumber, String email, String password, int status, Store store, int role) {
+        this.id = id;
+        this.code = code;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.sex = sex;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
+        this.status = status;
+        this.store = store;
+        this.role = role;
+    }
 }

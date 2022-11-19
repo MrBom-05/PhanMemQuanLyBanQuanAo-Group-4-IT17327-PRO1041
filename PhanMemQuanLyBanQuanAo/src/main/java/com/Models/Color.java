@@ -28,21 +28,17 @@ public class Color implements Serializable {
     private String code;
     @Column(name = "Name", columnDefinition = "Nvarchar(30)")
     private String name;
+
+    @OneToMany(mappedBy = "color", fetch = FetchType.LAZY)
+    private List<ProductDetails> listProductDetails;
     
     public Color(String code, String name) {
         this.code = code;
         this.name = name;
     }
-
-
-    @OneToMany(mappedBy = "color", fetch = FetchType.LAZY)
-    private List<ProductDetails> listProductDetails;
-
     
-
-    
-
-    
-    
-    
+    @Override
+    public String toString() {
+        return name;
+    }
 }
