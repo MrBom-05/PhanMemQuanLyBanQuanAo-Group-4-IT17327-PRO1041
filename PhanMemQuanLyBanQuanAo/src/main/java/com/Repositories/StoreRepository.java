@@ -28,7 +28,7 @@ public class StoreRepository {
             return false;
         }
     }
-
+    // Đây là code của Trung nhé :D
     public boolean update(String ma, Store store) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getFACTORY().openSession()) {
