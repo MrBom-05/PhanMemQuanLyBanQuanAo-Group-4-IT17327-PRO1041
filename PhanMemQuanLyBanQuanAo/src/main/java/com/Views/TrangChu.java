@@ -13,6 +13,7 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Random;
 
 public class TrangChu extends javax.swing.JFrame {
 
@@ -1878,13 +1879,41 @@ public class TrangChu extends javax.swing.JFrame {
         panelMain.add(panelNhanVien);
         panelMain.repaint();
         panelMain.revalidate();
+        txtMaNhanVienPanelNhanVien.setEditable(false);
         addCbbCuaHangPanelNhanVien(staffService.getNameStore());
         loadDataNhanVien(staffService.getList());
         rdoNamPanelNhanVien.setSelected(true);
     }//GEN-LAST:event_btnNhanVienActionPerformed
 
+    public String CodeStaffTangDan() {
+        String code = "";
+        List<StaffCustomModel> list = staffService.getList();
+        if (list.size() == 0) {
+            code = "NV0001";
+        } else {
+            int max = 0;
+            for (StaffCustomModel staffCustomModel : list) {
+                int so = Integer.parseInt(staffCustomModel.getMaNV().substring(2));
+                if (so > max) {
+                    max = so;
+                }
+            }
+            max++;
+            if (max < 10) {
+                code = "NV000" + max;
+            } else if (max < 100) {
+                code = "NV00" + max;
+            } else if (max < 1000) {
+                code = "NV0" + max;
+            } else {
+                code = "NV" + max;
+            }
+        }
+        return code;
+    }
+
     private Staff getPanelNhanVien() {
-        String maNV = txtMaNhanVienPanelNhanVien.getText();
+        String maNV = CodeStaffTangDan();;
         String ho = txtHoPanelNhanVien.getText();
         String ten = txtTenPanelNhanVien.getText();
         String gioiTinh = rdoNamPanelNhanVien.isSelected() ? "Nam" : "Nữ";
@@ -1896,7 +1925,7 @@ public class TrangChu extends javax.swing.JFrame {
         Store store = (Store) cbbCuaHangPanelNhanVien.getSelectedItem();
         String matKhau = logicUtil.taoMaHoa(txtMatKhauPanelNhanVien.getText());
 
-        if (maNV.equals("") || ho.equals("") || ten.equals("") || ngaySinh.equals("") || sdt.equals("") || email.equals("") || diaChi.equals("") || matKhau.equals("")) {
+        if ( ho.equals("") || ten.equals("") || ngaySinh.equals("") || sdt.equals("") || email.equals("") || diaChi.equals("") || matKhau.equals("")) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin");
             return null;
         }
@@ -1960,6 +1989,18 @@ public class TrangChu extends javax.swing.JFrame {
 
     private void tblNhanVienPanelNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienPanelNhanVienMouseClicked
         // TODO add your handling code here:
+        int row = tblNhanVienPanelNhanVien.getSelectedRow();
+        if (row == -1) return;
+        txtMaNhanVienPanelNhanVien.setText(tblNhanVienPanelNhanVien.getValueAt(row, 1).toString());
+        txtHoPanelNhanVien.setText(tblNhanVienPanelNhanVien.getValueAt(row, 2).toString());
+        txtNgaySinhNhanVienPanelNhanVien.setDate(Date.valueOf(tblNhanVienPanelNhanVien.getValueAt(row, 3).toString()));
+        rdoNamPanelNhanVien.setSelected(tblNhanVienPanelNhanVien.getValueAt(row, 4).toString().equals("Nam"));
+        rdoNuPanelNhanVien.setSelected(tblNhanVienPanelNhanVien.getValueAt(row, 4).toString().equals("Nữ"));
+        txtSDTPanelNhanVien.setText(tblNhanVienPanelNhanVien.getValueAt(row, 5).toString());
+        txtEmailPanelNhanVien.setText(tblNhanVienPanelNhanVien.getValueAt(row, 6).toString());
+        txtDiaChiPanelNhanVien.setText(tblNhanVienPanelNhanVien.getValueAt(row, 7).toString());
+        cbbChucVuPanelNhanVien.setSelectedItem(tblNhanVienPanelNhanVien.getValueAt(row, 8).toString());
+        cbbCuaHangPanelNhanVien.setSelectedItem(tblNhanVienPanelNhanVien.getValueAt(row, 9).toString());
     }//GEN-LAST:event_tblNhanVienPanelNhanVienMouseClicked
 
 
