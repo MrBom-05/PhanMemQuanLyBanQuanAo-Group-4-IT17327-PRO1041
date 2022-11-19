@@ -21,7 +21,6 @@ public class StaffRepository {
         List<StaffCustomModel> list = query.getResultList();
         return list;
     }
-
     public List<Store> getNameStore() {
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery("from Store");
