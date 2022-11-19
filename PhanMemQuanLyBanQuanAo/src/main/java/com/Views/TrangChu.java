@@ -1863,7 +1863,7 @@ public class TrangChu extends javax.swing.JFrame {
     }
 
     private void addCbbCuaHangPanelNhanVien(List<Store> list) {
-        defaultComboBoxModel = (DefaultComboBoxModel) cbbMauSac.getModel();
+        defaultComboBoxModel = (DefaultComboBoxModel) cbbCuaHangPanelNhanVien.getModel();
         for (Store store : list) {
             defaultComboBoxModel.addElement(store);
         }
@@ -1876,6 +1876,7 @@ public class TrangChu extends javax.swing.JFrame {
         panelMain.add(panelNhanVien);
         panelMain.repaint();
         panelMain.revalidate();
+        addCbbCuaHangPanelNhanVien(staffService.getNameStore());
         loadDataNhanVien(staffService.getList());
         rdoNamPanelNhanVien.setSelected(true);
     }//GEN-LAST:event_btnNhanVienActionPerformed
@@ -1895,7 +1896,7 @@ public class TrangChu extends javax.swing.JFrame {
 
         Date date = Date.valueOf(ngaySinh);
 
-        return new Staff("newid()", maNV, ho, ten, gioiTinh, date, diaChi, sdt, email, matKhau, 1, store, chucVu);
+        return new Staff("newid()", maNV, ten, ho, gioiTinh, date, diaChi, sdt, email, matKhau, 1, store, chucVu);
     }
 
     private void btnXoaFormPanelNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaFormPanelNhanVienActionPerformed
@@ -1916,10 +1917,25 @@ public class TrangChu extends javax.swing.JFrame {
 
     private void btnSuaPanelNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaPanelNhanVienActionPerformed
         // TODO add your handling code here:
+        Staff staff = getPanelNhanVien();
+        if (staff == null) return;
+        if (staffService.update(txtMaNhanVienPanelNhanVien.getText(), staff)) {
+            loadDataNhanVien(staffService.getList());
+            clearPanelNhanVien();
+            JOptionPane.showMessageDialog(this, "Sửa Thành Công");
+        } else {
+            JOptionPane.showMessageDialog(this, "Sửa Thất Bại");
+        }
     }//GEN-LAST:event_btnSuaPanelNhanVienActionPerformed
 
     private void btnAnPanelNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnPanelNhanVienActionPerformed
         // TODO add your handling code here:
+        if (staffService.hideOrShow(txtMaNhanVienPanelNhanVien.getText(),0)) {
+            loadDataNhanVien(staffService.getList());
+            JOptionPane.showMessageDialog(this, "Ẩn Thành Công");
+        } else {
+            JOptionPane.showMessageDialog(this, "Ẩn Thất Bại");
+        }
     }//GEN-LAST:event_btnAnPanelNhanVienActionPerformed
 
     private void btnXemNhanVienDaNghiPanelNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemNhanVienDaNghiPanelNVActionPerformed
