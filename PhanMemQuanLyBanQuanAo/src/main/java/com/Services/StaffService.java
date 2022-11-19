@@ -12,7 +12,7 @@ public interface StaffService {
 
     public boolean update(String code, Staff staff);
 
-    public boolean hide(String code);
+    public boolean hide(String code, int status);
 
     public List<StaffCustomModel> getList();
 

@@ -12,29 +12,20 @@ import org.hibernate.Transaction;
 
 public class StaffRepository {
 
-    public List<StaffCustomModel> getList() {
+    public List<StaffCustomModel> getList(int status) {
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery(
-                "select  new com.CustomModels.StaffCustomModel("
-                + " s.code,s.lastName,s.firstName,s.dateOfBirth,s.sex,s.phoneNumber,s.email,s.address,s.role,s.store.name ) "
-                + " from com.Models.Staff s where s.status = 1");
+                "select new com.CustomModels.StaffCustomModel("
+                + " s.code, concat(s.lastName, ' ', s.firstName), s.dateOfBirth, s.sex, s.phoneNumber, s.email, s.address, s.role, s.store.name ) "
+                + " from com.Models.Staff s where s.status = " + status);
         List<StaffCustomModel> list = query.getResultList();
         return list;
     }
+
     public List<Store> getNameStore() {
         Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery(
-                "select s.name from Store s");
+        Query query = session.createQuery("from Store");
         List<Store> list = query.getResultList();
-        return list;
-    }
-    public List<StaffCustomModel> getListStaffOff() {
-        Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery(
-                "select  new com.CustomModels.StaffCustomModel("
-                + " s.code,s.lastName,s.firstName,s.dateOfBirth,s.sex,s.phoneNumber,s.email,s.address,s.role,s.store.name ) "
-                + " from com.Models.Staff s where s.status = 0");
-        List<StaffCustomModel> list = query.getResultList();
         return list;
     }
 
@@ -54,12 +45,11 @@ public class StaffRepository {
         Transaction transaction = null;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("update Staff set  firstName =: fname , lastName =: lname"
-                    + ", dateOfBirth =: ngaySinh, phoneNumber=:sdt, email=:email, address=:diaChi,"
-                    + " role=:chucVu, store.id=:id"
-                    + " where code =: code");
-            query.setParameter("fname", staff.getFirstName());
-            query.setParameter("lname", staff.getLastName());
+            Query query = session.createQuery("update Staff set firstName =: firstName, lastName =: lastName"
+                    + ", dateOfBirth =: ngaySinh, phoneNumber =: sdt, email =: email, address =: diaChi,"
+                    + " role =: chucVu, store.id =: id where code =: code");
+            query.setParameter("firstName", staff.getFirstName());
+            query.setParameter("lastName", staff.getLastName());
             query.setParameter("ngaySinh", staff.getDateOfBirth());
             query.setParameter("sdt", staff.getPhoneNumber());
             query.setParameter("email", staff.getEmail());
@@ -76,12 +66,12 @@ public class StaffRepository {
         }
     }
 
-    public boolean hide(String code) {
+    public boolean hide(String code, int status) {
         Transaction transaction = null;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("update Staff set  status = 0 "
-                    + " where code =: code");
+            Query query = session.createQuery("update Staff set  status =: status where code =: code");
+            query.setParameter("status", status);
             query.setParameter("code", code);
             query.executeUpdate();
             transaction.commit();
@@ -89,15 +79,6 @@ public class StaffRepository {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
-        }
-    }
-
-
-
-    public static void main(String[] args) {
-        List<StaffCustomModel> list = new StaffRepository().getList();
-        for (StaffCustomModel s : list) {
-            System.out.println(s.toString());
         }
     }
 }

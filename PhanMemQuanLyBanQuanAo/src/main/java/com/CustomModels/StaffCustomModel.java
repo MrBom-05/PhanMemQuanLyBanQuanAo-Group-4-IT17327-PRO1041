@@ -6,14 +6,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class StaffCustomModel {
-    private String maNv;
-    private String ho;
-    private String ten;
+
+    private String maNV;
+    private String hoTen;
     private Date ngaySinh;
     private String gioiTinh;
     private String sdt;
@@ -22,21 +23,4 @@ public class StaffCustomModel {
     private int chucVu;
     private String tenCuaHang;
 
-
-
-    @Override
-    public String toString() {
-        return "StaffCustomModel{" +
-                "maNv='" + maNv + '\'' +
-                ", ho='" + ho + '\'' +
-                ", ten='" + ten + '\'' +
-                ", ngaySinh=" + ngaySinh +
-                ", gioiTinh='" + gioiTinh + '\'' +
-                ", sdt='" + sdt + '\'' +
-                ", email='" + email + '\'' +
-                ", diaChi='" + diaChi + '\'' +
-                ", chucVu=" + chucVu +
-                ", tenCuaHang='" + tenCuaHang + '\'' +
-                '}';
-    }
 }

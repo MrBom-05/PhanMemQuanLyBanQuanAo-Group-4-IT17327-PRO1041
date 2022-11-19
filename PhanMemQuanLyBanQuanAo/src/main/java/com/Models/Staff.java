@@ -65,4 +65,20 @@ public class Staff implements Serializable {
 
     @OneToOne(mappedBy = "staffOwner")
     private Store storeOwner;
+
+    public Staff(String id, String code, String firstName, String lastName, String sex, Date dateOfBirth, String address, String phoneNumber, String email, String password, int status, Store store, int role) {
+        this.id = id;
+        this.code = code;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.sex = sex;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
+        this.status = status;
+        this.store = store;
+        this.role = role;
+    }
 }

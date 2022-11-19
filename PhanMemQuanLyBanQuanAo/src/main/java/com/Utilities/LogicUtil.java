@@ -209,4 +209,9 @@ public class LogicUtil {
         boolean check = getMD5(password).equals(md5Hex);
         return check;
     }
+
+    public String taoMaHoa(String password) {
+        String md5Hex = DigestUtils.md5Hex(password).toUpperCase();
+        return md5Hex;
+    }
 }

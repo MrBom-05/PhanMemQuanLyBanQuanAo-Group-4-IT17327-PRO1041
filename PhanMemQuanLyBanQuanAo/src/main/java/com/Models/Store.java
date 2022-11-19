@@ -39,6 +39,12 @@ public class Store implements Serializable {
     @Column(name = "Status")
     private int status;
 
+    @OneToMany(mappedBy = "store", fetch = FetchType.LAZY)
+    private List<Staff> listStaff;
+
+    @OneToMany(mappedBy = "store", fetch = FetchType.LAZY)
+    private List<Bill> listBill;
+
     public Store(String code, String name, String diaChi, int status) {
         this.code = code;
         this.name = name;
@@ -46,9 +52,9 @@ public class Store implements Serializable {
         this.status = status;
     }
 
-    @OneToMany(mappedBy = "store", fetch = FetchType.LAZY)
-    private List<Staff> listStaff;
+    @Override
+    public String toString() {
+        return code + name;
+    }
 
-    @OneToMany(mappedBy = "store", fetch = FetchType.LAZY)
-    private List<Bill> listBill;
 }

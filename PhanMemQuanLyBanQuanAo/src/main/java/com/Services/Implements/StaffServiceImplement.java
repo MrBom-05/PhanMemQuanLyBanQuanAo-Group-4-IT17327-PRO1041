@@ -5,6 +5,7 @@ import com.Models.Staff;
 import com.Models.Store;
 import com.Repositories.StaffRepository;
 import com.Services.StaffService;
+
 import java.util.List;
 
 public class StaffServiceImplement implements StaffService {
@@ -13,7 +14,7 @@ public class StaffServiceImplement implements StaffService {
 
     @Override
     public boolean insert(Staff staff) {
-      return staffRepository.insert(staff);
+        return staffRepository.insert(staff);
     }
 
     @Override
@@ -23,17 +24,17 @@ public class StaffServiceImplement implements StaffService {
 
     @Override
     public List<StaffCustomModel> getList() {
-        return staffRepository.getList();
+        return staffRepository.getList(1);
     }
 
     @Override
     public List<StaffCustomModel> getListStaffOff() {
-         return staffRepository.getListStaffOff();
+        return staffRepository.getList(0);
     }
 
     @Override
-    public boolean hide(String code) {
-        return staffRepository.hide(code);
+    public boolean hide(String code, int status) {
+        return staffRepository.hide(code, status);
     }
 
     @Override
