@@ -33,8 +33,8 @@ public class StaffServiceImplement implements StaffService {
     }
 
     @Override
-    public boolean hide(String code, int status) {
-        return staffRepository.hide(code, status);
+    public boolean hideOrShow(String code, int status) {
+        return staffRepository.hideOrShow(code, status);
     }
 
     @Override

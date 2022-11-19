@@ -10,6 +10,8 @@ import com.Utilities.LogicUtil;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class TrangChu extends javax.swing.JFrame {
@@ -1863,7 +1865,7 @@ public class TrangChu extends javax.swing.JFrame {
     }
 
     private void addCbbCuaHangPanelNhanVien(List<Store> list) {
-        defaultComboBoxModel = (DefaultComboBoxModel) cbbMauSac.getModel();
+        defaultComboBoxModel = (DefaultComboBoxModel) cbbCuaHangPanelNhanVien.getModel();
         for (Store store : list) {
             defaultComboBoxModel.addElement(store);
         }
@@ -1876,6 +1878,7 @@ public class TrangChu extends javax.swing.JFrame {
         panelMain.add(panelNhanVien);
         panelMain.repaint();
         panelMain.revalidate();
+        addCbbCuaHangPanelNhanVien(staffService.getNameStore());
         loadDataNhanVien(staffService.getList());
         rdoNamPanelNhanVien.setSelected(true);
     }//GEN-LAST:event_btnNhanVienActionPerformed
@@ -1893,9 +1896,23 @@ public class TrangChu extends javax.swing.JFrame {
         Store store = (Store) cbbCuaHangPanelNhanVien.getSelectedItem();
         String matKhau = logicUtil.taoMaHoa(txtMatKhauPanelNhanVien.getText());
 
-        Date date = Date.valueOf(ngaySinh);
+        if (maNV.equals("") || ho.equals("") || ten.equals("") || ngaySinh.equals("") || sdt.equals("") || email.equals("") || diaChi.equals("") || matKhau.equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin");
+            return null;
+        }
+        else if (email.matches("^[a-zA-Z0-9]+@[a-zA-Z0-9]+(\\.[a-zA-Z0-9]+)$") == false) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng email");
+            return null;
+        } else if (sdt.matches("^[0-9]{10}$") == false) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng số điện thoại");
+            return null;
+        } else if (ngaySinh.matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}$") == false) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng ngày sinh");
+            return null;
+        }
 
-        return new Staff("newid()", maNV, ho, ten, gioiTinh, date, diaChi, sdt, email, matKhau, 1, store, chucVu);
+        Date date = Date.valueOf(ngaySinh);
+        return new Staff("newid()", maNV, ten, ho, gioiTinh, date, diaChi, sdt, email, matKhau, 1, store, chucVu);
     }
 
     private void btnXoaFormPanelNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaFormPanelNhanVienActionPerformed
@@ -1916,10 +1933,25 @@ public class TrangChu extends javax.swing.JFrame {
 
     private void btnSuaPanelNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaPanelNhanVienActionPerformed
         // TODO add your handling code here:
+        Staff staff = getPanelNhanVien();
+        if (staff == null) return;
+        if (staffService.update(txtMaNhanVienPanelNhanVien.getText(), staff)) {
+            loadDataNhanVien(staffService.getList());
+            clearPanelNhanVien();
+            JOptionPane.showMessageDialog(this, "Sửa Thành Công");
+        } else {
+            JOptionPane.showMessageDialog(this, "Sửa Thất Bại");
+        }
     }//GEN-LAST:event_btnSuaPanelNhanVienActionPerformed
 
     private void btnAnPanelNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnPanelNhanVienActionPerformed
         // TODO add your handling code here:
+        if (staffService.hideOrShow(txtMaNhanVienPanelNhanVien.getText(),0)) {
+            loadDataNhanVien(staffService.getList());
+            JOptionPane.showMessageDialog(this, "Ẩn Thành Công");
+        } else {
+            JOptionPane.showMessageDialog(this, "Ẩn Thất Bại");
+        }
     }//GEN-LAST:event_btnAnPanelNhanVienActionPerformed
 
     private void btnXemNhanVienDaNghiPanelNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemNhanVienDaNghiPanelNVActionPerformed
