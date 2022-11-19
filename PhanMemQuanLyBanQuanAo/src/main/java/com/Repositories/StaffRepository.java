@@ -7,6 +7,8 @@ import com.Utilities.HibernateUtil;
 import java.util.List;
 
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -79,5 +81,18 @@ public class StaffRepository {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public String getByFirstName = ("SELECT s.firstName FROM Staff s WHERE s.code =: code");
+    public String getByLastName = ("SELECT s.lastName FROM Staff s WHERE s.code =: code");
+
+    public String getByName(String code, String statement) {
+        String uuid;
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+            TypedQuery<String> query = session.createQuery(statement, String.class);
+            query.setParameter("code", code);
+            uuid = query.getSingleResult();
+        }
+        return uuid;
     }
 }

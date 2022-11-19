@@ -33,6 +33,16 @@ public class StaffServiceImplement implements StaffService {
     }
 
     @Override
+    public String getByFisrtName(String code) {
+        return staffRepository.getByName(code, staffRepository.getByFirstName);
+    }
+
+    @Override
+    public String getByLastName(String code) {
+        return staffRepository.getByName(code, staffRepository.getByLastName);
+    }
+
+    @Override
     public boolean hideOrShow(String code, int status) {
         return staffRepository.hideOrShow(code, status);
     }
