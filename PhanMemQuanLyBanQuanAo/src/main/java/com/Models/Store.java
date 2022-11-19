@@ -33,12 +33,28 @@ public class Store implements Serializable {
     @Column(name = "Address", columnDefinition = "Nvarchar(MAX)")
     private String diaChi;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "IdStoreOwner", referencedColumnName = "Id")
+    private Staff staffOwner;
     @Column(name = "Status")
     private int status;
 
     @OneToMany(mappedBy = "store", fetch = FetchType.LAZY)
     private List<Staff> listStaff;
 
-    @OneToOne(mappedBy = "storeOwner")
-    private Staff staff;
+    @OneToMany(mappedBy = "store", fetch = FetchType.LAZY)
+    private List<Bill> listBill;
+
+    public Store(String code, String name, String diaChi, int status) {
+        this.code = code;
+        this.name = name;
+        this.diaChi = diaChi;
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return code + name;
+    }
+
 }

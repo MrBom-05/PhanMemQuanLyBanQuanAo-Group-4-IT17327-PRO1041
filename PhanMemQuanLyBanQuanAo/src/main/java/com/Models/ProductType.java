@@ -26,12 +26,15 @@ public class ProductType implements Serializable {
 
     @Column(name = "Code", columnDefinition = "Varchar(20)", unique = true)
     private String code;
+
     @Column(name = "Name", columnDefinition = "Nvarchar(30)")
     private String name;
 
-    @Column(name = "Status")
-    private int status;
-
     @OneToMany(mappedBy = "productType", fetch = FetchType.LAZY)
     private List<ProductDetails> listProductDetails;
+    
+    @Override
+    public String toString() {
+        return name;
+    }
 }
