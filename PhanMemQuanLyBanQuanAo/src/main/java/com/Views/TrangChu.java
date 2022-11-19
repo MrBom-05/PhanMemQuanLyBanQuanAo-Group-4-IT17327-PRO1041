@@ -1066,7 +1066,7 @@ public class TrangChu extends javax.swing.JFrame {
     }
 
     private Staff getPanelNhanVien() {
-        String maNV = CodeStaffTangDan();
+        String maNV = codeStaffTangDan();
         ;
         String ho = txtHoPanelNhanVien.getText();
         String ten = txtTenPanelNhanVien.getText();
