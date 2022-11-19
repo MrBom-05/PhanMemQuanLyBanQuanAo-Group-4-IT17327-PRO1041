@@ -66,7 +66,7 @@ public class StaffRepository {
         }
     }
 
-    public boolean hide(String code, int status) {
+    public boolean hideOrShow(String code, int status) {
         Transaction transaction = null;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
