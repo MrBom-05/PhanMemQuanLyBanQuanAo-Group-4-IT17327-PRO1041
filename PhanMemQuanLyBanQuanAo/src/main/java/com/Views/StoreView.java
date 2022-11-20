@@ -49,26 +49,26 @@ public class StoreView extends javax.swing.JFrame {
         }
     }
 
-    public Store getData() {
-        String code = txtMaCH.getText();
-        String name = txtTenCH.getText();
-        String diaChi = txtDiaChi.getText();
-        String cbbST = cboTrangThai.getSelectedItem().toString();
-        
-
-        if (code.trim().isEmpty() || name.trim().isEmpty()
-                || diaChi.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Không được để trống");
-            return null;
-        }
-//        if (!colorService.check(ma).isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "Mã đã tồn tại");
+//    public Store getData() {
+//        String code = txtMaCH.getText();
+//        String name = txtTenCH.getText();
+//        String diaChi = txtDiaChi.getText();
+//        String cbbST = cboTrangThai.getSelectedItem().toString();
+//
+//
+//        if (code.trim().isEmpty() || name.trim().isEmpty()
+//                || diaChi.trim().isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "Không được để trống");
 //            return null;
 //        }
-
-        Store st = new Store(code, name, diaChi, WIDTH);
-        return st;
-    }
+////        if (!colorService.check(ma).isEmpty()) {
+////            JOptionPane.showMessageDialog(this, "Mã đã tồn tại");
+////            return null;
+////        }
+//
+//        Store st = new Store(code, name, diaChi, WIDTH);
+//        return st;
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -246,29 +246,29 @@ public class StoreView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        Store st = getData();
-        stsv.insert(st);
-        JOptionPane.showMessageDialog(this, "Thêm thành công");
-        loadData(stsv.getList());
+//        Store st = getData();
+//        stsv.insert(st);
+//        JOptionPane.showMessageDialog(this, "Thêm thành công");
+//        loadData(stsv.getList());
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        int row = this.tblBang.getSelectedRow();
-        if (row == -1) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn dòng để sửa");
-            return;
-        }
-        Store st = getData();
-        if (st == null) {
-            return;
-        }
-        if( stsv.sua(txtMaCH.getText(),st)){
-            loadData( stsv.getList());
-            JOptionPane.showMessageDialog(this, "Sửa thành công");
-        }else{
-            JOptionPane.showMessageDialog(this, "Sửa thất bại");
-            return;
-        }
+//        int row = this.tblBang.getSelectedRow();
+//        if (row == -1) {
+//            JOptionPane.showMessageDialog(this, "Vui lòng chọn dòng để sửa");
+//            return;
+//        }
+//        Store st = getData();
+//        if (st == null) {
+//            return;
+//        }
+//        if( stsv.sua(txtMaCH.getText(),st)){
+//            loadData( stsv.getList());
+//            JOptionPane.showMessageDialog(this, "Sửa thành công");
+//        }else{
+//            JOptionPane.showMessageDialog(this, "Sửa thất bại");
+//            return;
+//        }
         
 
     }//GEN-LAST:event_btnSuaActionPerformed

@@ -22,7 +22,7 @@ public class StoreServiceImplement implements StoreService {
     }
 
     @Override
-    public boolean sua(String ma, Store store) {
+    public boolean update(String ma, Store store) {
         return storeRepository.update(ma, store);
     }
 

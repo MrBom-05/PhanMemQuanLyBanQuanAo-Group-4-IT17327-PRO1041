@@ -84,6 +84,6 @@ public class Staff implements Serializable {
 
     @Override
     public String toString() {
-        return code + " " + lastName + " " + firstName;
+        return code + "-" + lastName + " " + firstName;
     }
 }

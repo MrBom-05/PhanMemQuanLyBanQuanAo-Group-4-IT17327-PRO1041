@@ -10,7 +10,7 @@ public interface StoreService {
 
     public boolean insert(Store st);
 
-    public boolean sua(String ma, Store st);
+    public boolean update(String ma, Store st);
 
     public List<Store> getList();
 }
