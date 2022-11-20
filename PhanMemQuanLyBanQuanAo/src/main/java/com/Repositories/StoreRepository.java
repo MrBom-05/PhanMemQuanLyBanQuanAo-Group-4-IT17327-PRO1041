@@ -42,7 +42,7 @@ public class StoreRepository {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("update Store set code =: code, name =: name , diaChi =: diachi, status =: status where code =: code");
+            Query query = session.createQuery("update Store set code =: code, name =: name , address =: diachi, status =: status where code =: code");
             query.setParameter("code", store.getCode());
             query.setParameter("name", store.getName());
             query.setParameter("diachi", store.getAddress());
