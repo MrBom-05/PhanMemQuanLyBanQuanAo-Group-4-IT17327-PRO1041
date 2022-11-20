@@ -1,6 +1,5 @@
 package com.Repositories;
 
-import com.CustomModels.StoreCustomModel;
 import com.Models.Store;
 import com.Utilities.HibernateUtil;
 import java.util.List;
@@ -11,14 +10,14 @@ import org.hibernate.Transaction;
 
 public class StoreRepository {
 
-    public List<StoreCustomModel> getListCustom() {
-        Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery("select new com.CustomModels.StoreCustomModel" +
-                "(s.code, s.name, s.diaChi, s.staffOwner.code, " +
-                "concat(s.staffOwner.lastName, ' ', s.staffOwner.firstName), s.status) from com.Models.Store s");
-        List<StoreCustomModel> list = query.getResultList();
-        return list;
-    }
+//    public List<StoreCustomModel> getListCustom() {
+//        Session session = HibernateUtil.getFACTORY().openSession();
+//        Query query = session.createQuery("select new com.CustomModels.StoreCustomModel" +
+//                "(s.code, s.name, s.diaChi, s.staffOwner.code, " +
+//                "concat(s.staffOwner.lastName, ' ', s.staffOwner.firstName), s.status) from com.Models.Store s");
+//        List<StoreCustomModel> list = query.getResultList();
+//        return list;
+//    }
 
     public List<Store> getList() {
         Session session = HibernateUtil.getFACTORY().openSession();
@@ -46,7 +45,7 @@ public class StoreRepository {
             Query query = session.createQuery("update Store set code =: code, name =: name , diaChi =: diachi, status =: status where code =: code");
             query.setParameter("code", store.getCode());
             query.setParameter("name", store.getName());
-            query.setParameter("diachi", store.getDiaChi());
+            query.setParameter("diachi", store.getAddress());
             query.setParameter("status", store.getStatus());
             query.setParameter("code", ma);
             query.executeUpdate();
