@@ -11,10 +11,10 @@ public class StoreServiceImplement implements StoreService {
 
     private StoreRepository storeRepository = new StoreRepository();
 
-    @Override
-    public List<StoreCustomModel> getListCustom() {
-        return storeRepository.getListCustom();
-    }
+//    @Override
+//    public List<StoreCustomModel> getListCustom() {
+//        return storeRepository.getListCustom();
+//    }
 
     @Override
     public boolean insert(Store store) {

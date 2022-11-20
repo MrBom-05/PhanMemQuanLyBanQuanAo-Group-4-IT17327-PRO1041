@@ -6,6 +6,8 @@
     </Component>
     <Component class="javax.swing.ButtonGroup" name="buttonGroup2">
     </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup3">
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -2080,11 +2082,17 @@
               <SubComponents>
                 <Component class="javax.swing.JRadioButton" name="rdoNamPanelNhanVien">
                   <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="buttonGroup3"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Nam"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="rdoNuPanelNhanVien">
                   <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="buttonGroup3"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="N&#x1eef;"/>
                   </Properties>
                 </Component>
@@ -2473,13 +2481,11 @@
                     <Component class="javax.swing.JTable" name="tblCuaHangPanelCuaHang">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="7" rowCount="0">
+                          <Table columnCount="5" rowCount="0">
                             <Column editable="false" title="STT" type="java.lang.Object"/>
                             <Column editable="false" title="M&#xe3; C&#x1ee7;a H&#xe0;ng" type="java.lang.Object"/>
                             <Column editable="false" title="T&#xea;n C&#x1eed;a H&#xe0;ng" type="java.lang.Object"/>
                             <Column editable="false" title="&#x110;&#x1ecb;a Ch&#x1ec9;" type="java.lang.Object"/>
-                            <Column editable="false" title="M&#xe3; Ch&#x1ee7; C&#x1eed;a H&#xe0;ng" type="java.lang.Object"/>
-                            <Column editable="false" title="H&#x1ecd; v&#xe0; T&#xea;n CCH" type="java.lang.Object"/>
                             <Column editable="false" title="Tr&#x1ea1;ng Th&#xe1;i" type="java.lang.Object"/>
                           </Table>
                         </Property>
@@ -2501,16 +2507,6 @@
                               <Renderer/>
                             </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="250" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>

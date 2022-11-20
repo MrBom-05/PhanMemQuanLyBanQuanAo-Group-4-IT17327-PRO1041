@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface StoreService {
 
-    public List<StoreCustomModel> getListCustom();
+//    public List<StoreCustomModel> getListCustom();
 
     public boolean insert(Store st);
 

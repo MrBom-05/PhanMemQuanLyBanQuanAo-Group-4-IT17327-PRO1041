@@ -37,7 +37,7 @@ public class StoreView extends javax.swing.JFrame {
             defaultTableModel.addRow(new Object[]{
                 st.getCode(),
                 st.getName(),
-                st.getDiaChi(),
+                st.getAddress(),
                 st.getStatus() == 1 ? "Hoạt động" : "Ngừng hoạt động",});
         }
     }
