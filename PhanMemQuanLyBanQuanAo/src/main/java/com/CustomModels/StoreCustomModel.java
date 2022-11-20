@@ -12,8 +12,9 @@ import lombok.Setter;
 public class StoreCustomModel {
 
     private String ma;
-    private String diaChi;
     private String ten;
+    private String diaChi;
+    private String maNV;
+    private String tenNV;
     private int trangThai;
-
 }
