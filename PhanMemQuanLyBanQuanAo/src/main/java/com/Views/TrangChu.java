@@ -43,6 +43,7 @@ public class TrangChu extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         btnExit = new javax.swing.JButton();
         btnThongKe = new javax.swing.JButton();
@@ -1171,8 +1172,10 @@ public class TrangChu extends javax.swing.JFrame {
 
         panelNhanVien.setBackground(new java.awt.Color(246, 248, 250));
 
+        buttonGroup3.add(rdoNamPanelNhanVien);
         rdoNamPanelNhanVien.setText("Nam");
 
+        buttonGroup3.add(rdoNuPanelNhanVien);
         rdoNuPanelNhanVien.setText("Nữ");
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -1439,11 +1442,11 @@ public class TrangChu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "STT", "Mã Của Hàng", "Tên Cửa Hàng", "Địa Chỉ", "Mã Chủ Cửa Hàng", "Họ và Tên CCH", "Trạng Thái"
+                "STT", "Mã Của Hàng", "Tên Cửa Hàng", "Địa Chỉ", "Trạng Thái"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -2070,12 +2073,12 @@ public class TrangChu extends javax.swing.JFrame {
 
     // Panel Cửa Hàng
 
-    private void loadDataCuaHang(List<StoreCustomModel> list) {
+    private void loadDataCuaHang(List<Store> list) {
         defaultTableModel = (DefaultTableModel) tblCuaHangPanelCuaHang.getModel();
         defaultTableModel.setRowCount(0);
         int count = 1;
-        for (StoreCustomModel storeCustomModel : list) {
-            defaultTableModel.addRow(new Object[]{count++, storeCustomModel.getMa(), storeCustomModel.getTen(), storeCustomModel.getDiaChi(), storeCustomModel.getMaNV(), storeCustomModel.getTenNV(), storeCustomModel.getTrangThai() == 1 ? "Đang Hoạt Động" : "Dừng Hoạt Động"});
+        for (Store store : list) {
+            defaultTableModel.addRow(new Object[]{count++, store.getCode(), store.getName(), store.getAddress(), store.getStatus() == 1 ? "Đang Hoạt Động" : "Dừng Hoạt Động"});
         }
     }
 
@@ -2096,13 +2099,13 @@ public class TrangChu extends javax.swing.JFrame {
 
     public String codeStoreTangDan() {
         String code = "";
-        List<StoreCustomModel> list = storeService.getListCustom();
+        List<Store> list = storeService.getList();
         if (list.size() == 0) {
             code = "CH0001";
         } else {
             int max = 0;
-            for (StoreCustomModel storeCustomModel : list) {
-                int so = Integer.parseInt(storeCustomModel.getMa().substring(2));
+            for (Store store : list) {
+                int so = Integer.parseInt(store.getCode().substring(2));
                 if (so > max) {
                     max = so;
                 }
@@ -2128,7 +2131,7 @@ public class TrangChu extends javax.swing.JFrame {
         panelMain.add(panelCuaHang);
         panelMain.repaint();
         panelMain.revalidate();
-        loadDataCuaHang(storeService.getListCustom());
+        loadDataCuaHang(storeService.getList());
         cbbChuCuaHangPanelCuaHang.removeAllItems();
         addCbbNhanVienPanelCuaHang(staffService.getListStaff());
     }//GEN-LAST:event_btnCuaHangActionPerformed
@@ -2238,6 +2241,7 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JButton btnXoaPanelSanPham;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JComboBox<String> cbbChatLieuPanelSanPham;
     private javax.swing.JComboBox<String> cbbChuCuaHangPanelCuaHang;
     private javax.swing.JComboBox<String> cbbChucVuPanelNhanVien;
