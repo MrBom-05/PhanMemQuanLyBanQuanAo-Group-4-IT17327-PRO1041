@@ -1,6 +1,5 @@
 package com.Services;
 
-import com.CustomModels.StoreCustomModel;
 import com.Models.Store;
 
 import java.util.List;
