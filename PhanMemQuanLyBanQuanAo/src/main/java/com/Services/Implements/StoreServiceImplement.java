@@ -1,5 +1,6 @@
 package com.Services.Implements;
 
+import com.CustomModels.StoreCustomModel;
 import com.Models.Store;
 import com.Repositories.StoreRepository;
 import com.Services.StoreService;
@@ -9,6 +10,11 @@ import java.util.List;
 public class StoreServiceImplement implements StoreService {
 
     private StoreRepository storeRepository = new StoreRepository();
+
+//    @Override
+//    public List<StoreCustomModel> getListCustom() {
+//        return storeRepository.getListCustom();
+//    }
 
     @Override
     public boolean insert(Store store) {
@@ -25,10 +31,5 @@ public class StoreServiceImplement implements StoreService {
         return storeRepository.getList();
     }
 
-    @Override
-    public List<Store> search(String ten) {
-//        return storeRepository.timKiem(ten);
-        return null;
-    }
 
 }
