@@ -34,6 +34,7 @@ public class StoreRepository {
             transaction.commit();
             return true;
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }

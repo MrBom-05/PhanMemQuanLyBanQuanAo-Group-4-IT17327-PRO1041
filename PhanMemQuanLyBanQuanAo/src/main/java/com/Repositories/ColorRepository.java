@@ -62,12 +62,4 @@ public class ColorRepository {
             return false;
         }
     }
-
-//    public List<String> check(String ma) {
-//        Session session = HibernateUtil.getFACTORY().openSession();
-//        Query query = session.createQuery("select Code from  Color  where Code=:Code");
-//        query.setParameter("Code",ma);
-//        List<String> results = query.getResultList();
-//        return results;
-//    }
 }
