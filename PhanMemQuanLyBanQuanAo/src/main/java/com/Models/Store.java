@@ -31,7 +31,7 @@ public class Store implements Serializable {
     private String name;
 
     @Column(name = "Address", columnDefinition = "Nvarchar(MAX)")
-    private String diaChi;
+    private String address;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "IdStoreOwner", referencedColumnName = "Id")
@@ -45,16 +45,16 @@ public class Store implements Serializable {
     @OneToMany(mappedBy = "store", fetch = FetchType.LAZY)
     private List<Bill> listBill;
 
-    public Store(String code, String name, String diaChi, int status) {
+    public Store(String code, String name, String address, int status) {
         this.code = code;
         this.name = name;
-        this.diaChi = diaChi;
+        this.address = address;
         this.status = status;
     }
 
     @Override
     public String toString() {
-        return code + name;
+        return code + " " + name;
     }
 
 }

@@ -12,11 +12,15 @@ public interface StaffService {
 
     public boolean update(String code, Staff staff);
 
-    public boolean hide(String code, int status);
+    public boolean hideOrShow(String code, int status);
 
     public List<StaffCustomModel> getList();
 
-    public List<Store> getNameStore();
-
     public List<StaffCustomModel> getListStaffOff();
+
+    public List<Staff> getListStaff();
+
+    public String getByFisrtName(String code);
+
+    public String getByLastName(String code);
 }
