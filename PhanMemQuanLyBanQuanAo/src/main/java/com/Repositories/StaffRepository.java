@@ -2,7 +2,6 @@ package com.Repositories;
 
 import com.CustomModels.StaffCustomModel;
 import com.Models.Staff;
-import com.Models.Store;
 import com.Utilities.HibernateUtil;
 import java.util.List;
 
@@ -23,10 +22,11 @@ public class StaffRepository {
         List<StaffCustomModel> list = query.getResultList();
         return list;
     }
-    public List<Store> getNameStore() {
+
+    public List<Staff> getListStaff() {
         Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery("from Store");
-        List<Store> list = query.getResultList();
+        Query query = session.createQuery("from Staff");
+        List<Staff> list = query.getResultList();
         return list;
     }
 
