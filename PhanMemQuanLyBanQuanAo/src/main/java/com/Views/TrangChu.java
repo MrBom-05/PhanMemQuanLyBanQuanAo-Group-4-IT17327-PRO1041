@@ -1965,10 +1965,10 @@ public class TrangChu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng số điện thoại");
             return null;
         }
-//        else if (ngaySinh.matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}$") == false) {
-//            JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng ngày sinh");
-//            return null;
-//        }
+        else if (ngaySinh.matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}$") == false) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng ngày sinh");
+            return null;
+        }
 
         Date date = Date.valueOf(ngaySinh);
         return new Staff("newid()", maNV, ten, ho, gioiTinh, date, diaChi, sdt, email, matKhau, 1, store, chucVu);
