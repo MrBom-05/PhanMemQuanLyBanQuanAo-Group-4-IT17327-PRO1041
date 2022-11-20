@@ -81,4 +81,9 @@ public class Staff implements Serializable {
         this.store = store;
         this.role = role;
     }
+
+    @Override
+    public String toString() {
+        return code + " " + lastName + " " + firstName;
+    }
 }

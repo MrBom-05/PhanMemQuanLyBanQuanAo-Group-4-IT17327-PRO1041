@@ -1,5 +1,6 @@
 package com.Repositories;
 
+import com.CustomModels.StoreCustomModel;
 import com.Models.Store;
 import com.Utilities.HibernateUtil;
 import java.util.List;
@@ -9,6 +10,15 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class StoreRepository {
+
+    public List<StoreCustomModel> getListCustom() {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery("select new com.CustomModels.StoreCustomModel" +
+                "(s.code, s.name, s.diaChi, s.staffOwner.code, " +
+                "concat(s.staffOwner.lastName, ' ', s.staffOwner.firstName), s.status) from com.Models.Store s");
+        List<StoreCustomModel> list = query.getResultList();
+        return list;
+    }
 
     public List<Store> getList() {
         Session session = HibernateUtil.getFACTORY().openSession();
@@ -48,19 +58,9 @@ public class StoreRepository {
         }
     }
 
-//    public ArrayList<Store> timKiem(String ten) {
-//        Session session = HibernateUtil.getFACTORY().openSession();
-//        javax.persistence.Query query = session.createQuery(
-//                "select code, name, diaChi, status from Store where code =: code ");
-//        query.setParameter("code", ten);
-//        ArrayList<Store> list = (ArrayList<Store>) query.getResultList();
-//
-//        return list;
-//    }
-
     public List<String> check(String ma) {
         Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery("select code from  Store  where code =: code");
+        Query query = session.createQuery("select code from Store where code =: code");
         query.setParameter("code", ma);
         List<String> results = query.getResultList();
         return results;

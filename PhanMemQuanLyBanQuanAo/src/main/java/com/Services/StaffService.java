@@ -16,9 +16,9 @@ public interface StaffService {
 
     public List<StaffCustomModel> getList();
 
-    public List<Store> getNameStore();
-
     public List<StaffCustomModel> getListStaffOff();
+
+    public List<Staff> getListStaff();
 
     public String getByFisrtName(String code);
 
