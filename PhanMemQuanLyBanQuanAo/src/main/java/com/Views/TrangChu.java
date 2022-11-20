@@ -1996,6 +1996,7 @@ public class TrangChu extends javax.swing.JFrame {
     private void btnThemPanelNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemPanelNhanVienActionPerformed
         Staff staff = getPanelNhanVien();
         if (staff == null) return;
+        logicUtil.taoMaQR(codeStaffTangDan());
         if (staffService.insert(staff)) {
             loadDataNhanVien(staffService.getList());
             clearPanelNhanVien();
