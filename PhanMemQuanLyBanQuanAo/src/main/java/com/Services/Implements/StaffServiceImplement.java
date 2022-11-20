@@ -2,7 +2,6 @@ package com.Services.Implements;
 
 import com.CustomModels.StaffCustomModel;
 import com.Models.Staff;
-import com.Models.Store;
 import com.Repositories.StaffRepository;
 import com.Services.StaffService;
 
@@ -33,14 +32,23 @@ public class StaffServiceImplement implements StaffService {
     }
 
     @Override
-    public boolean hideOrShow(String code, int status) {
-        return staffRepository.hideOrShow(code, status);
+    public List<Staff> getListStaff() {
+        return staffRepository.getListStaff();
     }
 
     @Override
-    public List<Store> getNameStore() {
-        return staffRepository.getNameStore();
+    public String getByFisrtName(String code) {
+        return staffRepository.getByName(code, staffRepository.getByFirstName);
     }
 
+    @Override
+    public String getByLastName(String code) {
+        return staffRepository.getByName(code, staffRepository.getByLastName);
+    }
+
+    @Override
+    public boolean hideOrShow(String code, int status) {
+        return staffRepository.hideOrShow(code, status);
+    }
 
 }
