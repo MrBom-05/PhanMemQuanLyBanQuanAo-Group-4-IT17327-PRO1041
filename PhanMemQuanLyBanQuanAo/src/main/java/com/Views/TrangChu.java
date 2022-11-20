@@ -2045,8 +2045,8 @@ public class TrangChu extends javax.swing.JFrame {
         int row = tblNhanVienPanelNhanVien.getSelectedRow();
         if (row == -1) return;
         txtMaNhanVienPanelNhanVien.setText(tblNhanVienPanelNhanVien.getValueAt(row, 1).toString());
-        txtHoPanelNhanVien.setText(staffService.getByFisrtName(tblNhanVienPanelNhanVien.getValueAt(row, 1).toString()));
-        txtTenPanelNhanVien.setText(staffService.getByLastName(tblNhanVienPanelNhanVien.getValueAt(row, 1).toString()));
+        txtHoPanelNhanVien.setText(staffService.getByLastName(tblNhanVienPanelNhanVien.getValueAt(row, 1).toString()));
+        txtTenPanelNhanVien.setText(staffService.getByFisrtName(tblNhanVienPanelNhanVien.getValueAt(row, 1).toString()));
         txtNgaySinhNhanVienPanelNhanVien.setDate(Date.valueOf(tblNhanVienPanelNhanVien.getValueAt(row, 3).toString()));
         rdoNamPanelNhanVien.setSelected(tblNhanVienPanelNhanVien.getValueAt(row, 4).toString().equals("Nam"));
         rdoNuPanelNhanVien.setSelected(tblNhanVienPanelNhanVien.getValueAt(row, 4).toString().equals("Nữ"));
