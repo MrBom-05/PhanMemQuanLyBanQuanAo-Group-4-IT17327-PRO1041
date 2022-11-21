@@ -10,9 +10,20 @@ public class PromotionServiceImplement implements PromotionService {
 
     private PromotionRepository promotionRepository = new PromotionRepository();
 
+
+    @Override
+    public List<Promotion> getListOn() {
+        return promotionRepository.getListPromotion(1);
+    }
+
+    @Override
+    public List<Promotion> getListOff() {
+        return promotionRepository.getListPromotion(0);
+    }
+
     @Override
     public List<Promotion> getList() {
-        return promotionRepository.getListPromotion();
+        return promotionRepository.getList();
     }
 
     @Override

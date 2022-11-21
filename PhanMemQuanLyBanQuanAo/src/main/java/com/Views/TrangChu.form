@@ -2001,7 +2001,7 @@
                             <Column editable="false" title="T&#xea;n Ch&#x1b0;&#x1a1;ng Tr&#xec;nh" type="java.lang.Object"/>
                             <Column editable="false" title="Ng&#xe0;y B&#x1eaf;t &#x110;&#x1ea7;u" type="java.lang.Object"/>
                             <Column editable="false" title="Ng&#xe0;y K&#x1ebf;t Th&#xfa;c" type="java.lang.Object"/>
-                            <Column editable="true" title="Ph&#x1ea7;n Tr&#x103;m Khuy&#x1ebf;n M&#xe3;i" type="java.lang.Object"/>
+                            <Column editable="false" title="Ph&#x1ea7;n Tr&#x103;m Khuy&#x1ebf;n M&#xe3;i &quot;%&quot;" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -2096,10 +2096,21 @@
                 <Component class="javax.swing.JTextField" name="txtTenChuongTrinhPanelKhuyenMai">
                 </Component>
                 <Component class="com.toedter.calendar.JDateChooser" name="txtNgayBatDauPanelKhuyenMai">
+                  <Properties>
+                    <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
+                  </Properties>
                 </Component>
                 <Component class="com.toedter.calendar.JDateChooser" name="txtNgayKetThucPanelKhuyenMai">
+                  <Properties>
+                    <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JSpinner" name="spnPhanTramKhuyenMaiPanelKhuyenMai">
+                  <Properties>
+                    <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                      <SpinnerModel initial="0" maximum="100" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+                    </Property>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnXemKhuyenMaiPanelKhuyenMai">
                   <Properties>
@@ -2658,11 +2669,11 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txtTenPanelNhanVien1" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
+                                      <Component id="txtTenPanelKhachHang" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="txtHoPanelNhanVien1" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
-                                              <Component id="txtMaNhanVienPanelNhanVien1" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
+                                              <Component id="txtHoPanelKhachHang" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
+                                              <Component id="txtMaKhachHangPanelKhachHang" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -2670,13 +2681,13 @@
                                               <Component id="jLabel68" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="txtSDTPanelNhanVien1" alignment="0" pref="117" max="32767" attributes="0"/>
-                                              <Component id="txtEmailPanelNhanVien1" alignment="0" max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="txtSDTPanelKhachHang" pref="171" max="32767" attributes="0"/>
+                                              <Component id="txtEmailPanelKhachHang" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="169" max="-2" attributes="0"/>
+                                  <EmptySpace pref="115" max="32767" attributes="0"/>
                                   <Component id="jLabel69" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="txtTimKiemKhachHangPanelKH" min="-2" pref="302" max="-2" attributes="0"/>
@@ -2693,10 +2704,10 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel64" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtMaNhanVienPanelNhanVien1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtMaKhachHangPanelKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtSDTPanelNhanVien1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtSDTPanelKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel67" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtTimKiemKhachHangPanelKH" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel69" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -2705,14 +2716,14 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel65" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtHoPanelNhanVien1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtHoPanelKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel68" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtEmailPanelNhanVien1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtEmailPanelKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel66" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtTenPanelNhanVien1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtTenPanelKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -2809,16 +2820,16 @@
                     <Property name="text" type="java.lang.String" value="T&#xea;n"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtHoPanelNhanVien1">
+                <Component class="javax.swing.JTextField" name="txtHoPanelKhachHang">
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtTenPanelNhanVien1">
+                <Component class="javax.swing.JTextField" name="txtTenPanelKhachHang">
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtMaNhanVienPanelNhanVien1">
+                <Component class="javax.swing.JTextField" name="txtMaKhachHangPanelKhachHang">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtSDTPanelNhanVien1">
+                <Component class="javax.swing.JTextField" name="txtSDTPanelKhachHang">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel67">
                   <Properties>
@@ -2836,7 +2847,7 @@
                     <Property name="text" type="java.lang.String" value="Email"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtEmailPanelNhanVien1">
+                <Component class="javax.swing.JTextField" name="txtEmailPanelKhachHang">
                 </Component>
                 <Component class="javax.swing.JButton" name="btnXoaFormPanelKhachHang">
                   <Properties>

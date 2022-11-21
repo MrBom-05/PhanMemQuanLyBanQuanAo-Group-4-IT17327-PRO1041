@@ -5,6 +5,10 @@ import com.Models.Promotion;
 import java.util.List;
 
 public interface PromotionService {
+    public List<Promotion> getListOn();
+
+    public List<Promotion> getListOff();
+
     public List<Promotion> getList();
 
     public boolean insert(Promotion promotion);

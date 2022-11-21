@@ -1,13 +1,13 @@
-
 package com.Services.Implements;
 
 import com.Models.Customer;
 import com.Repositories.CustomerRepository;
 import com.Services.CustomerService;
+
 import java.util.List;
 
-public class CustomerServiceImplement implements CustomerService{
-    
+public class CustomerServiceImplement implements CustomerService {
+
     private CustomerRepository customerRepository = new CustomerRepository();
 
     @Override
@@ -29,6 +29,21 @@ public class CustomerServiceImplement implements CustomerService{
     public boolean delete(String code) {
         return customerRepository.delete(code);
     }
-    
+
+    @Override
+    public List<Customer> search(String sdt) {
+        return customerRepository.search(sdt);
+    }
+
+    @Override
+    public String getByFisrtName(String code) {
+        return customerRepository.getByName(code, customerRepository.getByFirstName);
+    }
+
+    @Override
+    public String getByLastName(String code) {
+        return customerRepository.getByName(code, customerRepository.getByLastName);
+    }
+
 }
 

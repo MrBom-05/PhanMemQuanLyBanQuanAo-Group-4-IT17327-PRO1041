@@ -10,7 +10,14 @@ import java.util.List;
 
 public class PromotionRepository {
 
-    public List<Promotion> getListPromotion() {
+    public List<Promotion> getListPromotion(int status) {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery("from Promotion where status = " + status);
+        List<Promotion> list = query.getResultList();
+        return list;
+    }
+
+    public List<Promotion> getList() {
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery("from Promotion");
         List<Promotion> list = query.getResultList();
