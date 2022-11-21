@@ -13,6 +13,8 @@ import org.hibernate.Transaction;
 
 public class StaffRepository {
 
+
+    // Panel Nhân Viên
     public List<StaffCustomModel> getList(int status) {
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery(
@@ -20,13 +22,6 @@ public class StaffRepository {
                 + " s.code, concat(s.lastName, ' ', s.firstName), s.dateOfBirth, s.sex, s.phoneNumber, s.email, s.address, s.role, s.store.name ) "
                 + " from com.Models.Staff s where s.status = " + status);
         List<StaffCustomModel> list = query.getResultList();
-        return list;
-    }
-
-    public List<Staff> getListStaff() {
-        Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery("from Staff");
-        List<Staff> list = query.getResultList();
         return list;
     }
 
@@ -38,6 +33,7 @@ public class StaffRepository {
             transaction.commit();
             return true;
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
@@ -83,6 +79,14 @@ public class StaffRepository {
         }
     }
 
+    // Panel Cửa Hàng
+    public List<Staff> getListStaff() {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery("from Staff where role = 1");
+        List<Staff> list = query.getResultList();
+        return list;
+    }
+
     public String getByFirstName = ("SELECT s.firstName FROM Staff s WHERE s.code =: code");
     public String getByLastName = ("SELECT s.lastName FROM Staff s WHERE s.code =: code");
 
@@ -94,5 +98,37 @@ public class StaffRepository {
             uuid = query.getSingleResult();
         }
         return uuid;
+    }
+
+
+    // Panel Login
+    public List<Staff> getAccountStaff(String email, String password) {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery("from Staff where email =: email and password =: password");
+        query.setParameter("email", email);
+        query.setParameter("password", password);
+        List<Staff> list = query.getResultList();
+        return list;
+    }
+
+    public boolean checkAccountStaff(String email) {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery("from Staff where email =: email");
+        query.setParameter("email", email);
+        List<Staff> list = query.getResultList();
+        if (list.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    public String getByPassword(String email) {
+        String password;
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+            TypedQuery<String> query = session.createQuery("select password from Staff where email =: email", String.class);
+            query.setParameter("email", email);
+            password = query.getSingleResult();
+        }
+        return password;
     }
 }

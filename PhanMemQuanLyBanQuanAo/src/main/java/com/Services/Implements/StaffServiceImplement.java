@@ -2,7 +2,6 @@ package com.Services.Implements;
 
 import com.CustomModels.StaffCustomModel;
 import com.Models.Staff;
-import com.Models.Store;
 import com.Repositories.StaffRepository;
 import com.Services.StaffService;
 
@@ -45,6 +44,21 @@ public class StaffServiceImplement implements StaffService {
     @Override
     public String getByLastName(String code) {
         return staffRepository.getByName(code, staffRepository.getByLastName);
+    }
+
+    @Override
+    public List<Staff> getAccountStaff(String email, String password) {
+        return staffRepository.getAccountStaff(email, password);
+    }
+
+    @Override
+    public boolean checkAccountStaff(String email) {
+        return staffRepository.checkAccountStaff(email);
+    }
+
+    @Override
+    public String getByPassword(String email) {
+        return staffRepository.getByPassword(email);
     }
 
     @Override

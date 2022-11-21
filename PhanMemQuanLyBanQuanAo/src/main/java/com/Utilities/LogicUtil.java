@@ -1,5 +1,10 @@
 package com.Utilities;
 
+import static com.Utilities.CreateQR.generateQRcode;
+import com.Views.TrangChu;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.WriterException;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -25,11 +30,14 @@ import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
 
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.bind.DatatypeConverter;
 import org.apache.commons.codec.digest.DigestUtils;
-
 
 public class LogicUtil {
 
@@ -166,11 +174,11 @@ public class LogicUtil {
 
         Session session = Session.getInstance(prop,
                 new Authenticator() {
-                    @Override
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication("kynnph27937@gmail.com", "gokaskttduykyvay");
-                    }
-                });
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("kynnph27937@gmail.com", "gokaskttduykyvay");
+            }
+        });
         try {
 
             Message message = new MimeMessage(session);
@@ -189,9 +197,9 @@ public class LogicUtil {
         }
         return null;
     }
-    
+
     // Mã hóa password
-    public String getMD5(String input) {
+    public static String getMD5(String input) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] messageDigest = md.digest(input.getBytes());
@@ -201,17 +209,31 @@ public class LogicUtil {
             throw new RuntimeException(e);
         }
     }
-    
-    public boolean confirmPassword(String password) {
-        String md5Hex = DigestUtils.md5Hex(password).toUpperCase();
-        System.out.println("Hash: " + md5Hex);
-        System.out.println("Verify: " + getMD5(password).equals(md5Hex));
-        boolean check = getMD5(password).equals(md5Hex);
-        return check;
+
+    public boolean kiemTraMatKhau(String password, String code) {
+        return getMD5(password).equals(code);
     }
 
     public String taoMaHoa(String password) {
         String md5Hex = DigestUtils.md5Hex(password).toUpperCase();
         return md5Hex;
     }
+
+    public void taoMaQR(String code) {
+        
+        //path where we want to get QR Code  
+        String path = "D:\\PhanMemQuanLyBanQuanAo-Group-4-IT17327-PRO1041\\PhanMemQuanLyBanQuanAo\\QRCodeStaff\\" + code + ".png";
+        //Encoding charset to be used  
+        String charset = "UTF-8";
+        Map<EncodeHintType, ErrorCorrectionLevel> hashMap = new HashMap<EncodeHintType, ErrorCorrectionLevel>();
+        //generates QR code with Low level(L) error correction capability  
+        hashMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
+        try {
+            //invoking the user-defined method that creates the QR code
+            generateQRcode(code, path, charset, hashMap, 200, 200);//increase or decrease height and width accodingly   
+        } catch (WriterException | IOException ex) {
+            Logger.getLogger(TrangChu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

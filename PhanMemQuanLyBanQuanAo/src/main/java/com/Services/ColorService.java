@@ -8,10 +8,8 @@ public interface ColorService {
     public List<Color> getList();
 
     public boolean insert(Color color);
+    public boolean update(Color color, String code);
 
-//    public List<String> check(String ma);
-    public boolean update(Color color, String id);
-
-    public boolean delete(String id);
+    public boolean delete(String code);
 
 }
