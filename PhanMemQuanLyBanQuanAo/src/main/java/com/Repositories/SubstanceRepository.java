@@ -4,30 +4,31 @@
  * and open the template in the editor.
  */
 package com.Repositories;
-import com.Models.ProductType;
+
+import com.Models.Substance;
 import com.Utilities.HibernateUtil;
+import java.util.List;
+import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import javax.persistence.Query;
-import java.util.List;
 /**
  *
  * @author khanhnd
  */
-public class ProductTypeRepository {
-    public List<ProductType> getList() {
+public class SubstanceRepository {
+     public List<Substance> getList() {
         Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery("from ProductType");
-        List<ProductType> list = query.getResultList();
+        Query query = session.createQuery("from Substance");
+        List<Substance> list = query.getResultList();
         return list;
     }
-    
-    public boolean insert(ProductType productType) {
+    //add
+    public Boolean insert(Substance substance) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            session.save(productType);
+            session.save(substance);
             transaction.commit();
             return true;
         } catch (Exception e) {
@@ -35,28 +36,28 @@ public class ProductTypeRepository {
             return false;
         }
     }
-    
-    public boolean update(ProductType productType, String code){
+
+    public boolean update(Substance substance, String code) {
         Transaction transaction = null;
-        try(Session session = HibernateUtil.getFACTORY().openSession()){
+        try (Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("update ProductType set name =: Name where  code =: Code");
-            query.setParameter("Name", productType.getName());
+            Query query = session.createQuery("update Substance set name =: Name where  code =: Code");
+            query.setParameter("Name", substance.getName());
             query.setParameter("Code", code);
             query.executeUpdate();
             transaction.commit();
             return true;
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
-    
+
     public boolean delete(String code) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("delete from ProductType where  code =: Code");
+            Query query = session.createQuery("delete from Substance where  code =: Code");
             query.setParameter("Code", code);
             query.executeUpdate();
             transaction.commit();
