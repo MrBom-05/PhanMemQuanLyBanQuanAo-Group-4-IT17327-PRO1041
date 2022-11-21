@@ -56,13 +56,5 @@ public class StoreRepository {
             return false;
         }
     }
-
-    public List<String> check(String ma) {
-        Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery("select code from Store where code =: code");
-        query.setParameter("code", ma);
-        List<String> results = query.getResultList();
-        return results;
-    }
 }
 

@@ -53,6 +53,13 @@ public class Store implements Serializable {
         this.status = status;
     }
 
+    public Store(String code, String name, String address, int status) {
+        this.code = code;
+        this.name = name;
+        this.address = address;
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return code + "-" + name;

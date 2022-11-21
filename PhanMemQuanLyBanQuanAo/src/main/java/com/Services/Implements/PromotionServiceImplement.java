@@ -8,6 +8,7 @@ import com.Models.Promotion;
 import com.Repositories.PromotionRepository;
 import com.Repositories.StaffRepository;
 import com.Services.PromotionService;
+import java.util.List;
 
 /**
  *
@@ -29,5 +30,10 @@ public class PromotionServiceImplement implements PromotionService{
     @Override
     public boolean hideOrShow(String code, int status) {
         return promotionRepository.hideOrShow(code, status);
+    }
+
+    @Override
+    public List<Promotion> getList() {
+        return promotionRepository.getListPromotion();
     }
 }
