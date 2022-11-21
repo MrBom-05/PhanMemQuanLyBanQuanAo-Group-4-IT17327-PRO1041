@@ -37,7 +37,6 @@ public class Customer implements Serializable {
     private String phoneNumber;
 
     @Column(name = "Email", columnDefinition = "Varchar(MAX)")
-
     private String email;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
