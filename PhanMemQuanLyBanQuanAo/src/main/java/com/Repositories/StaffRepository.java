@@ -13,6 +13,8 @@ import org.hibernate.Transaction;
 
 public class StaffRepository {
 
+
+    // Panel Nhân Viên
     public List<StaffCustomModel> getList(int status) {
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery(
@@ -20,13 +22,6 @@ public class StaffRepository {
                 + " s.code, concat(s.lastName, ' ', s.firstName), s.dateOfBirth, s.sex, s.phoneNumber, s.email, s.address, s.role, s.store.name ) "
                 + " from com.Models.Staff s where s.status = " + status);
         List<StaffCustomModel> list = query.getResultList();
-        return list;
-    }
-
-    public List<Staff> getListStaff() {
-        Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery("from Staff where role = 1");
-        List<Staff> list = query.getResultList();
         return list;
     }
 
@@ -84,6 +79,14 @@ public class StaffRepository {
         }
     }
 
+    // Panel Cửa Hàng
+    public List<Staff> getListStaff() {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery("from Staff where role = 1");
+        List<Staff> list = query.getResultList();
+        return list;
+    }
+
     public String getByFirstName = ("SELECT s.firstName FROM Staff s WHERE s.code =: code");
     public String getByLastName = ("SELECT s.lastName FROM Staff s WHERE s.code =: code");
 
@@ -97,6 +100,8 @@ public class StaffRepository {
         return uuid;
     }
 
+
+    // Panel Login
     public List<Staff> getAccountStaff(String email, String password) {
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery("from Staff where email =: email and password =: password");

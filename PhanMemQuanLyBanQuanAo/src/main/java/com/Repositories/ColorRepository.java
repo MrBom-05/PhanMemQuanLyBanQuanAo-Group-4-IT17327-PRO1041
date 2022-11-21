@@ -31,14 +31,13 @@ public class ColorRepository {
         }
     }
 
-    public boolean update(Color color, String id) {
+    public boolean update(Color color, String code) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("update Color set code =: Code, name =: Name where id = : Id");
-            query.setParameter("Code", color.getCode());
+            Query query = session.createQuery("update Color set name =: Name where code =: Code");
+            query.setParameter("Code", code);
             query.setParameter("Name", color.getName());
-            query.setParameter("Id", id);
             query.executeUpdate();
             transaction.commit();
             return true;
@@ -48,12 +47,12 @@ public class ColorRepository {
         }
     }
 
-    public boolean delete(String id) {
+    public boolean delete(String code) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("delete from Color where  id =: Id");
-            query.setParameter("Id", id);
+            Query query = session.createQuery("delete from Color where code =: Code");
+            query.setParameter("Code", code);
             query.executeUpdate();
             transaction.commit();
             return true;
