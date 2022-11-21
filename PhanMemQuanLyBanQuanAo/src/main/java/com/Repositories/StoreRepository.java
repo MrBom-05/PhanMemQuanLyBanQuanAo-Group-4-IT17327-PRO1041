@@ -19,6 +19,8 @@ public class StoreRepository {
 //        return list;
 //    }
 
+
+    // Panel Cửa Hàng vs Nhân Viên
     public List<Store> getList() {
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery("from Store");

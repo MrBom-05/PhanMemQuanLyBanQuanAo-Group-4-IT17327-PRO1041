@@ -10,9 +10,7 @@ public interface SizeService {
 
     public boolean insert(Size size);
 
-//    public List<String> check(String ma);
+    public boolean update(Size size, String code);
 
-    public boolean update(Size size, String id);
-
-    public boolean delete(String id);
+    public boolean delete(String code);
 }
