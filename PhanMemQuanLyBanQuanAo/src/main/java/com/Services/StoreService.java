@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface StoreService {
 
+//    public List<StoreCustomModel> getListCustom();
+
     public boolean insert(Store st);
 
-    public boolean sua(String ma, Store st);
-
-    List<Store> search(String ten);
+    public boolean update(String ma, Store st);
 
     public List<Store> getList();
 }

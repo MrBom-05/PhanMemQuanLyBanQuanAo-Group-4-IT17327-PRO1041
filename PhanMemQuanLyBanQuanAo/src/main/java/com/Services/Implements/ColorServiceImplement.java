@@ -20,17 +20,12 @@ public class ColorServiceImplement implements ColorService {
     }
 
     @Override
-    public boolean update(Color color, String id) {
-        return colorRepository.update(color, id);
+    public boolean update(Color color, String code) {
+        return colorRepository.update(color, code);
     }
 
     @Override
-    public boolean delete(String id) {
-        return colorRepository.delete(id);
+    public boolean delete(String code) {
+        return colorRepository.delete(code);
     }
-
-//    @Override
-//    public List<String> check(String ma) {
-//        return repository.check(ma);
-//    }
 }
