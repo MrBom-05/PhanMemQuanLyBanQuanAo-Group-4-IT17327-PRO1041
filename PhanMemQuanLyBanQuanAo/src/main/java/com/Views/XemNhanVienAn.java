@@ -134,7 +134,7 @@ public class XemNhanVienAn extends javax.swing.JFrame {
     }//GEN-LAST:event_tblNhanVienFrameAnMouseClicked
 
     private void btnCloesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloesActionPerformed
-        trangChu.loadDataNhanVien(staffService.getList());
+        trangChu.loadDataNhanVienAn();
         dispose();
     }//GEN-LAST:event_btnCloesActionPerformed
 

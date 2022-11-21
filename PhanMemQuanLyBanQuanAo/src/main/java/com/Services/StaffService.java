@@ -21,4 +21,10 @@ public interface StaffService {
     public String getByFisrtName(String code);
 
     public String getByLastName(String code);
+
+    public List<Staff> getAccountStaff(String email, String password);
+
+    public boolean checkAccountStaff(String email);
+
+    public String getByPassword(String email);
 }
