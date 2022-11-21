@@ -1,7 +1,6 @@
 package com.Views;
 
 import com.CustomModels.StaffCustomModel;
-import com.CustomModels.StoreCustomModel;
 import com.Models.Staff;
 import com.Models.Store;
 import com.Services.Implements.StaffServiceImplement;
@@ -1889,7 +1888,7 @@ public class TrangChu extends javax.swing.JFrame {
 
     // Panel Nhân Viên
 
-    private void loadDataNhanVien(List<StaffCustomModel> list) {
+    public void loadDataNhanVien(List<StaffCustomModel> list) {
         defaultTableModel = (DefaultTableModel) tblNhanVienPanelNhanVien.getModel();
         defaultTableModel.setRowCount(0);
         int count = 1;
@@ -1918,10 +1917,10 @@ public class TrangChu extends javax.swing.JFrame {
         }
     }
 
-    public String codeStaffTangDan() {
+    private String codeStaffTangDan() {
         String code = "";
         List<StaffCustomModel> list = staffService.getList();
-        if (list.size() == 0) {
+        if (list.isEmpty()) {
             code = "NV0001";
         } else {
             int max = 0;
@@ -1997,6 +1996,7 @@ public class TrangChu extends javax.swing.JFrame {
     private void btnThemPanelNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemPanelNhanVienActionPerformed
         Staff staff = getPanelNhanVien();
         if (staff == null) return;
+        logicUtil.taoMaQR(codeStaffTangDan());
         if (staffService.insert(staff)) {
             loadDataNhanVien(staffService.getList());
             clearPanelNhanVien();
@@ -2097,10 +2097,10 @@ public class TrangChu extends javax.swing.JFrame {
         }
     }
 
-    public String codeStoreTangDan() {
+    private String codeStoreTangDan() {
         String code = "";
         List<Store> list = storeService.getList();
-        if (list.size() == 0) {
+        if (list.isEmpty()) {
             code = "CH0001";
         } else {
             int max = 0;
@@ -2124,6 +2124,15 @@ public class TrangChu extends javax.swing.JFrame {
         return code;
     }
 
+    private Store getPanelCuaHang(){
+        String maCH = codeStoreTangDan();
+        String tenCH = txtTenCuaHangPanelCuaHang.getText();
+        String diaChi = txtDiaChiPanelCuaHang.getText();
+        Staff staff = (Staff) cbbChuCuaHangPanelCuaHang.getSelectedItem();
+
+        return new Store(maCH, tenCH, diaChi, staff, 1);
+    }
+
     private void btnCuaHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuaHangActionPerformed
         panelMain.removeAll();
         panelMain.repaint();
@@ -2141,11 +2150,31 @@ public class TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnXoaFormPanelCuaHangActionPerformed
 
     private void btnThemPanelCuaHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemPanelCuaHangActionPerformed
-        // TODO add your handling code here:
+        Store store = getPanelCuaHang();
+        if (store == null) return;
+        if (storeService.insert(store)) {
+            loadDataCuaHang(storeService.getList());
+            clearPanelCuaHang();
+            JOptionPane.showMessageDialog(this, "Thêm Thành Công");
+        } else {
+            JOptionPane.showMessageDialog(this, "Thêm Thất Bại");
+        }
     }//GEN-LAST:event_btnThemPanelCuaHangActionPerformed
 
     private void btnSuaPanelCuaHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaPanelCuaHangActionPerformed
-        // TODO add your handling code here:
+        if (txtMaCuaHangPanelCuaHang.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(this, "Chưa chọn cửa hàng nào trên table");
+            return;
+        }
+        Store store = getPanelCuaHang();
+        if (store == null) return;
+        if (storeService.update(txtMaCuaHangPanelCuaHang.getText(), store)) {
+            loadDataCuaHang(storeService.getList());
+            clearPanelCuaHang();
+            JOptionPane.showMessageDialog(this, "Sửa Thành Công");
+        } else {
+            JOptionPane.showMessageDialog(this, "Sửa Thất Bại");
+        }
     }//GEN-LAST:event_btnSuaPanelCuaHangActionPerformed
 
     private void btnChuyenTrangThaiPanelCuaHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChuyenTrangThaiPanelCuaHangActionPerformed

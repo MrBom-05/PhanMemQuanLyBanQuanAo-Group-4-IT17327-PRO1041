@@ -2,8 +2,6 @@ package com.Services;
 
 import com.CustomModels.StaffCustomModel;
 import com.Models.Staff;
-import com.Models.Store;
-
 import java.util.List;
 
 public interface StaffService {
