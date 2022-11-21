@@ -1074,6 +1074,17 @@ public class TrangChu extends javax.swing.JFrame {
             defaultComboBoxModel.addElement(store);
         }
     }
+    
+    private void setIndexCbbCuaHangPanelNhanVien(String ten) {
+        int count = -1;
+        List<Store> list = storeService.getList();
+        for (Store store : list) {
+            count++;
+            if (store.getName().equals(ten)) {
+                cbbCuaHangPanelNhanVien.setSelectedIndex(count);
+            }
+        }
+    }
 
     private String codeStaffTangDan() {
         String code = "";
@@ -1173,9 +1184,9 @@ public class TrangChu extends javax.swing.JFrame {
         if (staffService.update(txtMaNhanVienPanelNhanVien.getText(), staff)) {
             loadDataNhanVien(staffService.getList());
             clearPanelNhanVien();
-            JOptionPane.showMessageDialog(this, "Sửa Thành Công");
+            JOptionPane.showMessageDialog(this, "Cập Nhật Thành Công");
         } else {
-            JOptionPane.showMessageDialog(this, "Sửa Thất Bại");
+            JOptionPane.showMessageDialog(this, "Cập Nhật Thất Bại");
         }
     }//GEN-LAST:event_btnSuaPanelNhanVienActionPerformed
 
@@ -1211,8 +1222,9 @@ public class TrangChu extends javax.swing.JFrame {
         txtEmailPanelNhanVien.setText(tblNhanVienPanelNhanVien.getValueAt(row, 6).toString());
         txtDiaChiPanelNhanVien.setText(tblNhanVienPanelNhanVien.getValueAt(row, 7).toString());
         cbbChucVuPanelNhanVien.setSelectedItem(tblNhanVienPanelNhanVien.getValueAt(row, 8).toString());
-        defaultComboBoxModel = (DefaultComboBoxModel) cbbCuaHangPanelNhanVien.getModel();
-        defaultComboBoxModel.setSelectedItem(staffService.getList().get(row).getTenCuaHang());
+        setIndexCbbCuaHangPanelNhanVien(tblNhanVienPanelNhanVien.getValueAt(row, 9).toString());
+//        defaultComboBoxModel = (DefaultComboBoxModel) cbbCuaHangPanelNhanVien.getModel();
+//        defaultComboBoxModel.setSelectedItem(staffService.getList().get(row).getTenCuaHang());
     }//GEN-LAST:event_tblNhanVienPanelNhanVienMouseClicked
 
 
@@ -1303,20 +1315,20 @@ public class TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCuaHangActionPerformed
 
     private void btnXoaFormPanelCuaHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaFormPanelCuaHangActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
-        int returnValue = fileChooser.showOpenDialog(null);
-        if (returnValue == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-
-            //in thu duong dan file
-            System.out.println("getPath : " + selectedFile.getPath());
-            System.out.println("getAbsolutePath : " + selectedFile.getAbsolutePath());
-            System.out.println("getName : " + selectedFile.getName());
-
-            System.out.println("getName : " + fileChooser.getCurrentDirectory().getPath());
-            String st = selectedFile.getPath();
-            System.out.print("lay duong dan: " + st);
-        }
+//        JFileChooser fileChooser = new JFileChooser();
+//        int returnValue = fileChooser.showOpenDialog(null);
+//        if (returnValue == JFileChooser.APPROVE_OPTION) {
+//            File selectedFile = fileChooser.getSelectedFile();
+//
+//            //in thu duong dan file
+//            System.out.println("getPath : " + selectedFile.getPath());
+//            System.out.println("getAbsolutePath : " + selectedFile.getAbsolutePath());
+//            System.out.println("getName : " + selectedFile.getName());
+//
+//            System.out.println("getName : " + fileChooser.getCurrentDirectory().getPath());
+//            String st = selectedFile.getPath();
+//            System.out.print("lay duong dan: " + st);
+//        }
         clearPanelCuaHang();
     }//GEN-LAST:event_btnXoaFormPanelCuaHangActionPerformed
 
@@ -1342,18 +1354,33 @@ public class TrangChu extends javax.swing.JFrame {
         if (storeService.update(txtMaCuaHangPanelCuaHang.getText(), store)) {
             loadDataCuaHang(storeService.getList());
             clearPanelCuaHang();
-            JOptionPane.showMessageDialog(this, "Sửa Thành Công");
+            JOptionPane.showMessageDialog(this, "Cập Nhật Thành Công");
         } else {
-            JOptionPane.showMessageDialog(this, "Sửa Thất Bại");
+            JOptionPane.showMessageDialog(this, "Cập Nhật Thất Bại");
         }
     }//GEN-LAST:event_btnSuaPanelCuaHangActionPerformed
 
     private void btnChuyenTrangThaiPanelCuaHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChuyenTrangThaiPanelCuaHangActionPerformed
-        // TODO add your handling code here:
+        int confirm = JOptionPane.showConfirmDialog(this, "Bạn muốn đổi trạng thái Cửa Hàng này không ?", "Thông báo", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            if (staffService.hideOrShow(txtMaNhanVienPanelNhanVien.getText(), 0)) {
+                loadDataNhanVien(staffService.getList());
+                clearPanelNhanVien();
+                JOptionPane.showMessageDialog(this, "Chuyển Thành Công");
+            } else {
+                JOptionPane.showMessageDialog(this, "Chuyển Thất Bại");
+            }
+        } else {
+            return;
+        }
     }//GEN-LAST:event_btnChuyenTrangThaiPanelCuaHangActionPerformed
 
     private void tblCuaHangPanelCuaHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCuaHangPanelCuaHangMouseClicked
-        // TODO add your handling code here:
+        int row = tblCuaHangPanelCuaHang.getSelectedRow();
+        txtMaCuaHangPanelCuaHang.setText(tblCuaHangPanelCuaHang.getValueAt(row, 1).toString());
+        txtTenCuaHangPanelCuaHang.setText(tblCuaHangPanelCuaHang.getValueAt(row, 2).toString());
+        txtDiaChiPanelCuaHang.setText(tblCuaHangPanelCuaHang.getValueAt(row, 3).toString());
+        cbbChuCuaHangPanelCuaHang.setSelectedItem(tblCuaHangPanelCuaHang.getValueAt(row, 4).toString());
     }//GEN-LAST:event_tblCuaHangPanelCuaHangMouseClicked
 
     // Panel Đổi mật khẩu

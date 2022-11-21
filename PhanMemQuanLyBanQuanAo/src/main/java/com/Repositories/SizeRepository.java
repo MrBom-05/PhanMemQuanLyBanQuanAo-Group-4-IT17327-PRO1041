@@ -18,7 +18,7 @@ public class SizeRepository {
         return list;
     }
 
-    public Boolean insert(Size size) {
+    public boolean insert(Size size) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
