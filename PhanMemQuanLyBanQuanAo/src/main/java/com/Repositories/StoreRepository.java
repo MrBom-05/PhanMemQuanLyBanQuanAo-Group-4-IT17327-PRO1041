@@ -56,5 +56,20 @@ public class StoreRepository {
             return false;
         }
     }
+    public boolean hideOrShow(String code, int status) {
+        Transaction transaction = null;
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("update Store set status =: status where code =: code");
+            query.setParameter("status", status);
+            query.setParameter("code", code);
+            query.executeUpdate();
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
 

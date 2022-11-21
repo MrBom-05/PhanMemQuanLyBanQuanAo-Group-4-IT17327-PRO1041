@@ -31,5 +31,10 @@ public class StoreServiceImplement implements StoreService {
         return storeRepository.getList();
     }
 
+    @Override
+    public boolean hideOrShow(String code, int status) {
+        return storeRepository.hideOrShow(code, status);
+    }
+
 
 }

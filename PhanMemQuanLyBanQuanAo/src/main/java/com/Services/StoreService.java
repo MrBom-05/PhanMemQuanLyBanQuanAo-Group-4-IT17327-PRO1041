@@ -13,4 +13,6 @@ public interface StoreService {
     public boolean update(String ma, Store st);
 
     public List<Store> getList();
+    
+    public boolean hideOrShow(String code, int status);
 }
