@@ -61,4 +61,17 @@ public class ProductDetails implements Serializable {
 
     @OneToMany(mappedBy = "productDetails", fetch = FetchType.LAZY)
     private List<BillDetails> listBillDetails;
+
+    public ProductDetails(String code, String name, Substance substance, Size size, Color color, ProductType productType, String describe, int amount, Float exportPrice, int status) {
+        this.code = code;
+        this.name = name;
+        this.substance = substance;
+        this.size = size;
+        this.color = color;
+        this.productType = productType;
+        this.describe = describe;
+        this.amount = amount;
+        this.exportPrice = exportPrice;
+        this.status = status;
+    }
 }

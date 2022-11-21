@@ -18,7 +18,7 @@ public class ColorRepository {
 
     }
 
-    public Boolean insert(Color color) {
+    public boolean insert(Color color) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
