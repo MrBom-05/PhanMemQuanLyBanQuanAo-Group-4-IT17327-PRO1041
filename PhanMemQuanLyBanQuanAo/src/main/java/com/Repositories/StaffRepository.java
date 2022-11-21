@@ -25,7 +25,7 @@ public class StaffRepository {
 
     public List<Staff> getListStaff() {
         Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery("from Staff");
+        Query query = session.createQuery("from Staff where role = 1");
         List<Staff> list = query.getResultList();
         return list;
     }
@@ -95,5 +95,35 @@ public class StaffRepository {
             uuid = query.getSingleResult();
         }
         return uuid;
+    }
+
+    public List<Staff> getAccountStaff(String email, String password) {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery("from Staff where email =: email and password =: password");
+        query.setParameter("email", email);
+        query.setParameter("password", password);
+        List<Staff> list = query.getResultList();
+        return list;
+    }
+
+    public boolean checkAccountStaff(String email) {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery("from Staff where email =: email");
+        query.setParameter("email", email);
+        List<Staff> list = query.getResultList();
+        if (list.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    public String getByPassword(String email) {
+        String password;
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+            TypedQuery<String> query = session.createQuery("select password from Staff where email =: email", String.class);
+            query.setParameter("email", email);
+            password = query.getSingleResult();
+        }
+        return password;
     }
 }

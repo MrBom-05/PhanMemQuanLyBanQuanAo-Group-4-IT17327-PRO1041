@@ -47,6 +47,21 @@ public class StaffServiceImplement implements StaffService {
     }
 
     @Override
+    public List<Staff> getAccountStaff(String email, String password) {
+        return staffRepository.getAccountStaff(email, password);
+    }
+
+    @Override
+    public boolean checkAccountStaff(String email) {
+        return staffRepository.checkAccountStaff(email);
+    }
+
+    @Override
+    public String getByPassword(String email) {
+        return staffRepository.getByPassword(email);
+    }
+
+    @Override
     public boolean hideOrShow(String code, int status) {
         return staffRepository.hideOrShow(code, status);
     }
