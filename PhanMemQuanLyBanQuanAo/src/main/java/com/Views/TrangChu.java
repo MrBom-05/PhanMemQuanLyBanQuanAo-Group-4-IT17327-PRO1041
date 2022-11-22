@@ -2440,27 +2440,36 @@ public class TrangChu extends javax.swing.JFrame {
         String ma = codeProductTypeTangDan();
         String ten = txtTenThuocTinhPanelSanPham.getText();
 
+        if (ten.trim().equals("")){
+            JOptionPane.showMessageDialog(this,"Không được để trống");
+        }
         return new ProductType(ma, ten);
     }
 
     private com.Models.Color getDataMauSac() {
         String ma = codeColorTangDan();
         String ten = txtTenThuocTinhPanelSanPham.getText();
-
+        if (ten.trim().equals("")){
+            JOptionPane.showMessageDialog(this,"Không được để trống");
+        }
         return new com.Models.Color(ma, ten);
     }
 
     private Size getDataKichCo() {
         String ma = codeSizeTangDan();
         String ten = txtTenThuocTinhPanelSanPham.getText();
-
+        if (ten.trim().equals("")){
+            JOptionPane.showMessageDialog(this,"Không được để trống");
+        }
         return new Size(ma, ten);
     }
 
     private Substance getDataChatLieu() {
         String ma = codeSubstanceTangDan();
         String ten = txtTenThuocTinhPanelSanPham.getText();
-
+        if (ten.trim().equals("")){
+            JOptionPane.showMessageDialog(this,"Không được để trống");
+        }
         return new Substance(ma, ten);
     }
 
@@ -2812,7 +2821,9 @@ public class TrangChu extends javax.swing.JFrame {
         Size size = (Size) cbbKichCoPanelSanPham.getSelectedItem();
         Substance substance = (Substance) cbbChatLieuPanelSanPham.getSelectedItem();
         String moTa = txtMoTaPanelSanPham.getText();
-
+        if (tenSP.trim().equals("") || giaBan.trim().equals("") ||moTa.trim().equals("")){
+            JOptionPane.showMessageDialog(this,"Không được để trống");
+        }
         return new ProductDetails(maSP, tenSP, substance, size, color, productType, moTa, soluong, Float.parseFloat(giaBan), 1);
     }
 
@@ -2942,7 +2953,9 @@ public class TrangChu extends javax.swing.JFrame {
         String ngayBatDau = ((JTextField) txtNgayBatDauPanelKhuyenMai.getDateEditor().getUiComponent()).getText();
         String ngayKetThuc = ((JTextField) txtNgayKetThucPanelKhuyenMai.getDateEditor().getUiComponent()).getText();
         int phanTramKhuyenMai = (int) spnPhanTramKhuyenMaiPanelKhuyenMai.getValue();
-
+        if (tenCT.trim().equals("")){
+            JOptionPane.showMessageDialog(this,"Không được để trống");
+        }
         Date date1 = Date.valueOf(ngayBatDau);
         Date date2 = Date.valueOf(ngayKetThuc);
 
