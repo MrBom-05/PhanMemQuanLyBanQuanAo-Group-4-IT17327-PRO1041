@@ -10,16 +10,6 @@ import org.hibernate.Transaction;
 
 public class StoreRepository {
 
-//    public List<StoreCustomModel> getListCustom() {
-//        Session session = HibernateUtil.getFACTORY().openSession();
-//        Query query = session.createQuery("select new com.CustomModels.StoreCustomModel" +
-//                "(s.code, s.name, s.diaChi, s.staffOwner.code, " +
-//                "concat(s.staffOwner.lastName, ' ', s.staffOwner.firstName), s.status) from com.Models.Store s");
-//        List<StoreCustomModel> list = query.getResultList();
-//        return list;
-//    }
-
-
     // Panel Cửa Hàng vs Nhân Viên
     public List<Store> getList() {
         Session session = HibernateUtil.getFACTORY().openSession();

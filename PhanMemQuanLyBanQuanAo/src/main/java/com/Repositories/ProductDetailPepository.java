@@ -1,8 +1,10 @@
 package com.Repositories;
 
 import com.CustomModels.ProductDetailCustomModel;
+import com.Models.ProductDetails;
 import com.Utilities.HibernateUtil;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import javax.persistence.Query;
 import java.util.List;
@@ -18,5 +20,23 @@ public class ProductDetailPepository {
         return list;
     }
 
+    public boolean insert(ProductDetails productDetails) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            session.save(productDetails);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
+    public List<ProductDetails> getList() {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery("from ProductDetails");
+        List<ProductDetails> list = query.getResultList();
+        return list;
+    }
 }
