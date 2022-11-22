@@ -947,6 +947,9 @@
                                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                     </Property>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblChiTietSanPhamPanelSanPhamMouseClicked"/>
+                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>
@@ -1012,7 +1015,7 @@
                                               </Group>
                                               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="cbbMauSac" min="-2" pref="144" max="-2" attributes="0"/>
+                                                  <Component id="cbbMauSacPanelSanPham" min="-2" pref="144" max="-2" attributes="0"/>
                                                   <Component id="cbbChatLieuPanelSanPham" min="-2" pref="144" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
@@ -1043,7 +1046,7 @@
                                           <Component id="jLabel57" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="txtMaSPPanelSanPham" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="cbbLoaiSPPanelSanPham" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="cbbMauSac" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cbbMauSacPanelSanPham" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
@@ -1158,7 +1161,7 @@
                                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                               </AuxValues>
                             </Component>
-                            <Component class="javax.swing.JComboBox" name="cbbMauSac">
+                            <Component class="javax.swing.JComboBox" name="cbbMauSacPanelSanPham">
                               <Properties>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="0"/>
@@ -1194,6 +1197,9 @@
                               </SubComponents>
                             </Container>
                             <Component class="javax.swing.JTextField" name="txtTimKiemSPPanelSanPham">
+                              <Events>
+                                <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtTimKiemSPPanelSanPhamCaretUpdate"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel58">
                               <Properties>
@@ -1212,6 +1218,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="X&#xf3;a Form"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaFormPanelSanPhamCTActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="btnThemPanelSanPhamCT">
                           <Properties>
@@ -1223,6 +1232,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemPanelSanPhamCTActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="btnSuaPanelSanPhamCT">
                           <Properties>
@@ -1234,6 +1246,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSuaPanelSanPhamCTActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="btnAnPanelSanPhamCT">
                           <Properties>
@@ -1245,6 +1260,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="&#x1ea8;n"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAnPanelSanPhamCTActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="btnXemAnPanelSanPhamCT">
                           <Properties>
@@ -1256,6 +1274,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Xem S&#x1ea3;n Ph&#x1ea9;m &#x110;&#xe3; &#x1ea8;n"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXemAnPanelSanPhamCTActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -1389,6 +1410,9 @@
                                 <Property name="selected" type="boolean" value="true"/>
                                 <Property name="text" type="java.lang.String" value="Lo&#x1ea1;i S&#x1ea3;n Ph&#x1ea9;m"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rdoLoaiSanPhamPanelSanPhamActionPerformed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JRadioButton" name="rdoMauSacPanelSanPham">
                               <Properties>
@@ -1397,6 +1421,9 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="M&#xe0;u S&#x1eaf;c"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rdoMauSacPanelSanPhamActionPerformed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JRadioButton" name="rdoKichCoPanelSanPham">
                               <Properties>
@@ -1405,6 +1432,9 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="K&#xed;ch C&#x1ee1;"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rdoKichCoPanelSanPhamActionPerformed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JRadioButton" name="rdoChatLieuPanelSanPham">
                               <Properties>
@@ -1413,6 +1443,9 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Ch&#x1ea5;t Li&#x1ec7;u"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rdoChatLieuPanelSanPhamActionPerformed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JButton" name="btnThemPanelSanPham">
                               <Properties>
@@ -1424,6 +1457,9 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemPanelSanPhamActionPerformed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JButton" name="btnSuaPanelSanPham">
                               <Properties>
@@ -1435,6 +1471,9 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSuaPanelSanPhamActionPerformed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JButton" name="btnXoaPanelSanPham">
                               <Properties>
@@ -1446,6 +1485,9 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaPanelSanPhamActionPerformed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JTextField" name="txtMaThuocTinhPanelSanPham">
                               <Properties>
@@ -1531,6 +1573,9 @@
                                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                     </Property>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblThuocTinhPanelSanPhamMouseClicked"/>
+                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>

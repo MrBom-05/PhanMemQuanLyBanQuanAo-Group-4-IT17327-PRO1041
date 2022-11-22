@@ -1,6 +1,7 @@
 package com.Services.Implements;
 
 import com.CustomModels.ProductDetailCustomModel;
+import com.Models.ProductDetails;
 import com.Repositories.ProductDetailPepository;
 import com.Services.ProductDetailService;
 
@@ -18,5 +19,15 @@ public class ProductDetailServiceImplement implements ProductDetailService {
     @Override
     public List<ProductDetailCustomModel> getListProductDetalHide() {
         return productDetailPepository.getListProductDetail(0);
+    }
+
+    @Override
+    public boolean insert(ProductDetails productDetails) {
+        return productDetailPepository.insert(productDetails);
+    }
+
+    @Override
+    public List<ProductDetails> getList() {
+        return productDetailPepository.getList();
     }
 }
