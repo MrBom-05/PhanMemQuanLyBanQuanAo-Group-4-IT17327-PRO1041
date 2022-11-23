@@ -27,6 +27,16 @@ public class ProductDetailServiceImplement implements ProductDetailService {
     }
 
     @Override
+    public boolean update(ProductDetails productDetails, String code) {
+        return productDetailPepository.update(productDetails, code);
+    }
+
+    @Override
+    public boolean hideOrShow(String code, int status) {
+        return productDetailPepository.hideOrShow(code, status);
+    }
+
+    @Override
     public List<ProductDetails> getList() {
         return productDetailPepository.getList();
     }

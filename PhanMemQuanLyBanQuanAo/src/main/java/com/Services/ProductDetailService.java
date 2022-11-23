@@ -12,5 +12,10 @@ public interface ProductDetailService {
 
     public boolean insert(ProductDetails productDetails);
 
+    public boolean update(ProductDetails productDetails, String code);
+
+    public boolean hideOrShow(String code, int status);
+
+
     public List<ProductDetails> getList();
 }

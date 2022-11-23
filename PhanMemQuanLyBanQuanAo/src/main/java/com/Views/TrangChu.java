@@ -2440,27 +2440,36 @@ public class TrangChu extends javax.swing.JFrame {
         String ma = codeProductTypeTangDan();
         String ten = txtTenThuocTinhPanelSanPham.getText();
 
+        if (ten.trim().equals("")){
+            JOptionPane.showMessageDialog(this,"Không được để trống");
+        }
         return new ProductType(ma, ten);
     }
 
     private com.Models.Color getDataMauSac() {
         String ma = codeColorTangDan();
         String ten = txtTenThuocTinhPanelSanPham.getText();
-
+        if (ten.trim().equals("")){
+            JOptionPane.showMessageDialog(this,"Không được để trống");
+        }
         return new com.Models.Color(ma, ten);
     }
 
     private Size getDataKichCo() {
         String ma = codeSizeTangDan();
         String ten = txtTenThuocTinhPanelSanPham.getText();
-
+        if (ten.trim().equals("")){
+            JOptionPane.showMessageDialog(this,"Không được để trống");
+        }
         return new Size(ma, ten);
     }
 
     private Substance getDataChatLieu() {
         String ma = codeSubstanceTangDan();
         String ten = txtTenThuocTinhPanelSanPham.getText();
-
+        if (ten.trim().equals("")){
+            JOptionPane.showMessageDialog(this,"Không được để trống");
+        }
         return new Substance(ma, ten);
     }
 
@@ -2812,10 +2821,70 @@ public class TrangChu extends javax.swing.JFrame {
         Size size = (Size) cbbKichCoPanelSanPham.getSelectedItem();
         Substance substance = (Substance) cbbChatLieuPanelSanPham.getSelectedItem();
         String moTa = txtMoTaPanelSanPham.getText();
-
+        if (tenSP.trim().equals("") || giaBan.trim().equals("") || moTa.trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Không được để trống");
+            return null;
+        }
+        try {
+            if (Integer.parseInt(giaBan) < 0) {
+                JOptionPane.showMessageDialog(this, "Giá bán phải lớn hơn 0");
+                return null;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Giá bán phải là số");
+            e.printStackTrace();
+            return null;
+        }
+        if (String.valueOf(soluong).length() > 1000000000) {
+            JOptionPane.showMessageDialog(this, "Bạn nhập số lượng quá lớn");
+            return null;
+        }
         return new ProductDetails(maSP, tenSP, substance, size, color, productType, moTa, soluong, Float.parseFloat(giaBan), 1);
     }
 
+    private void setIndexCbbLoaiSPPanelSanPham(String ten) {
+        int count = -1;
+        List<ProductType> list = productTypeService.getList();
+        for (ProductType productType : list) {
+            count++;
+            if (productType.getName().equals(ten)) {
+                cbbLoaiSPPanelSanPham.setSelectedIndex(count);
+            }
+        }
+    }
+
+    private void setIndexCbbKichCoPanelSanPham(String ten) {
+        int count = -1;
+        List<Size> list = sizeService.getList();
+        for (Size size : list) {
+            count++;
+            if (size.getName().equals(ten)) {
+                cbbKichCoPanelSanPham.setSelectedIndex(count);
+            }
+        }
+    }
+
+    private void setIndexCbbMauSacPanelSanPham(String ten) {
+        int count = -1;
+        List<com.Models.Color> list = colorService.getList();
+        for (com.Models.Color color : list) {
+            count++;
+            if (color.getName().equals(ten)) {
+                cbbMauSacPanelSanPham.setSelectedIndex(count);
+            }
+        }
+    }
+
+    private void setIndexCbbChatLieuPanelSanPham(String ten) {
+        int count = -1;
+        List<Substance> list = substanceService.getList();
+        for (Substance substance : list) {
+            count++;
+            if (substance.getName().equals(ten)) {
+                cbbChatLieuPanelSanPham.setSelectedIndex(count);
+            }
+        }
+    }
 
     private void btnXoaFormPanelSanPhamCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaFormPanelSanPhamCTActionPerformed
         clearPanelSanPhamChiTiet();
@@ -2825,7 +2894,7 @@ public class TrangChu extends javax.swing.JFrame {
         ProductDetails productDetails = getDataSanPhamChiTiet();
         if (productDetails == null) return;
         logicUtil.taoMaQR(codeProductDetailTangDan());
-        if (productDetailService.insert(productDetails)){
+        if (productDetailService.insert(productDetails)) {
             loadDataSanPhamChiTiet(productDetailService.getListProductDetal());
             clearPanelSanPhamChiTiet();
             JOptionPane.showMessageDialog(this, "Thêm thành công");
@@ -2836,18 +2905,52 @@ public class TrangChu extends javax.swing.JFrame {
 
     private void btnSuaPanelSanPhamCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaPanelSanPhamCTActionPerformed
         // TODO add your handling code here:
+        ProductDetails productDetails = getDataSanPhamChiTiet();
+        if (productDetails == null) return;
+        if (productDetailService.update(productDetails, txtMaSPPanelSanPham.getText())) {
+            loadDataSanPhamChiTiet(productDetailService.getListProductDetal());
+            clearPanelSanPhamChiTiet();
+            JOptionPane.showMessageDialog(this, "Sửa thành công");
+        } else {
+            JOptionPane.showMessageDialog(this, "Sửa thất bại");
+        }
     }//GEN-LAST:event_btnSuaPanelSanPhamCTActionPerformed
 
     private void btnAnPanelSanPhamCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnPanelSanPhamCTActionPerformed
         // TODO add your handling code here:
+        int confirm = JOptionPane.showConfirmDialog(this, "Bạn có muốn ẩn sản phẩm này không?", "Thông báo", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            if (productDetailService.hideOrShow(txtMaSPPanelSanPham.getText(), 0)) {
+                loadDataSanPhamChiTiet(productDetailService.getListProductDetal());
+                clearPanelSanPhamChiTiet();
+                JOptionPane.showMessageDialog(this, "Ẩn thành công");
+            } else {
+                JOptionPane.showMessageDialog(this, "Ẩn thất bại");
+            }
+        }
     }//GEN-LAST:event_btnAnPanelSanPhamCTActionPerformed
 
     private void btnXemAnPanelSanPhamCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemAnPanelSanPhamCTActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_btnXemAnPanelSanPhamCTActionPerformed
 
     private void tblChiTietSanPhamPanelSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblChiTietSanPhamPanelSanPhamMouseClicked
         // TODO add your handling code here:
+        int row = tblChiTietSanPhamPanelSanPham.getSelectedRow();
+        if (row < 0) {
+            return;
+        }
+        txtMaSPPanelSanPham.setText(tblChiTietSanPhamPanelSanPham.getValueAt(row, 1).toString());
+        txtTenSPPanelSanPham.setText(tblChiTietSanPhamPanelSanPham.getValueAt(row, 2).toString());
+        setIndexCbbLoaiSPPanelSanPham(tblChiTietSanPhamPanelSanPham.getValueAt(row, 3).toString());
+        setIndexCbbKichCoPanelSanPham(tblChiTietSanPhamPanelSanPham.getValueAt(row, 4).toString());
+        setIndexCbbMauSacPanelSanPham(tblChiTietSanPhamPanelSanPham.getValueAt(row, 5).toString());
+        setIndexCbbChatLieuPanelSanPham(tblChiTietSanPhamPanelSanPham.getValueAt(row, 6).toString());
+        txtGiaPanelSanPham.setText(tblChiTietSanPhamPanelSanPham.getValueAt(row, 7).toString());
+        spnSoLuongPanelSanPham.setValue(tblChiTietSanPhamPanelSanPham.getValueAt(row, 8));
+        txtMoTaPanelSanPham.setText(tblChiTietSanPhamPanelSanPham.getValueAt(row, 9).toString());
+
     }//GEN-LAST:event_tblChiTietSanPhamPanelSanPhamMouseClicked
 
     private void txtTimKiemSPPanelSanPhamCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKiemSPPanelSanPhamCaretUpdate
@@ -2942,7 +3045,9 @@ public class TrangChu extends javax.swing.JFrame {
         String ngayBatDau = ((JTextField) txtNgayBatDauPanelKhuyenMai.getDateEditor().getUiComponent()).getText();
         String ngayKetThuc = ((JTextField) txtNgayKetThucPanelKhuyenMai.getDateEditor().getUiComponent()).getText();
         int phanTramKhuyenMai = (int) spnPhanTramKhuyenMaiPanelKhuyenMai.getValue();
-
+        if (tenCT.trim().equals("")){
+            JOptionPane.showMessageDialog(this,"Không được để trống");
+        }
         Date date1 = Date.valueOf(ngayBatDau);
         Date date2 = Date.valueOf(ngayKetThuc);
 
@@ -3012,7 +3117,7 @@ public class TrangChu extends javax.swing.JFrame {
         int confirm = JOptionPane.showConfirmDialog(this, "Bạn muốn kết thúc khuyến mãi này không ?", "Thông báo", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
             if (promotionService.hideOrShow(txtMaKhuyenMaiPanelKhuyenMai.getText(), 0)) {
-                loadDataNhanVien(staffService.getList());
+                loadDataKhuyenMai(promotionService.getListOn());
                 clearPanelNhanVien();
                 JOptionPane.showMessageDialog(this, "Kết Thúc Thành Công");
             } else {
