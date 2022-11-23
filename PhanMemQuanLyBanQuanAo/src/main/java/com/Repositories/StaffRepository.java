@@ -43,11 +43,12 @@ public class StaffRepository {
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             Query query = session.createQuery("update Staff set firstName =: firstName, lastName =: lastName"
-                    + ", dateOfBirth =: ngaySinh, phoneNumber =: sdt, email =: email, address =: diaChi,"
+                    + ", dateOfBirth =: ngaySinh, phoneNumber =: sdt, email =: email, address =: diaChi,sex =:gt,"
                     + " role =: chucVu, store.id =: id where code =: code");
             query.setParameter("firstName", staff.getFirstName());
             query.setParameter("lastName", staff.getLastName());
             query.setParameter("ngaySinh", staff.getDateOfBirth());
+            query.setParameter("gt",staff.getSex());
             query.setParameter("sdt", staff.getPhoneNumber());
             query.setParameter("email", staff.getEmail());
             query.setParameter("diaChi", staff.getAddress());
