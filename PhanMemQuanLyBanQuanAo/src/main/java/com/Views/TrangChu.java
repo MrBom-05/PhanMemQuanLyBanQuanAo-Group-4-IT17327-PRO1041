@@ -2842,50 +2842,6 @@ public class TrangChu extends javax.swing.JFrame {
         return new ProductDetails(maSP, tenSP, substance, size, color, productType, moTa, soluong, Float.parseFloat(giaBan), 1);
     }
 
-    private void setIndexCbbLoaiSPPanelSanPham(String ten) {
-        int count = -1;
-        List<ProductType> list = productTypeService.getList();
-        for (ProductType productType : list) {
-            count++;
-            if (productType.getName().equals(ten)) {
-                cbbLoaiSPPanelSanPham.setSelectedIndex(count);
-            }
-        }
-    }
-
-    private void setIndexCbbKichCoPanelSanPham(String ten) {
-        int count = -1;
-        List<Size> list = sizeService.getList();
-        for (Size size : list) {
-            count++;
-            if (size.getName().equals(ten)) {
-                cbbKichCoPanelSanPham.setSelectedIndex(count);
-            }
-        }
-    }
-
-    private void setIndexCbbMauSacPanelSanPham(String ten) {
-        int count = -1;
-        List<com.Models.Color> list = colorService.getList();
-        for (com.Models.Color color : list) {
-            count++;
-            if (color.getName().equals(ten)) {
-                cbbMauSacPanelSanPham.setSelectedIndex(count);
-            }
-        }
-    }
-
-    private void setIndexCbbChatLieuPanelSanPham(String ten) {
-        int count = -1;
-        List<Substance> list = substanceService.getList();
-        for (Substance substance : list) {
-            count++;
-            if (substance.getName().equals(ten)) {
-                cbbChatLieuPanelSanPham.setSelectedIndex(count);
-            }
-        }
-    }
-
     private void btnXoaFormPanelSanPhamCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaFormPanelSanPhamCTActionPerformed
         clearPanelSanPhamChiTiet();
     }//GEN-LAST:event_btnXoaFormPanelSanPhamCTActionPerformed
@@ -2904,7 +2860,6 @@ public class TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThemPanelSanPhamCTActionPerformed
 
     private void btnSuaPanelSanPhamCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaPanelSanPhamCTActionPerformed
-        // TODO add your handling code here:
         ProductDetails productDetails = getDataSanPhamChiTiet();
         if (productDetails == null) return;
         if (productDetailService.update(productDetails, txtMaSPPanelSanPham.getText())) {
@@ -2917,7 +2872,6 @@ public class TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSuaPanelSanPhamCTActionPerformed
 
     private void btnAnPanelSanPhamCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnPanelSanPhamCTActionPerformed
-        // TODO add your handling code here:
         int confirm = JOptionPane.showConfirmDialog(this, "Bạn có muốn ẩn sản phẩm này không?", "Thông báo", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
             if (productDetailService.hideOrShow(txtMaSPPanelSanPham.getText(), 0)) {
@@ -2931,30 +2885,31 @@ public class TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAnPanelSanPhamCTActionPerformed
 
     private void btnXemAnPanelSanPhamCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemAnPanelSanPhamCTActionPerformed
-        // TODO add your handling code here:
 
     }//GEN-LAST:event_btnXemAnPanelSanPhamCTActionPerformed
 
     private void tblChiTietSanPhamPanelSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblChiTietSanPhamPanelSanPhamMouseClicked
-        // TODO add your handling code here:
         int row = tblChiTietSanPhamPanelSanPham.getSelectedRow();
         if (row < 0) {
             return;
         }
         txtMaSPPanelSanPham.setText(tblChiTietSanPhamPanelSanPham.getValueAt(row, 1).toString());
         txtTenSPPanelSanPham.setText(tblChiTietSanPhamPanelSanPham.getValueAt(row, 2).toString());
-        setIndexCbbLoaiSPPanelSanPham(tblChiTietSanPhamPanelSanPham.getValueAt(row, 3).toString());
-        setIndexCbbKichCoPanelSanPham(tblChiTietSanPhamPanelSanPham.getValueAt(row, 4).toString());
-        setIndexCbbMauSacPanelSanPham(tblChiTietSanPhamPanelSanPham.getValueAt(row, 5).toString());
-        setIndexCbbChatLieuPanelSanPham(tblChiTietSanPhamPanelSanPham.getValueAt(row, 6).toString());
+        defaultComboBoxModel = (DefaultComboBoxModel) cbbLoaiSPPanelSanPham.getModel();
+        defaultComboBoxModel.setSelectedItem(productDetailService.getListProductDetal().get(row).getLoaiSP());
+        defaultComboBoxModel = (DefaultComboBoxModel) cbbMauSacPanelSanPham.getModel();
+        defaultComboBoxModel.setSelectedItem(productDetailService.getListProductDetal().get(row).getMauSac());
+        defaultComboBoxModel = (DefaultComboBoxModel) cbbKichCoPanelSanPham.getModel();
+        defaultComboBoxModel.setSelectedItem(productDetailService.getListProductDetal().get(row).getKichCo());
+        defaultComboBoxModel = (DefaultComboBoxModel) cbbChatLieuPanelSanPham.getModel();
+        defaultComboBoxModel.setSelectedItem(productDetailService.getListProductDetal().get(row).getChatLieu());
         txtGiaPanelSanPham.setText(tblChiTietSanPhamPanelSanPham.getValueAt(row, 7).toString());
         spnSoLuongPanelSanPham.setValue(tblChiTietSanPhamPanelSanPham.getValueAt(row, 8));
         txtMoTaPanelSanPham.setText(tblChiTietSanPhamPanelSanPham.getValueAt(row, 9).toString());
-
     }//GEN-LAST:event_tblChiTietSanPhamPanelSanPhamMouseClicked
 
     private void txtTimKiemSPPanelSanPhamCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKiemSPPanelSanPhamCaretUpdate
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtTimKiemSPPanelSanPhamCaretUpdate
 
 
@@ -3334,8 +3289,6 @@ public class TrangChu extends javax.swing.JFrame {
         txtDiaChiPanelNhanVien.setText(tblNhanVienPanelNhanVien.getValueAt(row, 7).toString());
         cbbChucVuPanelNhanVien.setSelectedItem(tblNhanVienPanelNhanVien.getValueAt(row, 8).toString());
         setIndexCbbCuaHangPanelNhanVien(tblNhanVienPanelNhanVien.getValueAt(row, 9).toString());
-//        defaultComboBoxModel = (DefaultComboBoxModel) cbbCuaHangPanelNhanVien.getModel();
-//        defaultComboBoxModel.setSelectedItem(staffService.getList().get(row).getTenCuaHang());
     }//GEN-LAST:event_tblNhanVienPanelNhanVienMouseClicked
 
     // Panel Khách Hàng
