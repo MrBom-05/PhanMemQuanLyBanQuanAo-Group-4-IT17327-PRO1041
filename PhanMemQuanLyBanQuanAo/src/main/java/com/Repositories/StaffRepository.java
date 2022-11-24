@@ -19,7 +19,7 @@ public class StaffRepository {
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery(
                 "select new com.CustomModels.StaffCustomModel("
-                + " s.code, concat(s.lastName, ' ', s.firstName), s.dateOfBirth, s.sex, s.phoneNumber, s.email, s.address, s.role, s.store.name ) "
+                + " s.code, concat(s.lastName, ' ', s.firstName), s.dateOfBirth, s.sex, s.phoneNumber, s.email, s.address, s.role) "
                 + " from com.Models.Staff s where s.status = " + status);
         List<StaffCustomModel> list = query.getResultList();
         return list;
@@ -44,7 +44,7 @@ public class StaffRepository {
             transaction = session.beginTransaction();
             Query query = session.createQuery("update Staff set firstName =: firstName, lastName =: lastName"
                     + ", dateOfBirth =: ngaySinh, phoneNumber =: sdt, email =: email, address =: diaChi,sex =:gt,"
-                    + " role =: chucVu, store.id =: id where code =: code");
+                    + " role =: chucVu, where code =: code");
             query.setParameter("firstName", staff.getFirstName());
             query.setParameter("lastName", staff.getLastName());
             query.setParameter("ngaySinh", staff.getDateOfBirth());
@@ -53,7 +53,6 @@ public class StaffRepository {
             query.setParameter("email", staff.getEmail());
             query.setParameter("diaChi", staff.getAddress());
             query.setParameter("chucVu", staff.getRole());
-            query.setParameter("id", staff.getStore().getId());
             query.setParameter("code", code);
             query.executeUpdate();
             transaction.commit();

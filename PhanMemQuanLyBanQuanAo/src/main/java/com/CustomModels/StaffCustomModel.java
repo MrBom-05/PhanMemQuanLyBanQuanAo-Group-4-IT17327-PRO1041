@@ -21,6 +21,5 @@ public class StaffCustomModel {
     private String email;
     private String diaChi;
     private int chucVu;
-    private String tenCuaHang;
 
 }
