@@ -20,18 +20,12 @@ public class SizeServiceImplement implements SizeService {
     }
 
     @Override
-    public boolean update(Size size, String id) {
-        return repository.update(size, id);
+    public boolean update(Size size, String code) {
+        return repository.update(size, code);
     }
 
     @Override
-    public boolean delete(String id) {
-        return repository.delete(id);
+    public boolean delete(String code) {
+        return repository.delete(code);
     }
-
-//    @Override
-//    public List<String> check(String ma) {
-//        return repository.check(ma);
-//    }
-
 }

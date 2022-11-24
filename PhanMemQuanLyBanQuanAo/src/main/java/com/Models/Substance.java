@@ -32,6 +32,11 @@ public class Substance implements Serializable {
 
     @OneToMany(mappedBy = "substance", fetch = FetchType.LAZY)
     private List<ProductDetails> listProductDetails;
+
+    public Substance(String code, String name) {
+        this.code = code;
+        this.name = name;
+    }
     
     @Override
     public String toString() {

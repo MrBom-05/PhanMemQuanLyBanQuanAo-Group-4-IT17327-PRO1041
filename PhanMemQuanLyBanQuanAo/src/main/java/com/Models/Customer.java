@@ -41,4 +41,16 @@ public class Customer implements Serializable {
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     private List<Bill> listBill;
+
+    public Customer(String code, String firstName, String lastName, String phoneNumber, String email) {
+        this.code = code;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
+    
+    
+
+
 }

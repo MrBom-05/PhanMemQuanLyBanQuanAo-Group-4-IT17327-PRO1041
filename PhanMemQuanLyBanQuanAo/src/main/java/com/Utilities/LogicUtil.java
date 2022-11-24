@@ -199,7 +199,7 @@ public class LogicUtil {
     }
 
     // Mã hóa password
-    public String getMD5(String input) {
+    public static String getMD5(String input) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] messageDigest = md.digest(input.getBytes());
@@ -210,12 +210,8 @@ public class LogicUtil {
         }
     }
 
-    public boolean confirmPassword(String password) {
-        String md5Hex = DigestUtils.md5Hex(password).toUpperCase();
-        System.out.println("Hash: " + md5Hex);
-        System.out.println("Verify: " + getMD5(password).equals(md5Hex));
-        boolean check = getMD5(password).equals(md5Hex);
-        return check;
+    public boolean kiemTraMatKhau(String password, String code) {
+        return getMD5(password).equals(code);
     }
 
     public String taoMaHoa(String password) {

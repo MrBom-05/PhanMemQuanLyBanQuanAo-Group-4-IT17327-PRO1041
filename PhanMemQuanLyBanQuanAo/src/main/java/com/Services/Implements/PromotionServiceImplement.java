@@ -1,22 +1,31 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.Services.Implements;
 
 import com.Models.Promotion;
 import com.Repositories.PromotionRepository;
-import com.Repositories.StaffRepository;
 import com.Services.PromotionService;
+
 import java.util.List;
 
-/**
- *
- * @author Dang Trung
- */
-public class PromotionServiceImplement implements PromotionService{
+public class PromotionServiceImplement implements PromotionService {
 
     private PromotionRepository promotionRepository = new PromotionRepository();
+
+
+    @Override
+    public List<Promotion> getListOn() {
+        return promotionRepository.getListPromotion(1);
+    }
+
+    @Override
+    public List<Promotion> getListOff() {
+        return promotionRepository.getListPromotion(0);
+    }
+
+    @Override
+    public List<Promotion> getList() {
+        return promotionRepository.getList();
+    }
+
     @Override
     public boolean insert(Promotion promotion) {
         return promotionRepository.insert(promotion);
@@ -30,10 +39,5 @@ public class PromotionServiceImplement implements PromotionService{
     @Override
     public boolean hideOrShow(String code, int status) {
         return promotionRepository.hideOrShow(code, status);
-    }
-
-    @Override
-    public List<Promotion> getList() {
-        return promotionRepository.getListPromotion();
     }
 }

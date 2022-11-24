@@ -53,20 +53,13 @@ public class Staff implements Serializable {
     @Column(name = "Status")
     private int status;
 
-    @ManyToOne
-    @JoinColumn(name = "IdStore")
-    private Store store;
-
     @Column(name = "Role")
     private int role;
 
     @OneToMany(mappedBy = "staff", fetch = FetchType.LAZY)
     private List<Bill> listBill;
 
-    @OneToOne(mappedBy = "staffOwner")
-    private Store storeOwner;
-
-    public Staff(String id, String code, String firstName, String lastName, String sex, Date dateOfBirth, String address, String phoneNumber, String email, String password, int status, Store store, int role) {
+    public Staff(String id, String code, String firstName, String lastName, String sex, Date dateOfBirth, String address, String phoneNumber, String email, String password, int status, int role) {
         this.id = id;
         this.code = code;
         this.firstName = firstName;
@@ -78,12 +71,6 @@ public class Staff implements Serializable {
         this.email = email;
         this.password = password;
         this.status = status;
-        this.store = store;
         this.role = role;
-    }
-
-    @Override
-    public String toString() {
-        return code + "-" + lastName + " " + firstName;
     }
 }
