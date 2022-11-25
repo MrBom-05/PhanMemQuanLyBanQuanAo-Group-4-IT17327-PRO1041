@@ -2593,6 +2593,49 @@ public class TrangChu extends javax.swing.JFrame {
         }
         return code;
     }
+    private void setIndexCbbLoaiSPPanelSanPham(String ten) {
+        int count = -1;
+        List<ProductType> list = productTypeService.getList();
+        for (ProductType productType : list) {
+            count++;
+            if (productType.getName().equals(ten)) {
+                cbbLoaiSPPanelSanPham.setSelectedIndex(count);
+            }
+        }
+    }
+
+    private void setIndexCbbKichCoPanelSanPham(String ten) {
+        int count = -1;
+        List<Size> list = sizeService.getList();
+        for (Size size : list) {
+            count++;
+            if (size.getName().equals(ten)) {
+                cbbKichCoPanelSanPham.setSelectedIndex(count);
+            }
+        }
+    }
+
+    private void setIndexCbbMauSacPanelSanPham(String ten) {
+        int count = -1;
+        List<com.Models.Color> list = colorService.getList();
+        for (com.Models.Color color : list) {
+            count++;
+            if (color.getName().equals(ten)) {
+                cbbMauSacPanelSanPham.setSelectedIndex(count);
+            }
+        }
+    }
+
+    private void setIndexCbbChatLieuPanelSanPham(String ten) {
+        int count = -1;
+        List<Substance> list = substanceService.getList();
+        for (Substance substance : list) {
+            count++;
+            if (substance.getName().equals(ten)) {
+                cbbChatLieuPanelSanPham.setSelectedIndex(count);
+            }
+        }
+    }
 
     private ProductDetails getDataSanPhamChiTiet() {
         String maSP = codeProductDetailTangDan();
@@ -2678,14 +2721,18 @@ public class TrangChu extends javax.swing.JFrame {
         }
         txtMaSPPanelSanPham.setText(tblChiTietSanPhamPanelSanPham.getValueAt(row, 1).toString());
         txtTenSPPanelSanPham.setText(tblChiTietSanPhamPanelSanPham.getValueAt(row, 2).toString());
-        defaultComboBoxModel = (DefaultComboBoxModel) cbbLoaiSPPanelSanPham.getModel();
-        defaultComboBoxModel.setSelectedItem(productDetailService.getListProductDetal().get(row).getLoaiSP());
-        defaultComboBoxModel = (DefaultComboBoxModel) cbbMauSacPanelSanPham.getModel();
-        defaultComboBoxModel.setSelectedItem(productDetailService.getListProductDetal().get(row).getMauSac());
-        defaultComboBoxModel = (DefaultComboBoxModel) cbbKichCoPanelSanPham.getModel();
-        defaultComboBoxModel.setSelectedItem(productDetailService.getListProductDetal().get(row).getKichCo());
-        defaultComboBoxModel = (DefaultComboBoxModel) cbbChatLieuPanelSanPham.getModel();
-        defaultComboBoxModel.setSelectedItem(productDetailService.getListProductDetal().get(row).getChatLieu());
+//        defaultComboBoxModel = (DefaultComboBoxModel) cbbLoaiSPPanelSanPham.getModel();
+//        defaultComboBoxModel.setSelectedItem(productDetailService.getListProductDetal().get(row).getLoaiSP());
+//        defaultComboBoxModel = (DefaultComboBoxModel) cbbMauSacPanelSanPham.getModel();
+//        defaultComboBoxModel.setSelectedItem(productDetailService.getListProductDetal().get(row).getMauSac());
+//        defaultComboBoxModel = (DefaultComboBoxModel) cbbKichCoPanelSanPham.getModel();
+//        defaultComboBoxModel.setSelectedItem(productDetailService.getListProductDetal().get(row).getKichCo());
+//        defaultComboBoxModel = (DefaultComboBoxModel) cbbChatLieuPanelSanPham.getModel();
+        setIndexCbbLoaiSPPanelSanPham(tblChiTietSanPhamPanelSanPham.getValueAt(row, 3).toString());
+        setIndexCbbKichCoPanelSanPham(tblChiTietSanPhamPanelSanPham.getValueAt(row, 4).toString());
+        setIndexCbbMauSacPanelSanPham(tblChiTietSanPhamPanelSanPham.getValueAt(row, 5).toString());
+        setIndexCbbChatLieuPanelSanPham(tblChiTietSanPhamPanelSanPham.getValueAt(row, 6).toString());
+//        defaultComboBoxModel.setSelectedItem(productDetailService.getListProductDetal().get(row).getChatLieu());
         txtGiaPanelSanPham.setText(tblChiTietSanPhamPanelSanPham.getValueAt(row, 7).toString());
         spnSoLuongPanelSanPham.setValue(tblChiTietSanPhamPanelSanPham.getValueAt(row, 8));
         txtMoTaPanelSanPham.setText(tblChiTietSanPhamPanelSanPham.getValueAt(row, 9).toString());
