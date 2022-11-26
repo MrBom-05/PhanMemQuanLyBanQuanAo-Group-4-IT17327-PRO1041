@@ -48,6 +48,8 @@ public class QRCode extends javax.swing.JFrame implements Runnable, ThreadFactor
         executor.execute(this);
     }
 
+    private boolean connect = true;
+
     @Override
     public void run() {
         do {
@@ -74,13 +76,14 @@ public class QRCode extends javax.swing.JFrame implements Runnable, ThreadFactor
             if (result != null) {
                 if (staffService.checkAccountStaffQR(String.valueOf(result))) {
                     loadAccountStaff(staffService.getAccountStaffQR(String.valueOf(result)));
-
+                    connect = false;
+                    webcam.close();
                 } else {
                     JOptionPane.showMessageDialog(this, "Tài khoản này không có trong hệ thống");
                 }
                 System.out.println(result);
             }
-        } while (true);
+        } while (connect);
 
     }
 
