@@ -44,7 +44,7 @@ public class StaffRepository {
             transaction = session.beginTransaction();
             Query query = session.createQuery("update Staff set firstName =: firstName, lastName =: lastName"
                     + ", dateOfBirth =: ngaySinh, phoneNumber =: sdt, email =: email, address =: diaChi,sex =:gt,"
-                    + " role =: chucVu, where code =: code");
+                    + " role =: chucVu where code =: code");
             query.setParameter("firstName", staff.getFirstName());
             query.setParameter("lastName", staff.getLastName());
             query.setParameter("ngaySinh", staff.getDateOfBirth());

@@ -63,12 +63,12 @@ public class StaffServiceImplement implements StaffService {
 
     @Override
     public boolean checkAccountStaffQR(String code) {
-        return checkAccountStaffQR(code);
+        return staffRepository.checkAccountStaffQR(code);
     }
 
     @Override
     public List<Staff> getAccountStaffQR(String code) {
-        return getAccountStaffQR(code);
+        return staffRepository.getAccountStaffQR(code);
     }
 
     @Override

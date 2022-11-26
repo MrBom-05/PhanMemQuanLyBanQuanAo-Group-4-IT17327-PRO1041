@@ -74,6 +74,7 @@ public class QRCode extends javax.swing.JFrame implements Runnable, ThreadFactor
             if (result != null) {
                 if (staffService.checkAccountStaffQR(String.valueOf(result))) {
                     loadAccountStaff(staffService.getAccountStaffQR(String.valueOf(result)));
+
                 } else {
                     JOptionPane.showMessageDialog(this, "Tài khoản này không có trong hệ thống");
                 }
@@ -153,6 +154,7 @@ public class QRCode extends javax.swing.JFrame implements Runnable, ThreadFactor
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         new Login().setVisible(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         dispose();
     }//GEN-LAST:event_btnExitActionPerformed
 
