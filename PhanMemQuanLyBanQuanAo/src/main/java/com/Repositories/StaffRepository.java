@@ -131,4 +131,24 @@ public class StaffRepository {
         }
         return password;
     }
+
+    // Panel QR Code
+    public boolean checkAccountStaffQR(String code) {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery("from Staff where code =: code");
+        query.setParameter("code", code);
+        List<Staff> list = query.getResultList();
+        if (list.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    public List<Staff> getAccountStaffQR(String code) {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery("from Staff where code =: code");
+        query.setParameter("code", code);
+        List<Staff> list = query.getResultList();
+        return list;
+    }
 }

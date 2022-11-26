@@ -27,4 +27,8 @@ public interface StaffService {
     public boolean checkAccountStaff(String email);
 
     public String getByPassword(String email);
+
+    public boolean checkAccountStaffQR(String code);
+
+    public List<Staff> getAccountStaffQR(String code);
 }

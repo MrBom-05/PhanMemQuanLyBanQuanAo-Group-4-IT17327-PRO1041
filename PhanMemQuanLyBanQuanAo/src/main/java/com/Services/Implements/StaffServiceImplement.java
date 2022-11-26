@@ -62,6 +62,16 @@ public class StaffServiceImplement implements StaffService {
     }
 
     @Override
+    public boolean checkAccountStaffQR(String code) {
+        return checkAccountStaffQR(code);
+    }
+
+    @Override
+    public List<Staff> getAccountStaffQR(String code) {
+        return getAccountStaffQR(code);
+    }
+
+    @Override
     public boolean hideOrShow(String code, int status) {
         return staffRepository.hideOrShow(code, status);
     }

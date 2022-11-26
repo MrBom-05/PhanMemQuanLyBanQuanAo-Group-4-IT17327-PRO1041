@@ -2,7 +2,6 @@ package com.Repositories;
 
 import com.CustomModels.ProductDetailCustomModel;
 import com.Models.ProductDetails;
-import com.Models.ProductType;
 import com.Utilities.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
