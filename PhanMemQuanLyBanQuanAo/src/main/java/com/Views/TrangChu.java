@@ -130,6 +130,12 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         return t;
     }
 
+    private Date getNgayHienTai() {
+        long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
+        return date;
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -273,7 +279,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         jLabel32 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
-        tblHoaDonPanelLichSu2 = new javax.swing.JTable();
+        tblHoaDonPanelLichSu = new javax.swing.JTable();
         jPanel13 = new javax.swing.JPanel();
         jScrollPane10 = new javax.swing.JScrollPane();
         tblSanPhamPanelLichSu = new javax.swing.JTable();
@@ -1270,15 +1276,20 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
             },
             new String [] {
-                "Mã SP", "Tên SP", "Loại SP", "Kích Cỡ", "Màu Sắc", "Số Lượng", "Giá Bán"
+                "Mã SP", "Tên SP", "Loại SP", "Kích Cỡ", "Màu Sắc", "Chất Liệu", "Số Lượng", "Giá Bán"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblSanPhamPanelHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSanPhamPanelHoaDonMouseClicked(evt);
             }
         });
         jScrollPane14.setViewportView(tblSanPhamPanelHoaDon);
@@ -1335,12 +1346,27 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
         btnThanhToanPanelHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/pay40.png"))); // NOI18N
         btnThanhToanPanelHoaDon.setText("Thanh Toán");
+        btnThanhToanPanelHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThanhToanPanelHoaDonActionPerformed(evt);
+            }
+        });
 
         btnTaoHoaDonPanelHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/add30.png"))); // NOI18N
         btnTaoHoaDonPanelHoaDon.setText("Tạo Hóa Đơn");
+        btnTaoHoaDonPanelHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaoHoaDonPanelHoaDonActionPerformed(evt);
+            }
+        });
 
         btnHuyPanelHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/cloes30.png"))); // NOI18N
         btnHuyPanelHoaDon.setText("Hủy");
+        btnHuyPanelHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHuyPanelHoaDonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
@@ -1555,7 +1581,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         jPanel12.setBackground(new java.awt.Color(246, 248, 250));
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Danh Sách Hóa Đơn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
 
-        tblHoaDonPanelLichSu2.setModel(new javax.swing.table.DefaultTableModel(
+        tblHoaDonPanelLichSu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -1571,7 +1597,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane9.setViewportView(tblHoaDonPanelLichSu2);
+        jScrollPane9.setViewportView(tblHoaDonPanelLichSu);
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -3224,6 +3250,26 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     }//GEN-LAST:event_txtTimKiemSPPanelSanPhamCaretUpdate
 
     // Panel Hóa Đơn
+
+    private void loadDataSanPhamChiTietPanelHoaDon(List<ProductDetailCustomModel> list) {
+        defaultTableModel = (DefaultTableModel) tblSanPhamPanelHoaDon.getModel();
+        defaultTableModel.setRowCount(0);
+        int count = 1;
+        for (ProductDetailCustomModel productDetailCustomModel : list) {
+            defaultTableModel.addRow(new Object[]{
+                    productDetailCustomModel.getMaSP(),
+                    productDetailCustomModel.getTenSP(),
+                    productDetailCustomModel.getLoaiSP(),
+                    productDetailCustomModel.getKichCo(),
+                    productDetailCustomModel.getMauSac(),
+                    productDetailCustomModel.getChatLieu(),
+                    productDetailCustomModel.getSoLuong(),
+                    productDetailCustomModel.getDonGia()
+            });
+        }
+    }
+
+
     private void btnHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonActionPerformed
         btnThongKe.setBackground(colorTrang);
         btnSanPham.setBackground(colorTrang);
@@ -3242,6 +3288,22 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         setResizable(false);
         this.initWebcam();
     }//GEN-LAST:event_btnHoaDonActionPerformed
+
+    private void btnTaoHoaDonPanelHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoHoaDonPanelHoaDonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTaoHoaDonPanelHoaDonActionPerformed
+
+    private void btnThanhToanPanelHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanPanelHoaDonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnThanhToanPanelHoaDonActionPerformed
+
+    private void btnHuyPanelHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyPanelHoaDonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHuyPanelHoaDonActionPerformed
+
+    private void tblSanPhamPanelHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamPanelHoaDonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblSanPhamPanelHoaDonMouseClicked
 
     // Panel Lịch Sử
     private void btnLichSuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLichSuActionPerformed
@@ -3986,7 +4048,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JTable tblChiTietSanPhamPanelSanPham;
     private javax.swing.JTable tblGioHangPanelHoaDon;
     private javax.swing.JTable tblHoaDonPanelHoaDon;
-    private javax.swing.JTable tblHoaDonPanelLichSu2;
+    private javax.swing.JTable tblHoaDonPanelLichSu;
     private javax.swing.JTable tblKhachHangPanelKhachHang;
     private javax.swing.JTable tblKhuyenMaiPanelKhuyenMai;
     private javax.swing.JTable tblNhanVienPanelNhanVien;
