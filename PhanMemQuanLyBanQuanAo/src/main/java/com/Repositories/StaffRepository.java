@@ -80,12 +80,6 @@ public class StaffRepository {
     }
 
     // Panel Cửa Hàng
-    public List<Staff> getListStaff() {
-        Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery("from Staff where role = 1");
-        List<Staff> list = query.getResultList();
-        return list;
-    }
 
     public String getByFirstName = ("SELECT s.firstName FROM Staff s WHERE s.code =: code");
     public String getByLastName = ("SELECT s.lastName FROM Staff s WHERE s.code =: code");

@@ -32,11 +32,6 @@ public class StaffServiceImplement implements StaffService {
     }
 
     @Override
-    public List<Staff> getListStaff() {
-        return staffRepository.getListStaff();
-    }
-
-    @Override
     public String getByFisrtName(String code) {
         return staffRepository.getByName(code, staffRepository.getByFirstName);
     }
