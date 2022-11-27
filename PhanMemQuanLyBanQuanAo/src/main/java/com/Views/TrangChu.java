@@ -11,9 +11,27 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Color;
 import java.sql.Date;
-import java.util.List;
+import com.github.sarxos.webcam.Webcam;
+import com.github.sarxos.webcam.WebcamPanel;
+import com.github.sarxos.webcam.WebcamResolution;
+import com.google.zxing.BinaryBitmap;
+import com.google.zxing.LuminanceSource;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.NotFoundException;
+import com.google.zxing.Result;
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
+import com.google.zxing.common.HybridBinarizer;
 
-public class TrangChu extends javax.swing.JFrame {
+import java.awt.image.BufferedImage;
+import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
+public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFactory {
 
     private ColorService colorService = new ColorServiceImplement();
 
@@ -40,6 +58,10 @@ public class TrangChu extends javax.swing.JFrame {
 
     private LogicUtil logicUtil = new LogicUtil();
 
+    private WebcamPanel panel = null;
+    private Webcam webcam = null;
+    private Executor executor = Executors.newSingleThreadExecutor(this);
+
     public TrangChu() {
         initComponents();
         btnThongKe.setBackground(colorXanh);
@@ -56,6 +78,56 @@ public class TrangChu extends javax.swing.JFrame {
         panelMain.add(panelThongKe);
         panelMain.repaint();
         panelMain.revalidate();
+    }
+
+    private void initWebcam() {
+        java.awt.Dimension size = WebcamResolution.QVGA.getSize();
+        webcam = Webcam.getWebcams().get(0);
+        webcam.setViewSize(size);
+        panel = new WebcamPanel(webcam);
+        panel.setPreferredSize(size);
+
+        jPanel22.add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 207, 137));
+        executor.execute(this);
+    }
+
+    private boolean connect = true;
+
+    @Override
+    public void run() {
+        do {
+
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+            Result result = null;
+            BufferedImage image = null;
+            if (webcam.isOpen()) {
+                if ((image = webcam.getImage()) == null) {
+                    continue;
+                }
+            }
+            LuminanceSource source = new BufferedImageLuminanceSource(image);
+            BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+            try {
+                result = new MultiFormatReader().decode(bitmap);
+            } catch (NotFoundException ex) {
+                Logger.getLogger(QRCode.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (result != null) {
+                System.out.println(result);
+            }
+        } while (connect);
+
+    }
+
+    @Override
+    public Thread newThread(Runnable r) {
+        Thread t = new Thread(r, "my thread");
+        t.setDaemon(true);
+        return t;
     }
 
     @SuppressWarnings("unchecked")
@@ -183,6 +255,8 @@ public class TrangChu extends javax.swing.JFrame {
         btnTaoHoaDonPanelHoaDon = new javax.swing.JButton();
         btnHuyPanelHoaDon = new javax.swing.JButton();
         jPanel21 = new javax.swing.JPanel();
+        jPanel22 = new javax.swing.JPanel();
+        Camera = new javax.swing.JPanel();
         panelLichSu = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
@@ -1172,7 +1246,7 @@ public class TrangChu extends javax.swing.JFrame {
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 751, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnXoaGioHangPanelHoaDon)))
@@ -1388,6 +1462,21 @@ public class TrangChu extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel22.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        javax.swing.GroupLayout CameraLayout = new javax.swing.GroupLayout(Camera);
+        Camera.setLayout(CameraLayout);
+        CameraLayout.setHorizontalGroup(
+            CameraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 207, Short.MAX_VALUE)
+        );
+        CameraLayout.setVerticalGroup(
+            CameraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 140, Short.MAX_VALUE)
+        );
+
+        jPanel22.add(Camera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 140));
+
         javax.swing.GroupLayout panelHoaDonLayout = new javax.swing.GroupLayout(panelHoaDon);
         panelHoaDon.setLayout(panelHoaDonLayout);
         panelHoaDonLayout.setHorizontalGroup(
@@ -1395,10 +1484,13 @@ public class TrangChu extends javax.swing.JFrame {
             .addGroup(panelHoaDonLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelHoaDonLayout.createSequentialGroup()
+                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(22, 22, 22)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -1409,7 +1501,11 @@ public class TrangChu extends javax.swing.JFrame {
                 .addGroup(panelHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelHoaDonLayout.createSequentialGroup()
-                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelHoaDonLayout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -2413,6 +2509,7 @@ public class TrangChu extends javax.swing.JFrame {
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         int confirm = JOptionPane.showConfirmDialog(this, "Bạn muốn thoát không ?", "Thông báo", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
+            webcam.close();
             dispose();
         } else {
             return;
@@ -2435,10 +2532,10 @@ public class TrangChu extends javax.swing.JFrame {
         panelMain.add(panelThongKe);
         panelMain.repaint();
         panelMain.revalidate();
+        webcam.close();
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     // Panel Sản Phẩm
-
     private void loadDataLoaiSanPham(List<ProductType> list) {
         defaultTableModel = (DefaultTableModel) tblThuocTinhPanelSanPham.getModel();
         defaultTableModel.setRowCount(0);
@@ -2587,8 +2684,8 @@ public class TrangChu extends javax.swing.JFrame {
         String ma = codeProductTypeTangDan();
         String ten = txtTenThuocTinhPanelSanPham.getText();
 
-        if (ten.trim().equals("")){
-            JOptionPane.showMessageDialog(this,"Không được để trống");
+        if (ten.trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Không được để trống");
         }
         return new ProductType(ma, ten);
     }
@@ -2596,8 +2693,8 @@ public class TrangChu extends javax.swing.JFrame {
     private com.Models.Color getDataMauSac() {
         String ma = codeColorTangDan();
         String ten = txtTenThuocTinhPanelSanPham.getText();
-        if (ten.trim().equals("")){
-            JOptionPane.showMessageDialog(this,"Không được để trống");
+        if (ten.trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Không được để trống");
         }
         return new com.Models.Color(ma, ten);
     }
@@ -2605,8 +2702,8 @@ public class TrangChu extends javax.swing.JFrame {
     private Size getDataKichCo() {
         String ma = codeSizeTangDan();
         String ten = txtTenThuocTinhPanelSanPham.getText();
-        if (ten.trim().equals("")){
-            JOptionPane.showMessageDialog(this,"Không được để trống");
+        if (ten.trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Không được để trống");
         }
         return new Size(ma, ten);
     }
@@ -2614,8 +2711,8 @@ public class TrangChu extends javax.swing.JFrame {
     private Substance getDataChatLieu() {
         String ma = codeSubstanceTangDan();
         String ten = txtTenThuocTinhPanelSanPham.getText();
-        if (ten.trim().equals("")){
-            JOptionPane.showMessageDialog(this,"Không được để trống");
+        if (ten.trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Không được để trống");
         }
         return new Substance(ma, ten);
     }
@@ -2640,6 +2737,7 @@ public class TrangChu extends javax.swing.JFrame {
         panelMain.add(panelSanPham);
         panelMain.repaint();
         panelMain.revalidate();
+        webcam.close();
         rdoLoaiSanPhamPanelSanPham.setSelected(true);
 
         cbbLoaiSPPanelSanPham.removeAllItems();
@@ -2682,7 +2780,9 @@ public class TrangChu extends javax.swing.JFrame {
     private void btnThemPanelSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemPanelSanPhamActionPerformed
         if (rdoLoaiSanPhamPanelSanPham.isSelected()) {
             ProductType productType = getDataLoaiSanPham();
-            if (productType == null) return;
+            if (productType == null) {
+                return;
+            }
             if (productTypeService.insert(productType)) {
                 loadDataLoaiSanPham(productTypeService.getList());
                 cbbLoaiSPPanelSanPham.removeAllItems();
@@ -2694,7 +2794,9 @@ public class TrangChu extends javax.swing.JFrame {
             }
         } else if (rdoMauSacPanelSanPham.isSelected()) {
             com.Models.Color color = getDataMauSac();
-            if (color == null) return;
+            if (color == null) {
+                return;
+            }
             if (colorService.insert(color)) {
                 loadDataMauSac(colorService.getList());
                 cbbMauSacPanelSanPham.removeAllItems();
@@ -2706,7 +2808,9 @@ public class TrangChu extends javax.swing.JFrame {
             }
         } else if (rdoKichCoPanelSanPham.isSelected()) {
             Size size = getDataKichCo();
-            if (size == null) return;
+            if (size == null) {
+                return;
+            }
             if (sizeService.insert(size)) {
                 loadDataKichCo(sizeService.getList());
                 cbbKichCoPanelSanPham.removeAllItems();
@@ -2718,7 +2822,9 @@ public class TrangChu extends javax.swing.JFrame {
             }
         } else if (rdoChatLieuPanelSanPham.isSelected()) {
             Substance substance = getDataChatLieu();
-            if (substance == null) return;
+            if (substance == null) {
+                return;
+            }
             if (substanceService.insert(substance)) {
                 loadDataChatLieu(substanceService.getList());
                 cbbChatLieuPanelSanPham.removeAllItems();
@@ -2741,7 +2847,9 @@ public class TrangChu extends javax.swing.JFrame {
 
         if (rdoLoaiSanPhamPanelSanPham.isSelected()) {
             ProductType productType = getDataLoaiSanPham();
-            if (productType == null) return;
+            if (productType == null) {
+                return;
+            }
             if (productTypeService.update(productType, code)) {
                 loadDataLoaiSanPham(productTypeService.getList());
                 cbbLoaiSPPanelSanPham.removeAllItems();
@@ -2753,7 +2861,9 @@ public class TrangChu extends javax.swing.JFrame {
             }
         } else if (rdoMauSacPanelSanPham.isSelected()) {
             com.Models.Color color = getDataMauSac();
-            if (color == null) return;
+            if (color == null) {
+                return;
+            }
             if (colorService.update(color, code)) {
                 loadDataMauSac(colorService.getList());
                 cbbMauSacPanelSanPham.removeAllItems();
@@ -2765,7 +2875,9 @@ public class TrangChu extends javax.swing.JFrame {
             }
         } else if (rdoKichCoPanelSanPham.isSelected()) {
             Size size = getDataKichCo();
-            if (size == null) return;
+            if (size == null) {
+                return;
+            }
             if (sizeService.update(size, code)) {
                 loadDataKichCo(sizeService.getList());
                 cbbKichCoPanelSanPham.removeAllItems();
@@ -2777,7 +2889,9 @@ public class TrangChu extends javax.swing.JFrame {
             }
         } else if (rdoChatLieuPanelSanPham.isSelected()) {
             Substance substance = getDataChatLieu();
-            if (substance == null) return;
+            if (substance == null) {
+                return;
+            }
             if (substanceService.update(substance, code)) {
                 loadDataChatLieu(substanceService.getList());
                 cbbChatLieuPanelSanPham.removeAllItems();
@@ -2868,7 +2982,6 @@ public class TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_tblThuocTinhPanelSanPhamMouseClicked
 
     // Panel Sản Phẩm Chi Tiết
-
     private void addCbbLoaiSanPham(List<ProductType> list) {
         defaultComboBoxModel = (DefaultComboBoxModel) cbbLoaiSPPanelSanPham.getModel();
         for (ProductType productType : list) {
@@ -2903,16 +3016,16 @@ public class TrangChu extends javax.swing.JFrame {
         int count = 1;
         for (ProductDetailCustomModel productDetailCustomModel : list) {
             defaultTableModel.addRow(new Object[]{
-                    count++,
-                    productDetailCustomModel.getMaSP(),
-                    productDetailCustomModel.getTenSP(),
-                    productDetailCustomModel.getLoaiSP(),
-                    productDetailCustomModel.getKichCo(),
-                    productDetailCustomModel.getMauSac(),
-                    productDetailCustomModel.getChatLieu(),
-                    productDetailCustomModel.getDonGia(),
-                    productDetailCustomModel.getSoLuong(),
-                    productDetailCustomModel.getMoTa()
+                count++,
+                productDetailCustomModel.getMaSP(),
+                productDetailCustomModel.getTenSP(),
+                productDetailCustomModel.getLoaiSP(),
+                productDetailCustomModel.getKichCo(),
+                productDetailCustomModel.getMauSac(),
+                productDetailCustomModel.getChatLieu(),
+                productDetailCustomModel.getDonGia(),
+                productDetailCustomModel.getSoLuong(),
+                productDetailCustomModel.getMoTa()
             });
         }
     }
@@ -2956,6 +3069,7 @@ public class TrangChu extends javax.swing.JFrame {
         }
         return code;
     }
+
     private void setIndexCbbLoaiSPPanelSanPham(String ten) {
         int count = -1;
         List<ProductType> list = productTypeService.getList();
@@ -3037,7 +3151,9 @@ public class TrangChu extends javax.swing.JFrame {
 
     private void btnThemPanelSanPhamCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemPanelSanPhamCTActionPerformed
         ProductDetails productDetails = getDataSanPhamChiTiet();
-        if (productDetails == null) return;
+        if (productDetails == null) {
+            return;
+        }
         logicUtil.taoMaQR(codeProductDetailTangDan());
         if (productDetailService.insert(productDetails)) {
             loadDataSanPhamChiTiet(productDetailService.getListProductDetal());
@@ -3050,7 +3166,9 @@ public class TrangChu extends javax.swing.JFrame {
 
     private void btnSuaPanelSanPhamCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaPanelSanPhamCTActionPerformed
         ProductDetails productDetails = getDataSanPhamChiTiet();
-        if (productDetails == null) return;
+        if (productDetails == null) {
+            return;
+        }
         if (productDetailService.update(productDetails, txtMaSPPanelSanPham.getText())) {
             loadDataSanPhamChiTiet(productDetailService.getListProductDetal());
             clearPanelSanPhamChiTiet();
@@ -3074,7 +3192,7 @@ public class TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAnPanelSanPhamCTActionPerformed
 
     private void btnXemAnPanelSanPhamCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemAnPanelSanPhamCTActionPerformed
-
+        new XemSanPhamAn().setVisible(true);
     }//GEN-LAST:event_btnXemAnPanelSanPhamCTActionPerformed
 
     private void tblChiTietSanPhamPanelSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblChiTietSanPhamPanelSanPhamMouseClicked
@@ -3105,7 +3223,6 @@ public class TrangChu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtTimKiemSPPanelSanPhamCaretUpdate
 
-
     // Panel Hóa Đơn
     private void btnHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonActionPerformed
         btnThongKe.setBackground(colorTrang);
@@ -3122,6 +3239,8 @@ public class TrangChu extends javax.swing.JFrame {
         panelMain.add(panelHoaDon);
         panelMain.repaint();
         panelMain.revalidate();
+        setResizable(false);
+        this.initWebcam();
     }//GEN-LAST:event_btnHoaDonActionPerformed
 
     // Panel Lịch Sử
@@ -3140,6 +3259,7 @@ public class TrangChu extends javax.swing.JFrame {
         panelMain.add(panelLichSu);
         panelMain.repaint();
         panelMain.revalidate();
+        webcam.close();
     }//GEN-LAST:event_btnLichSuActionPerformed
 
     // Panel Khuyến Mãi
@@ -3191,8 +3311,8 @@ public class TrangChu extends javax.swing.JFrame {
         String ngayBatDau = ((JTextField) txtNgayBatDauPanelKhuyenMai.getDateEditor().getUiComponent()).getText();
         String ngayKetThuc = ((JTextField) txtNgayKetThucPanelKhuyenMai.getDateEditor().getUiComponent()).getText();
         int phanTramKhuyenMai = (int) spnPhanTramKhuyenMaiPanelKhuyenMai.getValue();
-        if (tenCT.trim().equals("")){
-            JOptionPane.showMessageDialog(this,"Không được để trống");
+        if (tenCT.trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Không được để trống");
         }
         Date date1 = Date.valueOf(ngayBatDau);
         Date date2 = Date.valueOf(ngayKetThuc);
@@ -3215,6 +3335,7 @@ public class TrangChu extends javax.swing.JFrame {
         panelMain.add(panelKhuyenMai);
         panelMain.repaint();
         panelMain.revalidate();
+        webcam.close();
         loadDataKhuyenMai(promotionService.getListOn());
     }//GEN-LAST:event_btnKhuyenMaiActionPerformed
 
@@ -3381,6 +3502,7 @@ public class TrangChu extends javax.swing.JFrame {
         panelMain.add(panelNhanVien);
         panelMain.repaint();
         panelMain.revalidate();
+        webcam.close();
         loadDataNhanVien(staffService.getList());
         rdoNamPanelNhanVien.setSelected(true);
     }//GEN-LAST:event_btnNhanVienActionPerformed
@@ -3540,6 +3662,7 @@ public class TrangChu extends javax.swing.JFrame {
         panelMain.add(panelKhachHang);
         panelMain.repaint();
         panelMain.revalidate();
+        webcam.close();
         loadDataKhachHang(customerService.getList());
     }//GEN-LAST:event_btnKhachHangActionPerformed
 
@@ -3612,6 +3735,7 @@ public class TrangChu extends javax.swing.JFrame {
         panelMain.add(panelDoiMatKhau);
         panelMain.repaint();
         panelMain.revalidate();
+        webcam.close();
     }//GEN-LAST:event_btnDoiMatKhauActionPerformed
 
     private void btnLoadCaptchaPanelDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadCaptchaPanelDoiMatKhauActionPerformed
@@ -3644,6 +3768,7 @@ public class TrangChu extends javax.swing.JFrame {
         int confirm = JOptionPane.showConfirmDialog(this, "Bạn muốn đăng xuất không ?", "Thông báo", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
             new Login().setVisible(true);
+            webcam.close();
             dispose();
         } else {
             return;
@@ -3658,8 +3783,8 @@ public class TrangChu extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
-                 javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+                | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(() -> {
@@ -3668,6 +3793,7 @@ public class TrangChu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Camera;
     private javax.swing.JButton btnAnPanelKhuyenMai;
     private javax.swing.JButton btnAnPanelNhanVien;
     private javax.swing.JButton btnAnPanelSanPhamCT;
@@ -3805,6 +3931,7 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
