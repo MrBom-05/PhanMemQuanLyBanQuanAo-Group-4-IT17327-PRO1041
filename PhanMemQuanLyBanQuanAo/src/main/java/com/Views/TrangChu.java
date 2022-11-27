@@ -1,5 +1,6 @@
 package com.Views;
 
+import com.CustomModels.BillCustomModel;
 import com.CustomModels.ProductDetailCustomModel;
 import com.CustomModels.StaffCustomModel;
 import com.Models.*;
@@ -34,6 +35,8 @@ import javax.swing.JOptionPane;
 public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFactory {
 
     private ColorService colorService = new ColorServiceImplement();
+
+    private BillService billService = new BillServiceImplement();
 
     private CustomerService customerService = new CustomerServiceImplement();
 
@@ -3269,7 +3272,56 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
     }
 
-
+    private String codeBillTangDan() {
+        String code = "";
+        List<Bill> list = billService.getList();
+        if (list.isEmpty()) {
+            code = "HD0001";
+        } else {
+            int max = 0;
+            for (Bill bill : list) {
+                int so = Integer.parseInt(bill.getCode().substring(2));
+                if (so > max) {
+                    max = so;
+                }
+            }
+            max++;
+            if (max < 10) {
+                code = "HD000" + max;
+            } else if (max < 100) {
+                code = "HD00" + max;
+            } else if (max < 1000) {
+                code = "HD0" + max;
+            } else {
+                code = "HD" + max;
+            }
+        }
+        return code;
+    }
+    private void loadDataHoaDonPanelHoaDon(List<BillCustomModel> list) {
+        defaultTableModel = (DefaultTableModel) tblHoaDonPanelHoaDon.getModel();
+        defaultTableModel.setRowCount(0);
+        int count = 1;
+        for (BillCustomModel billCustomModel : list) {
+            defaultTableModel.addRow(new Object[]{
+                    count++,
+                    billCustomModel.getMaHd(),
+                    billCustomModel.getTenKh(),
+                    billCustomModel.getTenNv(),
+                    billCustomModel.getNgayTao(),
+                    billCustomModel.getTrangThai() == 0 ? "Đang thanh toán" :  "Đã Thanh toán",
+                 
+            });
+        }
+    }
+    private Bill getDataBill() {
+        Bill bill = new Bill();
+        bill.setId("newid()");
+        bill.setCode(codeBillTangDan());
+        bill.setStatus(0);
+        bill.setDateCreated(getNgayHienTai());
+        return bill;
+    }
     private void btnHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonActionPerformed
         btnThongKe.setBackground(colorTrang);
         btnSanPham.setBackground(colorTrang);
@@ -3285,12 +3337,24 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         panelMain.add(panelHoaDon);
         panelMain.repaint();
         panelMain.revalidate();
+        loadDataSanPhamChiTietPanelHoaDon(productDetailService.getListProductDetal());
         setResizable(false);
         this.initWebcam();
+        loadDataHoaDonPanelHoaDon(billService.getListBill());
     }//GEN-LAST:event_btnHoaDonActionPerformed
+
+
 
     private void btnTaoHoaDonPanelHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoHoaDonPanelHoaDonActionPerformed
         // TODO add your handling code here:
+        Bill bill = getDataBill();
+        if (billService.insert(bill)) {
+            JOptionPane.showMessageDialog(this, "Tạo hóa đơn thành công");
+            loadDataHoaDonPanelHoaDon(billService.getListBill());
+        } else {
+            JOptionPane.showMessageDialog(this, "Tạo hóa đơn thất bại");
+        }
+        loadDataHoaDonPanelHoaDon(billService.getListBill());
     }//GEN-LAST:event_btnTaoHoaDonPanelHoaDonActionPerformed
 
     private void btnThanhToanPanelHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanPanelHoaDonActionPerformed
