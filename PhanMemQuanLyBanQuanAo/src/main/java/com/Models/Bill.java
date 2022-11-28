@@ -24,7 +24,7 @@ public class Bill implements Serializable {
     @GeneratedValue(generator = "generator")
     @Column(name = "Id", columnDefinition = "uniqueidentifier")
     private String id;
-
+    
     @ManyToOne
     @JoinColumn(name = "IdCustomer")
     private Customer customer;
@@ -51,24 +51,23 @@ public class Bill implements Serializable {
     @Column(name = "ExpectedDate")
     private Date ExpectedDate;
 
-    @ManyToOne
-    @JoinColumn(name = "IdPromotion")
-    private Promotion promotion;
-
     @Column(name = "Status")
     private int status;
 
-    @Column(name = "Note", columnDefinition = "Nvarchar(50)")
+    @Column(name = "Note", columnDefinition = "Nvarchar(MAX)")
     private String note;
 
-    @Column(name = "PhoneNumber", columnDefinition = "Varchar(30)")
-    private String phoneNumber;
+    @Column(name = "NameCustomer", columnDefinition = "Nvarchar(30)")
+    private String nameCustomer;
+
+    @Column(name = "PhoneNumberCustomer", columnDefinition = "Varchar(30)")
+    private String phoneNumberCustomer;
+
 
     @OneToMany(mappedBy = "bill", fetch = FetchType.LAZY)
     private List<BillDetails> listBillDetails;
 
-    public Bill(Customer customer, Staff staff, String code, Date dateCreated, int status) {
-        this.customer = customer;
+    public Bill(Staff staff, String code, Date dateCreated, int status) {
         this.staff = staff;
         this.code = code;
         this.dateCreated = dateCreated;
