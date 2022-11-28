@@ -6,6 +6,7 @@ import com.CustomModels.StaffCustomModel;
 import com.Models.*;
 import com.Services.*;
 import com.Services.Implements.*;
+import com.Utilities.ExportExcel;
 import com.Utilities.LogicUtil;
 
 import javax.swing.*;
@@ -60,6 +61,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     private Color colorTrang = new Color(246, 248, 250);
 
     private LogicUtil logicUtil = new LogicUtil();
+    private ExportExcel exportExcel = new ExportExcel();
 
     private WebcamPanel panel = null;
     private Webcam webcam = null;
@@ -3104,7 +3106,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     }//GEN-LAST:event_cbbNamDoanhThuPanelThongKeActionPerformed
 
     private void btnXuatFileExcelPanelThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatFileExcelPanelThongKeActionPerformed
-        // TODO add your handling code here:
+        exportExcel.excel(productDetailService.getListProductDetal(), "Ngay 27-11 ");
     }//GEN-LAST:event_btnXuatFileExcelPanelThongKeActionPerformed
 
     // Panel Sản Phẩm
