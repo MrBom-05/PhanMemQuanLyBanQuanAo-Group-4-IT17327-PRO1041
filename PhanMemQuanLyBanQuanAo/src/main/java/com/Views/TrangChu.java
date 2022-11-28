@@ -3309,8 +3309,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                     billCustomModel.getTenKh(),
                     billCustomModel.getTenNv(),
                     billCustomModel.getNgayTao(),
-                    billCustomModel.getTrangThai() == 0 ? "Đang thanh toán" :  "Đã Thanh toán",
-                 
+                    billCustomModel.trangThaiHD(billCustomModel.getTrangThai())
             });
         }
     }
@@ -3346,7 +3345,6 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
 
     private void btnTaoHoaDonPanelHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoHoaDonPanelHoaDonActionPerformed
-        // TODO add your handling code here:
         Bill bill = getDataBill();
         if (billService.insert(bill)) {
             JOptionPane.showMessageDialog(this, "Tạo hóa đơn thành công");
