@@ -1,5 +1,8 @@
 package com.Views;
 
+import com.Models.Staff;
+import com.Services.Implements.StaffServiceImplement;
+import com.Services.StaffService;
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamPanel;
 import com.github.sarxos.webcam.WebcamResolution;
@@ -10,14 +13,19 @@ import com.google.zxing.NotFoundException;
 import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
+
 import java.awt.image.BufferedImage;
+import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class QRCode extends javax.swing.JFrame implements Runnable, ThreadFactory {
+
+    private StaffService staffService = new StaffServiceImplement();
 
     private WebcamPanel panel = null;
     private Webcam webcam = null;
@@ -39,6 +47,8 @@ public class QRCode extends javax.swing.JFrame implements Runnable, ThreadFactor
         Camera.add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 483, 320));
         executor.execute(this);
     }
+
+    private boolean connect = true;
 
     @Override
     public void run() {
@@ -64,9 +74,16 @@ public class QRCode extends javax.swing.JFrame implements Runnable, ThreadFactor
                 Logger.getLogger(QRCode.class.getName()).log(Level.SEVERE, null, ex);
             }
             if (result != null) {
+                if (staffService.checkAccountStaffQR(String.valueOf(result))) {
+                    loadAccountStaff(staffService.getAccountStaffQR(String.valueOf(result)));
+                    connect = false;
+                    webcam.close();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Tài khoản này không có trong hệ thống");
+                }
                 System.out.println(result);
             }
-        } while (true);
+        } while (connect);
 
     }
 
@@ -77,12 +94,36 @@ public class QRCode extends javax.swing.JFrame implements Runnable, ThreadFactor
         return t;
     }
 
+    private void loadAccountStaff(List<Staff> list) {
+        for (Staff staff : list) {
+            int chucVu = staff.getRole();
+            String hoTen = staff.getLastName() + " " + staff.getFirstName();
+            String ma = staff.getCode();
+            if (chucVu == 1) {
+                if (staff.getStatus() == 1) {
+                    new TrangChu().setVisible(true);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Tài khoản này không có quyền truy cập");
+                }
+            } else {
+                if (staff.getStatus() == 1) {
+                    new TrangChu().setVisible(true);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Tài khoản này không có quyền truy cập");
+                }
+            }
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         Camera = new javax.swing.JPanel();
+        btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -91,32 +132,34 @@ public class QRCode extends javax.swing.JFrame implements Runnable, ThreadFactor
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Camera.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CameraMouseClicked(evt);
+        Camera.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(Camera, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 483, 320));
+
+        btnExit.setBackground(new java.awt.Color(255, 0, 0));
+        btnExit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnExit.setForeground(new java.awt.Color(255, 255, 255));
+        btnExit.setText("X");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
             }
         });
-        Camera.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(Camera, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 483, 320));
+        jPanel1.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
-        );
+        layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE));
+        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CameraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CameraMouseClicked
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        new Login().setVisible(true);
+        webcam.close();
         dispose();
-    }//GEN-LAST:event_CameraMouseClicked
+    }//GEN-LAST:event_btnExitActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -126,7 +169,8 @@ public class QRCode extends javax.swing.JFrame implements Runnable, ThreadFactor
                     break;
                 }
             }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                 javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(QRCode.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
@@ -137,6 +181,7 @@ public class QRCode extends javax.swing.JFrame implements Runnable, ThreadFactor
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Camera;
+    private javax.swing.JButton btnExit;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 

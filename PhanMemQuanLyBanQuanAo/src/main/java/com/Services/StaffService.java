@@ -16,8 +16,6 @@ public interface StaffService {
 
     public List<StaffCustomModel> getListStaffOff();
 
-    public List<Staff> getListStaff();
-
     public String getByFisrtName(String code);
 
     public String getByLastName(String code);
@@ -27,4 +25,8 @@ public interface StaffService {
     public boolean checkAccountStaff(String email);
 
     public String getByPassword(String email);
+
+    public boolean checkAccountStaffQR(String code);
+
+    public List<Staff> getAccountStaffQR(String code);
 }

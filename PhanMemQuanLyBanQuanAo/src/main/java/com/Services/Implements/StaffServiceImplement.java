@@ -32,11 +32,6 @@ public class StaffServiceImplement implements StaffService {
     }
 
     @Override
-    public List<Staff> getListStaff() {
-        return staffRepository.getListStaff();
-    }
-
-    @Override
     public String getByFisrtName(String code) {
         return staffRepository.getByName(code, staffRepository.getByFirstName);
     }
@@ -59,6 +54,16 @@ public class StaffServiceImplement implements StaffService {
     @Override
     public String getByPassword(String email) {
         return staffRepository.getByPassword(email);
+    }
+
+    @Override
+    public boolean checkAccountStaffQR(String code) {
+        return staffRepository.checkAccountStaffQR(code);
+    }
+
+    @Override
+    public List<Staff> getAccountStaffQR(String code) {
+        return staffRepository.getAccountStaffQR(code);
     }
 
     @Override

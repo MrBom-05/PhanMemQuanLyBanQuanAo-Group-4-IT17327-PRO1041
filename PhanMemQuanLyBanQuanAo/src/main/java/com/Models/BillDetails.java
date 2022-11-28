@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,11 +17,15 @@ import java.io.Serializable;
 public class BillDetails implements Serializable {
 
     @Id
+    @GenericGenerator(name = "generator", strategy = "guid", parameters = {})
+    @GeneratedValue(generator = "generator")
+    @Column(name = "Id", columnDefinition = "uniqueidentifier")
+    private String id;
+
     @ManyToOne
     @JoinColumn(name = "idBill")
     private Bill bill;
 
-    @Id
     @ManyToOne
     @JoinColumn(name = "idProductDetails")
     private ProductDetails productDetails;
@@ -31,12 +36,8 @@ public class BillDetails implements Serializable {
     @Column(name = "UnitPrice", columnDefinition = "Decimal(20,0)")
     private Float unitPrice;
 
-    @Column(name = "StatusProduct")
-    private int statusProduct;
-
-    @ManyToOne
-    @JoinColumn(name = "idReplacementProductDetails")
-    private ProductDetails replacementProductDetails;
+    @Column(name = "Status")
+    private int status;
 
     @Column(name = "Note", columnDefinition = "Nvarchar(50)")
     private String note;

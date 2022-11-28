@@ -17,6 +17,7 @@ import java.util.List;
 @Table
 
 public class Promotion implements Serializable {
+
     @Id
     @GenericGenerator(name = "generator", strategy = "guid", parameters = {})
     @GeneratedValue(generator = "generator")
@@ -42,7 +43,7 @@ public class Promotion implements Serializable {
     private int status;
 
     @OneToMany(mappedBy = "promotion", fetch = FetchType.LAZY)
-    private List<Bill> listBill;
+    private List<PromotionDetails> listPromotionDetail;
 
     public Promotion(String code, String name, int DecreaseNumber, Date startDay, Date endDay, int status) {
         this.code = code;

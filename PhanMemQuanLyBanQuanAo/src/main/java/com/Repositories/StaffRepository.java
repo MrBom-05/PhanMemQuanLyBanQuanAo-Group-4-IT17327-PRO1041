@@ -44,7 +44,7 @@ public class StaffRepository {
             transaction = session.beginTransaction();
             Query query = session.createQuery("update Staff set firstName =: firstName, lastName =: lastName"
                     + ", dateOfBirth =: ngaySinh, phoneNumber =: sdt, email =: email, address =: diaChi,sex =:gt,"
-                    + " role =: chucVu, where code =: code");
+                    + " role =: chucVu where code =: code");
             query.setParameter("firstName", staff.getFirstName());
             query.setParameter("lastName", staff.getLastName());
             query.setParameter("ngaySinh", staff.getDateOfBirth());
@@ -80,12 +80,6 @@ public class StaffRepository {
     }
 
     // Panel Cửa Hàng
-    public List<Staff> getListStaff() {
-        Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery("from Staff where role = 1");
-        List<Staff> list = query.getResultList();
-        return list;
-    }
 
     public String getByFirstName = ("SELECT s.firstName FROM Staff s WHERE s.code =: code");
     public String getByLastName = ("SELECT s.lastName FROM Staff s WHERE s.code =: code");
@@ -130,5 +124,25 @@ public class StaffRepository {
             password = query.getSingleResult();
         }
         return password;
+    }
+
+    // Panel QR Code
+    public boolean checkAccountStaffQR(String code) {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery("from Staff where code =: code");
+        query.setParameter("code", code);
+        List<Staff> list = query.getResultList();
+        if (list.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    public List<Staff> getAccountStaffQR(String code) {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery("from Staff where code =: code");
+        query.setParameter("code", code);
+        List<Staff> list = query.getResultList();
+        return list;
     }
 }
