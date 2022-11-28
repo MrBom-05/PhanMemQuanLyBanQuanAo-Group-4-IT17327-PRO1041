@@ -66,4 +66,12 @@ public class Bill implements Serializable {
 
     @OneToMany(mappedBy = "bill", fetch = FetchType.LAZY)
     private List<BillDetails> listBillDetails;
+
+    public Bill(Customer customer, Staff staff, String code, Date dateCreated, int status) {
+        this.customer = customer;
+        this.staff = staff;
+        this.code = code;
+        this.dateCreated = dateCreated;
+        this.status = status;
+    }
 }

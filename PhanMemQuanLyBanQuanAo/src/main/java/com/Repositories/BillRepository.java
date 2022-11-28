@@ -22,12 +22,13 @@ public class BillRepository {
     }
 
     public List<BillCustomModel> getListBill() {
-        String select = "select new com.CustomModels.BillCustomModel(b.code,concat(b.customer.lastName, ' ', b.customer.firstName), concat(b.staff.lastName, ' ', b.staff.firstName),b.dateCreated,b.status) from com.Models.Bill b ";
+        String select = "select new com.CustomModels.BillCustomModel(b.code, concat(b.customer.lastName, ' ', b.customer.firstName), concat(b.staff.lastName, ' ', b.staff.firstName), b.dateCreated, b.status) from com.Models.Bill b ";
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery(select);
         List<BillCustomModel> list = query.getResultList();
         return list;
     }
+
     public boolean insert(Bill bill) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getFACTORY().openSession()) {
