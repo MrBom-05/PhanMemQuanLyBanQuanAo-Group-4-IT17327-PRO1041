@@ -13,6 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BillCustomModel {
+
     private String maHd;
     private String tenKh;
     private String tenNv;

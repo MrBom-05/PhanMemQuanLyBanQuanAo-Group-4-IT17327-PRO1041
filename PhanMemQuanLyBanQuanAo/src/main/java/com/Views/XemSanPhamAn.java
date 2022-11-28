@@ -15,6 +15,7 @@ public class XemSanPhamAn extends javax.swing.JFrame {
 
     public XemSanPhamAn() {
         initComponents();
+        loadDataSanPhamChiTiet(productDetailService.getListProductDetalHide());
     }
 
     private void loadDataSanPhamChiTiet(List<ProductDetailCustomModel> list) {

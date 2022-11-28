@@ -34,6 +34,7 @@ public class HibernateUtil {
         conf.addAnnotatedClass(ProductDetails.class);
         conf.addAnnotatedClass(ProductType.class);
         conf.addAnnotatedClass(Promotion.class);
+        conf.addAnnotatedClass(PromotionDetails.class);
         conf.addAnnotatedClass(Size.class);
         conf.addAnnotatedClass(Staff.class);
         conf.addAnnotatedClass(Substance.class);
