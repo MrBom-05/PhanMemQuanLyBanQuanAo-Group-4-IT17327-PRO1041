@@ -9,7 +9,7 @@ public class PromotionDetailServiceImplement implements PromotionDetailService {
 
 
     @Override
-    public boolean checkBoxSanPham(String code) {
-        return promotionDetailRepository.checkBoxSanPham(code);
+    public boolean checkBoxSanPham(String codeSP, String codeKM) {
+        return promotionDetailRepository.checkBoxSanPham(codeSP, codeKM);
     }
 }

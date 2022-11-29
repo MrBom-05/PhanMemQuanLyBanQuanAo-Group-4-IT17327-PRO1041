@@ -35,41 +35,43 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFactory {
-
-    private ColorService colorService = new ColorServiceImplement();
-
+    
+    private BillDetailService billDetailService = new BillDetailServiceImplement();
+    
     private BillService billService = new BillServiceImplement();
-
+    
+    private ColorService colorService = new ColorServiceImplement();
+    
     private CustomerService customerService = new CustomerServiceImplement();
-
+    
     private ProductDetailService productDetailService = new ProductDetailServiceImplement();
-
+    
     private ProductTypeService productTypeService = new ProductTypeImplement();
-
+    
     private PromotionDetailService promotionDetailService = new PromotionDetailServiceImplement();
-
+    
     private PromotionService promotionService = new PromotionServiceImplement();
-
+    
     private SizeService sizeService = new SizeServiceImplement();
-
+    
     private StaffService staffService = new StaffServiceImplement();
-
+    
     private SubstanceService substanceService = new SubstanceServiceImplement();
-
+    
     private DefaultTableModel defaultTableModel;
-
+    
     private DefaultComboBoxModel defaultComboBoxModel;
-
+    
     private Color colorXanh = new Color(0, 153, 153);
     private Color colorTrang = new Color(246, 248, 250);
-
+    
     private LogicUtil logicUtil = new LogicUtil();
     private ExportExcel exportExcel = new ExportExcel();
-
+    
     private WebcamPanel panel = null;
     private Webcam webcam = null;
     private Executor executor = Executors.newSingleThreadExecutor(this);
-
+    
     public TrangChu() {
         initComponents();
         btnThongKe.setBackground(colorXanh);
@@ -80,31 +82,27 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         btnNhanVien.setBackground(colorTrang);
         btnKhachHang.setBackground(colorTrang);
         btnDoiMatKhau.setBackground(colorTrang);
-        panelMain.removeAll();
-        panelMain.repaint();
-        panelMain.revalidate();
-        panelMain.add(panelThongKe);
-        panelMain.repaint();
-        panelMain.revalidate();
+        setPanel(panelThongKe);
+        loadDataSanPhamChiTiet(productDetailService.getListProductDetal());
     }
-
+    
     private void initWebcam() {
         java.awt.Dimension size = WebcamResolution.QVGA.getSize();
         webcam = Webcam.getWebcams().get(0);
         webcam.setViewSize(size);
         panel = new WebcamPanel(webcam);
         panel.setPreferredSize(size);
-
+        
         jPanel22.add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 207, 137));
         executor.execute(this);
     }
-
+    
     private boolean connect = true;
-
+    
     @Override
     public void run() {
         do {
-
+            
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {
@@ -128,22 +126,31 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                 System.out.println(result);
             }
         } while (connect);
-
+        
     }
-
+    
     @Override
     public Thread newThread(Runnable r) {
         Thread t = new Thread(r, "my thread");
         t.setDaemon(true);
         return t;
     }
-
+    
     private Date getNgayHienTai() {
         long millis = System.currentTimeMillis();
         java.sql.Date date = new java.sql.Date(millis);
         return date;
     }
-
+    
+    private void setPanel(JPanel panel) {
+        panelMain.removeAll();
+        panelMain.repaint();
+        panelMain.revalidate();
+        panelMain.add(panel);
+        panelMain.repaint();
+        panelMain.revalidate();
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -2383,7 +2390,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
                 .addComponent(btnChonTatCaPanelKhuyenMai)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41))
         );
@@ -3077,13 +3084,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         btnNhanVien.setBackground(colorTrang);
         btnKhachHang.setBackground(colorTrang);
         btnDoiMatKhau.setBackground(colorTrang);
-        panelMain.removeAll();
-        panelMain.repaint();
-        panelMain.revalidate();
-        panelMain.add(panelThongKe);
-        panelMain.repaint();
-        panelMain.revalidate();
-        webcam.close();
+        setPanel(panelThongKe);
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void btnTimKiemPanelThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemPanelThongKeActionPerformed
@@ -3107,7 +3108,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             defaultTableModel.addRow(new Object[]{count++, productType.getCode(), productType.getName()});
         }
     }
-
+    
     private void loadDataMauSac(List<com.Models.Color> list) {
         defaultTableModel = (DefaultTableModel) tblThuocTinhPanelSanPham.getModel();
         defaultTableModel.setRowCount(0);
@@ -3116,7 +3117,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             defaultTableModel.addRow(new Object[]{count++, color.getCode(), color.getName()});
         }
     }
-
+    
     private void loadDataKichCo(List<Size> list) {
         defaultTableModel = (DefaultTableModel) tblThuocTinhPanelSanPham.getModel();
         defaultTableModel.setRowCount(0);
@@ -3125,7 +3126,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             defaultTableModel.addRow(new Object[]{count++, size.getCode(), size.getName()});
         }
     }
-
+    
     private void loadDataChatLieu(List<Substance> list) {
         defaultTableModel = (DefaultTableModel) tblThuocTinhPanelSanPham.getModel();
         defaultTableModel.setRowCount(0);
@@ -3134,7 +3135,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             defaultTableModel.addRow(new Object[]{count++, substance.getCode(), substance.getName()});
         }
     }
-
+    
     private String codeProductTypeTangDan() {
         String code = "";
         List<ProductType> list = productTypeService.getList();
@@ -3161,7 +3162,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
         return code;
     }
-
+    
     private String codeColorTangDan() {
         String code = "";
         List<com.Models.Color> list = colorService.getList();
@@ -3188,7 +3189,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
         return code;
     }
-
+    
     private String codeSizeTangDan() {
         String code = "";
         List<Size> list = sizeService.getList();
@@ -3215,7 +3216,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
         return code;
     }
-
+    
     private String codeSubstanceTangDan() {
         String code = "";
         List<Substance> list = substanceService.getList();
@@ -3242,17 +3243,17 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
         return code;
     }
-
+    
     private ProductType getDataLoaiSanPham() {
         String ma = codeProductTypeTangDan();
         String ten = txtTenThuocTinhPanelSanPham.getText();
-
+        
         if (ten.trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Không được để trống");
         }
         return new ProductType(ma, ten);
     }
-
+    
     private com.Models.Color getDataMauSac() {
         String ma = codeColorTangDan();
         String ten = txtTenThuocTinhPanelSanPham.getText();
@@ -3261,7 +3262,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
         return new com.Models.Color(ma, ten);
     }
-
+    
     private Size getDataKichCo() {
         String ma = codeSizeTangDan();
         String ten = txtTenThuocTinhPanelSanPham.getText();
@@ -3270,7 +3271,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
         return new Size(ma, ten);
     }
-
+    
     private Substance getDataChatLieu() {
         String ma = codeSubstanceTangDan();
         String ten = txtTenThuocTinhPanelSanPham.getText();
@@ -3279,7 +3280,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
         return new Substance(ma, ten);
     }
-
+    
     private void clearPanelThuocTinh() {
         txtMaThuocTinhPanelSanPham.setText("");
         txtTenThuocTinhPanelSanPham.setText("");
@@ -3294,29 +3295,23 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         btnNhanVien.setBackground(colorTrang);
         btnKhachHang.setBackground(colorTrang);
         btnDoiMatKhau.setBackground(colorTrang);
-        panelMain.removeAll();
-        panelMain.repaint();
-        panelMain.revalidate();
-        panelMain.add(panelSanPham);
-        panelMain.repaint();
-        panelMain.revalidate();
-        webcam.close();
+        setPanel(panelSanPham);
         rdoLoaiSanPhamPanelSanPham.setSelected(true);
-
+        
         cbbLoaiSPPanelSanPham.removeAllItems();
         addCbbLoaiSanPham(productTypeService.getList());
-
+        
         cbbMauSacPanelSanPham.removeAllItems();
         addCbbMauSac(colorService.getList());
-
+        
         cbbKichCoPanelSanPham.removeAllItems();
         addCbbKichCo(sizeService.getList());
-
+        
         cbbChatLieuPanelSanPham.removeAllItems();
         addCbbChatLieu(substanceService.getList());
-
+        
         loadDataLoaiSanPham(productTypeService.getList());
-
+        
         loadDataSanPhamChiTiet(productDetailService.getListProductDetal());
     }//GEN-LAST:event_btnSanPhamActionPerformed
 
@@ -3402,12 +3397,12 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
     private void btnSuaPanelSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaPanelSanPhamActionPerformed
         String code = txtMaThuocTinhPanelSanPham.getText();
-
+        
         if (code.trim().length() == 0) {
             JOptionPane.showMessageDialog(this, "Chưa chọn thuộc tính nào trên table");
             return;
         }
-
+        
         if (rdoLoaiSanPhamPanelSanPham.isSelected()) {
             ProductType productType = getDataLoaiSanPham();
             if (productType == null) {
@@ -3469,12 +3464,12 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
     private void btnXoaPanelSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaPanelSanPhamActionPerformed
         String code = txtMaThuocTinhPanelSanPham.getText();
-
+        
         if (code.trim().length() == 0) {
             JOptionPane.showMessageDialog(this, "Chưa chọn thuộc tính nào trên table");
             return;
         }
-
+        
         if (rdoLoaiSanPhamPanelSanPham.isSelected()) {
             int confirm = JOptionPane.showConfirmDialog(this, "Bạn muốn xóa thuộc tính này không ?", "Thông báo", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
@@ -3551,48 +3546,48 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             defaultComboBoxModel.addElement(productType);
         }
     }
-
+    
     private void addCbbMauSac(List<com.Models.Color> list) {
         defaultComboBoxModel = (DefaultComboBoxModel) cbbMauSacPanelSanPham.getModel();
         for (com.Models.Color color : list) {
             defaultComboBoxModel.addElement(color);
         }
     }
-
+    
     private void addCbbKichCo(List<Size> list) {
         defaultComboBoxModel = (DefaultComboBoxModel) cbbKichCoPanelSanPham.getModel();
         for (Size size : list) {
             defaultComboBoxModel.addElement(size);
         }
     }
-
+    
     private void addCbbChatLieu(List<Substance> list) {
         defaultComboBoxModel = (DefaultComboBoxModel) cbbChatLieuPanelSanPham.getModel();
         for (Substance substance : list) {
             defaultComboBoxModel.addElement(substance);
         }
     }
-
+    
     private void loadDataSanPhamChiTiet(List<ProductDetailCustomModel> list) {
         defaultTableModel = (DefaultTableModel) tblChiTietSanPhamPanelSanPham.getModel();
         defaultTableModel.setRowCount(0);
         int count = 1;
         for (ProductDetailCustomModel productDetailCustomModel : list) {
             defaultTableModel.addRow(new Object[]{
-                    count++,
-                    productDetailCustomModel.getMaSP(),
-                    productDetailCustomModel.getTenSP(),
-                    productDetailCustomModel.getLoaiSP(),
-                    productDetailCustomModel.getKichCo(),
-                    productDetailCustomModel.getMauSac(),
-                    productDetailCustomModel.getChatLieu(),
-                    productDetailCustomModel.getDonGia(),
-                    productDetailCustomModel.getSoLuong(),
-                    productDetailCustomModel.getMoTa()
+                count++,
+                productDetailCustomModel.getMaSP(),
+                productDetailCustomModel.getTenSP(),
+                productDetailCustomModel.getLoaiSP(),
+                productDetailCustomModel.getKichCo(),
+                productDetailCustomModel.getMauSac(),
+                productDetailCustomModel.getChatLieu(),
+                productDetailCustomModel.getDonGia(),
+                productDetailCustomModel.getSoLuong(),
+                productDetailCustomModel.getMoTa()
             });
         }
     }
-
+    
     private void clearPanelSanPhamChiTiet() {
         txtMaSPPanelSanPham.setText("");
         txtTenSPPanelSanPham.setText("");
@@ -3605,7 +3600,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         txtMoTaPanelSanPham.setText("");
         txtTimKiemSPPanelSanPham.setText("");
     }
-
+    
     private String codeProductDetailTangDan() {
         String code = "";
         List<ProductDetails> list = productDetailService.getList();
@@ -3632,7 +3627,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
         return code;
     }
-
+    
     private void setIndexCbbLoaiSPPanelSanPham(String ten) {
         int count = -1;
         List<ProductType> list = productTypeService.getList();
@@ -3643,7 +3638,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             }
         }
     }
-
+    
     private void setIndexCbbKichCoPanelSanPham(String ten) {
         int count = -1;
         List<Size> list = sizeService.getList();
@@ -3654,7 +3649,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             }
         }
     }
-
+    
     private void setIndexCbbMauSacPanelSanPham(String ten) {
         int count = -1;
         List<com.Models.Color> list = colorService.getList();
@@ -3665,7 +3660,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             }
         }
     }
-
+    
     private void setIndexCbbChatLieuPanelSanPham(String ten) {
         int count = -1;
         List<Substance> list = substanceService.getList();
@@ -3676,7 +3671,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             }
         }
     }
-
+    
     private ProductDetails getDataSanPhamChiTiet() {
         String maSP = codeProductDetailTangDan();
         String tenSP = txtTenSPPanelSanPham.getText();
@@ -3765,18 +3760,10 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
         txtMaSPPanelSanPham.setText(tblChiTietSanPhamPanelSanPham.getValueAt(row, 1).toString());
         txtTenSPPanelSanPham.setText(tblChiTietSanPhamPanelSanPham.getValueAt(row, 2).toString());
-//        defaultComboBoxModel = (DefaultComboBoxModel) cbbLoaiSPPanelSanPham.getModel();
-//        defaultComboBoxModel.setSelectedItem(productDetailService.getListProductDetal().get(row).getLoaiSP());
-//        defaultComboBoxModel = (DefaultComboBoxModel) cbbMauSacPanelSanPham.getModel();
-//        defaultComboBoxModel.setSelectedItem(productDetailService.getListProductDetal().get(row).getMauSac());
-//        defaultComboBoxModel = (DefaultComboBoxModel) cbbKichCoPanelSanPham.getModel();
-//        defaultComboBoxModel.setSelectedItem(productDetailService.getListProductDetal().get(row).getKichCo());
-//        defaultComboBoxModel = (DefaultComboBoxModel) cbbChatLieuPanelSanPham.getModel();
         setIndexCbbLoaiSPPanelSanPham(tblChiTietSanPhamPanelSanPham.getValueAt(row, 3).toString());
         setIndexCbbKichCoPanelSanPham(tblChiTietSanPhamPanelSanPham.getValueAt(row, 4).toString());
         setIndexCbbMauSacPanelSanPham(tblChiTietSanPhamPanelSanPham.getValueAt(row, 5).toString());
         setIndexCbbChatLieuPanelSanPham(tblChiTietSanPhamPanelSanPham.getValueAt(row, 6).toString());
-//        defaultComboBoxModel.setSelectedItem(productDetailService.getListProductDetal().get(row).getChatLieu());
         txtGiaPanelSanPham.setText(tblChiTietSanPhamPanelSanPham.getValueAt(row, 7).toString());
         spnSoLuongPanelSanPham.setValue(tblChiTietSanPhamPanelSanPham.getValueAt(row, 8));
         txtMoTaPanelSanPham.setText(tblChiTietSanPhamPanelSanPham.getValueAt(row, 9).toString());
@@ -3787,25 +3774,24 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     }//GEN-LAST:event_txtTimKiemSPPanelSanPhamCaretUpdate
 
     // Panel Hóa Đơn
-
     private void loadDataSanPhamChiTietPanelHoaDon(List<ProductDetailCustomModel> list) {
         defaultTableModel = (DefaultTableModel) tblSanPhamPanelHoaDon.getModel();
         defaultTableModel.setRowCount(0);
         int count = 1;
         for (ProductDetailCustomModel productDetailCustomModel : list) {
             defaultTableModel.addRow(new Object[]{
-                    productDetailCustomModel.getMaSP(),
-                    productDetailCustomModel.getTenSP(),
-                    productDetailCustomModel.getLoaiSP(),
-                    productDetailCustomModel.getKichCo(),
-                    productDetailCustomModel.getMauSac(),
-                    productDetailCustomModel.getChatLieu(),
-                    productDetailCustomModel.getSoLuong(),
-                    productDetailCustomModel.getDonGia()
+                productDetailCustomModel.getMaSP(),
+                productDetailCustomModel.getTenSP(),
+                productDetailCustomModel.getLoaiSP(),
+                productDetailCustomModel.getKichCo(),
+                productDetailCustomModel.getMauSac(),
+                productDetailCustomModel.getChatLieu(),
+                productDetailCustomModel.getSoLuong(),
+                productDetailCustomModel.getDonGia()
             });
         }
     }
-
+    
     private String codeBillTangDan() {
         String code = "";
         List<Bill> list = billService.getList();
@@ -3832,23 +3818,23 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
         return code;
     }
-
+    
     private void loadDataHoaDonPanelHoaDon(List<BillCustomModel> list) {
         defaultTableModel = (DefaultTableModel) tblHoaDonPanelHoaDon.getModel();
         defaultTableModel.setRowCount(0);
         int count = 1;
         for (BillCustomModel billCustomModel : list) {
             defaultTableModel.addRow(new Object[]{
-                    count++,
-                    billCustomModel.getMaHd(),
-                    billCustomModel.getTenKh(),
-                    billCustomModel.getTenNv(),
-                    billCustomModel.getNgayTao(),
-                    billCustomModel.trangThaiHD(billCustomModel.getTrangThai())
+                count++,
+                billCustomModel.getMaHd(),
+                billCustomModel.getTenKh(),
+                billCustomModel.getTenNv(),
+                billCustomModel.getNgayTao(),
+                billCustomModel.trangThaiHD(billCustomModel.getTrangThai())
             });
         }
     }
-
+    
     private Bill getDataBill() {
         Bill bill = new Bill();
         bill.setId("newid()");
@@ -3867,18 +3853,13 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         btnNhanVien.setBackground(colorTrang);
         btnKhachHang.setBackground(colorTrang);
         btnDoiMatKhau.setBackground(colorTrang);
-        panelMain.removeAll();
-        panelMain.repaint();
-        panelMain.revalidate();
-        panelMain.add(panelHoaDon);
-        panelMain.repaint();
-        panelMain.revalidate();
+        setPanel(panelHoaDon);
         loadDataSanPhamChiTietPanelHoaDon(productDetailService.getListProductDetal());
         setResizable(false);
-        this.initWebcam();
+//        this.initWebcam();
         loadDataHoaDonPanelHoaDon(billService.getListBill());
     }//GEN-LAST:event_btnHoaDonActionPerformed
-
+    
 
     private void btnTaoHoaDonPanelHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoHoaDonPanelHoaDonActionPerformed
         Bill bill = getDataBill();
@@ -3913,13 +3894,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         btnNhanVien.setBackground(colorTrang);
         btnKhachHang.setBackground(colorTrang);
         btnDoiMatKhau.setBackground(colorTrang);
-        panelMain.removeAll();
-        panelMain.repaint();
-        panelMain.revalidate();
-        panelMain.add(panelLichSu);
-        panelMain.repaint();
-        panelMain.revalidate();
-        webcam.close();
+        setPanel(panelLichSu);
     }//GEN-LAST:event_btnLichSuActionPerformed
 
     // Panel Khuyến Mãi
@@ -3931,13 +3906,13 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             defaultTableModel.addRow(new Object[]{count++, promotion.getCode(), promotion.getName(), promotion.getStartDay(), promotion.getEndDay(), promotion.getDecreaseNumber()});
         }
     }
-
+    
     private void clearPanelKhuyenMai() {
         txtMaKhuyenMaiPanelKhuyenMai.setText("");
         txtTenChuongTrinhPanelKhuyenMai.setText("");
         spnPhanTramKhuyenMaiPanelKhuyenMai.setValue(0);
     }
-
+    
     private String codePromotionTangDan() {
         String code = "";
         List<Promotion> list = promotionService.getList();
@@ -3964,7 +3939,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
         return code;
     }
-
+    
     private Promotion getPanelKhuyenMai() {
         String maKM = codePromotionTangDan();
         String tenCT = txtTenChuongTrinhPanelKhuyenMai.getText();
@@ -3976,7 +3951,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
         Date date1 = Date.valueOf(ngayBatDau);
         Date date2 = Date.valueOf(ngayKetThuc);
-
+        
         return new Promotion(maKM, tenCT, phanTramKhuyenMai, date1, date2, 1);
     }
 
@@ -3989,13 +3964,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         btnNhanVien.setBackground(colorTrang);
         btnKhachHang.setBackground(colorTrang);
         btnDoiMatKhau.setBackground(colorTrang);
-        panelMain.removeAll();
-        panelMain.repaint();
-        panelMain.revalidate();
-        panelMain.add(panelKhuyenMai);
-        panelMain.repaint();
-        panelMain.revalidate();
-        webcam.close();
+        setPanel(panelKhuyenMai);
         loadDataKhuyenMai(promotionService.getListOn());
         loadDataSanPhamPanelKhuyenMai(productDetailService.getListProductDetal());
     }//GEN-LAST:event_btnKhuyenMaiActionPerformed
@@ -4063,22 +4032,21 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         txtNgayKetThucPanelKhuyenMai.setDate(Date.valueOf(tblKhuyenMaiPanelKhuyenMai.getValueAt(row, 4).toString()));
         spnPhanTramKhuyenMaiPanelKhuyenMai.setValue(tblKhuyenMaiPanelKhuyenMai.getValueAt(row, 5));
     }//GEN-LAST:event_tblKhuyenMaiPanelKhuyenMaiMouseClicked
-
-
+    
     private void loadDataSanPhamPanelKhuyenMai(List<ProductDetailCustomModel> list) {
         defaultTableModel = (DefaultTableModel) tblSanPhamPanelKhuyenMai.getModel();
         defaultTableModel.setRowCount(0);
         int count = 1;
         for (ProductDetailCustomModel productDetailCustomModel : list) {
             defaultTableModel.addRow(new Object[]{
-                    count++,
-                    productDetailCustomModel.getMaSP(),
-                    productDetailCustomModel.getTenSP(),
-                    productDetailCustomModel.getLoaiSP(),
-                    productDetailCustomModel.getMauSac(),
-                    productDetailCustomModel.getKichCo(),
-                    productDetailCustomModel.getChatLieu(),
-                    promotionDetailService.checkBoxSanPham(productDetailCustomModel.getMaSP())
+                count++,
+                productDetailCustomModel.getMaSP(),
+                productDetailCustomModel.getTenSP(),
+                productDetailCustomModel.getLoaiSP(),
+                productDetailCustomModel.getMauSac(),
+                productDetailCustomModel.getKichCo(),
+                productDetailCustomModel.getChatLieu(),
+                promotionDetailService.checkBoxSanPham(productDetailCustomModel.getMaSP(), txtMaKhuyenMaiPanelKhuyenMai.getText())
             });
         }
     }
@@ -4091,12 +4059,11 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         // TODO add your handling code here:
     }//GEN-LAST:event_tblSanPhamPanelKhuyenMaiMouseClicked
 
-
     // Panel Nhân Viên
     public void loadDataNhanVienAn() {
         loadDataNhanVien(staffService.getList());
     }
-
+    
     private void loadDataNhanVien(List<StaffCustomModel> list) {
         defaultTableModel = (DefaultTableModel) tblNhanVienPanelNhanVien.getModel();
         defaultTableModel.setRowCount(0);
@@ -4105,7 +4072,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             defaultTableModel.addRow(new Object[]{count++, staffCustomModel.getMaNV(), staffCustomModel.getHoTen(), staffCustomModel.getNgaySinh(), staffCustomModel.getGioiTinh(), staffCustomModel.getSdt(), staffCustomModel.getEmail(), staffCustomModel.getDiaChi(), staffCustomModel.getChucVu() == 1 ? "Quản Lý" : "Nhân Viên"});
         }
     }
-
+    
     private void clearPanelNhanVien() {
         txtMaNhanVienPanelNhanVien.setText("");
         txtHoPanelNhanVien.setText("");
@@ -4118,7 +4085,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         txtDiaChiPanelNhanVien.setText("");
         txtMatKhauPanelNhanVien.setText("");
     }
-
+    
     private String codeStaffTangDan() {
         String code = "";
         List<StaffCustomModel> list = staffService.getList();
@@ -4145,7 +4112,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
         return code;
     }
-
+    
     private Staff getPanelNhanVien() {
         String maNV = codeStaffTangDan();
         String ho = txtHoPanelNhanVien.getText();
@@ -4157,7 +4124,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         int chucVu = cbbChucVuPanelNhanVien.getSelectedIndex();
         String diaChi = txtDiaChiPanelNhanVien.getText();
         String matKhau = logicUtil.taoMaHoa(txtMatKhauPanelNhanVien.getText());
-
+        
         if (ho.equals("") || ten.equals("") || ngaySinh.equals("") || sdt.equals("") || email.equals("") || diaChi.equals("") || matKhau.equals("")) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin");
             return null;
@@ -4171,7 +4138,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng ngày sinh");
             return null;
         }
-
+        
         Date date = Date.valueOf(ngaySinh);
         return new Staff("newid()", maNV, ten, ho, gioiTinh, date, diaChi, sdt, email, matKhau, 1, chucVu);
     }
@@ -4185,13 +4152,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         btnNhanVien.setBackground(colorXanh);
         btnKhachHang.setBackground(colorTrang);
         btnDoiMatKhau.setBackground(colorTrang);
-        panelMain.removeAll();
-        panelMain.repaint();
-        panelMain.revalidate();
-        panelMain.add(panelNhanVien);
-        panelMain.repaint();
-        panelMain.revalidate();
-        webcam.close();
+        setPanel(panelNhanVien);
         loadDataNhanVien(staffService.getList());
         rdoNamPanelNhanVien.setSelected(true);
     }//GEN-LAST:event_btnNhanVienActionPerformed
@@ -4278,7 +4239,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             defaultTableModel.addRow(new Object[]{count++, customer.getCode(), customer.getLastName() + " " + customer.getFirstName(), customer.getEmail(), customer.getPhoneNumber()});
         }
     }
-
+    
     private void clearPanelKhachHang() {
         txtMaKhachHangPanelKhachHang.setText("");
         txtHoPanelKhachHang.setText("");
@@ -4286,7 +4247,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         txtEmailPanelKhachHang.setText("");
         txtSDTPanelKhachHang.setText("");
     }
-
+    
     private String codeCustomerTangDan() {
         String code = "";
         List<Customer> list = customerService.getList();
@@ -4313,14 +4274,14 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
         return code;
     }
-
+    
     private Customer getPanelKhachHang() {
         String maKH = codeCustomerTangDan();
         String ho = txtHoPanelKhachHang.getText();
         String ten = txtTenPanelKhachHang.getText();
         String email = txtEmailPanelKhachHang.getText();
         String sdt = txtSDTPanelKhachHang.getText();
-
+        
         if (ho.equals("") || ten.equals("") || sdt.equals("") || email.equals("")) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin");
             return null;
@@ -4331,10 +4292,10 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng số điện thoại");
             return null;
         }
-
+        
         return new Customer(maKH, ho, ten, sdt, email);
     }
-
+    
 
     private void btnKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhachHangActionPerformed
         btnThongKe.setBackground(colorTrang);
@@ -4345,13 +4306,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         btnNhanVien.setBackground(colorTrang);
         btnKhachHang.setBackground(colorXanh);
         btnDoiMatKhau.setBackground(colorTrang);
-        panelMain.removeAll();
-        panelMain.repaint();
-        panelMain.revalidate();
-        panelMain.add(panelKhachHang);
-        panelMain.repaint();
-        panelMain.revalidate();
-        webcam.close();
+        setPanel(panelKhachHang);
         loadDataKhachHang(customerService.getList());
     }//GEN-LAST:event_btnKhachHangActionPerformed
 
@@ -4418,13 +4373,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         btnNhanVien.setBackground(colorTrang);
         btnKhachHang.setBackground(colorTrang);
         btnDoiMatKhau.setBackground(colorXanh);
-        panelMain.removeAll();
-        panelMain.repaint();
-        panelMain.revalidate();
-        panelMain.add(panelDoiMatKhau);
-        panelMain.repaint();
-        panelMain.revalidate();
-        webcam.close();
+        setPanel(panelDoiMatKhau);
     }//GEN-LAST:event_btnDoiMatKhauActionPerformed
 
     private void btnLoadCaptchaPanelDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadCaptchaPanelDoiMatKhauActionPerformed
@@ -4444,12 +4393,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         btnNhanVien.setBackground(colorTrang);
         btnKhachHang.setBackground(colorTrang);
         btnDoiMatKhau.setBackground(colorTrang);
-        panelMain.removeAll();
-        panelMain.repaint();
-        panelMain.revalidate();
-        panelMain.add(panelThongKe);
-        panelMain.repaint();
-        panelMain.revalidate();
+        setPanel(panelThongKe);
     }//GEN-LAST:event_btnThoatPanelDoiMatKhauActionPerformed
 
     // Panel Đăng xuất
@@ -4462,8 +4406,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             return;
         }
     }//GEN-LAST:event_btnDangXuatActionPerformed
-
-
+    
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -4473,7 +4416,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-                 | javax.swing.UnsupportedLookAndFeelException ex) {
+                | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(() -> {
