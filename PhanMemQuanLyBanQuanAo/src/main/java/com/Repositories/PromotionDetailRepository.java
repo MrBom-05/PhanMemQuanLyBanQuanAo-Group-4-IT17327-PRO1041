@@ -8,10 +8,11 @@ import javax.persistence.Query;
 import java.util.List;
 
 public class PromotionDetailRepository {
-    public boolean checkBoxSanPham(String code) {
+    public boolean checkBoxSanPham(String codeSP, String codeKM) {
         Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery("from PromotionDetails where productDetails.code =: code");
-        query.setParameter("code", code);
+        Query query = session.createQuery("from PromotionDetails where productDetails.code =: codeSP and promotion.code =: codeKM");
+        query.setParameter("codeSP", codeSP);
+        query.setParameter("codeKM", codeKM);
         List<Staff> list = query.getResultList();
         if (list.isEmpty()) {
             return false;
