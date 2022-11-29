@@ -40,4 +40,9 @@ public class ProductDetailServiceImplement implements ProductDetailService {
     public List<ProductDetails> getList() {
         return productDetailPepository.getList();
     }
+
+    @Override
+    public String getByID(String code) {
+        return productDetailPepository.getByID(code);
+    }
 }

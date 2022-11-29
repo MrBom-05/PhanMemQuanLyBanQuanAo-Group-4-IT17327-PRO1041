@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class ProductDetailPepository {
@@ -77,5 +78,15 @@ public class ProductDetailPepository {
         Query query = session.createQuery("from ProductDetails");
         List<ProductDetails> list = query.getResultList();
         return list;
+    }
+
+    public String getByID(String code) {
+        String id;
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+            TypedQuery<String> query = session.createQuery("select id from ProductDetails where code =: code", String.class);
+            query.setParameter("code", code);
+            id = query.getSingleResult();
+        }
+        return id;
     }
 }

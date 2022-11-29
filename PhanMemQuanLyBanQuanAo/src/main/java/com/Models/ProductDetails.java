@@ -77,4 +77,8 @@ public class ProductDetails implements Serializable {
         this.exportPrice = exportPrice;
         this.status = status;
     }
+
+    public ProductDetails(String id) {
+        this.id = id;
+    }
 }

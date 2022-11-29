@@ -16,6 +16,7 @@ public interface ProductDetailService {
 
     public boolean hideOrShow(String code, int status);
 
-
     public List<ProductDetails> getList();
+
+    public String getByID(String code);
 }

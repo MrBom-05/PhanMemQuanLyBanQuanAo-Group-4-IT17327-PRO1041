@@ -40,4 +40,9 @@ public class PromotionServiceImplement implements PromotionService {
     public boolean hideOrShow(String code, int status) {
         return promotionRepository.hideOrShow(code, status);
     }
+
+    @Override
+    public String getByID(String code) {
+        return promotionRepository.getByID(code);
+    }
 }
