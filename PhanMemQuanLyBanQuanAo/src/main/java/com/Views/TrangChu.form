@@ -2377,21 +2377,10 @@
                                           <Group type="102" attributes="0">
                                               <EmptySpace min="21" pref="21" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                          <Component id="txtTenKhachHangPanelHoaDon" max="32767" attributes="0"/>
-                                                          <Component id="txtSDTPanelHoaDon" pref="250" max="32767" attributes="0"/>
-                                                      </Group>
-                                                  </Group>
                                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                                       <Group type="102" attributes="0">
                                                           <Component id="jLabel76" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace pref="30" max="32767" attributes="0"/>
+                                                          <EmptySpace pref="32" max="32767" attributes="0"/>
                                                           <Component id="jScrollPane15" min="-2" max="-2" attributes="0"/>
                                                       </Group>
                                                       <Group type="102" attributes="0">
@@ -2419,6 +2408,20 @@
                                                               <Component id="cbbHTTTPanelHoaDon" pref="163" max="32767" attributes="0"/>
                                                               <Component id="txtTienKhachDuaPanelHoaDon" max="32767" attributes="0"/>
                                                               <Component id="lblTienThuaPanelHoaDon" max="32767" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                  </Group>
+                                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                                      <Component id="btnTimKiemKhachHangPanelHoaDon" min="-2" max="-2" attributes="0"/>
+                                                      <Group type="102" attributes="0">
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                              <Component id="txtTenKhachHangPanelHoaDon" max="32767" attributes="0"/>
+                                                              <Component id="txtSDTPanelHoaDon" pref="250" max="32767" attributes="0"/>
                                                           </Group>
                                                       </Group>
                                                   </Group>
@@ -2454,8 +2457,10 @@
                                           <Component id="txtSDTPanelHoaDon" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="btnTimKiemKhachHangPanelHoaDon" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace pref="29" max="32767" attributes="0"/>
                                       <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="lblTongTienPanelHoaDon" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -2475,7 +2480,7 @@
                                           <Component id="jLabel63" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="lblTienThuaPanelHoaDon" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="72" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="1" attributes="0">
                                               <Component id="jLabel76" min="-2" max="-2" attributes="0"/>
@@ -2649,6 +2654,14 @@
                                 </Component>
                               </SubComponents>
                             </Container>
+                            <Component class="javax.swing.JButton" name="btnTimKiemKhachHangPanelHoaDon">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="T&#xec;m Ki&#x1ebf;m"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTimKiemKhachHangPanelHoaDonActionPerformed"/>
+                              </Events>
+                            </Component>
                           </SubComponents>
                         </Container>
                         <Container class="javax.swing.JPanel" name="jPanel21">
@@ -2727,6 +2740,7 @@
                                                           </Group>
                                                       </Group>
                                                   </Group>
+                                                  <Component id="btnTimKiemPanelDatHang" alignment="1" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
@@ -2759,20 +2773,16 @@
                                           <Component id="jLabel79" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="txtSDTPanelDatHang" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                                              <Component id="jLabel85" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <EmptySpace pref="66" max="32767" attributes="0"/>
-                                              <Component id="jScrollPane16" min="-2" pref="68" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="jLabel85" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jScrollPane16" min="-2" pref="68" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="jSeparator3" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace pref="22" max="32767" attributes="0"/>
+                                      <Component id="btnTimKiemPanelDatHang" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jSeparator3" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel80" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="lblTongTienPanelDatHang" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -2991,6 +3001,14 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="&#x110;&#xe3; Giao"/>
                               </Properties>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="btnTimKiemPanelDatHang">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="T&#xec;m Ki&#x1ebf;m"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTimKiemPanelDatHangActionPerformed"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>

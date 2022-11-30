@@ -24,4 +24,6 @@ public interface CustomerService {
     public String getByID(String phoneNumber);
 
     public String getByName(String phoneNumber);
+
+    public List<Customer> checkCustomer(String phone);
 }

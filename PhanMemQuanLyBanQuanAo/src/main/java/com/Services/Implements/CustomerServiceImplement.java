@@ -55,5 +55,10 @@ public class CustomerServiceImplement implements CustomerService {
         return customerRepository.getByName(phoneNumber, customerRepository.getByName);
     }
 
+    @Override
+    public List<Customer> checkCustomer(String phone) {
+        return customerRepository.checkCustomer(phone);
+    }
+
 }
 
