@@ -26,6 +26,11 @@ public class BillServiceImplement implements BillService {
     public boolean insert(Bill bill) {
         return billRepository.insert(bill);
     }
+
+    @Override
+    public boolean update(String code, int status) {
+        return billRepository.update(code, status);
+    }
 }
 
 

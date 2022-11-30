@@ -11,4 +11,6 @@ public interface BillService {
     public List<BillCustomModel> getListBill();
 
     public boolean insert(Bill bill);
+
+    public boolean update(String code, int status);
 }
