@@ -73,10 +73,14 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     private Webcam webcam = null;
     private Executor executor = Executors.newSingleThreadExecutor(this);
 
-    public TrangChu(String ma, String hoTen) {
+    public TrangChu(String ma, String hoTen, int chucVu) {
         initComponents();
         lblMaNhanVienPanelMain.setText(ma);
         lblHoTenNVPanelMain.setText(hoTen);
+        if (chucVu == 0) {
+            btnThongKe.setEnabled(false);
+            btnNhanVien.setEnabled(false);
+        }
         btnThongKe.setBackground(colorXanh);
         btnSanPham.setBackground(colorTrang);
         btnHoaDon.setBackground(colorTrang);
@@ -3189,22 +3193,6 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
     }//GEN-LAST:event_btnDangXuatActionPerformed
 
-    public static void main(String args[]) {
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-                | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        java.awt.EventQueue.invokeLater(() -> {
-            new TrangChu().setVisible(true);
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Camera;
