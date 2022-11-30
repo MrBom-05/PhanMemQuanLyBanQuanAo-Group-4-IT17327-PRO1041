@@ -54,7 +54,7 @@ public class BillDetailRepository {
     }
 
     public boolean checkProducts(String codeSP, String codeHD) {
-        String select = "from BillDetails where productDetails.code =: codeSP and bill.code =: codeHP";
+        String select = "from BillDetails where productDetails.code =: codeSP and bill.code =: codeHD";
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery(select);
         query.setParameter("codeSP", codeSP);

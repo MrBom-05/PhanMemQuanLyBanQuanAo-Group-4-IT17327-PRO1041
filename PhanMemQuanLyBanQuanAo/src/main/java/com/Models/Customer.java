@@ -49,8 +49,9 @@ public class Customer implements Serializable {
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
-    
-    
 
+    public Customer(String id) {
+        this.id = id;
+    }
 
 }
