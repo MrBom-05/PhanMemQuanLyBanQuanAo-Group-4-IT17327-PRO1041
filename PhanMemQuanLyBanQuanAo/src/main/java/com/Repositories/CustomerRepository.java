@@ -17,7 +17,6 @@ public class CustomerRepository {
         Query query = session.createQuery("from Customer");
         List<Customer> list = query.getResultList();
         return list;
-
     }
 
     public boolean insert(Customer customer) {
@@ -98,5 +97,14 @@ public class CustomerRepository {
             id = query.getSingleResult();
         }
         return id;
+    }
+
+    public List<Customer> checkCustomer(String phone) {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery("from Customer where phoneNumber =: phone");
+        query.setParameter("phone", phone);
+        List<Customer> list = query.getResultList();
+        return list;
+
     }
 }
