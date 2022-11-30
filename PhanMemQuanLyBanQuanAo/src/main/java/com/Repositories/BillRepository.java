@@ -4,6 +4,7 @@ import com.CustomModels.BillCustomModel;
 import com.CustomModels.ProductDetailCustomModel;
 import com.Models.Bill;
 import com.Models.Color;
+import com.Models.Staff;
 import com.Utilities.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -42,5 +43,19 @@ public class BillRepository {
         }
     }
 
-
+    public boolean update(String code, int status) {
+        Transaction transaction = null;
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("update Bill set status =: status where code =: code");
+            query.setParameter("status", status);
+            query.setParameter("code", code);
+            query.executeUpdate();
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
