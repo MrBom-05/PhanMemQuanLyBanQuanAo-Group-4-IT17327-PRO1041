@@ -16,4 +16,6 @@ public interface PromotionService {
     public boolean update(String code, Promotion promotion);
 
     public boolean hideOrShow(String code, int status);
+
+    public String getByID(String code);
 }

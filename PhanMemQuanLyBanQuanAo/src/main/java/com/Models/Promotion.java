@@ -53,4 +53,8 @@ public class Promotion implements Serializable {
         this.endDay = endDay;
         this.status = status;
     }
+
+    public Promotion(String id) {
+        this.id = id;
+    }
 }
