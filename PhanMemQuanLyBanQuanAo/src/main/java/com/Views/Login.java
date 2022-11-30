@@ -195,6 +195,7 @@ public class Login extends javax.swing.JFrame {
         if (email.equals("Admin") || matKhau.equals("123@123a")){
             new TrangChu().setVisible(true);
             dispose();
+            return;
         }
 
         if (staffService.checkAccountStaff(email)) {
