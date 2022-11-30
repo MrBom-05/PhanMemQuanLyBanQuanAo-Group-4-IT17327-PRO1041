@@ -24,21 +24,13 @@ public class Login extends javax.swing.JFrame {
             int chucVu = staff.getRole();
             String hoTen = staff.getLastName() + " " + staff.getFirstName();
             String ma = staff.getCode();
-            if (chucVu == 1) {
-                if (staff.getStatus() == 1) {
-                    new TrangChu(ma, hoTen).setVisible(true);
-                    this.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Tài khoản này không có quyền truy cập");
-                }
+            if (staff.getStatus() == 1) {
+                new TrangChu(ma, hoTen, chucVu).setVisible(true);
+                this.dispose();
             } else {
-                if (staff.getStatus() == 1) {
-                    new TrangChu(ma, hoTen).setVisible(true);
-                    this.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Tài khoản này không có quyền truy cập");
-                }
+                JOptionPane.showMessageDialog(this, "Tài khoản này không có quyền truy cập");
             }
+
         }
     }
 
