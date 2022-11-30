@@ -1,15 +1,13 @@
 package com.Repositories;
 
 import com.CustomModels.BillCustomModel;
-import com.CustomModels.ProductDetailCustomModel;
 import com.Models.Bill;
-import com.Models.Color;
-import com.Models.Staff;
 import com.Utilities.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class BillRepository {
@@ -57,5 +55,15 @@ public class BillRepository {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public String getByID(String code) {
+        String id;
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+            TypedQuery<String> query = session.createQuery("select id from Bill where code =: code", String.class);
+            query.setParameter("code", code);
+            id = query.getSingleResult();
+        }
+        return id;
     }
 }
