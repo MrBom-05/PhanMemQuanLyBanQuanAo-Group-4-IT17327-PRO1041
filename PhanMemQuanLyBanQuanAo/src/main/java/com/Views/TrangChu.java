@@ -146,9 +146,8 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                 String maHd = tblHoaDonPanelHoaDon.getValueAt(tblHoaDonPanelHoaDon.getSelectedRow(), 1).toString();
                 String maSp = String.valueOf(result);
                 BillDetails billDetails = getDataBillDetails(1, maSp, maHd, productDetailService.getByDonGia(maSp));
-                    billDetailService.insert(billDetails);
-                    loadDataGioHang(billDetailService.getListBill(maHd));
-
+                billDetailService.insert(billDetails);
+                loadDataGioHang(billDetailService.getListBill(maHd));
 
             }
         } while (connect);
@@ -2827,7 +2826,9 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         int row = tblSanPhamPanelKhuyenMai.getSelectedRow();
         String codeSP = tblSanPhamPanelKhuyenMai.getValueAt(row, 1).toString();
         PromotionDetails promotionDetails = getDataPromotionDetail(codeSP);
-        if (promotionDetails == null) return;
+        if (promotionDetails == null) {
+            return;
+        }
         boolean chon = (boolean) tblSanPhamPanelKhuyenMai.getValueAt(row, 7);
 
         if (chon == true) {
@@ -3196,8 +3197,8 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                     break;
                 }
             }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
-                 javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+                | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(() -> {

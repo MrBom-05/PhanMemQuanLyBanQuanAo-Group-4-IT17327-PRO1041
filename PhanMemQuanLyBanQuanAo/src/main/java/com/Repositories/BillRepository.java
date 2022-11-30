@@ -11,7 +11,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class BillRepository {
-    
+
     public List<Bill> getList() {
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery("from Bill order by id desc");
@@ -30,7 +30,7 @@ public class BillRepository {
 
     public boolean insert(Bill bill) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             session.save(bill);
             transaction.commit();

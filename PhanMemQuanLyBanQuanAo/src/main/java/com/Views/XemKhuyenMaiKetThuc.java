@@ -7,16 +7,16 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 public class XemKhuyenMaiKetThuc extends javax.swing.JFrame {
-    
+
     private PromotionService promotionService = new PromotionServiceImplement();
-    
+
     private DefaultTableModel defaultTableModel;
 
     public XemKhuyenMaiKetThuc() {
         initComponents();
         loadDataKhuyenMai(promotionService.getListOff());
     }
-    
+
     private void loadDataKhuyenMai(List<Promotion> list) {
         defaultTableModel = (DefaultTableModel) tblKhuyenMaiPanelKhuyenMai.getModel();
         defaultTableModel.setRowCount(0);
@@ -27,7 +27,6 @@ public class XemKhuyenMaiKetThuc extends javax.swing.JFrame {
             });
         }
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

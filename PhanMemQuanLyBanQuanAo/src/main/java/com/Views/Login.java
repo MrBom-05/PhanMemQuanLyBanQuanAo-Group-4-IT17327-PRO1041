@@ -1,6 +1,5 @@
 package com.Views;
 
-
 import com.Models.Staff;
 import com.Services.Implements.StaffServiceImplement;
 import com.Services.StaffService;
@@ -186,15 +185,16 @@ public class Login extends javax.swing.JFrame {
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         String email = txtUsername.getText();
         String matKhau = logicUtil.taoMaHoa(txtPassword.getText());
-        
+
         if (email.trim().length() == 0 || matKhau.trim().length() == 0) {
             JOptionPane.showMessageDialog(this, "Không được để trống", "Thông báo", HEIGHT);
             return;
         }
 
-        if (email.equals("Admin") || matKhau.equals("123@123a")){
+        if (email.equals("Admin") || matKhau.equals("123@123a")) {
             new TrangChu().setVisible(true);
             dispose();
+            return;
         }
 
         if (staffService.checkAccountStaff(email)) {
@@ -219,7 +219,6 @@ public class Login extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_lblQuenMatKhauMouseClicked
 
-
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -228,8 +227,8 @@ public class Login extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
-                 javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+                | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(() -> {

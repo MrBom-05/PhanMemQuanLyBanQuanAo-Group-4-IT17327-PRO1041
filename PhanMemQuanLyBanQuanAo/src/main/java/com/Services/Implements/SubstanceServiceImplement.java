@@ -7,8 +7,8 @@ import java.util.List;
 
 import com.Services.SubstanceService;
 
-
 public class SubstanceServiceImplement implements SubstanceService {
+
     private SubstanceRepository repository = new SubstanceRepository();
 
     @Override

@@ -13,7 +13,6 @@ import org.hibernate.Transaction;
 
 public class StaffRepository {
 
-
     // Panel Nhân Viên
     public List<StaffCustomModel> getList(int status) {
         Session session = HibernateUtil.getFACTORY().openSession();
@@ -48,7 +47,7 @@ public class StaffRepository {
             query.setParameter("firstName", staff.getFirstName());
             query.setParameter("lastName", staff.getLastName());
             query.setParameter("ngaySinh", staff.getDateOfBirth());
-            query.setParameter("gt",staff.getSex());
+            query.setParameter("gt", staff.getSex());
             query.setParameter("sdt", staff.getPhoneNumber());
             query.setParameter("email", staff.getEmail());
             query.setParameter("diaChi", staff.getAddress());
@@ -80,7 +79,6 @@ public class StaffRepository {
     }
 
     // Panel Cửa Hàng
-
     public String getByFirstName = ("SELECT s.firstName FROM Staff s WHERE s.code =: code");
     public String getByLastName = ("SELECT s.lastName FROM Staff s WHERE s.code =: code");
 
@@ -93,7 +91,6 @@ public class StaffRepository {
         }
         return uuid;
     }
-
 
     // Panel Login
     public List<Staff> getAccountStaff(String email, String password) {

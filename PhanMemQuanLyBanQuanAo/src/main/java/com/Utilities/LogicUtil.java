@@ -220,7 +220,7 @@ public class LogicUtil {
     }
 
     public void taoMaQR(String code) {
-        
+
         //path where we want to get QR Code  
         String path = "D:\\PhanMemQuanLyBanQuanAo-Group-4-IT17327-PRO1041\\QRCodeStaff\\" + code + ".png";
         //Encoding charset to be used  

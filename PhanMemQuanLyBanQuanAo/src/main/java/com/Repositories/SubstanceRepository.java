@@ -9,7 +9,6 @@ import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-
 public class SubstanceRepository {
 
     public List<Substance> getList() {
@@ -21,7 +20,7 @@ public class SubstanceRepository {
 
     public Boolean insert(Substance substance) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             session.save(substance);
             transaction.commit();
@@ -34,7 +33,7 @@ public class SubstanceRepository {
 
     public boolean update(Substance substance, String code) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             Query query = session.createQuery("update Substance set name =: Name where code =: Code");
             query.setParameter("Name", substance.getName());
@@ -50,7 +49,7 @@ public class SubstanceRepository {
 
     public boolean delete(String code) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             Query query = session.createQuery("delete from Substance where code =: Code");
             query.setParameter("Code", code);

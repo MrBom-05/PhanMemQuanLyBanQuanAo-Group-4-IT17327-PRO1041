@@ -6,6 +6,7 @@ import com.Models.ProductDetails;
 import java.util.List;
 
 public interface ProductDetailService {
+
     public List<ProductDetailCustomModel> getListProductDetal();
 
     public List<ProductDetailCustomModel> getListProductDetalHide();

@@ -13,9 +13,10 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class BillDetailRepository {
+
     public boolean insert(BillDetails billDetails) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             session.save(billDetails);
             transaction.commit();
@@ -26,13 +27,13 @@ public class BillDetailRepository {
         }
     }
 
-    public boolean update(String codeSp, String codeHd, int soLuong) {
+    public boolean update(String codeSP, String codeHD, int soLuong) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("update BillDetails set amount =:soLuong   where productDetails.code =: codeSp and bill.code =: codeHd");
-            query.setParameter("codeSp", codeSp);
-            query.setParameter("codeHd", codeHd);
+            Query query = session.createQuery("update BillDetails set amount =:soLuong where productDetails.code =: codeSP and bill.code =: codeHD");
+            query.setParameter("codeSP", codeSP);
+            query.setParameter("codeHD", codeHD);
             query.setParameter("soLuong", soLuong);
             query.executeUpdate();
             transaction.commit();
@@ -52,12 +53,12 @@ public class BillDetailRepository {
         return list;
     }
 
-    public boolean checkProducts(String codeSp, String codeHd) {
-        String select = "from BillDetails where productDetails.code =: codeSp and bill.code =: codeHd";
+    public boolean checkProducts(String codeSP, String codeHD) {
+        String select = "from BillDetails where productDetails.code =: codeSP and bill.code =: codeHP";
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery(select);
-        query.setParameter("codeSp", codeSp);
-        query.setParameter("codeHd", codeHd);
+        query.setParameter("codeSP", codeSP);
+        query.setParameter("codeHD", codeHD);
         List<BillDetails> list = query.getResultList();
         if (list.isEmpty()) {
             return false;
@@ -65,17 +66,15 @@ public class BillDetailRepository {
         return true;
     }
 
-    public Integer getSoLuong(String codeSp, String codeHd) {
+    public Integer getSoLuong(String codeSP, String codeHD) {
         Integer id;
-        try (Session session = HibernateUtil.getFACTORY().openSession()) {
-            TypedQuery<Integer> query = session.createQuery("select amount from BillDetails where productDetails.code =: codeSp and bill.code =: codeHd", Integer.class);
-            query.setParameter("codeSp", codeSp);
-            query.setParameter("codeHd", codeHd);
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+            TypedQuery<Integer> query = session.createQuery("select amount from BillDetails where productDetails.code =: codeSP and bill.code =: codeHD", Integer.class);
+            query.setParameter("codeSP", codeSP);
+            query.setParameter("codeHD", codeHD);
             id = query.getSingleResult();
         }
         return id;
     }
 
 }
-
-

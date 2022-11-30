@@ -4,8 +4,8 @@ import com.Models.ProductType;
 
 import java.util.List;
 
-
 public interface ProductTypeService {
+
     public List<ProductType> getList();
 
     public boolean insert(ProductType productType);

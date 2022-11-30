@@ -2,16 +2,15 @@ package com.Services.Implements;
 
 import com.CustomModels.BillCustomModel;
 import com.Models.Bill;
-import com.Models.Color;
 import com.Repositories.BillRepository;
-import com.Repositories.ColorRepository;
 import com.Services.BillService;
-import com.Services.ColorService;
 
 import java.util.List;
 
 public class BillServiceImplement implements BillService {
+
     private BillRepository billRepository = new BillRepository();
+
     @Override
     public List<Bill> getList() {
         return billRepository.getList();
@@ -37,5 +36,3 @@ public class BillServiceImplement implements BillService {
         return billRepository.getByID(code);
     }
 }
-
-

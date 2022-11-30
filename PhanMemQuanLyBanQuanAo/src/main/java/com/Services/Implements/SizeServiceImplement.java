@@ -7,6 +7,7 @@ import com.Services.SizeService;
 import java.util.List;
 
 public class SizeServiceImplement implements SizeService {
+
     private SizeRepository repository = new SizeRepository();
 
     @Override

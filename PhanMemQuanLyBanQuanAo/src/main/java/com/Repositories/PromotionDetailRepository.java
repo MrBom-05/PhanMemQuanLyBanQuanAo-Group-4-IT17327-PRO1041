@@ -24,7 +24,7 @@ public class PromotionDetailRepository {
 
     public boolean insert(PromotionDetails promotionDetails) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             session.save(promotionDetails);
             transaction.commit();
@@ -37,7 +37,7 @@ public class PromotionDetailRepository {
 
     public boolean delete(String code) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             Query query = session.createQuery("delete from PromotionDetails where productDetails.code =: Code");
             query.setParameter("Code", code);

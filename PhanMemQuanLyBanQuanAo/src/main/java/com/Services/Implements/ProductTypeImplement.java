@@ -1,14 +1,13 @@
 package com.Services.Implements;
 
-
 import com.Models.ProductType;
 import com.Repositories.ProductTypeRepository;
 import com.Services.ProductTypeService;
 
 import java.util.List;
 
-
 public class ProductTypeImplement implements ProductTypeService {
+
     private ProductTypeRepository productTypeRepository = new ProductTypeRepository();
 
     @Override

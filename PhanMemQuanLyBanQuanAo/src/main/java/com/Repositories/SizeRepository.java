@@ -8,9 +8,8 @@ import org.hibernate.Transaction;
 import javax.persistence.Query;
 import java.util.List;
 
-
 public class SizeRepository {
-    
+
     public List<Size> getList() {
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery("from Size");
@@ -20,7 +19,7 @@ public class SizeRepository {
 
     public boolean insert(Size size) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             session.save(size);
             transaction.commit();
@@ -33,7 +32,7 @@ public class SizeRepository {
 
     public boolean update(Size size, String code) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             Query query = session.createQuery("update Size set name =: Name where code =: Code");
             query.setParameter("Code", code);
@@ -49,7 +48,7 @@ public class SizeRepository {
 
     public boolean delete(String code) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             Query query = session.createQuery("delete from Size where code =: Code");
             query.setParameter("Code", code);

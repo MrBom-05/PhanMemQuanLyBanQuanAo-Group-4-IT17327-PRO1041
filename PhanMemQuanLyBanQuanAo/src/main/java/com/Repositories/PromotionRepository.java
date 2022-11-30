@@ -40,11 +40,11 @@ public class PromotionRepository {
 
     public boolean update(String code, Promotion promotion) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("update Promotion set code =: code, name =: name, " +
-                    "DecreaseNumber =: DecreaseNumber, startDay =: startDay, endDay =: endDay, " +
-                    "status =: status where code =: code");
+            Query query = session.createQuery("update Promotion set code =: code, name =: name, "
+                    + "DecreaseNumber =: DecreaseNumber, startDay =: startDay, endDay =: endDay, "
+                    + "status =: status where code =: code");
             query.setParameter("code", promotion.getCode());
             query.setParameter("name", promotion.getName());
             query.setParameter("DecreaseNumber", promotion.getDecreaseNumber());
@@ -63,7 +63,7 @@ public class PromotionRepository {
 
     public boolean hideOrShow(String code, int status) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             Query query = session.createQuery("update Promotion set status =: status where code =: code");
             query.setParameter("status", status);

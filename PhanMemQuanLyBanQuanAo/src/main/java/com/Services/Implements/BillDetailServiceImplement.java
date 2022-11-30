@@ -8,6 +8,7 @@ import com.Services.BillDetailService;
 import java.util.List;
 
 public class BillDetailServiceImplement implements BillDetailService {
+
     private BillDetailRepository billDetailRepository = new BillDetailRepository();
 
     @Override
@@ -21,17 +22,17 @@ public class BillDetailServiceImplement implements BillDetailService {
     }
 
     @Override
-    public boolean checkProducts(String codeSp, String codeHd) {
-        return billDetailRepository.checkProducts(codeSp, codeHd);
+    public boolean checkProducts(String codeSP, String codeHD) {
+        return billDetailRepository.checkProducts(codeSP, codeHD);
     }
 
     @Override
-    public Integer getSoLuong(String codeSp, String codeHd) {
-        return billDetailRepository.getSoLuong(codeSp, codeHd);
+    public Integer getSoLuong(String codeSP, String codeHD) {
+        return billDetailRepository.getSoLuong(codeSP, codeHD);
     }
 
     @Override
     public boolean update(String codeSp, String codeHd, int soLuong) {
-        return billDetailRepository.update(codeSp,codeHd,soLuong);
+        return billDetailRepository.update(codeSp, codeHd, soLuong);
     }
 }
