@@ -67,6 +67,11 @@ public class StaffServiceImplement implements StaffService {
     }
 
     @Override
+    public String getByID(String code) {
+        return staffRepository.getByID(code);
+    }
+
+    @Override
     public boolean hideOrShow(String code, int status) {
         return staffRepository.hideOrShow(code, status);
     }

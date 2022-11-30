@@ -45,5 +45,15 @@ public class CustomerServiceImplement implements CustomerService {
         return customerRepository.getByName(code, customerRepository.getByLastName);
     }
 
+    @Override
+    public String getByID(String phoneNumber) {
+        return customerRepository.getByID(phoneNumber);
+    }
+
+    @Override
+    public String getByName(String phoneNumber) {
+        return customerRepository.getByName(phoneNumber, customerRepository.getByName);
+    }
+
 }
 

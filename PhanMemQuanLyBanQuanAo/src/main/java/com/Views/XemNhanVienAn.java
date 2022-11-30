@@ -11,8 +11,6 @@ import javax.swing.table.DefaultTableModel;
 public class XemNhanVienAn extends javax.swing.JFrame {
     
     private StaffService staffService = new StaffServiceImplement();
-
-    private TrangChu trangChu = new TrangChu();
     
     private DefaultTableModel defaultTableModel;
     
@@ -134,7 +132,6 @@ public class XemNhanVienAn extends javax.swing.JFrame {
     }//GEN-LAST:event_tblNhanVienFrameAnMouseClicked
 
     private void btnCloesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloesActionPerformed
-        trangChu.loadDataNhanVienAn();
         dispose();
     }//GEN-LAST:event_btnCloesActionPerformed
 

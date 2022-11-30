@@ -20,4 +20,8 @@ public interface CustomerService {
     public String getByFisrtName(String code);
 
     public String getByLastName(String code);
+
+    public String getByID(String phoneNumber);
+
+    public String getByName(String phoneNumber);
 }

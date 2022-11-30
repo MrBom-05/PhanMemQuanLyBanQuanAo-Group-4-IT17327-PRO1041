@@ -78,6 +78,8 @@ public class CustomerRepository {
     public String getByFirstName = ("SELECT s.firstName FROM Customer s WHERE s.code =: code");
     public String getByLastName = ("SELECT s.lastName FROM Customer s WHERE s.code =: code");
 
+    public String getByName = ("SELECT lastName FROM Customer WHERE phoneNumber =: code");
+
     public String getByName(String code, String statement) {
         String uuid;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
@@ -86,5 +88,15 @@ public class CustomerRepository {
             uuid = query.getSingleResult();
         }
         return uuid;
+    }
+
+    public String getByID(String phone) {
+        String id;
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+            TypedQuery<String> query = session.createQuery("select id from Customer where phoneNumber =: phone", String.class);
+            query.setParameter("phone", phone);
+            id = query.getSingleResult();
+        }
+        return id;
     }
 }

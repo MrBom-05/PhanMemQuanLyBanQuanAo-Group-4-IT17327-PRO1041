@@ -72,8 +72,27 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     private Webcam webcam = null;
     private Executor executor = Executors.newSingleThreadExecutor(this);
 
+    public TrangChu(String ma, String hoTen) {
+        initComponents();
+        lblMaNhanVienPanelMain.setText(ma);
+        lblHoTenNVPanelMain.setText(hoTen);
+        btnThongKe.setBackground(colorXanh);
+        btnSanPham.setBackground(colorTrang);
+        btnHoaDon.setBackground(colorTrang);
+        btnLichSu.setBackground(colorTrang);
+        btnKhuyenMai.setBackground(colorTrang);
+        btnNhanVien.setBackground(colorTrang);
+        btnKhachHang.setBackground(colorTrang);
+        btnDoiMatKhau.setBackground(colorTrang);
+        setPanel(panelThongKe);
+        loadDataSanPhamChiTiet(productDetailService.getListProductDetal());
+    }
+
     public TrangChu() {
         initComponents();
+        btnThongKe.setEnabled(false);
+        btnHoaDon.setEnabled(false);
+        btnLichSu.setEnabled(false);
         btnThongKe.setBackground(colorXanh);
         btnSanPham.setBackground(colorTrang);
         btnHoaDon.setBackground(colorTrang);
@@ -3097,7 +3116,9 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     }//GEN-LAST:event_cbbNamDoanhThuPanelThongKeActionPerformed
 
     private void btnXuatFileExcelPanelThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatFileExcelPanelThongKeActionPerformed
-        exportExcel.excel(productDetailService.getListProductDetal(), "Ngay 27-11 ");
+        String ngayBatDau = ((JTextField) txtNgayBatDauPanelThongKe.getDateEditor().getUiComponent()).getText();
+        String ngayKetThuc = ((JTextField) txtNgayKetThucPanelThongKe.getDateEditor().getUiComponent()).getText();
+        exportExcel.excel(productDetailService.getListProductDetal(), "Thống kê ngày " + ngayBatDau + " " + ngayKetThuc);
     }//GEN-LAST:event_btnXuatFileExcelPanelThongKeActionPerformed
 
     // Panel Sản Phẩm
@@ -4055,7 +4076,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     private PromotionDetails getDataPromotionDetail(String codeSP) {
         String codeKM = txtMaKhuyenMaiPanelKhuyenMai.getText();
 
-        if (codeKM.trim().length() == 0){
+        if (codeKM.trim().length() == 0) {
             JOptionPane.showMessageDialog(this, "Chưa chọn chương trình khuyến mại");
             return null;
         }
@@ -4080,8 +4101,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         if (chon == true) {
             promotionDetailService.insert(promotionDetails);
             loadDataSanPhamPanelKhuyenMai(productDetailService.getListProductDetal());
-        }
-        if (chon == false) {
+        } else {
             promotionDetailService.delete(codeSP);
             loadDataSanPhamPanelKhuyenMai(productDetailService.getListProductDetal());
         }
