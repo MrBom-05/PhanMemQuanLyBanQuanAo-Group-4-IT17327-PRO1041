@@ -9,7 +9,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 public class ColorRepository {
-    
+
     public List<Color> getList() {
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery("from Color");
@@ -20,7 +20,7 @@ public class ColorRepository {
 
     public boolean insert(Color color) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             session.save(color);
             transaction.commit();
@@ -33,7 +33,7 @@ public class ColorRepository {
 
     public boolean update(Color color, String code) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             Query query = session.createQuery("update Color set name =: Name where code =: Code");
             query.setParameter("Code", code);
@@ -49,7 +49,7 @@ public class ColorRepository {
 
     public boolean delete(String code) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             Query query = session.createQuery("delete from Color where code =: Code");
             query.setParameter("Code", code);

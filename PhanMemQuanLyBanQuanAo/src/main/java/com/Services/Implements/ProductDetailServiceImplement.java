@@ -50,4 +50,9 @@ public class ProductDetailServiceImplement implements ProductDetailService {
     public boolean updateSoLuong(String code, int soLuong) {
         return productDetailPepository.updateSoLuong(code, soLuong);
     }
+
+    @Override
+    public Float getByDonGia(String code) {
+        return productDetailPepository.getByDonGia(code);
+    }
 }

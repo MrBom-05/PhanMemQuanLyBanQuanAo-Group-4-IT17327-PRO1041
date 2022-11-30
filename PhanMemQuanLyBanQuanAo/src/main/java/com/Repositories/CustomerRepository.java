@@ -21,7 +21,7 @@ public class CustomerRepository {
 
     public boolean insert(Customer customer) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             session.save(customer);
             transaction.commit();
@@ -34,7 +34,7 @@ public class CustomerRepository {
 
     public boolean update(Customer customer, String code) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             Query query = session.createQuery("update Customer set email =:Email, firstName =:FirstName, lastName =:LastName, phoneNumber =: PhoneNumber where code =: Code");
             query.setParameter("Email", customer.getEmail());
@@ -53,7 +53,7 @@ public class CustomerRepository {
 
     public boolean delete(String code) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             Query query = session.createQuery("delete from Customer where code =: Code");
             query.setParameter("Code", code);

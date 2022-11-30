@@ -6,6 +6,7 @@ import com.Models.ProductDetails;
 import java.util.List;
 
 public interface ProductDetailService {
+
     public List<ProductDetailCustomModel> getListProductDetal();
 
     public List<ProductDetailCustomModel> getListProductDetalHide();
@@ -21,4 +22,6 @@ public interface ProductDetailService {
     public String getByID(String code);
 
     public boolean updateSoLuong(String code, int soLuong);
+
+    public Float getByDonGia(String code);
 }

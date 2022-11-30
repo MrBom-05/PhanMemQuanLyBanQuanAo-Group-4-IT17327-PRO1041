@@ -7,13 +7,12 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 public class XemNhanVienAn extends javax.swing.JFrame {
-    
+
     private StaffService staffService = new StaffServiceImplement();
-    
+
     private DefaultTableModel defaultTableModel;
-    
+
     public XemNhanVienAn() {
         initComponents();
         loadDataNhanVien(staffService.getListStaffOff());
@@ -24,10 +23,10 @@ public class XemNhanVienAn extends javax.swing.JFrame {
         defaultTableModel.setRowCount(0);
         int count = 1;
         for (StaffCustomModel staffCustomModel : list) {
-            defaultTableModel.addRow(new Object[]{count++, staffCustomModel.getMaNV(), staffCustomModel.getHoTen(), staffCustomModel.getNgaySinh(), staffCustomModel.getGioiTinh(), staffCustomModel.getSdt(), staffCustomModel.getEmail(), staffCustomModel.getDiaChi(), staffCustomModel.getChucVu() == 1 ? "Quản Lý" : "Nhân Viên" });
+            defaultTableModel.addRow(new Object[]{count++, staffCustomModel.getMaNV(), staffCustomModel.getHoTen(), staffCustomModel.getNgaySinh(), staffCustomModel.getGioiTinh(), staffCustomModel.getSdt(), staffCustomModel.getEmail(), staffCustomModel.getDiaChi(), staffCustomModel.getChucVu() == 1 ? "Quản Lý" : "Nhân Viên"});
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -116,7 +115,9 @@ public class XemNhanVienAn extends javax.swing.JFrame {
 
     private void tblNhanVienFrameAnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienFrameAnMouseClicked
         int row = tblNhanVienFrameAn.getSelectedRow();
-        if (row == -1) return;
+        if (row == -1) {
+            return;
+        }
         String code = tblNhanVienFrameAn.getValueAt(row, 1).toString();
         int confirm = JOptionPane.showConfirmDialog(this, "Bạn muốn bỏ ẩn Nhân Viên này không ?", "Thông báo", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {

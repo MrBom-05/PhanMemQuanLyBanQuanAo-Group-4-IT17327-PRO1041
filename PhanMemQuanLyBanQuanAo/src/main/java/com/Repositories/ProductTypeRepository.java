@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 public class ProductTypeRepository {
+
     public List<ProductType> getList() {
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery("from ProductType");
@@ -18,7 +19,7 @@ public class ProductTypeRepository {
 
     public boolean insert(ProductType productType) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             session.save(productType);
             transaction.commit();
@@ -31,7 +32,7 @@ public class ProductTypeRepository {
 
     public boolean update(ProductType productType, String code) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             Query query = session.createQuery("update ProductType set name =: Name where code =: Code");
             query.setParameter("Name", productType.getName());
@@ -47,7 +48,7 @@ public class ProductTypeRepository {
 
     public boolean delete(String id) {
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             Query query = session.createQuery("delete from ProductType where id =: Id");
             query.setParameter("Id", id);

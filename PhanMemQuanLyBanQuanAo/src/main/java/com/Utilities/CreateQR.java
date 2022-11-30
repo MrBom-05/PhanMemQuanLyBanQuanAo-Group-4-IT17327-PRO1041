@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
-
 public class CreateQR {
 
     public static void generateQRcode(String data, String path, String charset, Map map, int h, int w) throws WriterException, IOException {
