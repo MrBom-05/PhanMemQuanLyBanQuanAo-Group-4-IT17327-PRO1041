@@ -17,7 +17,7 @@ public class PromotionDetailRepository {
         Query query = session.createQuery("from PromotionDetails where productDetails.code =: codeSP and promotion.code =: codeKM");
         query.setParameter("codeSP", codeSP);
         query.setParameter("codeKM", codeKM);
-        List<Staff> list = query.getResultList();
+        List<PromotionDetails> list = query.getResultList();
         if (list.isEmpty()) {
             return false;
         }

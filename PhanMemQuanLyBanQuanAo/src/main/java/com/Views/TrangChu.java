@@ -3967,7 +3967,6 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         btnDoiMatKhau.setBackground(colorTrang);
         setPanel(panelKhuyenMai);
         loadDataKhuyenMai(promotionService.getListOn());
-        loadDataSanPhamPanelKhuyenMai(productDetailService.getListProductDetal());
     }//GEN-LAST:event_btnKhuyenMaiActionPerformed
 
     private void btnXemKhuyenMaiPanelKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemKhuyenMaiPanelKhuyenMaiActionPerformed
@@ -4032,6 +4031,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         txtNgayBatDauPanelKhuyenMai.setDate(Date.valueOf(tblKhuyenMaiPanelKhuyenMai.getValueAt(row, 3).toString()));
         txtNgayKetThucPanelKhuyenMai.setDate(Date.valueOf(tblKhuyenMaiPanelKhuyenMai.getValueAt(row, 4).toString()));
         spnPhanTramKhuyenMaiPanelKhuyenMai.setValue(tblKhuyenMaiPanelKhuyenMai.getValueAt(row, 5));
+        loadDataSanPhamPanelKhuyenMai(productDetailService.getListProductDetal());
     }//GEN-LAST:event_tblKhuyenMaiPanelKhuyenMaiMouseClicked
 
     private void loadDataSanPhamPanelKhuyenMai(List<ProductDetailCustomModel> list) {
