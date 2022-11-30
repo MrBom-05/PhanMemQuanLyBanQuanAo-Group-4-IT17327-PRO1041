@@ -29,4 +29,6 @@ public interface StaffService {
     public boolean checkAccountStaffQR(String code);
 
     public List<Staff> getAccountStaffQR(String code);
+
+    public String getByID(String code);
 }

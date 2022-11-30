@@ -101,14 +101,14 @@ public class QRCode extends javax.swing.JFrame implements Runnable, ThreadFactor
             String ma = staff.getCode();
             if (chucVu == 1) {
                 if (staff.getStatus() == 1) {
-                    new TrangChu().setVisible(true);
+                    new TrangChu(ma, hoTen).setVisible(true);
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Tài khoản này không có quyền truy cập");
                 }
             } else {
                 if (staff.getStatus() == 1) {
-                    new TrangChu().setVisible(true);
+                    new TrangChu(ma, hoTen).setVisible(true);
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Tài khoản này không có quyền truy cập");

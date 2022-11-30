@@ -1,8 +1,6 @@
 package com.Repositories;
 
-import com.Models.ProductDetails;
 import com.Models.PromotionDetails;
-import com.Models.Staff;
 import com.Utilities.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -41,7 +39,7 @@ public class PromotionDetailRepository {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("delete PromotionDetails where productDetails.code =: Code");
+            Query query = session.createQuery("delete from PromotionDetails where productDetails.code =: Code");
             query.setParameter("Code", code);
             query.executeUpdate();
             transaction.commit();

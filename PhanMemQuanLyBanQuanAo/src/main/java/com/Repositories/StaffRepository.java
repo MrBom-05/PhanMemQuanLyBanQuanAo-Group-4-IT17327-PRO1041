@@ -145,4 +145,14 @@ public class StaffRepository {
         List<Staff> list = query.getResultList();
         return list;
     }
+
+    public String getByID(String code) {
+        String id;
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+            TypedQuery<String> query = session.createQuery("select id from Staff where code =: code", String.class);
+            query.setParameter("code", code);
+            id = query.getSingleResult();
+        }
+        return id;
+    }
 }
