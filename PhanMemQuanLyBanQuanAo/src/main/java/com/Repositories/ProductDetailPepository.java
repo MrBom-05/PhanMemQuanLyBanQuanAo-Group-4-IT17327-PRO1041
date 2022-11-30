@@ -32,6 +32,7 @@ public class ProductDetailPepository {
             return false;
         }
     }
+
     public boolean updateSoLuong(String code, int soLuong) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getFACTORY().openSession()) {
@@ -99,6 +100,16 @@ public class ProductDetailPepository {
         String id;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             TypedQuery<String> query = session.createQuery("select id from ProductDetails where code =: code", String.class);
+            query.setParameter("code", code);
+            id = query.getSingleResult();
+        }
+        return id;
+    }
+
+    public Float getByDonGia(String code){
+        Float id;
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+            TypedQuery<Float> query = session.createQuery("select exportPrice from ProductDetails where code =: code", Float.class);
             query.setParameter("code", code);
             id = query.getSingleResult();
         }

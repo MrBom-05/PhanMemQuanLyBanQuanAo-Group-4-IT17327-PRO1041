@@ -13,4 +13,5 @@ public interface BillService {
     public boolean insert(Bill bill);
 
     public boolean update(String code, int status);
+    public String getByID(String code);
 }

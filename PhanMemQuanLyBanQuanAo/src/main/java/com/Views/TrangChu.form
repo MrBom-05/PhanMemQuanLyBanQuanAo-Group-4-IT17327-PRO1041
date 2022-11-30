@@ -77,7 +77,7 @@
                           <Component id="jLabel77" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lblHoTenNVPanelMain" min="-2" pref="190" max="-2" attributes="0"/>
-                          <EmptySpace pref="523" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="btnExit" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
@@ -94,7 +94,7 @@
                               <Component id="btnDoiMatKhau" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="panelMain" max="32767" attributes="0"/>
+                          <Component id="panelMain" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -142,7 +142,7 @@
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="21" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="panelMain" min="-2" pref="706" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -377,7 +377,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jTabbedPane1" max="32767" attributes="0"/>
+                              <Component id="jTabbedPane1" pref="0" max="32767" attributes="0"/>
                               <Component id="jSeparator7" alignment="0" max="32767" attributes="0"/>
                               <Component id="jSeparator5" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
@@ -1643,7 +1643,7 @@
                                       <Component id="jPanel10" max="32767" attributes="0"/>
                                       <Component id="jPanel11" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="17" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2130,20 +2130,19 @@
                         <Component class="javax.swing.JTable" name="tblGioHangPanelHoaDon">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="8" rowCount="0">
+                              <Table columnCount="7" rowCount="0">
                                 <Column editable="false" title="STT" type="java.lang.Object"/>
                                 <Column editable="false" title="M&#xe3; SP" type="java.lang.Object"/>
                                 <Column editable="false" title="T&#xea;n SP" type="java.lang.Object"/>
                                 <Column editable="false" title="S&#x1ed1; L&#x1b0;&#x1ee3;ng" type="java.lang.Object"/>
                                 <Column editable="false" title="&#x110;&#x1a1;n Gi&#xe1;" type="java.lang.Object"/>
-                                <Column editable="false" title="Gi&#xe1; Gi&#x1ea3;m" type="java.lang.Object"/>
                                 <Column editable="false" title="Th&#xe0;nh Ti&#x1ec1;n" type="java.lang.Object"/>
                                 <Column editable="true" title="Ch&#x1ecd;n" type="java.lang.Boolean"/>
                               </Table>
                             </Property>
                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                               <TableColumnModel selectionModel="0">
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="20" resizable="true">
                                   <Title/>
                                   <Editor/>
                                   <Renderer/>
@@ -2173,12 +2172,7 @@
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                  <Title/>
-                                  <Editor/>
-                                  <Renderer/>
-                                </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="10" resizable="true">
                                   <Title/>
                                   <Editor/>
                                   <Renderer/>
@@ -2380,7 +2374,7 @@
                                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                                       <Group type="102" attributes="0">
                                                           <Component id="jLabel76" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace pref="32" max="32767" attributes="0"/>
+                                                          <EmptySpace pref="40" max="32767" attributes="0"/>
                                                           <Component id="jScrollPane15" min="-2" max="-2" attributes="0"/>
                                                       </Group>
                                                       <Group type="102" attributes="0">
@@ -2439,7 +2433,7 @@
                                               </Group>
                                           </Group>
                                       </Group>
-                                      <EmptySpace pref="13" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -2756,7 +2750,7 @@
                                               </Group>
                                           </Group>
                                       </Group>
-                                      <EmptySpace pref="13" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -2778,7 +2772,7 @@
                                           <Component id="jLabel85" min="-2" max="-2" attributes="0"/>
                                           <Component id="jScrollPane16" min="-2" pref="68" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="22" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                       <Component id="btnTimKiemPanelDatHang" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jSeparator3" min="-2" max="-2" attributes="0"/>
@@ -3408,7 +3402,7 @@
                                   <Component id="jPanel24" min="-2" pref="375" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="14" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

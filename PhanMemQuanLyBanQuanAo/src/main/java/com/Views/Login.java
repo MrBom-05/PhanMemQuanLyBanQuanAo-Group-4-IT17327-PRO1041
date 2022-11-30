@@ -211,6 +211,7 @@ public class Login extends javax.swing.JFrame {
 
     private void btnDangNhapVoiQRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapVoiQRActionPerformed
         new QRCode().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnDangNhapVoiQRActionPerformed
 
     private void lblQuenMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuenMatKhauMouseClicked

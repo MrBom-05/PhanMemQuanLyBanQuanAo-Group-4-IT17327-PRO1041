@@ -31,6 +31,11 @@ public class BillServiceImplement implements BillService {
     public boolean update(String code, int status) {
         return billRepository.update(code, status);
     }
+
+    @Override
+    public String getByID(String code) {
+        return billRepository.getByID(code);
+    }
 }
 
 
