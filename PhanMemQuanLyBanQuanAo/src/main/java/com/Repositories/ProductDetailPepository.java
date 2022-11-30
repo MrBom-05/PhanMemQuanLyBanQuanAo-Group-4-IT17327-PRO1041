@@ -32,6 +32,21 @@ public class ProductDetailPepository {
             return false;
         }
     }
+    public boolean updateSoLuong(String code, int soLuong) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("update ProductDetails set amount =: soLuong where code =: code");
+            query.setParameter("soLuong", soLuong);
+            query.setParameter("code", code);
+            query.executeUpdate();
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     public boolean update(ProductDetails productDetails, String code) {
         Transaction transaction = null;

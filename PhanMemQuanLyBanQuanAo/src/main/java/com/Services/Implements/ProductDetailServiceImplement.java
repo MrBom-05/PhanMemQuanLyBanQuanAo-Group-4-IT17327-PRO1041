@@ -45,4 +45,9 @@ public class ProductDetailServiceImplement implements ProductDetailService {
     public String getByID(String code) {
         return productDetailPepository.getByID(code);
     }
+
+    @Override
+    public boolean updateSoLuong(String code, int soLuong) {
+        return productDetailPepository.updateSoLuong(code, soLuong);
+    }
 }
