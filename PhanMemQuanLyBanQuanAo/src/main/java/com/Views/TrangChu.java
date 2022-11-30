@@ -2475,11 +2475,25 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     }
 
     private Bill getDataBill() {
+        String tenKhach = txtTenKhachHangPanelHoaDon.getText();
+        String sdt = txtSDTPanelHoaDon.getText();
+        String ghiChu = txtGhiChuHoaDon.getText();
         Bill bill = new Bill();
         bill.setId("newid()");
         bill.setCode(codeBillTangDan());
         bill.setStatus(0);
         bill.setDateCreated(getNgayHienTai());
+        bill.setNameCustomer(tenKhach);
+        bill.setPhoneNumberCustomer(sdt);
+        Staff staff =new Staff();
+        staff.setId(staffService.getByID(lblMaNhanVienPanelMain.getText()));
+        bill.setStaff(staff);
+        Customer customer = new Customer();
+        if (sdt.length() > 0){
+            customer.setId(customerService.getByID(sdt));
+            bill.setCustomer(customer);
+        }
+        bill.setNote(ghiChu);
         return bill;
     }
 
@@ -2495,7 +2509,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         setPanel(panelHoaDon);
         loadDataSanPhamChiTietPanelHoaDon(productDetailService.getListProductDetal());
         setResizable(false);
-        this.initWebcam();
+//        this.initWebcam();
         loadDataHoaDonPanelHoaDon(billService.getListBill());
     }//GEN-LAST:event_btnHoaDonActionPerformed
 
@@ -2555,7 +2569,26 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     }//GEN-LAST:event_btnHuyPanelHoaDonActionPerformed
 
     private void tblSanPhamPanelHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamPanelHoaDonMouseClicked
-        // TODO add your handling code here:
+        String input = JOptionPane.showInputDialog("Nhập số lượng","Hãy nhập số lượng sản phẩm!");
+        String soLuong = tblSanPhamPanelHoaDon.getValueAt(tblSanPhamPanelHoaDon.getSelectedRow(), 6).toString();
+        String maSp = tblSanPhamPanelHoaDon.getValueAt(tblSanPhamPanelHoaDon.getSelectedRow(), 0).toString();
+        int setSL = Integer.parseInt(soLuong) - Integer.parseInt(input);
+
+        defaultTableModel = (DefaultTableModel) tblSanPhamPanelHoaDon.getModel();
+        if (Integer.parseInt(soLuong) == 0) {
+            JOptionPane.showMessageDialog(this, "Số lượng đã hết !");
+            return;
+        }
+        if (Integer.parseInt(input) > Integer.parseInt(soLuong)) {
+            JOptionPane.showMessageDialog(this, "Số lượng trong kho không đủ");
+            return;
+        }
+        if (Integer.parseInt(soLuong) > 0) {
+            productDetailService.updateSoLuong(maSp, setSL);
+            loadDataSanPhamChiTietPanelHoaDon(productDetailService.getListProductDetal());
+        }
+
+
     }//GEN-LAST:event_tblSanPhamPanelHoaDonMouseClicked
 
     // Panel Đặt Hàng

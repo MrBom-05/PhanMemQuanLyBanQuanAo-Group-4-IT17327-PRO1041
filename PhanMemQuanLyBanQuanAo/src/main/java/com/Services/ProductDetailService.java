@@ -19,4 +19,6 @@ public interface ProductDetailService {
     public List<ProductDetails> getList();
 
     public String getByID(String code);
+
+    public boolean updateSoLuong(String code, int soLuong);
 }
