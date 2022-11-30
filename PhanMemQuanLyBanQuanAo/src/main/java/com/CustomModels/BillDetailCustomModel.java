@@ -14,6 +14,6 @@ public class BillDetailCustomModel {
     private String tenSP;
     private int soLuong;
     private float donGia;
-    private float giaGiam;
+//    private float giaGiam;
     private float thanhTien;
 }

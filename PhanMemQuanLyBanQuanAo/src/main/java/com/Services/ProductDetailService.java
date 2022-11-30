@@ -21,4 +21,6 @@ public interface ProductDetailService {
     public String getByID(String code);
 
     public boolean updateSoLuong(String code, int soLuong);
+
+    public Float getByDonGia(String code);
 }
