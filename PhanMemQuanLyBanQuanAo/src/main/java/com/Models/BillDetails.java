@@ -8,6 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -41,4 +42,13 @@ public class BillDetails implements Serializable {
 
     @Column(name = "Note", columnDefinition = "Nvarchar(50)")
     private String note;
+
+    public BillDetails(Bill bill, ProductDetails productDetails, int amount, Float unitPrice, int status) {
+        this.bill = bill;
+        this.productDetails = productDetails;
+        this.amount = amount;
+        this.unitPrice = unitPrice;
+        this.status = status;
+    }
+
 }

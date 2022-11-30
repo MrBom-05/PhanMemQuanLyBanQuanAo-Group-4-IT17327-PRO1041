@@ -73,4 +73,8 @@ public class Staff implements Serializable {
         this.status = status;
         this.role = role;
     }
+
+    public Staff(String id) {
+        this.id = id;
+    }
 }
