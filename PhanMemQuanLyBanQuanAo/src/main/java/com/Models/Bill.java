@@ -77,6 +77,16 @@ public class Bill implements Serializable {
         this.phoneNumberCustomer = phoneNumberCustomer;
     }
 
+    public Bill(Staff staff, String code, Date dateCreated, int status, String note, String nameCustomer, String phoneNumberCustomer) {
+        this.staff = staff;
+        this.code = code;
+        this.dateCreated = dateCreated;
+        this.status = status;
+        this.note = note;
+        this.nameCustomer = nameCustomer;
+        this.phoneNumberCustomer = phoneNumberCustomer;
+    }
+
     public Bill(String id) {
         this.id = id;
     }
