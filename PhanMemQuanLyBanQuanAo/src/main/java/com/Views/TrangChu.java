@@ -80,16 +80,31 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         if (chucVu == 0) {
             btnThongKe.setEnabled(false);
             btnNhanVien.setEnabled(false);
+            btnThongKe.setBackground(colorTrang);
+            btnSanPham.setBackground(colorTrang);
+            btnHoaDon.setBackground(colorXanh);
+            btnLichSu.setBackground(colorTrang);
+            btnKhuyenMai.setBackground(colorTrang);
+            btnNhanVien.setBackground(colorTrang);
+            btnKhachHang.setBackground(colorTrang);
+            btnDoiMatKhau.setBackground(colorTrang);
+            setPanel(panelHoaDon);
+            loadDataSanPhamChiTietPanelHoaDon(productDetailService.getListProductDetal());
+            setResizable(false);
+            this.initWebcam();
+            loadDataHoaDonPanelHoaDon(billService.getListBill());
+            return;
+        } else {
+            btnThongKe.setBackground(colorXanh);
+            btnSanPham.setBackground(colorTrang);
+            btnHoaDon.setBackground(colorTrang);
+            btnLichSu.setBackground(colorTrang);
+            btnKhuyenMai.setBackground(colorTrang);
+            btnNhanVien.setBackground(colorTrang);
+            btnKhachHang.setBackground(colorTrang);
+            btnDoiMatKhau.setBackground(colorTrang);
+            setPanel(panelThongKe);
         }
-        btnThongKe.setBackground(colorXanh);
-        btnSanPham.setBackground(colorTrang);
-        btnHoaDon.setBackground(colorTrang);
-        btnLichSu.setBackground(colorTrang);
-        btnKhuyenMai.setBackground(colorTrang);
-        btnNhanVien.setBackground(colorTrang);
-        btnKhachHang.setBackground(colorTrang);
-        btnDoiMatKhau.setBackground(colorTrang);
-        setPanel(panelThongKe);
         loadDataSanPhamChiTiet(productDetailService.getListProductDetal());
     }
 
@@ -98,15 +113,15 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         btnThongKe.setEnabled(false);
         btnHoaDon.setEnabled(false);
         btnLichSu.setEnabled(false);
-        btnThongKe.setBackground(colorXanh);
+        btnThongKe.setBackground(colorTrang);
         btnSanPham.setBackground(colorTrang);
-        btnHoaDon.setBackground(colorTrang);
+        btnHoaDon.setBackground(colorXanh);
         btnLichSu.setBackground(colorTrang);
         btnKhuyenMai.setBackground(colorTrang);
         btnNhanVien.setBackground(colorTrang);
         btnKhachHang.setBackground(colorTrang);
         btnDoiMatKhau.setBackground(colorTrang);
-        setPanel(panelThongKe);
+        setPanel(panelHoaDon);
         loadDataSanPhamChiTiet(productDetailService.getListProductDetal());
     }
 
@@ -126,7 +141,6 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     @Override
     public void run() {
         do {
-
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {
@@ -150,7 +164,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                 String maHD = tblHoaDonPanelHoaDon.getValueAt(tblHoaDonPanelHoaDon.getSelectedRow(), 1).toString();
                 String maSP = String.valueOf(result);
                 BillDetails billDetails = getDataBillDetails(1, maSP, maHD, productDetailService.getByDonGia(maSP));
-                
+
                 if (!billDetailService.checkProducts(maSP, maHD)) {
                     billDetailService.insert(billDetails);
                     loadDataGioHang(billDetailService.getListBill(maHD));
@@ -3963,10 +3977,13 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             }
             loadDataHoaDonPanelHoaDon(billService.getListBill());
         } else {
-            Bill bill = getDataBill(null);
-            if (bill == null) {
-                return;
-            }
+            String tenKH = txtTenKhachHangPanelHoaDon.getText();
+            String ghiChu = txtGhiChuHoaDon.getText();
+
+            Staff staff = new Staff(staffService.getByID(lblMaNhanVienPanelMain.getText()));
+
+            Bill bill = new Bill(staff, codeBillTangDan(), getNgayHienTai(), 0, ghiChu, tenKH, sdt);
+            
             if (billService.insert(bill)) {
                 JOptionPane.showMessageDialog(this, "Tạo hóa đơn thành công");
                 loadDataHoaDonPanelHoaDon(billService.getListBill());
@@ -4041,7 +4058,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     }
 
     private void tblSanPhamPanelHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamPanelHoaDonMouseClicked
-        String input = JOptionPane.showInputDialog("Nhập số lượng", "Hãy nhập số lượng sản phẩm!");
+        String input = JOptionPane.showInputDialog("Hãy nhập số lượng sản phẩm");
         String soLuong = tblSanPhamPanelHoaDon.getValueAt(tblSanPhamPanelHoaDon.getSelectedRow(), 6).toString();
         String maSP = tblSanPhamPanelHoaDon.getValueAt(tblSanPhamPanelHoaDon.getSelectedRow(), 0).toString();
         String maHD = tblHoaDonPanelHoaDon.getValueAt(tblHoaDonPanelHoaDon.getSelectedRow(), 1).toString();
@@ -4051,7 +4068,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
         defaultTableModel = (DefaultTableModel) tblSanPhamPanelHoaDon.getModel();
         if (Integer.parseInt(soLuong) == 0) {
-            JOptionPane.showMessageDialog(this, "Số lượng đã hết !");
+            JOptionPane.showMessageDialog(this, "Số lượng đã hết!");
             return;
         }
         if (Integer.parseInt(input) > Integer.parseInt(soLuong)) {
