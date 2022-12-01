@@ -17,4 +17,6 @@ public interface BillDetailService {
 
     public boolean update(String codeSp, String codeHd, int soLuong);
 
+    public Double sumDonGia(String codeHD);
+
 }

@@ -77,4 +77,14 @@ public class BillDetailRepository {
         return id;
     }
 
+    public Double sumDonGia(String codeHD) {
+        Double id;
+        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+            TypedQuery<Double> query = session.createQuery("select sum(amount * unitPrice) from BillDetails where bill.code =: codeHD", Double.class);
+            query.setParameter("codeHD", codeHD);
+            id = query.getSingleResult();
+        }
+        return id;
+    }
+
 }

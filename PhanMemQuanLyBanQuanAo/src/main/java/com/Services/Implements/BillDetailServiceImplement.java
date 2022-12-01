@@ -35,4 +35,9 @@ public class BillDetailServiceImplement implements BillDetailService {
     public boolean update(String codeSp, String codeHd, int soLuong) {
         return billDetailRepository.update(codeSp, codeHd, soLuong);
     }
+
+    @Override
+    public Double sumDonGia(String codeHD) {
+        return billDetailRepository.sumDonGia(codeHD);
+    }
 }
