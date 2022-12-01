@@ -115,4 +115,14 @@ public class ProductDetailPepository {
         }
         return id;
     }
+
+    public Integer getBySoLuong(String code){
+        Integer id;
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+            TypedQuery<Integer> query = session.createQuery("select amount from ProductDetails where code =: code", Integer.class);
+            query.setParameter("code", code);
+            id = query.getSingleResult();
+        }
+        return id;
+    }
 }

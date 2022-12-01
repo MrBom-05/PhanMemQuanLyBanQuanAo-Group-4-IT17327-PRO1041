@@ -31,7 +31,7 @@ public class BillDetailRepository {
         Transaction transaction = null;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("update BillDetails set amount =:soLuong where productDetails.code =: codeSP and bill.code =: codeHD");
+            Query query = session.createQuery("update BillDetails set amount =:soLuong where productDetails.id =: codeSP and bill.id =: codeHD");
             query.setParameter("codeSP", codeSP);
             query.setParameter("codeHD", codeHD);
             query.setParameter("soLuong", soLuong);

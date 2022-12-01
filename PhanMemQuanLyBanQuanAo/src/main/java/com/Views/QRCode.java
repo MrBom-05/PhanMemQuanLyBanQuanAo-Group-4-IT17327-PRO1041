@@ -53,7 +53,6 @@ public class QRCode extends javax.swing.JFrame implements Runnable, ThreadFactor
     @Override
     public void run() {
         do {
-
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {

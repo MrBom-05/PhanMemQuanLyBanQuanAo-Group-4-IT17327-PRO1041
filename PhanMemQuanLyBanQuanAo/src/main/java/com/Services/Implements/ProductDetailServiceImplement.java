@@ -55,4 +55,9 @@ public class ProductDetailServiceImplement implements ProductDetailService {
     public Float getByDonGia(String code) {
         return productDetailPepository.getByDonGia(code);
     }
+
+    @Override
+    public Integer getBySoLuong(String code) {
+        return productDetailPepository.getBySoLuong(code);
+    }
 }
