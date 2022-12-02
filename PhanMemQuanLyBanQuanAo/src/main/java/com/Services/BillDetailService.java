@@ -27,6 +27,10 @@ public interface BillDetailService {
 
     public List<Double> sumDate(Date date);
 
+    public List<Double> sumMonth(int date);
+
+    public List<Double> sumYear(int date);
+
     public List<BillDetails> getList();
 
 }

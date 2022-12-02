@@ -103,6 +103,9 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             btnDoiMatKhau.setBackground(colorTrang);
             setPanel(panelThongKe);
             addCbbNamDoanhThu(billService.getYear());
+            sumData(billDetailService.sumDate(getNgayHienTai()));
+            sumMonth(billDetailService.sumMonth(getMonth()));
+            sumYear(billDetailService.sumYear(getYear()));
         }
         loadDataSanPhamChiTiet(productDetailService.getListProductDetal());
     }
@@ -210,6 +213,18 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         return date;
     }
 
+    private int getMonth(){
+        String tach[] = String.valueOf(getNgayHienTai()).split("-");
+        String thang = tach[1];
+        return Integer.parseInt(thang);
+    }
+
+    private int getYear(){
+        String tach[] = String.valueOf(getNgayHienTai()).split("-");
+        String nam = tach[0];
+        return Integer.parseInt(nam);
+    }
+
     private void setPanel(JPanel panel) {
         panelMain.removeAll();
         panelMain.repaint();
@@ -217,6 +232,36 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         panelMain.add(panel);
         panelMain.repaint();
         panelMain.revalidate();
+    }
+
+    private void sumData(List<Double> list) {
+        for (Double sum : list) {
+            if (sum == null) {
+                lblSumDate.setText(0 + ".VND");
+            } else {
+                lblSumDate.setText(sum + ".VND");
+            }
+        }
+    }
+
+    private void sumMonth(List<Double> list) {
+        for (Double sum : list) {
+            if (sum == null) {
+                lblSumMonth.setText(0 + ".VND");
+            } else {
+                lblSumMonth.setText(sum + ".VND");
+            }
+        }
+    }
+
+    private void sumYear(List<Double> list) {
+        for (Double sum : list) {
+            if (sum == null) {
+                lblSumYear.setText(0 + ".VND");
+            } else {
+                lblSumYear.setText(sum + ".VND");
+            }
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -247,21 +292,25 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        lblSumDate = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        lblSumDonHang = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        lblSumMonth = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        lblSumYear = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane18 = new javax.swing.JScrollPane();
@@ -639,6 +688,10 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/ngay.png"))); // NOI18N
 
+        lblSumDate.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblSumDate.setForeground(new java.awt.Color(255, 0, 0));
+        lblSumDate.setText(" ");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -649,27 +702,32 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addComponent(jLabel2)
                                                 .addContainerGap(127, Short.MAX_VALUE))
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(jLabel3)
                                                         .addComponent(jLabel4))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(jLabel5)
-                                                .addGap(14, 14, 14))))
+                                                .addGap(14, 14, 14))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(lblSumDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblSumDate)
+                                .addGap(28, 28, 28)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jLabel5)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel2)
-                                                .addGap(50, 50, 50)
                                                 .addComponent(jLabel3)
-                                                .addGap(18, 18, 18)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(jLabel4)))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -683,6 +741,10 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/giohang.png"))); // NOI18N
 
+        lblSumDonHang.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblSumDonHang.setForeground(new java.awt.Color(255, 0, 0));
+        lblSumDonHang.setText(" ");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -690,9 +752,8 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                         .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(17, 17, 17)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addComponent(jLabel6)
-                                                .addGap(0, 0, Short.MAX_VALUE))
+                                        .addComponent(jLabel6)
+                                        .addComponent(lblSumDonHang, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(jPanel3Layout.createSequentialGroup()
                                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(jLabel7)
@@ -705,15 +766,17 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                 jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel9)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblSumDonHang)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addComponent(jLabel6)
-                                                .addGap(50, 50, 50)
                                                 .addComponent(jLabel7)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jLabel8)))
-                                .addContainerGap(15, Short.MAX_VALUE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jLabel8))
+                                        .addComponent(jLabel9))
+                                .addGap(15, 15, 15))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -727,6 +790,10 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/thang.png"))); // NOI18N
 
+        lblSumMonth.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblSumMonth.setForeground(new java.awt.Color(255, 0, 0));
+        lblSumMonth.setText(" ");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -736,28 +803,33 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel4Layout.createSequentialGroup()
                                                 .addComponent(jLabel10)
-                                                .addContainerGap(122, Short.MAX_VALUE))
-                                        .addGroup(jPanel4Layout.createSequentialGroup()
-                                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel11)
-                                                        .addComponent(jLabel12))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel13)
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(lblSumMonth, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(jLabel12)
+                                                                        .addComponent(jLabel11))
+                                                                .addGap(164, 164, 164)
+                                                                .addComponent(jLabel13)))
                                                 .addGap(14, 14, 14))))
         );
         jPanel4Layout.setVerticalGroup(
                 jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel13)
-                                        .addGroup(jPanel4Layout.createSequentialGroup()
-                                                .addComponent(jLabel10)
-                                                .addGap(50, 50, 50)
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblSumMonth)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                                 .addComponent(jLabel11)
-                                                .addGap(18, 18, 18)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(jLabel12)))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(17, 17, 17))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -771,6 +843,10 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/nam.png"))); // NOI18N
 
+        lblSumYear.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblSumYear.setForeground(new java.awt.Color(255, 0, 0));
+        lblSumYear.setText(" ");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -778,30 +854,33 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                         .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGap(17, 17, 17)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel5Layout.createSequentialGroup()
-                                                .addComponent(jLabel14)
-                                                .addContainerGap(131, Short.MAX_VALUE))
+                                        .addComponent(lblSumYear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(jPanel5Layout.createSequentialGroup()
                                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel15)
-                                                        .addComponent(jLabel16))
+                                                        .addComponent(jLabel16)
+                                                        .addComponent(jLabel15))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel17)
-                                                .addGap(14, 14, 14))))
+                                                .addComponent(jLabel17))
+                                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                                .addComponent(jLabel14)
+                                                .addGap(0, 125, Short.MAX_VALUE)))
+                                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
                 jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel17)
-                                        .addGroup(jPanel5Layout.createSequentialGroup()
-                                                .addComponent(jLabel14)
-                                                .addGap(50, 50, 50)
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblSumYear)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                                                 .addComponent(jLabel15)
-                                                .addGap(18, 18, 18)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(jLabel16)))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(17, 17, 17))
         );
 
         jPanel6.setBackground(new java.awt.Color(246, 248, 250));
@@ -976,7 +1055,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -3242,6 +3321,9 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         btnDoiMatKhau.setBackground(colorTrang);
         setPanel(panelThongKe);
         addCbbNamDoanhThu(billService.getYear());
+        sumData(billDetailService.sumDate(getNgayHienTai()));
+        sumMonth(billDetailService.sumMonth(getMonth()));
+        sumYear(billDetailService.sumYear(getYear()));
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void loadDataThongKe(List<BillDetailWithProductDetailCustomModel> list) {
@@ -3970,7 +4052,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         String code = "";
         List<Bill> list = billService.getList();
         if (list.isEmpty()) {
-            code = "HD0001";
+            code = "HD000001";
         } else {
             int max = 0;
             for (Bill bill : list) {
@@ -3981,10 +4063,14 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             }
             max++;
             if (max < 10) {
-                code = "HD000" + max;
+                code = "HD00000" + max;
             } else if (max < 100) {
-                code = "HD00" + max;
+                code = "HD0000" + max;
             } else if (max < 1000) {
+                code = "HD000" + max;
+            } else if (max < 10000) {
+                code = "HD00" + max;
+            } else if (max < 100000) {
                 code = "HD0" + max;
             } else {
                 code = "HD" + max;
@@ -4983,6 +5069,10 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JLabel lblHoTenNVPanelMain;
     private javax.swing.JLabel lblMaNhanVienPanelMain;
+    private javax.swing.JLabel lblSumDate;
+    private javax.swing.JLabel lblSumDonHang;
+    private javax.swing.JLabel lblSumMonth;
+    private javax.swing.JLabel lblSumYear;
     private javax.swing.JLabel lblTienThuaPanelDatHang;
     private javax.swing.JLabel lblTienThuaPanelHoaDon;
     private javax.swing.JLabel lblTongTienPanelDatHang;
