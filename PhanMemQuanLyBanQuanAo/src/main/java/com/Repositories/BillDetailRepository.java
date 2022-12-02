@@ -18,7 +18,7 @@ public class BillDetailRepository {
 
     public boolean insert(BillDetails billDetails) {
         Transaction transaction = null;
-        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+        try (Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             session.save(billDetails);
             transaction.commit();
@@ -29,9 +29,25 @@ public class BillDetailRepository {
         }
     }
 
+    public boolean delete(String idBill, String idProduct) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("delete from BillDetails where bill.id =: idBill and productDetails.id =: idProduct");
+            query.setParameter("idBill", idBill);
+            query.setParameter("idProduct", idProduct);
+            query.executeUpdate();
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public boolean update(String codeSP, String codeHD, int soLuong) {
         Transaction transaction = null;
-        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+        try (Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             Query query = session.createQuery("update BillDetails set amount =:soLuong where productDetails.id =: codeSP and bill.id =: codeHD");
             query.setParameter("codeSP", codeSP);
@@ -54,6 +70,13 @@ public class BillDetailRepository {
         List<BillDetailCustomModel> list = query.getResultList();
         return list;
     }
+    public List<BillDetails> getList() {
+        String select = "from BillDetails ";
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery(select);
+        List<BillDetails> list = query.getResultList();
+        return list;
+    }
 
     public boolean checkProducts(String codeSP, String codeHD) {
         String select = "from BillDetails where productDetails.code =: codeSP and bill.code =: codeHD";
@@ -70,7 +93,7 @@ public class BillDetailRepository {
 
     public Integer getSoLuong(String codeSP, String codeHD) {
         Integer id;
-        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+        try (Session session = HibernateUtil.getFACTORY().openSession()) {
             TypedQuery<Integer> query = session.createQuery("select amount from BillDetails where productDetails.code =: codeSP and bill.code =: codeHD", Integer.class);
             query.setParameter("codeSP", codeSP);
             query.setParameter("codeHD", codeHD);
@@ -89,7 +112,7 @@ public class BillDetailRepository {
         return id;
     }
 
-    public List<BillDetailWithProductDetailCustomModel> getListThongKe(Date ngayBatDau, Date ngayKetThuc){
+    public List<BillDetailWithProductDetailCustomModel> getListThongKe(Date ngayBatDau, Date ngayKetThuc) {
         String select = "select new com.CustomModels.BillDetailWithProductDetailCustomModel(b.productDetails.code, b.productDetails.name, b.productDetails.productType.name, b.productDetails.size.name, b.productDetails.color.name, b.productDetails.substance.name, b.amount) from com.Models.BillDetails b where b.bill.dateOfPayment between " + ngayBatDau + " and " + ngayKetThuc;
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery(select);
@@ -97,7 +120,7 @@ public class BillDetailRepository {
         return list;
     }
 
-    public List<Double> sumDate(Date date){
+    public List<Double> sumDate(Date date) {
         String select = "select sum (b.amount * b.unitPrice) from BillDetails b where b.bill.dateOfPayment =: date";
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery(select);

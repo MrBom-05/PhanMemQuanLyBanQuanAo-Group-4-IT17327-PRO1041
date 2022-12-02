@@ -23,6 +23,10 @@ public interface BillDetailService {
 
     public List<BillDetailWithProductDetailCustomModel> getListThongKe(Date ngayBatDau, Date ngayKetThuc);
 
+    public boolean delete(String idBill, String idProduct);
+
     public List<Double> sumDate(Date date);
+
+    public List<BillDetails> getList();
 
 }
