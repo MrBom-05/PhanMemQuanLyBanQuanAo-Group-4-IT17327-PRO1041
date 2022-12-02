@@ -1,6 +1,7 @@
 package com.Services;
 
 import com.CustomModels.BillDetailCustomModel;
+import com.CustomModels.BillDetailWithProductDetailCustomModel;
 import com.Models.BillDetails;
 
 import java.util.List;
@@ -18,5 +19,7 @@ public interface BillDetailService {
     public boolean update(String codeSp, String codeHd, int soLuong);
 
     public Double sumDonGia(String codeHD);
+
+    public List<BillDetailWithProductDetailCustomModel> getListThongKe(String ngayBatDau, String ngayKetThuc);
 
 }

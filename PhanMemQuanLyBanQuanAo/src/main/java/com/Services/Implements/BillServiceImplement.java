@@ -35,4 +35,9 @@ public class BillServiceImplement implements BillService {
     public String getByID(String code) {
         return billRepository.getByID(code);
     }
+
+    @Override
+    public List<String> getYear() {
+        return billRepository.getYear();
+    }
 }

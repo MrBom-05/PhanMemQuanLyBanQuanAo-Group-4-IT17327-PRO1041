@@ -16,4 +16,6 @@ public interface BillService {
     public boolean update(String code, int status);
 
     public String getByID(String code);
+
+    public List<String> getYear();
 }

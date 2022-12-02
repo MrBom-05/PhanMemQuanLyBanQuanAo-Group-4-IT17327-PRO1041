@@ -1,6 +1,7 @@
 package com.Services.Implements;
 
 import com.CustomModels.BillDetailCustomModel;
+import com.CustomModels.BillDetailWithProductDetailCustomModel;
 import com.Models.BillDetails;
 import com.Repositories.BillDetailRepository;
 import com.Services.BillDetailService;
@@ -39,5 +40,10 @@ public class BillDetailServiceImplement implements BillDetailService {
     @Override
     public Double sumDonGia(String codeHD) {
         return billDetailRepository.sumDonGia(codeHD);
+    }
+
+    @Override
+    public List<BillDetailWithProductDetailCustomModel> getListThongKe(String ngayBatDau, String ngayKeThuc) {
+        return billDetailRepository.getListThongKe(ngayBatDau, ngayKeThuc);
     }
 }
