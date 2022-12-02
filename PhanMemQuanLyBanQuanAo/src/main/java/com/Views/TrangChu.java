@@ -3222,11 +3222,21 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         btnKhachHang.setBackground(colorTrang);
         btnDoiMatKhau.setBackground(colorTrang);
         setPanel(panelThongKe);
+        addCbbNamDoanhThu(billService.getYear());
     }//GEN-LAST:event_btnThongKeActionPerformed
+
+    private void loadData
 
     private void btnTimKiemPanelThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemPanelThongKeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTimKiemPanelThongKeActionPerformed
+
+    private void addCbbNamDoanhThu(List<String> list) {
+        defaultComboBoxModel = (DefaultComboBoxModel) cbbLoaiSPPanelSanPham.getModel();
+        for (String string : list) {
+            defaultComboBoxModel.addElement(string);
+        }
+    }
 
     private void cbbNamDoanhThuPanelThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbNamDoanhThuPanelThongKeActionPerformed
         // TODO add your handling code here:

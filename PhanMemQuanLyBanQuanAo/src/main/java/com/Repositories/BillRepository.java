@@ -66,4 +66,11 @@ public class BillRepository {
         }
         return id;
     }
+
+    public List<String> getYear() {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery("select distinct year(dateOfPayment) from Bill");
+        List<String> list = query.getResultList();
+        return list;
+    }
 }
