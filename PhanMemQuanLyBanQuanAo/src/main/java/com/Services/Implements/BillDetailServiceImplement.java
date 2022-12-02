@@ -47,4 +47,9 @@ public class BillDetailServiceImplement implements BillDetailService {
     public List<BillDetailWithProductDetailCustomModel> getListThongKe(Date ngayBatDau, Date ngayKeThuc) {
         return billDetailRepository.getListThongKe(ngayBatDau, ngayKeThuc);
     }
+
+    @Override
+    public List<Double> sumDate(Date date) {
+        return billDetailRepository.sumDate(date);
+    }
 }

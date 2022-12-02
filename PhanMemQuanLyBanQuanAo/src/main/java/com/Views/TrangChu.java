@@ -1684,6 +1684,12 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
         cbbHTTTPanelHoaDon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tiền Mặt", "Chuyển Khoản" }));
 
+        txtTienKhachDuaPanelHoaDon.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtTienKhachDuaPanelHoaDonCaretUpdate(evt);
+            }
+        });
+
         lblTienThuaPanelHoaDon.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblTienThuaPanelHoaDon.setForeground(new java.awt.Color(255, 0, 0));
         lblTienThuaPanelHoaDon.setText(" ");
@@ -1748,7 +1754,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                     .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(jPanel20Layout.createSequentialGroup()
                             .addComponent(jLabel76)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel20Layout.createSequentialGroup()
                             .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4082,6 +4088,15 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     private void btnHuyPanelHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyPanelHoaDonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnHuyPanelHoaDonActionPerformed
+
+    private void txtTienKhachDuaPanelHoaDonCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTienKhachDuaPanelHoaDonCaretUpdate
+        String [] tongTien = lblTongTienPanelHoaDon.getText().split(".VND");
+        for (String s : tongTien) {
+            Double tienKhachDua = Double.parseDouble(txtTienKhachDuaPanelHoaDon.getText());
+            Double tienThua = tienKhachDua - Double.parseDouble(s);
+            lblTienThuaPanelHoaDon.setText(tienThua.toString() + ".VND");
+        }
+    }//GEN-LAST:event_txtTienKhachDuaPanelHoaDonCaretUpdate
 
     private void tblHoaDonPanelHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonPanelHoaDonMouseClicked
         String maHD = tblHoaDonPanelHoaDon.getValueAt(tblHoaDonPanelHoaDon.getSelectedRow(), 1).toString();

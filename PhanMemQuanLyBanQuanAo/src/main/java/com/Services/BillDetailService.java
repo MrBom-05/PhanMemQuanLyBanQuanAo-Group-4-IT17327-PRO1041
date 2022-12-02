@@ -23,4 +23,6 @@ public interface BillDetailService {
 
     public List<BillDetailWithProductDetailCustomModel> getListThongKe(Date ngayBatDau, Date ngayKetThuc);
 
+    public List<Double> sumDate(Date date);
+
 }
