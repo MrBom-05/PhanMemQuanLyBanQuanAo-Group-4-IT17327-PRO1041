@@ -4,6 +4,7 @@ import com.CustomModels.BillDetailCustomModel;
 import com.CustomModels.BillDetailWithProductDetailCustomModel;
 import com.Models.BillDetails;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface BillDetailService {
@@ -20,6 +21,6 @@ public interface BillDetailService {
 
     public Double sumDonGia(String codeHD);
 
-    public List<BillDetailWithProductDetailCustomModel> getListThongKe(String ngayBatDau, String ngayKetThuc);
+    public List<BillDetailWithProductDetailCustomModel> getListThongKe(Date ngayBatDau, Date ngayKetThuc);
 
 }

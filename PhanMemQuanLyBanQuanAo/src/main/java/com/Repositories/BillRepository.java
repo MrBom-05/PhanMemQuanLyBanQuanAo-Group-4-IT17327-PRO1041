@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import java.sql.Date;
 import java.util.List;
 
 public class BillRepository {
@@ -41,11 +42,12 @@ public class BillRepository {
         }
     }
 
-    public boolean update(String code, int status) {
+    public boolean update(String code, int status, Date ngayThanhToan) {
         Transaction transaction = null;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("update Bill set status =: status where code =: code");
+            Query query = session.createQuery("update Bill set status =: status, dateOfPayment =: ngayThanhToan where code =: code");
+            query.setParameter("ngayThanhToan", ngayThanhToan);
             query.setParameter("status", status);
             query.setParameter("code", code);
             query.executeUpdate();
@@ -67,10 +69,10 @@ public class BillRepository {
         return id;
     }
 
-    public List<String> getYear() {
+    public List<Integer> getYear() {
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery("select distinct year(dateOfPayment) from Bill");
-        List<String> list = query.getResultList();
+        List<Integer> list = query.getResultList();
         return list;
     }
 }
