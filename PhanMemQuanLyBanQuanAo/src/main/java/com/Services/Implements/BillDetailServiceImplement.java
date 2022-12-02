@@ -49,7 +49,17 @@ public class BillDetailServiceImplement implements BillDetailService {
     }
 
     @Override
+    public boolean delete(String idBill, String idProduct) {
+        return billDetailRepository.delete(idBill, idProduct);
+    }
+
+    @Override
     public List<Double> sumDate(Date date) {
         return billDetailRepository.sumDate(date);
+    }
+
+    @Override
+    public List<BillDetails> getList() {
+        return billDetailRepository.getList();
     }
 }
