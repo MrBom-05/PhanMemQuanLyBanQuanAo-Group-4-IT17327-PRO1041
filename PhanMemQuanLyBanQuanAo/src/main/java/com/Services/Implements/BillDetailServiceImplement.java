@@ -6,6 +6,7 @@ import com.Models.BillDetails;
 import com.Repositories.BillDetailRepository;
 import com.Services.BillDetailService;
 
+import java.sql.Date;
 import java.util.List;
 
 public class BillDetailServiceImplement implements BillDetailService {
@@ -43,7 +44,7 @@ public class BillDetailServiceImplement implements BillDetailService {
     }
 
     @Override
-    public List<BillDetailWithProductDetailCustomModel> getListThongKe(String ngayBatDau, String ngayKeThuc) {
+    public List<BillDetailWithProductDetailCustomModel> getListThongKe(Date ngayBatDau, Date ngayKeThuc) {
         return billDetailRepository.getListThongKe(ngayBatDau, ngayKeThuc);
     }
 }

@@ -11,6 +11,7 @@ import org.hibernate.Transaction;
 
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import java.sql.Date;
 import java.util.List;
 
 public class BillDetailRepository {
@@ -88,7 +89,7 @@ public class BillDetailRepository {
         return id;
     }
 
-    public List<BillDetailWithProductDetailCustomModel> getListThongKe(String ngayBatDau, String ngayKetThuc){
+    public List<BillDetailWithProductDetailCustomModel> getListThongKe(Date ngayBatDau, Date ngayKetThuc){
         String select = "select new com.CustomModels.BillDetailWithProductDetailCustomModel(b.productDetails.code, b.productDetails.name, b.productDetails.productType.name, b.productDetails.size.name, b.productDetails.color.name, b.productDetails.substance.name, b.amount) from com.Models.BillDetails b where b.bill.dateOfPayment between : ngayBatDau and : ngayKetThuc";
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery(select);
