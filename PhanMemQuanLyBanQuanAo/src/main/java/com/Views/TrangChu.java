@@ -4089,6 +4089,15 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         // TODO add your handling code here:
     }//GEN-LAST:event_btnHuyPanelHoaDonActionPerformed
 
+    private void txtTienKhachDuaPanelHoaDonCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTienKhachDuaPanelHoaDonCaretUpdate
+        String [] tongTien = lblTongTienPanelHoaDon.getText().split(".VND");
+        for (String s : tongTien) {
+            Double tienKhachDua = Double.parseDouble(txtTienKhachDuaPanelHoaDon.getText());
+            Double tienThua = tienKhachDua - Double.parseDouble(s);
+            lblTienThuaPanelHoaDon.setText(tienThua.toString() + ".VND");
+        }
+    }//GEN-LAST:event_txtTienKhachDuaPanelHoaDonCaretUpdate
+
     private void tblHoaDonPanelHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonPanelHoaDonMouseClicked
         String maHD = tblHoaDonPanelHoaDon.getValueAt(tblHoaDonPanelHoaDon.getSelectedRow(), 1).toString();
         loadDataGioHang(billDetailService.getListBill(maHD));
@@ -4708,15 +4717,6 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             return;
         }
     }//GEN-LAST:event_btnDangXuatActionPerformed
-
-    private void txtTienKhachDuaPanelHoaDonCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTienKhachDuaPanelHoaDonCaretUpdate
-        String [] tongTien = lblTongTienPanelHoaDon.getText().split(".VND");
-        for (String s : tongTien) {
-            Double tienKhachDua = Double.parseDouble(txtTienKhachDuaPanelHoaDon.getText());
-            Double tienThua = tienKhachDua - Double.parseDouble(s);
-            lblTienThuaPanelHoaDon.setText(tienThua.toString() + ".VND");
-        }
-    }//GEN-LAST:event_txtTienKhachDuaPanelHoaDonCaretUpdate
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
