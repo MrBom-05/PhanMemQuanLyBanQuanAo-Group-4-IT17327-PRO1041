@@ -1,9 +1,7 @@
 package com.Repositories;
 
-import com.CustomModels.BillCustomModel;
 import com.CustomModels.BillDetailCustomModel;
 import com.CustomModels.BillDetailWithProductDetailCustomModel;
-import com.Models.Bill;
 import com.Models.BillDetails;
 import com.Utilities.HibernateUtil;
 import org.hibernate.Session;
@@ -129,4 +127,19 @@ public class BillDetailRepository {
         return list;
     }
 
+    public List<Double> sumMonth(int date) {
+        String select = "select sum (b.amount * b.unitPrice) from BillDetails b where month(b.bill.dateOfPayment) = " + date;
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery(select);
+        List<Double> list = query.getResultList();
+        return list;
+    }
+
+    public List<Double> sumYear(int date) {
+        String select = "select sum (b.amount * b.unitPrice) from BillDetails b where year(b.bill.dateOfPayment) = " + date;
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery(select);
+        List<Double> list = query.getResultList();
+        return list;
+    }
 }
