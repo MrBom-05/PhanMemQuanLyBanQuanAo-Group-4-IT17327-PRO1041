@@ -421,6 +421,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         txtGhiChuPanelDatHang = new javax.swing.JTextArea();
         btnDaGiaoPanelGiaoHang = new javax.swing.JButton();
         btnTimKiemPanelDatHang = new javax.swing.JButton();
+        btnTraHangPanelGiaoHang = new javax.swing.JButton();
         jPanel22 = new javax.swing.JPanel();
         Camera = new javax.swing.JPanel();
         panelLichSu = new javax.swing.JPanel();
@@ -448,7 +449,6 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         lblSDTPanelLichSu = new javax.swing.JLabel();
         lblTongTienPanelLichSu = new javax.swing.JLabel();
         lblNgayTaoPanelLichSu = new javax.swing.JLabel();
-        btnTraHangPanelLichSua = new javax.swing.JButton();
         panelKhuyenMai = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel70 = new javax.swing.JLabel();
@@ -1970,6 +1970,9 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             }
         });
 
+        btnTraHangPanelGiaoHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/trahang.png"))); // NOI18N
+        btnTraHangPanelGiaoHang.setText("Trả Hàng");
+
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
         jPanel21Layout.setHorizontalGroup(
@@ -2021,12 +2024,14 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                                             .addComponent(cbbHTTTPanelDatHang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(txtTienKhachDuaPanelDatHang)
                                             .addComponent(lblTienThuaPanelDatHang, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(btnTaoHoaDonPanelDatHang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel21Layout.createSequentialGroup()
-                                    .addComponent(btnDangGiaoPanelGiaoHang, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(37, 37, 37)
-                                    .addComponent(btnDaGiaoPanelGiaoHang, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel21Layout.createSequentialGroup()
+                                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(btnTaoHoaDonPanelDatHang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnDangGiaoPanelGiaoHang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(37, 37, 37)
+                                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnDaGiaoPanelGiaoHang, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnTraHangPanelGiaoHang, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 6, Short.MAX_VALUE))))
         );
         jPanel21Layout.setVerticalGroup(
@@ -2079,7 +2084,9 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                     .addComponent(btnDangGiaoPanelGiaoHang, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDaGiaoPanelGiaoHang, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
-                .addComponent(btnTaoHoaDonPanelDatHang, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTaoHoaDonPanelDatHang, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTraHangPanelGiaoHang, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -2300,15 +2307,6 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
         lblNgayTaoPanelLichSu.setText(" ");
 
-        btnTraHangPanelLichSua.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnTraHangPanelLichSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/trahang.png"))); // NOI18N
-        btnTraHangPanelLichSua.setText("Trả Hàng");
-        btnTraHangPanelLichSua.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTraHangPanelLichSuaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelLichSuLayout = new javax.swing.GroupLayout(panelLichSu);
         panelLichSu.setLayout(panelLichSuLayout);
         panelLichSuLayout.setHorizontalGroup(
@@ -2318,47 +2316,41 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                 .addGroup(panelLichSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelLichSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelLichSuLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelLichSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelLichSuLayout.createSequentialGroup()
-                                .addComponent(jLabel36)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane8)
-                            .addGroup(panelLichSuLayout.createSequentialGroup()
-                                .addComponent(jLabel34)
-                                .addGap(26, 26, 26)
-                                .addComponent(lblTenKHPanelLichSu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(panelLichSuLayout.createSequentialGroup()
-                                .addComponent(jLabel35)
-                                .addGap(40, 40, 40)
-                                .addComponent(lblSDTPanelLichSu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(panelLichSuLayout.createSequentialGroup()
-                                .addComponent(jLabel37)
-                                .addGap(28, 28, 28)
-                                .addComponent(lblTongTienPanelLichSu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(panelLichSuLayout.createSequentialGroup()
-                                .addComponent(jLabel38)
-                                .addGap(63, 63, 63)
-                                .addComponent(lblNgayTaoPanelLichSu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(panelLichSuLayout.createSequentialGroup()
-                                .addComponent(jLabel40)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(panelLichSuLayout.createSequentialGroup()
-                                .addComponent(jLabel33)
-                                .addGap(35, 35, 35)
-                                .addComponent(lblTenNVPanelLichSu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(panelLichSuLayout.createSequentialGroup()
-                                .addComponent(jLabel32)
-                                .addGap(38, 38, 38)
-                                .addComponent(lblMaNVPanelLichSu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(17, 17, 17))
+                        .addComponent(jLabel36)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane8)
                     .addGroup(panelLichSuLayout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(btnTraHangPanelLichSua, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jLabel34)
+                        .addGap(26, 26, 26)
+                        .addComponent(lblTenKHPanelLichSu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panelLichSuLayout.createSequentialGroup()
+                        .addComponent(jLabel35)
+                        .addGap(40, 40, 40)
+                        .addComponent(lblSDTPanelLichSu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panelLichSuLayout.createSequentialGroup()
+                        .addComponent(jLabel37)
+                        .addGap(28, 28, 28)
+                        .addComponent(lblTongTienPanelLichSu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panelLichSuLayout.createSequentialGroup()
+                        .addComponent(jLabel38)
+                        .addGap(63, 63, 63)
+                        .addComponent(lblNgayTaoPanelLichSu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panelLichSuLayout.createSequentialGroup()
+                        .addComponent(jLabel40)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(panelLichSuLayout.createSequentialGroup()
+                        .addComponent(jLabel33)
+                        .addGap(35, 35, 35)
+                        .addComponent(lblTenNVPanelLichSu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panelLichSuLayout.createSequentialGroup()
+                        .addComponent(jLabel32)
+                        .addGap(38, 38, 38)
+                        .addComponent(lblMaNVPanelLichSu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(17, 17, 17))
         );
         panelLichSuLayout.setVerticalGroup(
             panelLichSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2400,9 +2392,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                     .addGroup(panelLichSuLayout.createSequentialGroup()
                         .addComponent(jLabel40)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(btnTraHangPanelLichSua, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(106, Short.MAX_VALUE))
         );
@@ -4399,10 +4389,6 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         // TODO add your handling code here:
     }//GEN-LAST:event_tblSanPhamPanelLichSuMouseClicked
 
-    private void btnTraHangPanelLichSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraHangPanelLichSuaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnTraHangPanelLichSuaActionPerformed
-
     // Panel Khuyến Mãi
     private void loadDataKhuyenMai(List<Promotion> list) {
         defaultTableModel = (DefaultTableModel) tblKhuyenMaiPanelKhuyenMai.getModel();
@@ -4972,7 +4958,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JButton btnTimKiemKhachHangPanelHoaDon;
     private javax.swing.JButton btnTimKiemPanelDatHang;
     private javax.swing.JButton btnTimKiemPanelThongKe;
-    private javax.swing.JButton btnTraHangPanelLichSua;
+    private javax.swing.JButton btnTraHangPanelGiaoHang;
     private javax.swing.JButton btnXemAnPanelSanPhamCT;
     private javax.swing.JButton btnXemKhuyenMaiPanelKhuyenMai;
     private javax.swing.JButton btnXemNhanVienDaNghiPanelNV;
