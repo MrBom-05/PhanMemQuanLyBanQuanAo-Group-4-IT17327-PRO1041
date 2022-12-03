@@ -2,6 +2,7 @@ package com.Services;
 
 import com.CustomModels.BillDetailCustomModel;
 import com.CustomModels.BillDetailWithProductDetailCustomModel;
+import com.CustomModels.ProductDetailCustomModel;
 import com.Models.BillDetails;
 
 import java.sql.Date;
@@ -32,5 +33,7 @@ public interface BillDetailService {
     public List<Double> sumYear(int date);
 
     public List<BillDetails> getList();
+
+    public List<ProductDetailCustomModel> getListBillPanelLichSu(String code);
 
 }
