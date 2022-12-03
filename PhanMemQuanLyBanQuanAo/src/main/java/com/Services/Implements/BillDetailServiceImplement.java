@@ -2,6 +2,7 @@ package com.Services.Implements;
 
 import com.CustomModels.BillDetailCustomModel;
 import com.CustomModels.BillDetailWithProductDetailCustomModel;
+import com.CustomModels.ProductDetailCustomModel;
 import com.Models.BillDetails;
 import com.Repositories.BillDetailRepository;
 import com.Services.BillDetailService;
@@ -71,5 +72,10 @@ public class BillDetailServiceImplement implements BillDetailService {
     @Override
     public List<BillDetails> getList() {
         return billDetailRepository.getList();
+    }
+
+    @Override
+    public List<ProductDetailCustomModel> getListBillPanelLichSu(String code) {
+        return billDetailRepository.getListBillPanelLichSu(code);
     }
 }

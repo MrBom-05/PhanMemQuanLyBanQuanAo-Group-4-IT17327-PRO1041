@@ -71,7 +71,7 @@ public class BillRepository {
 
     public List<Integer> getYear() {
         Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery("select distinct year(dateOfPayment) from Bill");
+        Query query = session.createQuery("select distinct year(dateOfPayment) from Bill where dateOfPayment is not null");
         List<Integer> list = query.getResultList();
         return list;
     }

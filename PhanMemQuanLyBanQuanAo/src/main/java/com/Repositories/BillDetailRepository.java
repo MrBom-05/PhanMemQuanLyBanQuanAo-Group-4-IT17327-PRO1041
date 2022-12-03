@@ -2,6 +2,7 @@ package com.Repositories;
 
 import com.CustomModels.BillDetailCustomModel;
 import com.CustomModels.BillDetailWithProductDetailCustomModel;
+import com.CustomModels.ProductDetailCustomModel;
 import com.Models.BillDetails;
 import com.Utilities.HibernateUtil;
 import org.hibernate.Session;
@@ -61,25 +62,22 @@ public class BillDetailRepository {
     }
 
     public List<BillDetailCustomModel> getListBill(String code) {
-        String select = "select new com.CustomModels.BillDetailCustomModel(b.productDetails.code, b.productDetails.name, b.amount, b.productDetails.exportPrice, b.amount * b.productDetails.exportPrice) from com.Models.BillDetails b where b.bill.code =: code";
         Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery(select);
+        Query query = session.createQuery("select new com.CustomModels.BillDetailCustomModel(b.productDetails.code, b.productDetails.name, b.amount, b.productDetails.exportPrice, b.amount * b.productDetails.exportPrice) from com.Models.BillDetails b where b.bill.code =: code");
         query.setParameter("code", code);
         List<BillDetailCustomModel> list = query.getResultList();
         return list;
     }
     public List<BillDetails> getList() {
-        String select = "from BillDetails ";
         Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery(select);
+        Query query = session.createQuery("from BillDetails");
         List<BillDetails> list = query.getResultList();
         return list;
     }
 
     public boolean checkProducts(String codeSP, String codeHD) {
-        String select = "from BillDetails where productDetails.code =: codeSP and bill.code =: codeHD";
         Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery(select);
+        Query query = session.createQuery("from BillDetails where productDetails.code =: codeSP and bill.code =: codeHD");
         query.setParameter("codeSP", codeSP);
         query.setParameter("codeHD", codeHD);
         List<BillDetails> list = query.getResultList();
@@ -111,9 +109,8 @@ public class BillDetailRepository {
     }
 
     public List<BillDetailWithProductDetailCustomModel> getListThongKe(Date ngayBatDau, Date ngayKetThuc) {
-        String select = "select new com.CustomModels.BillDetailWithProductDetailCustomModel(b.productDetails.code, b.productDetails.name, b.productDetails.productType.name, b.productDetails.size.name, b.productDetails.color.name, b.productDetails.substance.name, b.amount) from com.Models.BillDetails b where b.bill.dateOfPayment between " + ngayBatDau + " and " + ngayKetThuc;
         Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery(select);
+        Query query = session.createQuery("select new com.CustomModels.BillDetailWithProductDetailCustomModel(b.productDetails.code, b.productDetails.name, b.productDetails.productType.name, b.productDetails.size.name, b.productDetails.color.name, b.productDetails.substance.name, b.amount) from com.Models.BillDetails b where b.bill.dateOfPayment between " + ngayBatDau + " and " + ngayKetThuc);
         List<BillDetailWithProductDetailCustomModel> list = query.getResultList();
         return list;
     }
@@ -134,6 +131,16 @@ public class BillDetailRepository {
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery(select + date);
         List<Double> list = query.getResultList();
+        return list;
+    }
+
+    // Panel Lịch Sử
+
+    public List<ProductDetailCustomModel> getListBillPanelLichSu(String code) {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery("select new com.CustomModels.ProductDetailCustomModel(b.productDetails.code, b.productDetails.name, b.productDetails.productType.name, b.productDetails.size.name, b.productDetails.color.name, b.productDetails.substance.name, b.productDetails.exportPrice, b.amount, b.productDetails.describe) from com.Models.BillDetails b where b.bill.code =: code");
+        query.setParameter("code", code);
+        List<ProductDetailCustomModel> list = query.getResultList();
         return list;
     }
 }
