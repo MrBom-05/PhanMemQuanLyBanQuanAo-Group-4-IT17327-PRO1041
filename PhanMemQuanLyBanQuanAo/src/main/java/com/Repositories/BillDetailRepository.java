@@ -119,9 +119,8 @@ public class BillDetailRepository {
     }
 
     public List<Double> sumDate(Date date) {
-        String select = "select sum (b.amount * b.unitPrice) from BillDetails b where b.bill.dateOfPayment =: date";
         Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery(select);
+        Query query = session.createQuery("select sum (b.amount * b.unitPrice) from BillDetails b where b.bill.dateOfPayment =: date");
         query.setParameter("date", date);
         List<Double> list = query.getResultList();
         return list;

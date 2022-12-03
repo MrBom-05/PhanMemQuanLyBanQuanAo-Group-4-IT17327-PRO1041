@@ -103,9 +103,9 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             btnDoiMatKhau.setBackground(colorTrang);
             setPanel(panelThongKe);
             addCbbNamDoanhThu(billService.getYear());
-            sumData(billDetailService.sumDate(getNgayHienTai()));
-            sumMonth(billDetailService.sumMonth(getMonth()));
-            sumYear(billDetailService.sumYear(getYear()));
+            lblSumDate.setText(sum(billDetailService.sumDate(getNgayHienTai())));
+            lblSumMonth.setText(sum(billDetailService.sumMonth(getMonth())));
+            lblSumYear.setText(sum(billDetailService.sumYear(getYear())));
         }
         loadDataSanPhamChiTiet(productDetailService.getListProductDetal());
     }
@@ -234,34 +234,16 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         panelMain.revalidate();
     }
 
-    private void sumData(List<Double> list) {
+    private String sum(List<Double> list) {
         for (Double sum : list) {
             if (sum == null) {
-                lblSumDate.setText(0 + ".VND");
+                return 0 + ".VND";
             } else {
-                lblSumDate.setText(sum + ".VND");
+                int intValue = (int) Math.round(sum);
+                return intValue + ".VND";
             }
         }
-    }
-
-    private void sumMonth(List<Double> list) {
-        for (Double sum : list) {
-            if (sum == null) {
-                lblSumMonth.setText(0 + ".VND");
-            } else {
-                lblSumMonth.setText(sum + ".VND");
-            }
-        }
-    }
-
-    private void sumYear(List<Double> list) {
-        for (Double sum : list) {
-            if (sum == null) {
-                lblSumYear.setText(0 + ".VND");
-            } else {
-                lblSumYear.setText(sum + ".VND");
-            }
-        }
+        return 0 + ".VND";
     }
 
     @SuppressWarnings("unchecked")
@@ -431,7 +413,6 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         lblTienThuaPanelDatHang = new javax.swing.JLabel();
         btnDangGiaoPanelGiaoHang = new javax.swing.JButton();
         btnTaoHoaDonPanelDatHang = new javax.swing.JButton();
-        btnTraHangPanelGiaoHang = new javax.swing.JButton();
         jLabel84 = new javax.swing.JLabel();
         jScrollPane16 = new javax.swing.JScrollPane();
         txtDiaChiKhachHang = new javax.swing.JTextArea();
@@ -444,17 +425,16 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         Camera = new javax.swing.JPanel();
         panelLichSu = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        txtMoTaPanelLichSu = new javax.swing.JTextArea();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
-        jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtDiaChiPanelLichSu = new javax.swing.JTextArea();
         jLabel32 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
@@ -462,6 +442,13 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         jPanel13 = new javax.swing.JPanel();
         jScrollPane10 = new javax.swing.JScrollPane();
         tblSanPhamPanelLichSu = new javax.swing.JTable();
+        lblMaNVPanelLichSu = new javax.swing.JLabel();
+        lblTenNVPanelLichSu = new javax.swing.JLabel();
+        lblTenKHPanelLichSu = new javax.swing.JLabel();
+        lblSDTPanelLichSu = new javax.swing.JLabel();
+        lblTongTienPanelLichSu = new javax.swing.JLabel();
+        lblNgayTaoPanelLichSu = new javax.swing.JLabel();
+        btnTraHangPanelLichSua = new javax.swing.JButton();
         panelKhuyenMai = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel70 = new javax.swing.JLabel();
@@ -1740,7 +1727,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1959,9 +1946,6 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         btnTaoHoaDonPanelDatHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/add30.png"))); // NOI18N
         btnTaoHoaDonPanelDatHang.setText("Tạo Hóa Đơn");
 
-        btnTraHangPanelGiaoHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/trahang.png"))); // NOI18N
-        btnTraHangPanelGiaoHang.setText("Trả Hàng");
-
         jLabel84.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel84.setText("Ghi chú");
 
@@ -2037,13 +2021,11 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                                             .addComponent(cbbHTTTPanelDatHang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(txtTienKhachDuaPanelDatHang)
                                             .addComponent(lblTienThuaPanelDatHang, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(jPanel21Layout.createSequentialGroup()
-                                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnDangGiaoPanelGiaoHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnTaoHoaDonPanelDatHang))
-                                .addGap(37, 37, 37)
-                                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnTraHangPanelGiaoHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(btnTaoHoaDonPanelDatHang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel21Layout.createSequentialGroup()
+                                    .addComponent(btnDangGiaoPanelGiaoHang, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(37, 37, 37)
                                     .addComponent(btnDaGiaoPanelGiaoHang, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 6, Short.MAX_VALUE))))
         );
@@ -2062,7 +2044,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel85)
                     .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(btnTimKiemPanelDatHang)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2097,9 +2079,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                     .addComponent(btnDangGiaoPanelGiaoHang, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDaGiaoPanelGiaoHang, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
-                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTaoHoaDonPanelDatHang, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTraHangPanelGiaoHang, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnTaoHoaDonPanelDatHang, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -2177,9 +2157,9 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
         panelLichSu.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane8.setViewportView(jTextArea2);
+        txtMoTaPanelLichSu.setColumns(20);
+        txtMoTaPanelLichSu.setRows(5);
+        jScrollPane8.setViewportView(txtMoTaPanelLichSu);
 
         jLabel33.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel33.setText("Tên Nhân Viên");
@@ -2199,15 +2179,12 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         jLabel38.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel38.setText("Ngày Tạo");
 
-        jLabel39.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel39.setText("Trạng Thái");
-
         jLabel40.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel40.setText("Lý Do Hủy");
+        jLabel40.setText("Mô Tả");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane7.setViewportView(jTextArea1);
+        txtDiaChiPanelLichSu.setColumns(20);
+        txtDiaChiPanelLichSu.setRows(5);
+        jScrollPane7.setViewportView(txtDiaChiPanelLichSu);
 
         jLabel32.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel32.setText("Mã Nhân Viên");
@@ -2238,6 +2215,11 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                 return canEdit [columnIndex];
             }
         });
+        tblHoaDonPanelLichSu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblHoaDonPanelLichSuMouseClicked(evt);
+            }
+        });
         jScrollPane9.setViewportView(tblHoaDonPanelLichSu);
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
@@ -2265,14 +2247,14 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
             },
             new String [] {
-                "STT", "Mã SP", "Tên SP", "Màu Sắc", "Kích Cỡ", "Số Lượng", "Đơn Giá", "Giảm Giá", "Thành Tiền", "Trạng Thái", "Lý Do Hủy"
+                "STT", "Mã SP", "Tên SP", "Màu Sắc", "Kích Cỡ", "Số Lượng", "Đơn Giá", "Giảm Giá", "Thành Tiền"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -2281,6 +2263,11 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblSanPhamPanelLichSu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSanPhamPanelLichSuMouseClicked(evt);
             }
         });
         jScrollPane10.setViewportView(tblSanPhamPanelLichSu);
@@ -2301,6 +2288,27 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                 .addContainerGap())
         );
 
+        lblMaNVPanelLichSu.setText(" ");
+
+        lblTenNVPanelLichSu.setText(" ");
+
+        lblTenKHPanelLichSu.setText(" ");
+
+        lblSDTPanelLichSu.setText(" ");
+
+        lblTongTienPanelLichSu.setText(" ");
+
+        lblNgayTaoPanelLichSu.setText(" ");
+
+        btnTraHangPanelLichSua.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnTraHangPanelLichSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/trahang.png"))); // NOI18N
+        btnTraHangPanelLichSua.setText("Trả Hàng");
+        btnTraHangPanelLichSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTraHangPanelLichSuaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelLichSuLayout = new javax.swing.GroupLayout(panelLichSu);
         panelLichSu.setLayout(panelLichSuLayout);
         panelLichSuLayout.setHorizontalGroup(
@@ -2310,58 +2318,93 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                 .addGroup(panelLichSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelLichSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelLichSuLayout.createSequentialGroup()
-                        .addComponent(jLabel36)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelLichSuLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelLichSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel32)
-                            .addComponent(jLabel33)
-                            .addComponent(jLabel34)
-                            .addComponent(jLabel35)
-                            .addComponent(jLabel37)
-                            .addComponent(jLabel38)
-                            .addComponent(jLabel39)
-                            .addComponent(jLabel40))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane8))
-                .addGap(17, 17, 17))
+                            .addGroup(panelLichSuLayout.createSequentialGroup()
+                                .addComponent(jLabel36)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane8)
+                            .addGroup(panelLichSuLayout.createSequentialGroup()
+                                .addComponent(jLabel34)
+                                .addGap(26, 26, 26)
+                                .addComponent(lblTenKHPanelLichSu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(panelLichSuLayout.createSequentialGroup()
+                                .addComponent(jLabel35)
+                                .addGap(40, 40, 40)
+                                .addComponent(lblSDTPanelLichSu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(panelLichSuLayout.createSequentialGroup()
+                                .addComponent(jLabel37)
+                                .addGap(28, 28, 28)
+                                .addComponent(lblTongTienPanelLichSu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(panelLichSuLayout.createSequentialGroup()
+                                .addComponent(jLabel38)
+                                .addGap(63, 63, 63)
+                                .addComponent(lblNgayTaoPanelLichSu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(panelLichSuLayout.createSequentialGroup()
+                                .addComponent(jLabel40)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(panelLichSuLayout.createSequentialGroup()
+                                .addComponent(jLabel33)
+                                .addGap(35, 35, 35)
+                                .addComponent(lblTenNVPanelLichSu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(panelLichSuLayout.createSequentialGroup()
+                                .addComponent(jLabel32)
+                                .addGap(38, 38, 38)
+                                .addComponent(lblMaNVPanelLichSu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(17, 17, 17))
+                    .addGroup(panelLichSuLayout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(btnTraHangPanelLichSua, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         panelLichSuLayout.setVerticalGroup(
             panelLichSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLichSuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelLichSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelLichSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelLichSuLayout.createSequentialGroup()
-                        .addComponent(jLabel32)
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel33)
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel34)
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel35)
+                        .addGap(38, 38, 38)
+                        .addGroup(panelLichSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel32)
+                            .addComponent(lblMaNVPanelLichSu))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelLichSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel33)
+                            .addComponent(lblTenNVPanelLichSu))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelLichSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel34)
+                            .addComponent(lblTenKHPanelLichSu))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelLichSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel35)
+                            .addComponent(lblSDTPanelLichSu))
                         .addGap(30, 30, 30)
                         .addGroup(panelLichSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel36)
                             .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(23, 23, 23)
-                        .addComponent(jLabel37)
-                        .addGap(13, 13, 13)
-                        .addComponent(jLabel38))
+                        .addGroup(panelLichSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel37)
+                            .addComponent(lblTongTienPanelLichSu))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelLichSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel38)
+                            .addComponent(lblNgayTaoPanelLichSu)))
                     .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(panelLichSuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelLichSuLayout.createSequentialGroup()
-                        .addComponent(jLabel39)
-                        .addGap(31, 31, 31)
                         .addComponent(jLabel40)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(btnTraHangPanelLichSua, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         panelMain.add(panelLichSu, "card9");
@@ -3246,7 +3289,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                             .addComponent(btnDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnDoiMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                        .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))))
         );
         panelTrangChuLayout.setVerticalGroup(
             panelTrangChuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3325,9 +3368,9 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         btnDoiMatKhau.setBackground(colorTrang);
         setPanel(panelThongKe);
         addCbbNamDoanhThu(billService.getYear());
-        sumData(billDetailService.sumDate(getNgayHienTai()));
-        sumMonth(billDetailService.sumMonth(getMonth()));
-        sumYear(billDetailService.sumYear(getYear()));
+        lblSumDate.setText(sum(billDetailService.sumDate(getNgayHienTai())));
+        lblSumMonth.setText(sum(billDetailService.sumMonth(getMonth())));
+        lblSumYear.setText(sum(billDetailService.sumYear(getYear())));
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void loadDataThongKe(List<BillDetailWithProductDetailCustomModel> list) {
@@ -4088,7 +4131,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         defaultTableModel.setRowCount(0);
         int count = 1;
         for (BillCustomModel billCustomModel : list) {
-            defaultTableModel.addRow(new Object[]{count++, billCustomModel.getMaHd(), billCustomModel.getTenKh(), billCustomModel.getTenNv(), billCustomModel.getNgayTao(), billCustomModel.trangThaiHD(billCustomModel.getTrangThai())});
+            defaultTableModel.addRow(new Object[]{count++, billCustomModel.getMaHD(), billCustomModel.getTenKH(), billCustomModel.getTenNV(), billCustomModel.getNgayTao(), billCustomModel.trangThaiHD(billCustomModel.getTrangThai())});
         }
     }
 
@@ -4205,16 +4248,19 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     private void txtTienKhachDuaPanelHoaDonCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTienKhachDuaPanelHoaDonCaretUpdate
         String[] tongTien = lblTongTienPanelHoaDon.getText().split(".VND");
         for (String s : tongTien) {
-            Double tienKhachDua = Double.parseDouble(txtTienKhachDuaPanelHoaDon.getText());
-            Double tienThua = tienKhachDua - Double.parseDouble(s);
-            lblTienThuaPanelHoaDon.setText(tienThua.toString() + ".VND");
+            double tienKhachDua = Double.parseDouble(txtTienKhachDuaPanelHoaDon.getText());
+            double tienThua = tienKhachDua - Double.parseDouble(s);
+            int tien = (int) Math.round(tienThua);
+            lblTienThuaPanelHoaDon.setText(tien + ".VND");
         }
     }//GEN-LAST:event_txtTienKhachDuaPanelHoaDonCaretUpdate
 
     private void tblHoaDonPanelHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonPanelHoaDonMouseClicked
         String maHD = tblHoaDonPanelHoaDon.getValueAt(tblHoaDonPanelHoaDon.getSelectedRow(), 1).toString();
         loadDataGioHang(billDetailService.getListBill(maHD));
-        lblTongTienPanelHoaDon.setText(billDetailService.sumDonGia(maHD) + " VND");
+        lblTongTienPanelHoaDon.setText(0 + " VND");
+        int sum = (int) Math.round(billDetailService.sumDonGia(maHD));
+        lblTongTienPanelHoaDon.setText(sum + " VND");
     }//GEN-LAST:event_tblHoaDonPanelHoaDonMouseClicked
 
     private BillDetails getDataBillDetails(int soLuong, String codeSP, String codeHD, float donGia) {
@@ -4322,6 +4368,16 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     }//GEN-LAST:event_btnTimKiemPanelDatHangActionPerformed
 
     // Panel Lịch Sử
+
+    private void loadDataHoaDonPanelLichSu(List<BillCustomModel> list) {
+        defaultTableModel = (DefaultTableModel) tblHoaDonPanelLichSu.getModel();
+        defaultTableModel.setRowCount(0);
+        int count = 1;
+        for (BillCustomModel billCustomModel : list) {
+            defaultTableModel.addRow(new Object[]{count++, billCustomModel.getMaHD(), billCustomModel.getTenNV(), billCustomModel.getTenKH(), billCustomModel.getNgayTao(), billCustomModel.trangThaiHD(billCustomModel.getTrangThai())});
+        }
+    }
+
     private void btnLichSuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLichSuActionPerformed
         btnThongKe.setBackground(colorTrang);
         btnSanPham.setBackground(colorTrang);
@@ -4332,7 +4388,20 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         btnKhachHang.setBackground(colorTrang);
         btnDoiMatKhau.setBackground(colorTrang);
         setPanel(panelLichSu);
+        loadDataHoaDonPanelLichSu(billService.getListBill());
     }//GEN-LAST:event_btnLichSuActionPerformed
+
+    private void tblHoaDonPanelLichSuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonPanelLichSuMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblHoaDonPanelLichSuMouseClicked
+
+    private void tblSanPhamPanelLichSuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamPanelLichSuMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblSanPhamPanelLichSuMouseClicked
+
+    private void btnTraHangPanelLichSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraHangPanelLichSuaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTraHangPanelLichSuaActionPerformed
 
     // Panel Khuyến Mãi
     private void loadDataKhuyenMai(List<Promotion> list) {
@@ -4903,7 +4972,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JButton btnTimKiemKhachHangPanelHoaDon;
     private javax.swing.JButton btnTimKiemPanelDatHang;
     private javax.swing.JButton btnTimKiemPanelThongKe;
-    private javax.swing.JButton btnTraHangPanelGiaoHang;
+    private javax.swing.JButton btnTraHangPanelLichSua;
     private javax.swing.JButton btnXemAnPanelSanPhamCT;
     private javax.swing.JButton btnXemKhuyenMaiPanelKhuyenMai;
     private javax.swing.JButton btnXemNhanVienDaNghiPanelNV;
@@ -4959,7 +5028,6 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
@@ -5073,18 +5141,22 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JLabel lblHoTenNVPanelMain;
+    private javax.swing.JLabel lblMaNVPanelLichSu;
     private javax.swing.JLabel lblMaNhanVienPanelMain;
+    private javax.swing.JLabel lblNgayTaoPanelLichSu;
+    private javax.swing.JLabel lblSDTPanelLichSu;
     private javax.swing.JLabel lblSumDate;
     private javax.swing.JLabel lblSumDonHang;
     private javax.swing.JLabel lblSumMonth;
     private javax.swing.JLabel lblSumYear;
+    private javax.swing.JLabel lblTenKHPanelLichSu;
+    private javax.swing.JLabel lblTenNVPanelLichSu;
     private javax.swing.JLabel lblTienThuaPanelDatHang;
     private javax.swing.JLabel lblTienThuaPanelHoaDon;
     private javax.swing.JLabel lblTongTienPanelDatHang;
     private javax.swing.JLabel lblTongTienPanelHoaDon;
+    private javax.swing.JLabel lblTongTienPanelLichSu;
     private javax.swing.JPanel panelDoiMatKhau;
     private javax.swing.JPanel panelHoaDon;
     private javax.swing.JPanel panelKhachHang;
@@ -5118,6 +5190,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JTable tblThuocTinhPanelSanPham;
     private javax.swing.JTextField txtCaptchaPanelDoiMatKhau;
     private javax.swing.JTextArea txtDiaChiKhachHang;
+    private javax.swing.JTextArea txtDiaChiPanelLichSu;
     private javax.swing.JTextArea txtDiaChiPanelNhanVien;
     private javax.swing.JTextField txtEmailPanelKhachHang;
     private javax.swing.JTextField txtEmailPanelNhanVien;
@@ -5135,6 +5208,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JPasswordField txtMatKhauCuPanelDoiMatKhau;
     private javax.swing.JPasswordField txtMatKhauMoiPanelDoiMatKhau;
     private javax.swing.JPasswordField txtMatKhauPanelNhanVien;
+    private javax.swing.JTextArea txtMoTaPanelLichSu;
     private javax.swing.JTextArea txtMoTaPanelSanPham;
     private com.toedter.calendar.JDateChooser txtNgayBatDauPanelKhuyenMai;
     private com.toedter.calendar.JDateChooser txtNgayBatDauPanelThongKe;
