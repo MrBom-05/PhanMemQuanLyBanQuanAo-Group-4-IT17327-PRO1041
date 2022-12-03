@@ -60,12 +60,12 @@ public class BillDetailServiceImplement implements BillDetailService {
 
     @Override
     public List<Double> sumMonth(int date) {
-        return billDetailRepository.sumMonth(date);
+        return billDetailRepository.sum(date, billDetailRepository.sumMonth);
     }
 
     @Override
     public List<Double> sumYear(int date) {
-        return billDetailRepository.sumYear(date);
+        return billDetailRepository.sum(date, billDetailRepository.sumYear);
     }
 
     @Override
