@@ -127,18 +127,13 @@ public class BillDetailRepository {
         return list;
     }
 
-    public List<Double> sumMonth(int date) {
-        String select = "select sum (b.amount * b.unitPrice) from BillDetails b where month(b.bill.dateOfPayment) = " + date;
-        Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery(select);
-        List<Double> list = query.getResultList();
-        return list;
-    }
+    public String sumMonth = "select sum (b.amount * b.unitPrice) from BillDetails b where month(b.bill.dateOfPayment) = ";
 
-    public List<Double> sumYear(int date) {
-        String select = "select sum (b.amount * b.unitPrice) from BillDetails b where year(b.bill.dateOfPayment) = " + date;
+    public String sumYear = "select sum (b.amount * b.unitPrice) from BillDetails b where year(b.bill.dateOfPayment) = ";
+
+    public List<Double> sum(int date, String select) {
         Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery(select);
+        Query query = session.createQuery(select + date);
         List<Double> list = query.getResultList();
         return list;
     }
