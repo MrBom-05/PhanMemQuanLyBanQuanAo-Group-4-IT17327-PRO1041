@@ -45,6 +45,9 @@ public class Promotion implements Serializable {
     @OneToMany(mappedBy = "promotion", fetch = FetchType.LAZY)
     private List<PromotionDetails> listPromotionDetail;
 
+    @OneToMany(mappedBy = "promotion", fetch = FetchType.LAZY)
+    private List<Bill> listBill;
+
     public Promotion(String code, String name, int DecreaseNumber, Date startDay, Date endDay, int status) {
         this.code = code;
         this.name = name;

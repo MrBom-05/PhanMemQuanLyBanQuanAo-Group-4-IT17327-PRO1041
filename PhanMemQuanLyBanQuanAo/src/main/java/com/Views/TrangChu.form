@@ -384,7 +384,7 @@
                                   <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="28" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
@@ -1233,7 +1233,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jPanel15" min="-2" pref="294" max="-2" attributes="0"/>
+                                  <Component id="jPanel15" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jPanel14" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -1515,7 +1515,7 @@
                                           <Component id="txtTimKiemSPPanelSanPham" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="btnTimKiemPanelSanPham" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="52" max="32767" attributes="0"/>
+                                      <EmptySpace pref="38" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -3059,6 +3059,9 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Giao H&#xe0;ng"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDangGiaoPanelGiaoHangActionPerformed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JButton" name="btnTaoHoaDonPanelDatHang">
                               <Properties>
@@ -3067,6 +3070,9 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="T&#x1ea1;o H&#xf3;a &#x110;&#x1a1;n"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTaoHoaDonPanelDatHangActionPerformed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel84">
                               <Properties>
@@ -3121,6 +3127,9 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="&#x110;&#xe3; Giao"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDaGiaoPanelGiaoHangActionPerformed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JButton" name="btnTimKiemPanelDatHang">
                               <Properties>
@@ -3137,6 +3146,9 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Tr&#x1ea3; H&#xe0;ng"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTraHangPanelGiaoHangActionPerformed"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>

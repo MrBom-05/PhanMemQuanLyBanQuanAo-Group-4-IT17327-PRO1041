@@ -28,9 +28,20 @@ public class BillServiceImplement implements BillService {
     }
 
     @Override
-    public boolean update(String code, int status, Date ngayThanhToan) {
-        return billRepository.update(code, status, ngayThanhToan);
+    public boolean updateThanhToan(String code, int status, Date ngay) {
+        return billRepository.update(code, status, ngay, billRepository.ngayThanhToan);
     }
+
+    @Override
+    public boolean updateGiaoHang(String code, int status, Date ngayThanhToan) {
+        return billRepository.update(code, status, ngayThanhToan, billRepository.ngayVanChuyen);
+    }
+
+    @Override
+    public boolean updateDaNhan(String code, int status, Date ngayThanhToan) {
+        return billRepository.update(code, status, ngayThanhToan, billRepository.ngayNhan);
+    }
+
 
     @Override
     public String getByID(String code) {
