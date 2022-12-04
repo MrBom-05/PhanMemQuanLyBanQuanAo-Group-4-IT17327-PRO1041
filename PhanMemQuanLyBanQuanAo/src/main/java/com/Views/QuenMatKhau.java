@@ -1,5 +1,8 @@
 package com.Views;
 
+import com.Models.Staff;
+import com.Services.Implements.StaffServiceImplement;
+import com.Services.StaffService;
 import com.Utilities.LogicUtil;
 
 import javax.swing.*;
@@ -8,6 +11,8 @@ import java.util.Random;
 public class QuenMatKhau extends javax.swing.JFrame {
 
     private LogicUtil logicUtil = new LogicUtil();
+
+    private StaffService staffService = new StaffServiceImplement();
 
     public QuenMatKhau() {
         initComponents();
@@ -195,6 +200,10 @@ public class QuenMatKhau extends javax.swing.JFrame {
 
     private void btnLoadCaptchaPanelDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadCaptchaPanelDoiMatKhauActionPerformed
         String email = txtTaiKhoanPanelDoiMatKhau.getText();
+        if (!staffService.checkAccountStaff(email)){
+            JOptionPane.showMessageDialog(this, "Tài khoản không tồn tại");
+            return;
+        }
         lblMaXacNhan.setText(ranDomCaptcha());
         logicUtil.codeVerification(email, lblMaXacNhan.getText());
         JOptionPane.showMessageDialog(this, "Mã xác nhận đã được gửi đến email của bạn");
@@ -202,6 +211,26 @@ public class QuenMatKhau extends javax.swing.JFrame {
 
     private void btnLuuPanelDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuPanelDoiMatKhauActionPerformed
         // TODO add your handling code here:
+        String email = txtTaiKhoanPanelDoiMatKhau.getText();
+        String matKhauMoi = txtMatKhauMoiPanelDoiMatKhau.getText();
+        String xacNhanMatKhau = txtXBMatKhauPanelDoiMatKhau.getText();
+        String captcha = txtCaptchaPanelDoiMatKhau.getText();
+        if (!staffService.checkAccountStaff(email)){
+            JOptionPane.showMessageDialog(this, "Tài khoản không tồn tại");
+            return;
+        }
+        if (captcha.equals(lblMaXacNhan.getText())) {
+            if (matKhauMoi.equals(xacNhanMatKhau)) {
+                staffService.updatePassword(email, logicUtil.taoMaHoa(matKhauMoi));
+                JOptionPane.showMessageDialog(this, "Đổi mật khẩu thành công");
+                new Login().setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Mật khẩu mới không khớp");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Mã xác nhận không đúng");
+        }
     }//GEN-LAST:event_btnLuuPanelDoiMatKhauActionPerformed
 
     private void btnThoatPanelDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatPanelDoiMatKhauActionPerformed
