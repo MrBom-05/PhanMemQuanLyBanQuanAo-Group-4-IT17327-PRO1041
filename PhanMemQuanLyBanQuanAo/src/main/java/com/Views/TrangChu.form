@@ -4973,7 +4973,7 @@
                                       <Component id="txtTaiKhoanPanelDoiMatKhau" max="32767" attributes="0"/>
                                       <Component id="txtMatKhauMoiPanelDoiMatKhau" max="32767" attributes="0"/>
                                       <Component id="txtMatKhauCuPanelDoiMatKhau" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtXBMatKhauPanelDoiMatKhau" min="-2" pref="270" max="-2" attributes="0"/>
+                                      <Component id="txtXNMatKhauPanelDoiMatKhau" min="-2" pref="270" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="txtCaptchaPanelDoiMatKhau" min="-2" pref="99" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
@@ -5029,7 +5029,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel45" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtXBMatKhauPanelDoiMatKhau" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtXNMatKhauPanelDoiMatKhau" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -5088,7 +5088,7 @@
                 </Component>
                 <Component class="javax.swing.JPasswordField" name="txtMatKhauMoiPanelDoiMatKhau">
                 </Component>
-                <Component class="javax.swing.JPasswordField" name="txtXBMatKhauPanelDoiMatKhau">
+                <Component class="javax.swing.JPasswordField" name="txtXNMatKhauPanelDoiMatKhau">
                 </Component>
                 <Component class="javax.swing.JPasswordField" name="txtMatKhauCuPanelDoiMatKhau">
                 </Component>
