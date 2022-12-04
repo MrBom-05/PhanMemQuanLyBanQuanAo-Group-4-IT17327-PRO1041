@@ -45,7 +45,7 @@ public class BillDetailServiceImplement implements BillDetailService {
     }
 
     @Override
-    public List<BillDetailWithProductDetailCustomModel> getListThongKe(Date ngayBatDau, Date ngayKeThuc) {
+    public List<BillDetailWithProductDetailCustomModel> getListThongKe(String ngayBatDau, String ngayKeThuc) {
         return billDetailRepository.getListThongKe(ngayBatDau, ngayKeThuc);
     }
 

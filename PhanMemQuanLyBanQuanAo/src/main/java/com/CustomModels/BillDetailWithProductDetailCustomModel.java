@@ -16,5 +16,5 @@ public class BillDetailWithProductDetailCustomModel {
     private String kichCo;
     private String mauSac;
     private String chatLieu;
-    private int soLuong;
+    private Long soLuong;
 }
