@@ -19,7 +19,7 @@ public class PromotionDetailServiceImplement implements PromotionDetailService {
     }
 
     @Override
-    public boolean delete(String code) {
-        return promotionDetailRepository.delete(code);
+    public boolean delete(String codeSP, String codeKM) {
+        return promotionDetailRepository.delete(codeSP, codeKM);
     }
 }

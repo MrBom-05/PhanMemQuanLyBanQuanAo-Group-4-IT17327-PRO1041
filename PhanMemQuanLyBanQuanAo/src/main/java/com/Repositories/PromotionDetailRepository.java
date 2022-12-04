@@ -35,12 +35,13 @@ public class PromotionDetailRepository {
         }
     }
 
-    public boolean delete(String code) {
+    public boolean delete(String codeSP, String codeKM) {
         Transaction transaction = null;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("delete from PromotionDetails where productDetails.code =: Code");
-            query.setParameter("Code", code);
+            Query query = session.createQuery("delete from PromotionDetails where productDetails.id =: codeSP and promotion.id =: codeKM");
+            query.setParameter("codeSP", codeSP);
+            query.setParameter("codeKM", codeKM);
             query.executeUpdate();
             transaction.commit();
             return true;

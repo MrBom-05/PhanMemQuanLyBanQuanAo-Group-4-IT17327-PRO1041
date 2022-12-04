@@ -8,5 +8,5 @@ public interface PromotionDetailService {
 
     public boolean insert(PromotionDetails promotionDetails);
 
-    public boolean delete(String code);
+    public boolean delete(String codeSP, String codeKM);
 }
