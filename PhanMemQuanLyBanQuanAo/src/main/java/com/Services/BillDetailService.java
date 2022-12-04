@@ -22,7 +22,7 @@ public interface BillDetailService {
 
     public Double sumDonGia(String codeHD);
 
-    public List<BillDetailWithProductDetailCustomModel> getListThongKe(Date ngayBatDau, Date ngayKetThuc);
+    public List<BillDetailWithProductDetailCustomModel> getListThongKe(String ngayBatDau, String ngayKetThuc);
 
     public boolean delete(String idBill, String idProduct);
 

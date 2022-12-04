@@ -1,6 +1,6 @@
 package com.Utilities;
 
-import com.CustomModels.ProductDetailCustomModel;
+import com.CustomModels.BillDetailWithProductDetailCustomModel;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ExportExcel {
 
-    public void excel(List<ProductDetailCustomModel> list, String nameSheet) {
+    public void excel(List<BillDetailWithProductDetailCustomModel> list, String nameSheet) {
 
         try {
             XSSFWorkbook workbook = new XSSFWorkbook();
@@ -20,10 +20,10 @@ public class ExportExcel {
             XSSFSheet sheet = workbook.createSheet(nameSheet);// creating a blank sheet
             int rownum = 0;
             int count = 0;
-            for (ProductDetailCustomModel productDetailCustomModel : list) {
+            for (BillDetailWithProductDetailCustomModel billDetailWithProductDetailCustomModel : list) {
                 count++;
                 Row row = sheet.createRow(rownum++);
-                createList(productDetailCustomModel, row, count);
+                createList(billDetailWithProductDetailCustomModel, row, count);
 
             }
 
@@ -37,31 +37,31 @@ public class ExportExcel {
 
     }
 
-    private static void createList(ProductDetailCustomModel productDetailCustomModel, Row row, int count) // creating cells for each row
+    private static void createList(BillDetailWithProductDetailCustomModel billDetailWithProductDetailCustomModel, Row row, int count) // creating cells for each row
     {
 
         Cell cell = row.createCell(0);
         cell.setCellValue(count);
 
         cell = row.createCell(1);
-        cell.setCellValue(productDetailCustomModel.getMaSP());
+        cell.setCellValue(billDetailWithProductDetailCustomModel.getMaSP());
 
         cell = row.createCell(2);
-        cell.setCellValue(productDetailCustomModel.getTenSP());
+        cell.setCellValue(billDetailWithProductDetailCustomModel.getTenSP());
 
         cell = row.createCell(3);
-        cell.setCellValue(productDetailCustomModel.getLoaiSP());
+        cell.setCellValue(billDetailWithProductDetailCustomModel.getLoaiSP());
 
         cell = row.createCell(4);
-        cell.setCellValue(productDetailCustomModel.getMauSac());
+        cell.setCellValue(billDetailWithProductDetailCustomModel.getMauSac());
 
         cell = row.createCell(5);
-        cell.setCellValue(productDetailCustomModel.getKichCo());
+        cell.setCellValue(billDetailWithProductDetailCustomModel.getKichCo());
 
         cell = row.createCell(6);
-        cell.setCellValue(productDetailCustomModel.getChatLieu());
+        cell.setCellValue(billDetailWithProductDetailCustomModel.getChatLieu());
 
         cell = row.createCell(7);
-        cell.setCellValue(productDetailCustomModel.getSoLuong());
+        cell.setCellValue(billDetailWithProductDetailCustomModel.getSoLuong());
     }
 }

@@ -22,7 +22,7 @@ public class BillRepository {
     }
 
     public List<BillCustomModel> getListBill() {
-        String select = "select new com.CustomModels.BillCustomModel(b.code, b.nameCustomer, concat(b.staff.lastName, ' ', b.staff.firstName), b.dateCreated, b.status) from com.Models.Bill b order by b.code desc ";
+        String select = "select new com.CustomModels.BillCustomModel(b.code, b.nameCustomer, concat(b.staff.lastName, ' ', b.staff.firstName), b.dateCreated, b.status) from com.Models.Bill b order by b.code desc";
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery(select);
         List<BillCustomModel> list = query.getResultList();
