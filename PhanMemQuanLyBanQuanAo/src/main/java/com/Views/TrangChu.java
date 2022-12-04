@@ -3440,7 +3440,6 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         Date dateKetThuc = Date.valueOf(ngayKetThuc);
         loadDataThongKe(billDetailService.getListThongKe(dateBatDau, dateKetThuc));
     }//GEN-LAST:event_btnTimKiemPanelThongKeActionPerformed
-
     private void addCbbNamDoanhThu(List<Integer> list) {
         defaultComboBoxModel = (DefaultComboBoxModel) cbbNamDoanhThuPanelThongKe.getModel();
         for (Integer integer : list) {
@@ -5036,18 +5035,18 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         btnNhanVien.setBackground(colorTrang);
         btnKhachHang.setBackground(colorTrang);
         btnDoiMatKhau.setBackground(colorXanh);
+        txtLoadCaptchaPanelDoiMatKhau.setText("");
         setPanel(panelDoiMatKhau);
-        this.ranDomCaptcha();
     }//GEN-LAST:event_btnDoiMatKhauActionPerformed
 
     public void ranDomCaptcha() {
         Random random = new Random();
-        int captcha = random.nextInt(10000, 100000);
+        int captcha = random.nextInt(100000, 1000000);
         txtLoadCaptchaPanelDoiMatKhau.setText(String.valueOf(captcha));
     }
 
     private void btnLoadCaptchaPanelDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadCaptchaPanelDoiMatKhauActionPerformed
-        this.ranDomCaptcha();
+        ranDomCaptcha();
     }//GEN-LAST:event_btnLoadCaptchaPanelDoiMatKhauActionPerformed
 
     private void btnLuuPanelDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuPanelDoiMatKhauActionPerformed
@@ -5058,29 +5057,29 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         String nhapCapcha = txtCaptchaPanelDoiMatKhau.getText();
         if (taiKhoan.equals("") || matKhauCu.equals("") || matKhauMoi.equals("") || nhapLaiMatKhauMoi.equals("") || nhapCapcha.equals("")) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin");
-            this.ranDomCaptcha();
+            ranDomCaptcha();
             return;
         } else {
             if (staffService.checkAccountStaff(taiKhoan)) {
                 if (matKhauCu.equals(staffService.getByPassword(taiKhoan))) {
                 } else {
                     JOptionPane.showMessageDialog(this, "Sai mật khẩu");
-                    this.ranDomCaptcha();
+                    ranDomCaptcha();
                     return;
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Tài khoản này không có trong hệ thống");
-                this.ranDomCaptcha();
+                ranDomCaptcha();
                 return;
             }
             if (!matKhauMoi.equals(nhapLaiMatKhauMoi)) {
                 JOptionPane.showMessageDialog(this, "Mật khẩu mới không trùng khớp");
-                this.ranDomCaptcha();
+                ranDomCaptcha();
                 return;
             }
             if (!nhapCapcha.equals(txtLoadCaptchaPanelDoiMatKhau.getText())) {
                 JOptionPane.showMessageDialog(this, "Sai mã captcha");
-                this.ranDomCaptcha();
+                ranDomCaptcha();
                 return;
             }
             if (matKhauCu.equals(staffService.getByPassword(taiKhoan)) && matKhauMoi.equals(nhapLaiMatKhauMoi) && nhapCapcha.equals(txtLoadCaptchaPanelDoiMatKhau.getText())) {
@@ -5088,8 +5087,6 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                 JOptionPane.showMessageDialog(this, "Đổi mật khẩu thành công");
             }
         }
-
-
     }//GEN-LAST:event_btnLuuPanelDoiMatKhauActionPerformed
 
     private void btnThoatPanelDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatPanelDoiMatKhauActionPerformed
