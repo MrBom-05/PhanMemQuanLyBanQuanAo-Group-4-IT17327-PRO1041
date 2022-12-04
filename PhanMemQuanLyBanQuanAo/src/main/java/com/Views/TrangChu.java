@@ -4597,23 +4597,48 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     }
 
     private void btnChonTatCaPanelKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonTatCaPanelKhuyenMaiActionPerformed
-        // TODO add your handling code here:
+        for (int i = 0; i < tblSanPhamPanelKhuyenMai.getRowCount(); i++) {
+            tblSanPhamPanelKhuyenMai.setValueAt(true, i, 7);
+        }
+        defaultTableModel = (DefaultTableModel) tblSanPhamPanelKhuyenMai.getModel();
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < tblSanPhamPanelKhuyenMai.getRowCount(); i++) {
+            list.add((String) defaultTableModel.getValueAt(i, 1));
+        }
+
+        int count = 0;
+        for (String string : list) {
+            PromotionDetails promotionDetails = getDataPromotionDetail(string);
+            if (promotionDetails == null) {
+                return;
+            }
+            boolean chon = (boolean) defaultTableModel.getValueAt(count, 7);
+
+            if (chon == true) {
+                promotionDetailService.insert(promotionDetails);
+                loadDataSanPhamPanelKhuyenMai(productDetailService.getListProductDetal());
+            }
+        }
     }//GEN-LAST:event_btnChonTatCaPanelKhuyenMaiActionPerformed
 
     private void tblSanPhamPanelKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamPanelKhuyenMaiMouseClicked
-        int row = tblSanPhamPanelKhuyenMai.getSelectedRow();
-        String codeSP = tblSanPhamPanelKhuyenMai.getValueAt(row, 1).toString();
-        PromotionDetails promotionDetails = getDataPromotionDetail(codeSP);
+        String maSP = tblSanPhamPanelKhuyenMai.getValueAt(tblSanPhamPanelKhuyenMai.getSelectedRow(), 1).toString();
+        String maKM = txtMaKhuyenMaiPanelKhuyenMai.getText();
+
+        PromotionDetails promotionDetails = getDataPromotionDetail(maSP);
         if (promotionDetails == null) {
             return;
         }
-        boolean chon = (boolean) tblSanPhamPanelKhuyenMai.getValueAt(row, 7);
+        boolean chon = (boolean) tblSanPhamPanelKhuyenMai.getValueAt(tblSanPhamPanelKhuyenMai.getSelectedRow(), 7);
 
         if (chon == true) {
             promotionDetailService.insert(promotionDetails);
             loadDataSanPhamPanelKhuyenMai(productDetailService.getListProductDetal());
-        } else {
-            promotionDetailService.delete(codeSP);
+        }
+        if (chon == false) {
+            String idSP = productDetailService.getByID(maSP);
+            String idKM = promotionService.getByID(maKM);
+            promotionDetailService.delete(idSP, idKM);
             loadDataSanPhamPanelKhuyenMai(productDetailService.getListProductDetal());
         }
     }//GEN-LAST:event_tblSanPhamPanelKhuyenMaiMouseClicked
