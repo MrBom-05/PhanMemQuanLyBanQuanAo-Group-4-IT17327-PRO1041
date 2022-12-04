@@ -14,7 +14,11 @@ public interface BillService {
 
     public boolean insert(Bill bill);
 
-    public boolean update(String code, int status, Date ngayThanhToan);
+    public boolean updateThanhToan(String code, int status, Date ngay);
+
+    public boolean updateGiaoHang(String code, int status, Date ngayThanhToan);
+
+    public boolean updateDaNhan(String code, int status, Date ngayThanhToan);
 
     public String getByID(String code);
 

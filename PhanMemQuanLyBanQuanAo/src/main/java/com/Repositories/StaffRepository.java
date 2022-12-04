@@ -142,7 +142,21 @@ public class StaffRepository {
         List<Staff> list = query.getResultList();
         return list;
     }
-
+    public boolean updatePassword(String username, String password) {
+        Transaction transaction = null;
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("update Staff set password =: password where email =: email");
+            query.setParameter("password", password);
+            query.setParameter("email", username);
+            query.executeUpdate();
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
     public String getByID(String code) {
         String id;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
