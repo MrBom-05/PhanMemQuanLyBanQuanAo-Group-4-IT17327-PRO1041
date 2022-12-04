@@ -1060,7 +1060,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -1295,7 +1295,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                                         .addComponent(cbbTimKiemSPPanelSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtTimKiemSPPanelSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(btnTimKiemPanelSanPham))
-                                .addContainerGap(52, Short.MAX_VALUE))
+                                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         btnXoaFormPanelSanPhamCT.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -1372,7 +1372,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                 jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -1977,9 +1977,19 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
         btnDangGiaoPanelGiaoHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/danggiao.png"))); // NOI18N
         btnDangGiaoPanelGiaoHang.setText("Giao Hàng");
+        btnDangGiaoPanelGiaoHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangGiaoPanelGiaoHangActionPerformed(evt);
+            }
+        });
 
         btnTaoHoaDonPanelDatHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/add30.png"))); // NOI18N
         btnTaoHoaDonPanelDatHang.setText("Tạo Hóa Đơn");
+        btnTaoHoaDonPanelDatHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaoHoaDonPanelDatHangActionPerformed(evt);
+            }
+        });
 
         jLabel84.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel84.setText("Ghi chú");
@@ -1997,6 +2007,11 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
         btnDaGiaoPanelGiaoHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/dagiao.png"))); // NOI18N
         btnDaGiaoPanelGiaoHang.setText("Đã Giao");
+        btnDaGiaoPanelGiaoHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDaGiaoPanelGiaoHangActionPerformed(evt);
+            }
+        });
 
         btnTimKiemPanelDatHang.setText("Tìm Kiếm");
         btnTimKiemPanelDatHang.addActionListener(new java.awt.event.ActionListener() {
@@ -2007,6 +2022,11 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
         btnTraHangPanelGiaoHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/trahang.png"))); // NOI18N
         btnTraHangPanelGiaoHang.setText("Trả Hàng");
+        btnTraHangPanelGiaoHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTraHangPanelGiaoHangActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
@@ -4166,13 +4186,13 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         String tenKH = txtTenKhachHangPanelHoaDon.getText();
         String sdt = txtSDTPanelHoaDon.getText();
         String ghiChu = txtGhiChuHoaDon.getText();
-
+        String diaChi = txtDiaChiKhachHang.getText();
         Staff staff = new Staff(staffService.getByID(lblMaNhanVienPanelMain.getText()));
 
         if (sdt.length() > 0) {
             return null;
         }
-        return new Bill(customer, staff, codeBillTangDan(), getNgayHienTai(), 0, ghiChu, tenKH, sdt);
+        return new Bill(customer, staff, codeBillTangDan(), getNgayHienTai(),0, diaChi, ghiChu, tenKH, sdt);
     }
 
     private void btnHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonActionPerformed
@@ -4214,7 +4234,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
             Staff staff = new Staff(staffService.getByID(lblMaNhanVienPanelMain.getText()));
 
-            Bill bill = new Bill(staff, codeBillTangDan(), getNgayHienTai(), 0, ghiChu, tenKH, sdt);
+            Bill bill = new Bill(staff, codeBillTangDan(), getNgayHienTai(), 0, null, ghiChu, tenKH, sdt);
 
             if (billService.insert(bill)) {
                 JOptionPane.showMessageDialog(this, "Tạo hóa đơn thành công");
@@ -4251,7 +4271,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                 JOptionPane.showMessageDialog(this, "Tiền khách đưa trống");
                 return;
             } else {
-                if (billService.update(maHD, 1, getNgayHienTai())) {
+                if (billService.updateThanhToan(maHD, 1, getNgayHienTai())) {
                     loadDataHoaDonPanelHoaDon(billService.getListBill());
                     JOptionPane.showMessageDialog(this, "Thanh toán thành công");
                 } else {
@@ -4259,7 +4279,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                 }
             }
         } else if (httt == 1) {
-            if (billService.update(maHD, 1, getNgayHienTai())) {
+            if (billService.updateThanhToan(maHD, 1, getNgayHienTai())) {
                 loadDataHoaDonPanelHoaDon(billService.getListBill());
                 JOptionPane.showMessageDialog(this, "Thanh toán thành công");
             } else {
@@ -4393,6 +4413,66 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
         txtTenKhachHangPanelDatHang.setText(customerService.getByName(sdt));
     }//GEN-LAST:event_btnTimKiemPanelDatHangActionPerformed
+
+    private void btnTaoHoaDonPanelDatHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoHoaDonPanelDatHangActionPerformed
+        String sdt = txtSDTPanelDatHang.getText();
+        if (!customerService.checkCustomer(sdt).isEmpty()) {
+            Customer customer = new Customer(customerService.getByID(sdt));
+            Bill bill = getDataBill(customer);
+            if (bill == null) {
+                return;
+            }
+            if (billService.insert(bill)) {
+                JOptionPane.showMessageDialog(this, "Tạo hóa đơn thành công");
+                loadDataHoaDonPanelHoaDon(billService.getListBill());
+            } else {
+                JOptionPane.showMessageDialog(this, "Tạo hóa đơn thất bại");
+            }
+            loadDataHoaDonPanelHoaDon(billService.getListBill());
+        } else {
+            String tenKH = txtTenKhachHangPanelDatHang.getText();
+            String ghiChu = txtGhiChuPanelDatHang.getText();
+            String diaChi = txtDiaChiKhachHang.getText();
+            Staff staff = new Staff(staffService.getByID(lblMaNhanVienPanelMain.getText()));
+
+            Bill bill = new Bill(staff, codeBillTangDan(), getNgayHienTai(), 0, diaChi, ghiChu, tenKH, sdt);
+
+            if (billService.insert(bill)) {
+                JOptionPane.showMessageDialog(this, "Tạo hóa đơn thành công");
+                loadDataHoaDonPanelHoaDon(billService.getListBill());
+            } else {
+                JOptionPane.showMessageDialog(this, "Tạo hóa đơn thất bại");
+            }
+            loadDataHoaDonPanelHoaDon(billService.getListBill());
+        }
+    }//GEN-LAST:event_btnTaoHoaDonPanelDatHangActionPerformed
+
+    private void btnDangGiaoPanelGiaoHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangGiaoPanelGiaoHangActionPerformed
+        String maHD = tblHoaDonPanelHoaDon.getValueAt(tblHoaDonPanelHoaDon.getSelectedRow(), 1).toString();
+        if (billService.updateGiaoHang(maHD, 3,getNgayHienTai())) {
+            JOptionPane.showMessageDialog(this, "Đã cập nhật trạng thái đơn hàng");
+            loadDataHoaDonPanelHoaDon(billService.getListBill());
+        } else {
+            JOptionPane.showMessageDialog(this, "Cập nhật trạng thái đơn hàng thất bại");
+        }
+
+
+    }//GEN-LAST:event_btnDangGiaoPanelGiaoHangActionPerformed
+
+    private void btnDaGiaoPanelGiaoHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaGiaoPanelGiaoHangActionPerformed
+        String maHD = tblHoaDonPanelHoaDon.getValueAt(tblHoaDonPanelHoaDon.getSelectedRow(), 1).toString();
+        if (billService.updateGiaoHang(maHD, 1,getNgayHienTai())) {
+            JOptionPane.showMessageDialog(this, "Đã cập nhật trạng thái đơn hàng");
+            loadDataHoaDonPanelHoaDon(billService.getListBill());
+        } else {
+            JOptionPane.showMessageDialog(this, "Cập nhật trạng thái đơn hàng thất bại");
+        }
+
+    }//GEN-LAST:event_btnDaGiaoPanelGiaoHangActionPerformed
+
+    private void btnTraHangPanelGiaoHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraHangPanelGiaoHangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTraHangPanelGiaoHangActionPerformed
 
     // Panel Lịch Sử
 

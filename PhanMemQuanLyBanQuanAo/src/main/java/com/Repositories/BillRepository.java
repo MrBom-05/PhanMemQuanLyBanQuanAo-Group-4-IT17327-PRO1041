@@ -42,12 +42,18 @@ public class BillRepository {
         }
     }
 
-    public boolean update(String code, int status, Date ngayThanhToan) {
+    public String ngayThanhToan = "update Bill set status =: status, dateOfPayment =: ngay where code =: code";
+
+    public String ngayVanChuyen = "update Bill set status =: status, deliveryDate =: ngay where code =: code";
+
+    public String ngayNhan = "update Bill set status =: status, receivedDate =: ngay where code =: code";
+
+    public boolean update(String code, int status, Date ngay, String select) {
         Transaction transaction = null;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("update Bill set status =: status, dateOfPayment =: ngayThanhToan where code =: code");
-            query.setParameter("ngayThanhToan", ngayThanhToan);
+            Query query = session.createQuery(select);
+            query.setParameter("ngay", ngay);
             query.setParameter("status", status);
             query.setParameter("code", code);
             query.executeUpdate();
