@@ -210,7 +210,6 @@ public class QuenMatKhau extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoadCaptchaPanelDoiMatKhauActionPerformed
 
     private void btnLuuPanelDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuPanelDoiMatKhauActionPerformed
-        // TODO add your handling code here:
         String email = txtTaiKhoanPanelDoiMatKhau.getText();
         String matKhauMoi = txtMatKhauMoiPanelDoiMatKhau.getText();
         String xacNhanMatKhau = txtXBMatKhauPanelDoiMatKhau.getText();

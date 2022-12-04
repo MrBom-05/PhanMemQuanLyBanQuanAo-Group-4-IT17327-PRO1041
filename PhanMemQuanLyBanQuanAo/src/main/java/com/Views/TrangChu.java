@@ -1186,7 +1186,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
         jLabel58.setText("Tìm Kiếm Theo");
 
-        cbbTimKiemSPPanelSanPham.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả sản phẩm", "Mã sản phẩm", "Tên sản phẩm", "Loại sản phẩm", "Kích cỡ", "Màu Sắc", "Chất Liệu" }));
+        cbbTimKiemSPPanelSanPham.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã sản phẩm", "Tên sản phẩm", "Loại sản phẩm", "Kích cỡ", "Màu Sắc", "Chất Liệu" }));
 
         btnTimKiemPanelSanPham.setText("Tìm Kiếm");
 
@@ -1296,7 +1296,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                     .addComponent(cbbTimKiemSPPanelSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTimKiemSPPanelSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTimKiemPanelSanPham))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnXoaFormPanelSanPhamCT.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -1357,9 +1357,9 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                 .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(20, 20, 20)
                 .addComponent(btnXoaFormPanelSanPhamCT)
-                .addGap(69, 69, 69)
+                .addGap(29, 29, 29)
                 .addComponent(btnThemPanelSanPhamCT)
                 .addGap(31, 31, 31)
                 .addComponent(btnSuaPanelSanPhamCT)
@@ -1367,14 +1367,14 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                 .addComponent(btnAnPanelSanPhamCT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnXemAnPanelSanPhamCT)
-                .addGap(29, 29, 29))
+                .addGap(25, 25, 25))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1383,7 +1383,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                     .addComponent(btnSuaPanelSanPhamCT)
                     .addComponent(btnAnPanelSanPhamCT)
                     .addComponent(btnXemAnPanelSanPhamCT))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Thông Tin Chi Tiết", jPanel8);
@@ -3440,6 +3440,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         Date dateKetThuc = Date.valueOf(ngayKetThuc);
         loadDataThongKe(billDetailService.getListThongKe(dateBatDau, dateKetThuc));
     }//GEN-LAST:event_btnTimKiemPanelThongKeActionPerformed
+
     private void addCbbNamDoanhThu(List<Integer> list) {
         defaultComboBoxModel = (DefaultComboBoxModel) cbbNamDoanhThuPanelThongKe.getModel();
         for (Integer integer : list) {
@@ -4052,6 +4053,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
     private void btnXoaFormPanelSanPhamCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaFormPanelSanPhamCTActionPerformed
         clearPanelSanPhamChiTiet();
+        loadDataSanPhamChiTiet(productDetailService.getListProductDetal());
     }//GEN-LAST:event_btnXoaFormPanelSanPhamCTActionPerformed
 
     private void btnThemPanelSanPhamCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemPanelSanPhamCTActionPerformed
@@ -4358,7 +4360,6 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                 productDetailService.updateSoLuong(maSP, setSoLuong);
                 String idSP = productDetailService.getByID(maSP);
                 String idHD = billService.getByID(maHD);
-                System.out.println(soLuongPanelGioHang);
 
                 billDetailService.update(idSP, idHD, soLuongPanelGioHang);
                 loadDataGioHang(billDetailService.getListBill(maHD));
@@ -4368,34 +4369,21 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     }//GEN-LAST:event_tblSanPhamPanelHoaDonMouseClicked
 
     private void btnXoaGioHangPanelHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaGioHangPanelHoaDonActionPerformed
-        String maSP = tblGioHangPanelHoaDon.getValueAt(tblGioHangPanelHoaDon.getSelectedRow(), 1).toString();
         String maHD = tblHoaDonPanelHoaDon.getValueAt(tblHoaDonPanelHoaDon.getSelectedRow(), 1).toString();
-        String idSP = productDetailService.getByID(maSP);
         String idHD = billService.getByID(maHD);
         defaultTableModel = (DefaultTableModel) tblGioHangPanelHoaDon.getModel();
-//        List<Boolean> listCheck = new ArrayList<>();
-//        for (int count = 0; count < defaultTableModel.getRowCount(); count++) {
-//            listCheck.add((Boolean) defaultTableModel.getValueAt(count, 6));
-//            for (Boolean check : listCheck) {
-//                if (check == true) {
-////                    JOptionPane.showMessageDialog(this,check);
-//                    billDetailService.delete(idHD, idSP);
-//                    loadDataGioHang(billDetailService.getListBill(maHD));
-//                }
-//
-
-        for (int i = 0; i < defaultTableModel.getRowCount(); i++) {
-            Boolean isChecked = Boolean.valueOf(defaultTableModel.getValueAt(i, 6).toString());
-            if (isChecked) {
-                List<BillDetails> listSP = billDetailService.getList();
-                for (BillDetails billDetails : listSP) {
-                    JOptionPane.showMessageDialog(this, isChecked);
-                    billDetailService.delete(idHD, billDetails.getProductDetails().getId());
-                    loadDataGioHang(billDetailService.getListBill(maHD));
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, i);
+        List<String> list = new ArrayList<>();
+        for (int count = 0; count < defaultTableModel.getRowCount(); count++) {
+            if ((boolean) defaultTableModel.getValueAt(count, 6) == true) {
+                list.add((String) defaultTableModel.getValueAt(count, 1));
             }
+        }
+        for (String string : list) {
+            int soLuong = productDetailService.getBySoLuong(string) + billDetailService.getSoLuong(string, maHD);
+            productDetailService.updateSoLuong(string, soLuong);
+            billDetailService.delete(idHD, productDetailService.getByID(string));
+            loadDataGioHang(billDetailService.getListBill(maHD));
+            loadDataSanPhamChiTietPanelHoaDon(productDetailService.getListProductDetal());
         }
     }//GEN-LAST:event_btnXoaGioHangPanelHoaDonActionPerformed
 
@@ -4454,8 +4442,6 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         } else {
             JOptionPane.showMessageDialog(this, "Cập nhật trạng thái đơn hàng thất bại");
         }
-
-
     }//GEN-LAST:event_btnDangGiaoPanelGiaoHangActionPerformed
 
     private void btnDaGiaoPanelGiaoHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaGiaoPanelGiaoHangActionPerformed
@@ -4466,7 +4452,6 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         } else {
             JOptionPane.showMessageDialog(this, "Cập nhật trạng thái đơn hàng thất bại");
         }
-
     }//GEN-LAST:event_btnDaGiaoPanelGiaoHangActionPerformed
 
     private void btnTraHangPanelGiaoHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraHangPanelGiaoHangActionPerformed
