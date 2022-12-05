@@ -20,6 +20,14 @@ public class BillRepository {
         return list;
 
     }
+    public List<Bill> getList(String code) {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery("from Bill where code = :code");
+        query.setParameter("code", code);
+        List<Bill> list = query.getResultList();
+        return list;
+
+    }
 
     public List<BillCustomModel> getListBill() {
         String select = "select new com.CustomModels.BillCustomModel(b.code, b.nameCustomer, concat(b.staff.lastName, ' ', b.staff.firstName), b.dateCreated, b.status) from com.Models.Bill b order by b.code desc";

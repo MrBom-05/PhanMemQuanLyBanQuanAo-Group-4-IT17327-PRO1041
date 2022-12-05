@@ -10,6 +10,8 @@ public interface BillService {
 
     public List<Bill> getList();
 
+    public List<Bill> getList(String code);
+
     public List<BillCustomModel> getListBill();
 
     public boolean insert(Bill bill);
