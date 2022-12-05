@@ -28,6 +28,11 @@ public class BillServiceImplement implements BillService {
     }
 
     @Override
+    public List<BillCustomModel> getListBill(String code) {
+        return billRepository.getListBill(code);
+    }
+
+    @Override
     public boolean insert(Bill bill) {
         return billRepository.insert(bill);
     }
@@ -52,6 +57,7 @@ public class BillServiceImplement implements BillService {
     public String getByID(String code) {
         return billRepository.getByID(code);
     }
+
 
     @Override
     public List<Integer> getYear() {

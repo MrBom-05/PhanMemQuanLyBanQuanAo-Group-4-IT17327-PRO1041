@@ -37,6 +37,15 @@ public class BillRepository {
         return list;
     }
 
+    public List<BillCustomModel> getListBill(String code) {
+        String select = "select new com.CustomModels.BillCustomModel(b.code, b.nameCustomer, concat(b.staff.lastName, ' ', b.staff.firstName), b.dateCreated, b.status) from com.Models.Bill b where b.code = :code order by b.code desc";
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery(select);
+        query.setParameter("code", code);
+        List<BillCustomModel> list = query.getResultList();
+        return list;
+    }
+
     public boolean insert(Bill bill) {
         Transaction transaction = null;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
@@ -82,7 +91,6 @@ public class BillRepository {
         }
         return id;
     }
-
     public List<Integer> getYear() {
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery("select distinct year(dateOfPayment) from Bill where dateOfPayment is not null");

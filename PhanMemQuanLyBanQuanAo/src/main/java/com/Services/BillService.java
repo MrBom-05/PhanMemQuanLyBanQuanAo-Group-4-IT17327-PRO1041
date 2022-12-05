@@ -14,6 +14,8 @@ public interface BillService {
 
     public List<BillCustomModel> getListBill();
 
+    public List<BillCustomModel> getListBill(String code);
+
     public boolean insert(Bill bill);
 
     public boolean updateThanhToan(String code, int status, Date ngay);
