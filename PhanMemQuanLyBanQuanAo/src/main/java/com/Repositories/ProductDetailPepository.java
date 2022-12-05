@@ -125,4 +125,20 @@ public class ProductDetailPepository {
         }
         return id;
     }
+
+    public String getByNameProduct = "select name from ProductDetails where code =: code";
+    public String getByNameType = "select productType.name from ProductDetails where code =: code";
+    public String getByNameSize = "select size.name from ProductDetails where code =: code";
+    public String getByNameColor = "select color.name from ProductDetails where code =: code";
+    public String getByNameSubtance = "select substance.name from ProductDetails where code =: code";
+
+    public String getByName(String code, String select) {
+        String id;
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+            TypedQuery<String> query = session.createQuery(select, String.class);
+            query.setParameter("code", code);
+            id = query.getSingleResult();
+        }
+        return id;
+    }
 }

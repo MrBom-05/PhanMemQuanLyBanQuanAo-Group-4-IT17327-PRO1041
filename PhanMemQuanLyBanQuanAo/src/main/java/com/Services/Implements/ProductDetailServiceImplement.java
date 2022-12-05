@@ -60,4 +60,29 @@ public class ProductDetailServiceImplement implements ProductDetailService {
     public Integer getBySoLuong(String code) {
         return productDetailPepository.getBySoLuong(code);
     }
+
+    @Override
+    public String getByNameProduct(String code) {
+        return productDetailPepository.getByName(code, productDetailPepository.getByNameProduct);
+    }
+
+    @Override
+    public String getByNameType(String code) {
+        return productDetailPepository.getByName(code, productDetailPepository.getByNameType);
+    }
+
+    @Override
+    public String getByNameSize(String code) {
+        return productDetailPepository.getByName(code, productDetailPepository.getByNameSize);
+    }
+
+    @Override
+    public String getByNameColor(String code) {
+        return productDetailPepository.getByName(code, productDetailPepository.getByNameColor);
+    }
+
+    @Override
+    public String getByNameSubtance(String code) {
+        return productDetailPepository.getByName(code, productDetailPepository.getByNameSubtance);
+    }
 }

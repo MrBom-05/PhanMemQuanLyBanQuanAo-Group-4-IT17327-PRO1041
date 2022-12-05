@@ -26,4 +26,14 @@ public interface ProductDetailService {
     public Float getByDonGia(String code);
 
     public Integer getBySoLuong(String code);
+
+    public String getByNameProduct(String code);
+
+    public String getByNameType(String code);
+
+    public String getByNameSize(String code);
+
+    public String getByNameColor(String code);
+
+    public String getByNameSubtance(String code);
 }

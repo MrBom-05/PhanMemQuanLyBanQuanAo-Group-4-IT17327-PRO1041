@@ -11,10 +11,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class BillDetailWithProductDetailCustomModel {
     private String maSP;
-    private String tenSP;
-    private String loaiSP;
-    private String kichCo;
-    private String mauSac;
-    private String chatLieu;
-    private Long soLuong;
+    private long soLuong;
 }
