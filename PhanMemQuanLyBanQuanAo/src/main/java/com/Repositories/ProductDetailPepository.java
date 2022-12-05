@@ -96,9 +96,64 @@ public class ProductDetailPepository {
         return list;
     }
 
+    public String getListByCode = "select new com.CustomModels.ProductDetailCustomModel(pd.code, pd.name, pd.productType.name, pd.size.name, pd.color.name, pd.substance.name, pd.exportPrice, pd.amount, pd.describe) from com.Models.ProductDetails pd where code =: code";
+    public String getListByName = "select new com.CustomModels.ProductDetailCustomModel(pd.code, pd.name, pd.productType.name, pd.size.name, pd.color.name, pd.substance.name, pd.exportPrice, pd.amount, pd.describe) from com.Models.ProductDetails pd where name =: name";
+    public String getListByProductType = "select new com.CustomModels.ProductDetailCustomModel(pd.code, pd.name, pd.productType.name, pd.size.name, pd.color.name, pd.substance.name, pd.exportPrice, pd.amount, pd.describe) from com.Models.ProductDetails pd where productType.name =: productType";
+    public String getListBySize = "select new com.CustomModels.ProductDetailCustomModel(pd.code, pd.name, pd.productType.name, pd.size.name, pd.color.name, pd.substance.name, pd.exportPrice, pd.amount, pd.describe) from com.Models.ProductDetails pd where pd.size.name =: size";
+    public String getListByColor = "select new com.CustomModels.ProductDetailCustomModel(pd.code, pd.name, pd.productType.name, pd.size.name, pd.color.name, pd.substance.name, pd.exportPrice, pd.amount, pd.describe) from com.Models.ProductDetails pd where pd.color.name =: color";
+    public String getListBySubstance = "select new com.CustomModels.ProductDetailCustomModel(pd.code, pd.name, pd.productType.name, pd.size.name, pd.color.name, pd.substance.name, pd.exportPrice, pd.amount, pd.describe) from com.Models.ProductDetails pd where pd.substance.name =: substance";
+
+    public List<ProductDetailCustomModel> getListByCode(String code) {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery(getListByCode);
+        query.setParameter("code", code);
+        List<ProductDetailCustomModel> list = query.getResultList();
+        return list;
+    }
+
+    public List<ProductDetailCustomModel> getListByName(String name) {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery(getListByName);
+        query.setParameter("name", name);
+        List<ProductDetailCustomModel> list = query.getResultList();
+        return list;
+    }
+
+    public List<ProductDetailCustomModel> getListByProductType(String data) {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery(getListByProductType);
+        query.setParameter("productType", data);
+        List<ProductDetailCustomModel> list = query.getResultList();
+        return list;
+    }
+
+    public List<ProductDetailCustomModel> getListBySize(String data ) {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery(getListBySize);
+        query.setParameter("size", data);
+        List<ProductDetailCustomModel> list = query.getResultList();
+        return list;
+    }
+
+    public List<ProductDetailCustomModel> getListByColor(String data) {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery(getListByColor);
+        query.setParameter("color", data);
+        List<ProductDetailCustomModel> list = query.getResultList();
+        return list;
+    }
+
+    public List<ProductDetailCustomModel> getListBySubstance(String data) {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery(getListBySubstance);
+        query.setParameter("substance", data);
+        List<ProductDetailCustomModel> list = query.getResultList();
+        return list;
+    }
+
     public String getByID(String code) {
         String id;
-        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+        try (Session session = HibernateUtil.getFACTORY().openSession()) {
             TypedQuery<String> query = session.createQuery("select id from ProductDetails where code =: code", String.class);
             query.setParameter("code", code);
             id = query.getSingleResult();
@@ -106,9 +161,9 @@ public class ProductDetailPepository {
         return id;
     }
 
-    public Float getByDonGia(String code){
+    public Float getByDonGia(String code) {
         Float id;
-        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+        try (Session session = HibernateUtil.getFACTORY().openSession()) {
             TypedQuery<Float> query = session.createQuery("select exportPrice from ProductDetails where code =: code", Float.class);
             query.setParameter("code", code);
             id = query.getSingleResult();
@@ -116,9 +171,9 @@ public class ProductDetailPepository {
         return id;
     }
 
-    public Integer getBySoLuong(String code){
+    public Integer getBySoLuong(String code) {
         Integer id;
-        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+        try (Session session = HibernateUtil.getFACTORY().openSession()) {
             TypedQuery<Integer> query = session.createQuery("select amount from ProductDetails where code =: code", Integer.class);
             query.setParameter("code", code);
             id = query.getSingleResult();
@@ -134,7 +189,7 @@ public class ProductDetailPepository {
 
     public String getByName(String code, String select) {
         String id;
-        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+        try (Session session = HibernateUtil.getFACTORY().openSession()) {
             TypedQuery<String> query = session.createQuery(select, String.class);
             query.setParameter("code", code);
             id = query.getSingleResult();

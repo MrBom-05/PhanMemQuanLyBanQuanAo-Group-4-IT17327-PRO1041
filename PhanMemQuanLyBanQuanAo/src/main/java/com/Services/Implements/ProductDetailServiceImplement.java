@@ -22,6 +22,37 @@ public class ProductDetailServiceImplement implements ProductDetailService {
     }
 
     @Override
+    public List<ProductDetailCustomModel> getListByCode(String code) {
+        return productDetailPepository.getListByCode(code);
+    }
+
+    @Override
+    public List<ProductDetailCustomModel> getListByName(String name) {
+        return productDetailPepository.getListByName(name);
+    }
+
+    @Override
+    public List<ProductDetailCustomModel> getListByProductType(String data) {
+        return productDetailPepository.getListByProductType(data);
+    }
+
+    @Override
+    public List<ProductDetailCustomModel> getListBySize(String data) {
+        return productDetailPepository.getListBySize(data);
+    }
+
+    @Override
+    public List<ProductDetailCustomModel> getListByColor(String data) {
+        return productDetailPepository.getListByColor(data);
+    }
+
+    @Override
+    public List<ProductDetailCustomModel> getListBySubstance(String data) {
+        return productDetailPepository.getListBySubstance(data);
+    }
+
+
+    @Override
     public boolean insert(ProductDetails productDetails) {
         return productDetailPepository.insert(productDetails);
     }
