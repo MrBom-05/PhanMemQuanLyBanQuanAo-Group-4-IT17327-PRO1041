@@ -57,6 +57,12 @@ public class Promotion implements Serializable {
         this.status = status;
     }
 
+    public Promotion(String code, int decreaseNumber, int status) {
+        this.code = code;
+        this.decreaseNumber = decreaseNumber;
+        this.status = status;
+    }
+
     public Promotion(String id) {
         this.id = id;
     }

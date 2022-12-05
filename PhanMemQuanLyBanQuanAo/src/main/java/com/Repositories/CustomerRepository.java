@@ -74,9 +74,8 @@ public class CustomerRepository {
         return list;
     }
 
-    public String getByFirstName = ("SELECT s.firstName FROM Customer s WHERE s.code =: code");
-    public String getByLastName = ("SELECT s.lastName FROM Customer s WHERE s.code =: code");
-
+    public String getByFirstName = ("SELECT firstName FROM Customer WHERE code =: code");
+    public String getByLastName = ("SELECT lastName FROM Customer WHERE code =: code");
     public String getByName = ("SELECT lastName FROM Customer WHERE phoneNumber =: code");
 
     public String getByName(String code, String statement) {
@@ -89,22 +88,27 @@ public class CustomerRepository {
         return uuid;
     }
 
-    public String getByID(String phone) {
+    public String getByID = "select id from Customer where phoneNumber =: phone";
+    public String getByEmail = "select email from Customer where phoneNumber =: phone";
+
+    public String getBy(String phone, String select) {
         String id;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
-            TypedQuery<String> query = session.createQuery("select id from Customer where phoneNumber =: phone", String.class);
+            TypedQuery<String> query = session.createQuery(select, String.class);
             query.setParameter("phone", phone);
             id = query.getSingleResult();
         }
         return id;
     }
 
-    public List<Customer> checkCustomer(String phone) {
+    public boolean checkCustomer(String phone) {
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery("from Customer where phoneNumber =: phone");
         query.setParameter("phone", phone);
         List<Customer> list = query.getResultList();
-        return list;
-
+        if (list.isEmpty()){
+            return false;
+        }
+        return true;
     }
 }

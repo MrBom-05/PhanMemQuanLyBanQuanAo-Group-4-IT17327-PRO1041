@@ -1,7 +1,10 @@
 package com.Views;
 
+import com.Models.Promotion;
 import com.Models.Staff;
+import com.Services.Implements.PromotionServiceImplement;
 import com.Services.Implements.StaffServiceImplement;
+import com.Services.PromotionService;
 import com.Services.StaffService;
 import com.Utilities.LogicUtil;
 
@@ -12,11 +15,14 @@ public class Login extends javax.swing.JFrame {
 
     private StaffService staffService = new StaffServiceImplement();
 
+    private PromotionService promotionService = new PromotionServiceImplement();
+
     private LogicUtil logicUtil = new LogicUtil();
 
     public Login() {
         initComponents();
-        staffService.getList();
+        Promotion promotion = new Promotion("KM0001", 0, 3);
+        promotionService.insert(promotion);
     }
 
     private void loadAccountStaff(List<Staff> list) {
