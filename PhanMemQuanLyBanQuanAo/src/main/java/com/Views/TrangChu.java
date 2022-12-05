@@ -8,8 +8,11 @@ import com.Utilities.ExportExcel;
 import com.Utilities.LogicUtil;
 
 import javax.swing.*;
+import javax.swing.event.CaretEvent;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
 import java.io.FileOutputStream;
 import java.sql.Date;
 
@@ -38,6 +41,8 @@ import javax.swing.JOptionPane;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import com.itextpdf.text.Font;
+import com.sun.xml.fastinfoset.sax.Properties;
+import com.toedter.calendar.JDateChooser;
 
 
 public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFactory {
@@ -4491,7 +4496,8 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
     }//GEN-LAST:event_cbbHTTTPanelDatHangActionPerformed
 
-    private void btnTaoHoaDonPanelDatHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoHoaDonPanelDatHangActionPerformed
+
+    private void btnTaoHoaDonPanelDatHangActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnTaoHoaDonPanelDatHangActionPerformed
         String sdt = txtSDTPanelDatHang.getText();
         if (!customerService.checkCustomer(sdt).isEmpty()) {
             Customer customer = new Customer(customerService.getByID(sdt));
@@ -4524,7 +4530,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
     }//GEN-LAST:event_btnTaoHoaDonPanelDatHangActionPerformed
 
-    private void btnDangGiaoPanelGiaoHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangGiaoPanelGiaoHangActionPerformed
+    private void btnDangGiaoPanelGiaoHangActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnDangGiaoPanelGiaoHangActionPerformed
         String maHD = tblHoaDonPanelHoaDon.getValueAt(tblHoaDonPanelHoaDon.getSelectedRow(), 1).toString();
         if (billService.updateGiaoHang(maHD, 3, getNgayHienTai())) {
             JOptionPane.showMessageDialog(this, "Đã cập nhật trạng thái đơn hàng");
@@ -4534,7 +4540,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
     }//GEN-LAST:event_btnDangGiaoPanelGiaoHangActionPerformed
 
-    private void btnDaGiaoPanelGiaoHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaGiaoPanelGiaoHangActionPerformed
+    private void btnDaGiaoPanelGiaoHangActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnDaGiaoPanelGiaoHangActionPerformed
         String maHD = tblHoaDonPanelHoaDon.getValueAt(tblHoaDonPanelHoaDon.getSelectedRow(), 1).toString();
         if (billService.updateGiaoHang(maHD, 1, getNgayHienTai())) {
             JOptionPane.showMessageDialog(this, "Đã cập nhật trạng thái đơn hàng");
@@ -4546,11 +4552,11 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
     }//GEN-LAST:event_btnDaGiaoPanelGiaoHangActionPerformed
 
-    private void btnTraHangPanelGiaoHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraHangPanelGiaoHangActionPerformed
+    private void btnTraHangPanelGiaoHangActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnTraHangPanelGiaoHangActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTraHangPanelGiaoHangActionPerformed
 
-    private void txtTienKhachDuaPanelDatHangCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTienKhachDuaPanelDatHangCaretUpdate
+    private void txtTienKhachDuaPanelDatHangCaretUpdate(CaretEvent evt) {//GEN-FIRST:event_txtTienKhachDuaPanelDatHangCaretUpdate
         String[] tongTien = lblTongTienPanelDatHang.getText().split(".VND");
         for (String s : tongTien) {
             double tienKhachDua = Double.parseDouble(txtTienKhachDuaPanelDatHang.getText());
@@ -4580,7 +4586,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
     }
 
-    private void btnLichSuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLichSuActionPerformed
+    private void btnLichSuActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnLichSuActionPerformed
         btnThongKe.setBackground(colorTrang);
         btnSanPham.setBackground(colorTrang);
         btnHoaDon.setBackground(colorTrang);
@@ -4593,12 +4599,12 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         loadDataHoaDonPanelLichSu(billService.getListBill());
     }//GEN-LAST:event_btnLichSuActionPerformed
 
-    private void tblHoaDonPanelLichSuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonPanelLichSuMouseClicked
+    private void tblHoaDonPanelLichSuMouseClicked(MouseEvent evt) {//GEN-FIRST:event_tblHoaDonPanelLichSuMouseClicked
         String maHD = tblHoaDonPanelLichSu.getValueAt(tblHoaDonPanelLichSu.getSelectedRow(), 1).toString();
         loadDataSanPhamChiTietPanelLichSu(billDetailService.getListBillPanelLichSu(maHD));
     }//GEN-LAST:event_tblHoaDonPanelLichSuMouseClicked
 
-    private void tblSanPhamPanelLichSuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamPanelLichSuMouseClicked
+    private void tblSanPhamPanelLichSuMouseClicked(MouseEvent evt) {//GEN-FIRST:event_tblSanPhamPanelLichSuMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tblSanPhamPanelLichSuMouseClicked
 
@@ -4660,7 +4666,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         return new Promotion(maKM, tenCT, phanTramKhuyenMai, date1, date2, 1);
     }
 
-    private void btnKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenMaiActionPerformed
+    private void btnKhuyenMaiActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnKhuyenMaiActionPerformed
         btnThongKe.setBackground(colorTrang);
         btnSanPham.setBackground(colorTrang);
         btnHoaDon.setBackground(colorTrang);
@@ -4673,15 +4679,15 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         loadDataKhuyenMai(promotionService.getListOn());
     }//GEN-LAST:event_btnKhuyenMaiActionPerformed
 
-    private void btnXemKhuyenMaiPanelKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemKhuyenMaiPanelKhuyenMaiActionPerformed
+    private void btnXemKhuyenMaiPanelKhuyenMaiActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnXemKhuyenMaiPanelKhuyenMaiActionPerformed
         new XemKhuyenMaiKetThuc().setVisible(true);
     }//GEN-LAST:event_btnXemKhuyenMaiPanelKhuyenMaiActionPerformed
 
-    private void btnXoaFormPanelKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaFormPanelKhuyenMaiActionPerformed
+    private void btnXoaFormPanelKhuyenMaiActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnXoaFormPanelKhuyenMaiActionPerformed
         clearPanelKhuyenMai();
     }//GEN-LAST:event_btnXoaFormPanelKhuyenMaiActionPerformed
 
-    private void btnThemPanelKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemPanelKhuyenMaiActionPerformed
+    private void btnThemPanelKhuyenMaiActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnThemPanelKhuyenMaiActionPerformed
         Promotion promotion = getPanelKhuyenMai();
         if (promotion == null) {
             return;
@@ -4695,7 +4701,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
     }//GEN-LAST:event_btnThemPanelKhuyenMaiActionPerformed
 
-    private void btnSuaPanelKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaPanelKhuyenMaiActionPerformed
+    private void btnSuaPanelKhuyenMaiActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnSuaPanelKhuyenMaiActionPerformed
         if (txtMaKhuyenMaiPanelKhuyenMai.getText().trim().length() == 0) {
             JOptionPane.showMessageDialog(this, "Chưa chọn khuyến mãi nào trên table");
             return;
@@ -4713,7 +4719,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
     }//GEN-LAST:event_btnSuaPanelKhuyenMaiActionPerformed
 
-    private void btnAnPanelKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnPanelKhuyenMaiActionPerformed
+    private void btnAnPanelKhuyenMaiActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnAnPanelKhuyenMaiActionPerformed
         int confirm = JOptionPane.showConfirmDialog(this, "Bạn muốn kết thúc khuyến mãi này không ?", "Thông báo", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
             if (promotionService.hideOrShow(txtMaKhuyenMaiPanelKhuyenMai.getText(), 0)) {
@@ -4728,7 +4734,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
     }//GEN-LAST:event_btnAnPanelKhuyenMaiActionPerformed
 
-    private void tblKhuyenMaiPanelKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhuyenMaiPanelKhuyenMaiMouseClicked
+    private void tblKhuyenMaiPanelKhuyenMaiMouseClicked(MouseEvent evt) {//GEN-FIRST:event_tblKhuyenMaiPanelKhuyenMaiMouseClicked
         int row = tblKhuyenMaiPanelKhuyenMai.getSelectedRow();
         txtMaKhuyenMaiPanelKhuyenMai.setText(tblKhuyenMaiPanelKhuyenMai.getValueAt(row, 1).toString());
         txtTenChuongTrinhPanelKhuyenMai.setText(tblKhuyenMaiPanelKhuyenMai.getValueAt(row, 2).toString());
@@ -4761,7 +4767,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         return new PromotionDetails(promotion, productDetails, 1);
     }
 
-    private void btnChonTatCaPanelKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonTatCaPanelKhuyenMaiActionPerformed
+    private void btnChonTatCaPanelKhuyenMaiActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnChonTatCaPanelKhuyenMaiActionPerformed
         for (int i = 0; i < tblSanPhamPanelKhuyenMai.getRowCount(); i++) {
             tblSanPhamPanelKhuyenMai.setValueAt(true, i, 7);
         }
@@ -4786,7 +4792,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
     }//GEN-LAST:event_btnChonTatCaPanelKhuyenMaiActionPerformed
 
-    private void tblSanPhamPanelKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamPanelKhuyenMaiMouseClicked
+    private void tblSanPhamPanelKhuyenMaiMouseClicked(MouseEvent evt) {//GEN-FIRST:event_tblSanPhamPanelKhuyenMaiMouseClicked
         String maSP = tblSanPhamPanelKhuyenMai.getValueAt(tblSanPhamPanelKhuyenMai.getSelectedRow(), 1).toString();
         String maKM = txtMaKhuyenMaiPanelKhuyenMai.getText();
 
@@ -4892,7 +4898,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         return new Staff("newid()", maNV, ten, ho, gioiTinh, date, diaChi, sdt, email, matKhau, 1, chucVu);
     }
 
-    private void btnNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienActionPerformed
+    private void btnNhanVienActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnNhanVienActionPerformed
         btnThongKe.setBackground(colorTrang);
         btnSanPham.setBackground(colorTrang);
         btnHoaDon.setBackground(colorTrang);
@@ -4906,11 +4912,11 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         rdoNamPanelNhanVien.setSelected(true);
     }//GEN-LAST:event_btnNhanVienActionPerformed
 
-    private void btnXoaFormPanelNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaFormPanelNhanVienActionPerformed
+    private void btnXoaFormPanelNhanVienActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnXoaFormPanelNhanVienActionPerformed
         clearPanelNhanVien();
     }//GEN-LAST:event_btnXoaFormPanelNhanVienActionPerformed
 
-    private void btnThemPanelNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemPanelNhanVienActionPerformed
+    private void btnThemPanelNhanVienActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnThemPanelNhanVienActionPerformed
         Staff staff = getPanelNhanVien();
         if (staff == null) {
             return;
@@ -4925,7 +4931,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
     }//GEN-LAST:event_btnThemPanelNhanVienActionPerformed
 
-    private void btnSuaPanelNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaPanelNhanVienActionPerformed
+    private void btnSuaPanelNhanVienActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnSuaPanelNhanVienActionPerformed
         if (txtMaNhanVienPanelNhanVien.getText().trim().length() == 0) {
             JOptionPane.showMessageDialog(this, "Chưa chọn nhân viên nào trên table");
             return;
@@ -4943,7 +4949,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
     }//GEN-LAST:event_btnSuaPanelNhanVienActionPerformed
 
-    private void btnAnPanelNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnPanelNhanVienActionPerformed
+    private void btnAnPanelNhanVienActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnAnPanelNhanVienActionPerformed
         int confirm = JOptionPane.showConfirmDialog(this, "Bạn muốn ẩn Nhân Viên này không ?", "Thông báo", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
             if (staffService.hideOrShow(txtMaNhanVienPanelNhanVien.getText(), 0)) {
@@ -4958,11 +4964,11 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
     }//GEN-LAST:event_btnAnPanelNhanVienActionPerformed
 
-    private void btnXemNhanVienDaNghiPanelNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemNhanVienDaNghiPanelNVActionPerformed
+    private void btnXemNhanVienDaNghiPanelNVActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnXemNhanVienDaNghiPanelNVActionPerformed
         new XemNhanVienAn().setVisible(true);
     }//GEN-LAST:event_btnXemNhanVienDaNghiPanelNVActionPerformed
 
-    private void tblNhanVienPanelNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienPanelNhanVienMouseClicked
+    private void tblNhanVienPanelNhanVienMouseClicked(MouseEvent evt) {//GEN-FIRST:event_tblNhanVienPanelNhanVienMouseClicked
         int row = tblNhanVienPanelNhanVien.getSelectedRow();
         if (row == -1) {
             return;
@@ -5046,7 +5052,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     }
 
 
-    private void btnKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhachHangActionPerformed
+    private void btnKhachHangActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnKhachHangActionPerformed
         btnThongKe.setBackground(colorTrang);
         btnSanPham.setBackground(colorTrang);
         btnHoaDon.setBackground(colorTrang);
@@ -5059,11 +5065,11 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         loadDataKhachHang(customerService.getList());
     }//GEN-LAST:event_btnKhachHangActionPerformed
 
-    private void btnXoaFormPanelKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaFormPanelKhachHangActionPerformed
+    private void btnXoaFormPanelKhachHangActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnXoaFormPanelKhachHangActionPerformed
         clearPanelKhachHang();
     }//GEN-LAST:event_btnXoaFormPanelKhachHangActionPerformed
 
-    private void btnThemPanelKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemPanelKhachHangActionPerformed
+    private void btnThemPanelKhachHangActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnThemPanelKhachHangActionPerformed
         Customer customer = getPanelKhachHang();
         if (customer == null) {
             return;
@@ -5077,7 +5083,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
     }//GEN-LAST:event_btnThemPanelKhachHangActionPerformed
 
-    private void btnSuaPanelKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaPanelKhachHangActionPerformed
+    private void btnSuaPanelKhachHangActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnSuaPanelKhachHangActionPerformed
         if (txtMaKhachHangPanelKhachHang.getText().trim().length() == 0) {
             JOptionPane.showMessageDialog(this, "Chưa chọn khách hàng nào trên table");
             return;
@@ -5095,7 +5101,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
     }//GEN-LAST:event_btnSuaPanelKhachHangActionPerformed
 
-    private void txtTimKiemKhachHangPanelKHCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTimKiemKhachHangPanelKHCaretUpdate
+    private void txtTimKiemKhachHangPanelKHCaretUpdate(CaretEvent evt) {//GEN-FIRST:event_txtTimKiemKhachHangPanelKHCaretUpdate
         String sdtKH = txtTimKiemKhachHangPanelKH.getText();
         loadDataKhachHang(customerService.search(sdtKH));
         if (customerService.search(sdtKH).isEmpty()) {
@@ -5103,7 +5109,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
     }//GEN-LAST:event_txtTimKiemKhachHangPanelKHCaretUpdate
 
-    private void tblKhachHangPanelKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhachHangPanelKhachHangMouseClicked
+    private void tblKhachHangPanelKhachHangMouseClicked(MouseEvent evt) {//GEN-FIRST:event_tblKhachHangPanelKhachHangMouseClicked
         int row = tblKhachHangPanelKhachHang.getSelectedRow();
         txtMaKhachHangPanelKhachHang.setText(tblKhachHangPanelKhachHang.getValueAt(row, 1).toString());
         txtHoPanelKhachHang.setText(customerService.getByLastName(tblKhachHangPanelKhachHang.getValueAt(row, 1).toString()));
@@ -5113,7 +5119,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     }//GEN-LAST:event_tblKhachHangPanelKhachHangMouseClicked
 
     // Panel Đổi mật khẩu
-    private void btnDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiMatKhauActionPerformed
+    private void btnDoiMatKhauActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnDoiMatKhauActionPerformed
         btnThongKe.setBackground(colorTrang);
         btnSanPham.setBackground(colorTrang);
         btnHoaDon.setBackground(colorTrang);
@@ -5132,11 +5138,11 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         txtLoadCaptchaPanelDoiMatKhau.setText(String.valueOf(captcha));
     }
 
-    private void btnLoadCaptchaPanelDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadCaptchaPanelDoiMatKhauActionPerformed
+    private void btnLoadCaptchaPanelDoiMatKhauActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnLoadCaptchaPanelDoiMatKhauActionPerformed
         ranDomCaptcha();
     }//GEN-LAST:event_btnLoadCaptchaPanelDoiMatKhauActionPerformed
 
-    private void btnLuuPanelDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuPanelDoiMatKhauActionPerformed
+    private void btnLuuPanelDoiMatKhauActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnLuuPanelDoiMatKhauActionPerformed
         String taiKhoan = txtTaiKhoanPanelDoiMatKhau.getText();
         String matKhauCu = logicUtil.taoMaHoa(txtMatKhauCuPanelDoiMatKhau.getText());
         String matKhauMoi = txtMatKhauMoiPanelDoiMatKhau.getText();
@@ -5176,7 +5182,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
     }//GEN-LAST:event_btnLuuPanelDoiMatKhauActionPerformed
 
-    private void btnThoatPanelDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatPanelDoiMatKhauActionPerformed
+    private void btnThoatPanelDoiMatKhauActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnThoatPanelDoiMatKhauActionPerformed
         btnThongKe.setBackground(colorXanh);
         btnSanPham.setBackground(colorTrang);
         btnHoaDon.setBackground(colorTrang);
@@ -5189,7 +5195,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     }//GEN-LAST:event_btnThoatPanelDoiMatKhauActionPerformed
 
     // Panel Đăng xuất
-    private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
+    private void btnDangXuatActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
         int confirm = JOptionPane.showConfirmDialog(this, "Bạn muốn đăng xuất không ?", "Thông báo", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
             new Login().setVisible(true);
@@ -5202,303 +5208,303 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Camera;
-    private javax.swing.JButton btnAnPanelKhuyenMai;
-    private javax.swing.JButton btnAnPanelNhanVien;
-    private javax.swing.JButton btnAnPanelSanPhamCT;
-    private javax.swing.JButton btnChonTatCaPanelKhuyenMai;
-    private javax.swing.JButton btnDaGiaoPanelGiaoHang;
-    private javax.swing.JButton btnDangGiaoPanelGiaoHang;
-    private javax.swing.JButton btnDangXuat;
-    private javax.swing.JButton btnDoiMatKhau;
-    private javax.swing.JButton btnExit;
-    private javax.swing.JButton btnHoaDon;
-    private javax.swing.JButton btnHuyPanelHoaDon;
-    private javax.swing.JButton btnKhachHang;
-    private javax.swing.JButton btnKhuyenMai;
-    private javax.swing.JButton btnLichSu;
-    private javax.swing.JButton btnLoadCaptchaPanelDoiMatKhau;
-    private javax.swing.JButton btnLuuPanelDoiMatKhau;
-    private javax.swing.JButton btnNhanVien;
-    private javax.swing.JButton btnSanPham;
-    private javax.swing.JButton btnSuaPanelKhachHang;
-    private javax.swing.JButton btnSuaPanelKhuyenMai;
-    private javax.swing.JButton btnSuaPanelNhanVien;
-    private javax.swing.JButton btnSuaPanelSanPham;
-    private javax.swing.JButton btnSuaPanelSanPhamCT;
-    private javax.swing.JButton btnTaoHoaDonPanelDatHang;
-    private javax.swing.JButton btnTaoHoaDonPanelHoaDon;
-    private javax.swing.JButton btnThanhToanPanelHoaDon;
-    private javax.swing.JButton btnThemPanelKhachHang;
-    private javax.swing.JButton btnThemPanelKhuyenMai;
-    private javax.swing.JButton btnThemPanelNhanVien;
-    private javax.swing.JButton btnThemPanelSanPham;
-    private javax.swing.JButton btnThemPanelSanPhamCT;
-    private javax.swing.JButton btnThoatPanelDoiMatKhau;
-    private javax.swing.JButton btnThongKe;
-    private javax.swing.JButton btnTimKiemKhachHangPanelHoaDon;
-    private javax.swing.JButton btnTimKiemPanelDatHang;
-    private javax.swing.JButton btnTimKiemPanelSanPham;
-    private javax.swing.JButton btnTimKiemPanelThongKe;
-    private javax.swing.JButton btnTraHangPanelGiaoHang;
-    private javax.swing.JButton btnXemAnPanelSanPhamCT;
-    private javax.swing.JButton btnXemKhuyenMaiPanelKhuyenMai;
-    private javax.swing.JButton btnXemNhanVienDaNghiPanelNV;
-    private javax.swing.JButton btnXoaFormPanelKhachHang;
-    private javax.swing.JButton btnXoaFormPanelKhuyenMai;
-    private javax.swing.JButton btnXoaFormPanelNhanVien;
-    private javax.swing.JButton btnXoaFormPanelSanPhamCT;
-    private javax.swing.JButton btnXoaGioHangPanelHoaDon;
-    private javax.swing.JButton btnXoaPanelSanPham;
-    private javax.swing.JButton btnXuatFileExcelPanelThongKe;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.ButtonGroup buttonGroup4;
-    private javax.swing.JComboBox<String> cbbChatLieuPanelSanPham;
-    private javax.swing.JComboBox<String> cbbChucVuPanelNhanVien;
-    private javax.swing.JComboBox<String> cbbHTTTPanelDatHang;
-    private javax.swing.JComboBox<String> cbbHTTTPanelHoaDon;
-    private javax.swing.JComboBox<String> cbbKichCoPanelSanPham;
-    private javax.swing.JComboBox<String> cbbLoaiSPPanelSanPham;
-    private javax.swing.JComboBox<String> cbbMauSacPanelSanPham;
-    private javax.swing.JComboBox<String> cbbNamDoanhThuPanelThongKe;
-    private javax.swing.JComboBox<String> cbbTimKiemSPPanelSanPham;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel51;
-    private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
-    private javax.swing.JLabel jLabel54;
-    private javax.swing.JLabel jLabel55;
-    private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel57;
-    private javax.swing.JLabel jLabel58;
-    private javax.swing.JLabel jLabel59;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel60;
-    private javax.swing.JLabel jLabel61;
-    private javax.swing.JLabel jLabel62;
-    private javax.swing.JLabel jLabel63;
-    private javax.swing.JLabel jLabel64;
-    private javax.swing.JLabel jLabel65;
-    private javax.swing.JLabel jLabel66;
-    private javax.swing.JLabel jLabel67;
-    private javax.swing.JLabel jLabel68;
-    private javax.swing.JLabel jLabel69;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel70;
-    private javax.swing.JLabel jLabel71;
-    private javax.swing.JLabel jLabel72;
-    private javax.swing.JLabel jLabel73;
-    private javax.swing.JLabel jLabel74;
-    private javax.swing.JLabel jLabel75;
-    private javax.swing.JLabel jLabel76;
-    private javax.swing.JLabel jLabel77;
-    private javax.swing.JLabel jLabel78;
-    private javax.swing.JLabel jLabel79;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel80;
-    private javax.swing.JLabel jLabel81;
-    private javax.swing.JLabel jLabel82;
-    private javax.swing.JLabel jLabel83;
-    private javax.swing.JLabel jLabel84;
-    private javax.swing.JLabel jLabel85;
-    private javax.swing.JLabel jLabel87;
-    private javax.swing.JLabel jLabel88;
-    private javax.swing.JLabel jLabel89;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel18;
-    private javax.swing.JPanel jPanel19;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel20;
-    private javax.swing.JPanel jPanel21;
-    private javax.swing.JPanel jPanel22;
-    private javax.swing.JPanel jPanel23;
-    private javax.swing.JPanel jPanel24;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane10;
-    private javax.swing.JScrollPane jScrollPane11;
-    private javax.swing.JScrollPane jScrollPane12;
-    private javax.swing.JScrollPane jScrollPane13;
-    private javax.swing.JScrollPane jScrollPane14;
-    private javax.swing.JScrollPane jScrollPane15;
-    private javax.swing.JScrollPane jScrollPane16;
-    private javax.swing.JScrollPane jScrollPane17;
-    private javax.swing.JScrollPane jScrollPane18;
-    private javax.swing.JScrollPane jScrollPane19;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane20;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator10;
-    private javax.swing.JSeparator jSeparator11;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JSeparator jSeparator8;
-    private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JLabel lblHoTenNVPanelMain;
-    private javax.swing.JLabel lblMaNVPanelLichSu;
-    private javax.swing.JLabel lblMaNhanVienPanelMain;
-    private javax.swing.JLabel lblNgayTaoPanelLichSu;
-    private javax.swing.JLabel lblSDTPanelLichSu;
-    private javax.swing.JLabel lblSumDate;
-    private javax.swing.JLabel lblSumDonHang;
-    private javax.swing.JLabel lblSumMonth;
-    private javax.swing.JLabel lblSumYear;
-    private javax.swing.JLabel lblTenKHPanelLichSu;
-    private javax.swing.JLabel lblTenNVPanelLichSu;
-    private javax.swing.JLabel lblTienThuaPanelDatHang;
-    private javax.swing.JLabel lblTienThuaPanelHoaDon;
-    private javax.swing.JLabel lblTongTienPanelDatHang;
-    private javax.swing.JLabel lblTongTienPanelHoaDon;
-    private javax.swing.JLabel lblTongTienPanelLichSu;
-    private javax.swing.JPanel panelDoiMatKhau;
-    private javax.swing.JPanel panelHoaDon;
-    private javax.swing.JPanel panelKhachHang;
-    private javax.swing.JPanel panelKhuyenMai;
-    private javax.swing.JPanel panelLichSu;
-    private javax.swing.JPanel panelMain;
-    private javax.swing.JPanel panelNhanVien;
-    private javax.swing.JPanel panelSanPham;
-    private javax.swing.JPanel panelThongKe;
-    private javax.swing.JPanel panelTrangChu;
-    private javax.swing.JRadioButton rdoChatLieuPanelSanPham;
-    private javax.swing.JRadioButton rdoKichCoPanelSanPham;
-    private javax.swing.JRadioButton rdoLoaiSanPhamPanelSanPham;
-    private javax.swing.JRadioButton rdoMauSacPanelSanPham;
-    private javax.swing.JRadioButton rdoNamPanelNhanVien;
-    private javax.swing.JRadioButton rdoNuPanelNhanVien;
-    private javax.swing.JSpinner spnPhanTramKhuyenMaiPanelKhuyenMai;
-    private javax.swing.JSpinner spnSoLuongPanelSanPham;
-    private javax.swing.JTable tblChiTietSanPhamPanelSanPham;
-    private javax.swing.JTable tblDoanhThuPanelThongKe;
-    private javax.swing.JTable tblGioHangPanelHoaDon;
-    private javax.swing.JTable tblHoaDonPanelHoaDon;
-    private javax.swing.JTable tblHoaDonPanelLichSu;
-    private javax.swing.JTable tblKhachHangPanelKhachHang;
-    private javax.swing.JTable tblKhuyenMaiPanelKhuyenMai;
-    private javax.swing.JTable tblNhanVienPanelNhanVien;
-    private javax.swing.JTable tblSanPhamPanelHoaDon;
-    private javax.swing.JTable tblSanPhamPanelKhuyenMai;
-    private javax.swing.JTable tblSanPhamPanelLichSu;
-    private javax.swing.JTable tblSanPhamPanelThongKe;
-    private javax.swing.JTable tblThuocTinhPanelSanPham;
-    private javax.swing.JTextField txtCaptchaPanelDoiMatKhau;
-    private javax.swing.JTextArea txtDiaChiKhachHang;
-    private javax.swing.JTextArea txtDiaChiPanelLichSu;
-    private javax.swing.JTextArea txtDiaChiPanelNhanVien;
-    private javax.swing.JTextField txtEmailPanelKhachHang;
-    private javax.swing.JTextField txtEmailPanelNhanVien;
-    private javax.swing.JTextArea txtGhiChuHoaDon;
-    private javax.swing.JTextArea txtGhiChuPanelDatHang;
-    private javax.swing.JTextField txtGiaPanelSanPham;
-    private javax.swing.JTextField txtHoPanelKhachHang;
-    private javax.swing.JTextField txtHoPanelNhanVien;
-    private javax.swing.JTextField txtLoadCaptchaPanelDoiMatKhau;
-    private javax.swing.JTextField txtMaKhachHangPanelKhachHang;
-    private javax.swing.JTextField txtMaKhuyenMaiPanelKhuyenMai;
-    private javax.swing.JTextField txtMaNhanVienPanelNhanVien;
-    private javax.swing.JTextField txtMaSPPanelSanPham;
-    private javax.swing.JTextField txtMaThuocTinhPanelSanPham;
-    private javax.swing.JPasswordField txtMatKhauCuPanelDoiMatKhau;
-    private javax.swing.JPasswordField txtMatKhauMoiPanelDoiMatKhau;
-    private javax.swing.JPasswordField txtMatKhauPanelNhanVien;
-    private javax.swing.JTextArea txtMoTaPanelLichSu;
-    private javax.swing.JTextArea txtMoTaPanelSanPham;
-    private com.toedter.calendar.JDateChooser txtNgayBatDauPanelKhuyenMai;
-    private com.toedter.calendar.JDateChooser txtNgayBatDauPanelThongKe;
-    private com.toedter.calendar.JDateChooser txtNgayKetThucPanelKhuyenMai;
-    private com.toedter.calendar.JDateChooser txtNgayKetThucPanelThongKe;
-    private com.toedter.calendar.JDateChooser txtNgaySinhNhanVienPanelNhanVien;
-    private javax.swing.JTextField txtSDTPanelDatHang;
-    private javax.swing.JTextField txtSDTPanelHoaDon;
-    private javax.swing.JTextField txtSDTPanelKhachHang;
-    private javax.swing.JTextField txtSDTPanelNhanVien;
-    private javax.swing.JTextField txtTaiKhoanPanelDoiMatKhau;
-    private javax.swing.JTextField txtTenChuongTrinhPanelKhuyenMai;
-    private javax.swing.JTextField txtTenKhachHangPanelDatHang;
-    private javax.swing.JTextField txtTenKhachHangPanelHoaDon;
-    private javax.swing.JTextField txtTenPanelKhachHang;
-    private javax.swing.JTextField txtTenPanelNhanVien;
-    private javax.swing.JTextField txtTenSPPanelSanPham;
-    private javax.swing.JTextField txtTenThuocTinhPanelSanPham;
-    private javax.swing.JTextField txtTienKhachDuaPanelDatHang;
-    private javax.swing.JTextField txtTienKhachDuaPanelHoaDon;
-    private javax.swing.JTextField txtTimKiemKhachHangPanelKH;
-    private javax.swing.JTextField txtTimKiemSPPanelSanPham;
-    private javax.swing.JPasswordField txtXNMatKhauPanelDoiMatKhau;
+    private JPanel Camera;
+    private JButton btnAnPanelKhuyenMai;
+    private JButton btnAnPanelNhanVien;
+    private JButton btnAnPanelSanPhamCT;
+    private JButton btnChonTatCaPanelKhuyenMai;
+    private JButton btnDaGiaoPanelGiaoHang;
+    private JButton btnDangGiaoPanelGiaoHang;
+    private JButton btnDangXuat;
+    private JButton btnDoiMatKhau;
+    private JButton btnExit;
+    private JButton btnHoaDon;
+    private JButton btnHuyPanelHoaDon;
+    private JButton btnKhachHang;
+    private JButton btnKhuyenMai;
+    private JButton btnLichSu;
+    private JButton btnLoadCaptchaPanelDoiMatKhau;
+    private JButton btnLuuPanelDoiMatKhau;
+    private JButton btnNhanVien;
+    private JButton btnSanPham;
+    private JButton btnSuaPanelKhachHang;
+    private JButton btnSuaPanelKhuyenMai;
+    private JButton btnSuaPanelNhanVien;
+    private JButton btnSuaPanelSanPham;
+    private JButton btnSuaPanelSanPhamCT;
+    private JButton btnTaoHoaDonPanelDatHang;
+    private JButton btnTaoHoaDonPanelHoaDon;
+    private JButton btnThanhToanPanelHoaDon;
+    private JButton btnThemPanelKhachHang;
+    private JButton btnThemPanelKhuyenMai;
+    private JButton btnThemPanelNhanVien;
+    private JButton btnThemPanelSanPham;
+    private JButton btnThemPanelSanPhamCT;
+    private JButton btnThoatPanelDoiMatKhau;
+    private JButton btnThongKe;
+    private JButton btnTimKiemKhachHangPanelHoaDon;
+    private JButton btnTimKiemPanelDatHang;
+    private JButton btnTimKiemPanelSanPham;
+    private JButton btnTimKiemPanelThongKe;
+    private JButton btnTraHangPanelGiaoHang;
+    private JButton btnXemAnPanelSanPhamCT;
+    private JButton btnXemKhuyenMaiPanelKhuyenMai;
+    private JButton btnXemNhanVienDaNghiPanelNV;
+    private JButton btnXoaFormPanelKhachHang;
+    private JButton btnXoaFormPanelKhuyenMai;
+    private JButton btnXoaFormPanelNhanVien;
+    private JButton btnXoaFormPanelSanPhamCT;
+    private JButton btnXoaGioHangPanelHoaDon;
+    private JButton btnXoaPanelSanPham;
+    private JButton btnXuatFileExcelPanelThongKe;
+    private ButtonGroup buttonGroup1;
+    private ButtonGroup buttonGroup2;
+    private ButtonGroup buttonGroup3;
+    private ButtonGroup buttonGroup4;
+    private JComboBox<String> cbbChatLieuPanelSanPham;
+    private JComboBox<String> cbbChucVuPanelNhanVien;
+    private JComboBox<String> cbbHTTTPanelDatHang;
+    private JComboBox<String> cbbHTTTPanelHoaDon;
+    private JComboBox<String> cbbKichCoPanelSanPham;
+    private JComboBox<String> cbbLoaiSPPanelSanPham;
+    private JComboBox<String> cbbMauSacPanelSanPham;
+    private JComboBox<String> cbbNamDoanhThuPanelThongKe;
+    private JComboBox<String> cbbTimKiemSPPanelSanPham;
+    private JLabel jLabel1;
+    private JLabel jLabel10;
+    private JLabel jLabel11;
+    private JLabel jLabel12;
+    private JLabel jLabel13;
+    private JLabel jLabel14;
+    private JLabel jLabel15;
+    private JLabel jLabel16;
+    private JLabel jLabel17;
+    private JLabel jLabel18;
+    private JLabel jLabel19;
+    private JLabel jLabel2;
+    private JLabel jLabel20;
+    private JLabel jLabel21;
+    private JLabel jLabel22;
+    private JLabel jLabel23;
+    private JLabel jLabel24;
+    private JLabel jLabel25;
+    private JLabel jLabel26;
+    private JLabel jLabel27;
+    private JLabel jLabel28;
+    private JLabel jLabel29;
+    private JLabel jLabel3;
+    private JLabel jLabel30;
+    private JLabel jLabel31;
+    private JLabel jLabel32;
+    private JLabel jLabel33;
+    private JLabel jLabel34;
+    private JLabel jLabel35;
+    private JLabel jLabel36;
+    private JLabel jLabel37;
+    private JLabel jLabel38;
+    private JLabel jLabel4;
+    private JLabel jLabel40;
+    private JLabel jLabel41;
+    private JLabel jLabel42;
+    private JLabel jLabel43;
+    private JLabel jLabel44;
+    private JLabel jLabel45;
+    private JLabel jLabel46;
+    private JLabel jLabel47;
+    private JLabel jLabel48;
+    private JLabel jLabel49;
+    private JLabel jLabel5;
+    private JLabel jLabel50;
+    private JLabel jLabel51;
+    private JLabel jLabel52;
+    private JLabel jLabel53;
+    private JLabel jLabel54;
+    private JLabel jLabel55;
+    private JLabel jLabel56;
+    private JLabel jLabel57;
+    private JLabel jLabel58;
+    private JLabel jLabel59;
+    private JLabel jLabel6;
+    private JLabel jLabel60;
+    private JLabel jLabel61;
+    private JLabel jLabel62;
+    private JLabel jLabel63;
+    private JLabel jLabel64;
+    private JLabel jLabel65;
+    private JLabel jLabel66;
+    private JLabel jLabel67;
+    private JLabel jLabel68;
+    private JLabel jLabel69;
+    private JLabel jLabel7;
+    private JLabel jLabel70;
+    private JLabel jLabel71;
+    private JLabel jLabel72;
+    private JLabel jLabel73;
+    private JLabel jLabel74;
+    private JLabel jLabel75;
+    private JLabel jLabel76;
+    private JLabel jLabel77;
+    private JLabel jLabel78;
+    private JLabel jLabel79;
+    private JLabel jLabel8;
+    private JLabel jLabel80;
+    private JLabel jLabel81;
+    private JLabel jLabel82;
+    private JLabel jLabel83;
+    private JLabel jLabel84;
+    private JLabel jLabel85;
+    private JLabel jLabel87;
+    private JLabel jLabel88;
+    private JLabel jLabel89;
+    private JLabel jLabel9;
+    private JPanel jPanel1;
+    private JPanel jPanel10;
+    private JPanel jPanel11;
+    private JPanel jPanel12;
+    private JPanel jPanel13;
+    private JPanel jPanel14;
+    private JPanel jPanel15;
+    private JPanel jPanel16;
+    private JPanel jPanel17;
+    private JPanel jPanel18;
+    private JPanel jPanel19;
+    private JPanel jPanel2;
+    private JPanel jPanel20;
+    private JPanel jPanel21;
+    private JPanel jPanel22;
+    private JPanel jPanel23;
+    private JPanel jPanel24;
+    private JPanel jPanel3;
+    private JPanel jPanel4;
+    private JPanel jPanel5;
+    private JPanel jPanel6;
+    private JPanel jPanel7;
+    private JPanel jPanel8;
+    private JPanel jPanel9;
+    private JScrollPane jScrollPane1;
+    private JScrollPane jScrollPane10;
+    private JScrollPane jScrollPane11;
+    private JScrollPane jScrollPane12;
+    private JScrollPane jScrollPane13;
+    private JScrollPane jScrollPane14;
+    private JScrollPane jScrollPane15;
+    private JScrollPane jScrollPane16;
+    private JScrollPane jScrollPane17;
+    private JScrollPane jScrollPane18;
+    private JScrollPane jScrollPane19;
+    private JScrollPane jScrollPane2;
+    private JScrollPane jScrollPane20;
+    private JScrollPane jScrollPane3;
+    private JScrollPane jScrollPane4;
+    private JScrollPane jScrollPane5;
+    private JScrollPane jScrollPane6;
+    private JScrollPane jScrollPane7;
+    private JScrollPane jScrollPane8;
+    private JScrollPane jScrollPane9;
+    private JSeparator jSeparator1;
+    private JSeparator jSeparator10;
+    private JSeparator jSeparator11;
+    private JSeparator jSeparator2;
+    private JSeparator jSeparator3;
+    private JSeparator jSeparator4;
+    private JSeparator jSeparator5;
+    private JSeparator jSeparator6;
+    private JSeparator jSeparator7;
+    private JSeparator jSeparator8;
+    private JSeparator jSeparator9;
+    private JTabbedPane jTabbedPane1;
+    private JTabbedPane jTabbedPane2;
+    private JTabbedPane jTabbedPane3;
+    private JLabel lblHoTenNVPanelMain;
+    private JLabel lblMaNVPanelLichSu;
+    private JLabel lblMaNhanVienPanelMain;
+    private JLabel lblNgayTaoPanelLichSu;
+    private JLabel lblSDTPanelLichSu;
+    private JLabel lblSumDate;
+    private JLabel lblSumDonHang;
+    private JLabel lblSumMonth;
+    private JLabel lblSumYear;
+    private JLabel lblTenKHPanelLichSu;
+    private JLabel lblTenNVPanelLichSu;
+    private JLabel lblTienThuaPanelDatHang;
+    private JLabel lblTienThuaPanelHoaDon;
+    private JLabel lblTongTienPanelDatHang;
+    private JLabel lblTongTienPanelHoaDon;
+    private JLabel lblTongTienPanelLichSu;
+    private JPanel panelDoiMatKhau;
+    private JPanel panelHoaDon;
+    private JPanel panelKhachHang;
+    private JPanel panelKhuyenMai;
+    private JPanel panelLichSu;
+    private JPanel panelMain;
+    private JPanel panelNhanVien;
+    private JPanel panelSanPham;
+    private JPanel panelThongKe;
+    private JPanel panelTrangChu;
+    private JRadioButton rdoChatLieuPanelSanPham;
+    private JRadioButton rdoKichCoPanelSanPham;
+    private JRadioButton rdoLoaiSanPhamPanelSanPham;
+    private JRadioButton rdoMauSacPanelSanPham;
+    private JRadioButton rdoNamPanelNhanVien;
+    private JRadioButton rdoNuPanelNhanVien;
+    private JSpinner spnPhanTramKhuyenMaiPanelKhuyenMai;
+    private JSpinner spnSoLuongPanelSanPham;
+    private JTable tblChiTietSanPhamPanelSanPham;
+    private JTable tblDoanhThuPanelThongKe;
+    private JTable tblGioHangPanelHoaDon;
+    private JTable tblHoaDonPanelHoaDon;
+    private JTable tblHoaDonPanelLichSu;
+    private JTable tblKhachHangPanelKhachHang;
+    private JTable tblKhuyenMaiPanelKhuyenMai;
+    private JTable tblNhanVienPanelNhanVien;
+    private JTable tblSanPhamPanelHoaDon;
+    private JTable tblSanPhamPanelKhuyenMai;
+    private JTable tblSanPhamPanelLichSu;
+    private JTable tblSanPhamPanelThongKe;
+    private JTable tblThuocTinhPanelSanPham;
+    private JTextField txtCaptchaPanelDoiMatKhau;
+    private JTextArea txtDiaChiKhachHang;
+    private JTextArea txtDiaChiPanelLichSu;
+    private JTextArea txtDiaChiPanelNhanVien;
+    private JTextField txtEmailPanelKhachHang;
+    private JTextField txtEmailPanelNhanVien;
+    private JTextArea txtGhiChuHoaDon;
+    private JTextArea txtGhiChuPanelDatHang;
+    private JTextField txtGiaPanelSanPham;
+    private JTextField txtHoPanelKhachHang;
+    private JTextField txtHoPanelNhanVien;
+    private JTextField txtLoadCaptchaPanelDoiMatKhau;
+    private JTextField txtMaKhachHangPanelKhachHang;
+    private JTextField txtMaKhuyenMaiPanelKhuyenMai;
+    private JTextField txtMaNhanVienPanelNhanVien;
+    private JTextField txtMaSPPanelSanPham;
+    private JTextField txtMaThuocTinhPanelSanPham;
+    private JPasswordField txtMatKhauCuPanelDoiMatKhau;
+    private JPasswordField txtMatKhauMoiPanelDoiMatKhau;
+    private JPasswordField txtMatKhauPanelNhanVien;
+    private JTextArea txtMoTaPanelLichSu;
+    private JTextArea txtMoTaPanelSanPham;
+    private JDateChooser txtNgayBatDauPanelKhuyenMai;
+    private JDateChooser txtNgayBatDauPanelThongKe;
+    private JDateChooser txtNgayKetThucPanelKhuyenMai;
+    private JDateChooser txtNgayKetThucPanelThongKe;
+    private JDateChooser txtNgaySinhNhanVienPanelNhanVien;
+    private JTextField txtSDTPanelDatHang;
+    private JTextField txtSDTPanelHoaDon;
+    private JTextField txtSDTPanelKhachHang;
+    private JTextField txtSDTPanelNhanVien;
+    private JTextField txtTaiKhoanPanelDoiMatKhau;
+    private JTextField txtTenChuongTrinhPanelKhuyenMai;
+    private JTextField txtTenKhachHangPanelDatHang;
+    private JTextField txtTenKhachHangPanelHoaDon;
+    private JTextField txtTenPanelKhachHang;
+    private JTextField txtTenPanelNhanVien;
+    private JTextField txtTenSPPanelSanPham;
+    private JTextField txtTenThuocTinhPanelSanPham;
+    private JTextField txtTienKhachDuaPanelDatHang;
+    private JTextField txtTienKhachDuaPanelHoaDon;
+    private JTextField txtTimKiemKhachHangPanelKH;
+    private JTextField txtTimKiemSPPanelSanPham;
+    private JPasswordField txtXNMatKhauPanelDoiMatKhau;
     // End of variables declaration//GEN-END:variables
 }
