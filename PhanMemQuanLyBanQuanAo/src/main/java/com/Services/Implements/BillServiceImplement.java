@@ -18,6 +18,11 @@ public class BillServiceImplement implements BillService {
     }
 
     @Override
+    public List<Bill> getList(String code) {
+        return billRepository.getList(code);
+    }
+
+    @Override
     public List<BillCustomModel> getListBill() {
         return billRepository.getListBill();
     }
