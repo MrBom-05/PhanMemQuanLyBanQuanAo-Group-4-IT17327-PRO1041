@@ -89,4 +89,14 @@ public class BillRepository {
         List<Integer> list = query.getResultList();
         return list;
     }
+
+    public int checkStatus(String code) {
+        int id;
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+            TypedQuery<Integer> query = session.createQuery("select status from Bill where code =: code", int.class);
+            query.setParameter("code", code);
+            id = query.getSingleResult();
+        }
+        return id;
+    }
 }

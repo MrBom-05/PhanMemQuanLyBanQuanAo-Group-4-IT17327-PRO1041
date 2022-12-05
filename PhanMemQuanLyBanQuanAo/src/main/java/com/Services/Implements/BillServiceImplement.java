@@ -57,4 +57,13 @@ public class BillServiceImplement implements BillService {
     public List<Integer> getYear() {
         return billRepository.getYear();
     }
+
+    @Override
+    public boolean checkStatus(String code) {
+        int check = billRepository.checkStatus(code);
+        if (check != 1){
+            return false;
+        }
+        return true;
+    }
 }

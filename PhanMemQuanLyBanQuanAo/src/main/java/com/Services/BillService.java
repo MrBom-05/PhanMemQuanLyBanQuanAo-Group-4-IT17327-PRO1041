@@ -25,4 +25,6 @@ public interface BillService {
     public String getByID(String code);
 
     public List<Integer> getYear();
+
+    public boolean checkStatus(String code);
 }

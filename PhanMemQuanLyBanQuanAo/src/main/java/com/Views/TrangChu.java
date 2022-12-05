@@ -183,6 +183,11 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                 String maHD = tblHoaDonPanelHoaDon.getValueAt(tblHoaDonPanelHoaDon.getSelectedRow(), 1).toString();
                 String maSP = String.valueOf(result);
 
+                if (!billService.checkStatus(maHD)){
+                    JOptionPane.showMessageDialog(this, "Không thể thêm sản phẩm!");
+                    return;
+                }
+
                 int soLuong = productDetailService.getBySoLuong(maSP);
                 int setSL = soLuong - 1;
                 BillDetails billDetails = getDataBillDetails(1, maSP, maHD, productDetailService.getByDonGia(maSP));
@@ -4410,6 +4415,9 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             return;
         }
         String maHD = tblHoaDonPanelHoaDon.getValueAt(row, 1).toString();
+        if (billDetailService.getListBill(maHD).isEmpty()){
+            JOptionPane.showMessageDialog(this, "Giỏ hàng không có sản phẩm");
+        }
         String url = "D:\\PhanMemQuanLyBanQuanAo-Group-4-IT17327-PRO1041\\Bill\\" + maHD + ".pdf";
         if (billDetailService.getListBill(maHD).isEmpty()) {
             JOptionPane.showMessageDialog(this, "Giỏ hàng chưa có sản phẩm!");
@@ -4496,6 +4504,11 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         String maSP = tblSanPhamPanelHoaDon.getValueAt(tblSanPhamPanelHoaDon.getSelectedRow(), 0).toString();
         String maHD = tblHoaDonPanelHoaDon.getValueAt(tblHoaDonPanelHoaDon.getSelectedRow(), 1).toString();
 
+        if (!billService.checkStatus(maHD)){
+            JOptionPane.showMessageDialog(this, "Không thể thêm sản phẩm!");
+            return;
+        }
+
         int soLuong = productDetailService.getBySoLuong(maSP);
         float donGia = productDetailService.getByDonGia(maSP);
         int setSL = soLuong - Integer.parseInt(input);
@@ -4532,6 +4545,10 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
     private void btnXoaGioHangPanelHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaGioHangPanelHoaDonActionPerformed
         String maHD = tblHoaDonPanelHoaDon.getValueAt(tblHoaDonPanelHoaDon.getSelectedRow(), 1).toString();
+        if (!billService.checkStatus(maHD)){
+            JOptionPane.showMessageDialog(this, "Không thể xóa sản phẩm!");
+            return;
+        }
         String idHD = billService.getByID(maHD);
         defaultTableModel = (DefaultTableModel) tblGioHangPanelHoaDon.getModel();
         List<String> list = new ArrayList<>();
@@ -4604,6 +4621,9 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
     private void btnDangGiaoPanelGiaoHangActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnDangGiaoPanelGiaoHangActionPerformed
         String maHD = tblHoaDonPanelHoaDon.getValueAt(tblHoaDonPanelHoaDon.getSelectedRow(), 1).toString();
+        if (billDetailService.getListBill(maHD).isEmpty()){
+            JOptionPane.showMessageDialog(this, "Giỏ hàng không có sản phẩm");
+        }
         if (billService.updateGiaoHang(maHD, 3, getNgayHienTai())) {
             JOptionPane.showMessageDialog(this, "Đã cập nhật trạng thái đơn hàng");
             loadDataHoaDonPanelHoaDon(billService.getListBill());
