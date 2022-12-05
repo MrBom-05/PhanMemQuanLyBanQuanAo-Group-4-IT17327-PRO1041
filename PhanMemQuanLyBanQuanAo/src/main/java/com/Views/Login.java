@@ -179,7 +179,7 @@ public class Login extends javax.swing.JFrame {
         String matKhau = logicUtil.taoMaHoa(txtPassword.getText());
 
         if (email.trim().length() == 0 || txtPassword.getText().trim().length() == 0) {
-            JOptionPane.showMessageDialog(this, "Không được để trống", "Thông báo", HEIGHT);
+            JOptionPane.showMessageDialog(this, "Không được để trống");
             return;
         }
 

@@ -1,6 +1,8 @@
 package com.Utilities;
 
 import com.CustomModels.BillDetailWithProductDetailCustomModel;
+import com.Services.Implements.ProductDetailServiceImplement;
+import com.Services.ProductDetailService;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -11,6 +13,8 @@ import java.io.FileOutputStream;
 import java.util.List;
 
 public class ExportExcel {
+
+    private static ProductDetailService productDetailService = new ProductDetailServiceImplement();
 
     public void excel(List<BillDetailWithProductDetailCustomModel> list, String nameSheet) {
 
@@ -47,19 +51,19 @@ public class ExportExcel {
         cell.setCellValue(billDetailWithProductDetailCustomModel.getMaSP());
 
         cell = row.createCell(2);
-        cell.setCellValue(billDetailWithProductDetailCustomModel.getTenSP());
+        cell.setCellValue(productDetailService.getByNameProduct(billDetailWithProductDetailCustomModel.getMaSP()));
 
         cell = row.createCell(3);
-        cell.setCellValue(billDetailWithProductDetailCustomModel.getLoaiSP());
+        cell.setCellValue(productDetailService.getByNameType(billDetailWithProductDetailCustomModel.getMaSP()));
 
         cell = row.createCell(4);
-        cell.setCellValue(billDetailWithProductDetailCustomModel.getMauSac());
+        cell.setCellValue(productDetailService.getByNameSize(billDetailWithProductDetailCustomModel.getMaSP()));
 
         cell = row.createCell(5);
-        cell.setCellValue(billDetailWithProductDetailCustomModel.getKichCo());
+        cell.setCellValue(productDetailService.getByNameColor(billDetailWithProductDetailCustomModel.getMaSP()));
 
         cell = row.createCell(6);
-        cell.setCellValue(billDetailWithProductDetailCustomModel.getChatLieu());
+        cell.setCellValue(productDetailService.getByNameSubtance(billDetailWithProductDetailCustomModel.getMaSP()));
 
         cell = row.createCell(7);
         cell.setCellValue(billDetailWithProductDetailCustomModel.getSoLuong());
