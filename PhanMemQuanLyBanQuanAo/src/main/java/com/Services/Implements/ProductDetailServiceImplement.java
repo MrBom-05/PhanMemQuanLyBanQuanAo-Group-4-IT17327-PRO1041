@@ -51,7 +51,6 @@ public class ProductDetailServiceImplement implements ProductDetailService {
         return productDetailPepository.getListBySubstance(data);
     }
 
-
     @Override
     public boolean insert(ProductDetails productDetails) {
         return productDetailPepository.insert(productDetails);

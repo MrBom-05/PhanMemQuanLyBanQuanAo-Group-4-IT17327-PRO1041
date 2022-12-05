@@ -24,7 +24,27 @@ public interface BillService {
 
     public boolean updateDaNhan(String code, int status, Date ngayThanhToan);
 
+    public boolean updateHuy(String code, String note, int status);
+
     public String getByID(String code);
 
     public List<Integer> getYear();
+
+    public boolean checkStatus(String code);
+
+    public List<Bill> sumAllThanhCong();
+
+    public List<Bill> sumAllHuy();
+
+    public List<Bill> sumNgayThanhCong(Date date);
+
+    public List<Bill> sumNgayHuy(Date date);
+
+    public List<Bill> sumThangThanhCong(int date);
+
+    public List<Bill> sumThangHuy(int date);
+
+    public List<Bill> sumNamThanhCong(int date);
+
+    public List<Bill> sumNamHuy(int date);
 }
