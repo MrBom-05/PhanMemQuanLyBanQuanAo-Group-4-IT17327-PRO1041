@@ -47,7 +47,12 @@ public class CustomerServiceImplement implements CustomerService {
 
     @Override
     public String getByID(String phoneNumber) {
-        return customerRepository.getByID(phoneNumber);
+        return customerRepository.getBy(phoneNumber, customerRepository.getByID);
+    }
+
+    @Override
+    public String getByEmail(String phoneNumber) {
+        return customerRepository.getBy(phoneNumber, customerRepository.getByEmail);
     }
 
     @Override
@@ -56,7 +61,7 @@ public class CustomerServiceImplement implements CustomerService {
     }
 
     @Override
-    public List<Customer> checkCustomer(String phone) {
+    public boolean checkCustomer(String phone) {
         return customerRepository.checkCustomer(phone);
     }
 

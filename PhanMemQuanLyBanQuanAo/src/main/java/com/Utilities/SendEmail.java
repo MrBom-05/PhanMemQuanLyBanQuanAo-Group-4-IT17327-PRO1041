@@ -13,7 +13,7 @@ import java.util.Properties;
 
 public class SendEmail {
 
-    public void guiHoaDon(String email, String duongDan) throws MessagingException {
+    public void guiHoaDon(String email, String duongDan) {
 
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");
