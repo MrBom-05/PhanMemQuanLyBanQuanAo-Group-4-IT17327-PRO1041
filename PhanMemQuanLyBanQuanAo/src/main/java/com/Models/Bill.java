@@ -66,10 +66,6 @@ public class Bill implements Serializable {
     @Column(name = "PhoneNumberCustomer", columnDefinition = "Varchar(30)")
     private String phoneNumberCustomer;
 
-    @ManyToOne
-    @JoinColumn(name = "IdPromotion")
-    private Promotion promotion;
-
     @OneToMany(mappedBy = "bill", fetch = FetchType.LAZY)
     private List<BillDetails> listBillDetails;
 

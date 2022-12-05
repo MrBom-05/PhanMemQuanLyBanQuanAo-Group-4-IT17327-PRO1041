@@ -31,7 +31,7 @@ public class Promotion implements Serializable {
     private String name;
     
     @Column(name = "decreaseNumber")
-    private int DecreaseNumber;
+    private int decreaseNumber;
 
     @Column(name = "StartDay")
     private Date startDay;
@@ -46,12 +46,12 @@ public class Promotion implements Serializable {
     private List<PromotionDetails> listPromotionDetail;
 
     @OneToMany(mappedBy = "promotion", fetch = FetchType.LAZY)
-    private List<Bill> listBill;
+    private List<BillDetails> listBillDetail;
 
-    public Promotion(String code, String name, int DecreaseNumber, Date startDay, Date endDay, int status) {
+    public Promotion(String code, String name, int decreaseNumber, Date startDay, Date endDay, int status) {
         this.code = code;
         this.name = name;
-        this.DecreaseNumber = DecreaseNumber;
+        this.decreaseNumber = decreaseNumber;
         this.startDay = startDay;
         this.endDay = endDay;
         this.status = status;

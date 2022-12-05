@@ -22,4 +22,12 @@ public class PromotionDetailServiceImplement implements PromotionDetailService {
     public boolean delete(String codeSP, String codeKM) {
         return promotionDetailRepository.delete(codeSP, codeKM);
     }
+
+    @Override
+    public String getByID(String code) {
+        if (!promotionDetailRepository.check(code, 1)){
+            return promotionDetailRepository.getByID(code, 3);
+        }
+        return promotionDetailRepository.getByID(code, 1);
+    }
 }

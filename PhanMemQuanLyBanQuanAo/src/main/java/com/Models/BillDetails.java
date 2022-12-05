@@ -37,18 +37,23 @@ public class BillDetails implements Serializable {
     @Column(name = "UnitPrice", columnDefinition = "Decimal(20,0)")
     private Float unitPrice;
 
+    @ManyToOne
+    @JoinColumn(name = "IdPromotion")
+    private Promotion promotion;
+
     @Column(name = "Status")
     private int status;
 
     @Column(name = "Note", columnDefinition = "Nvarchar(50)")
     private String note;
 
-    public BillDetails(Bill bill, ProductDetails productDetails, int amount, Float unitPrice, int status) {
+    public BillDetails(Bill bill, ProductDetails productDetails, int amount, Float unitPrice, int status, Promotion promotion) {
         this.bill = bill;
         this.productDetails = productDetails;
         this.amount = amount;
         this.unitPrice = unitPrice;
         this.status = status;
+        this.promotion = promotion;
     }
 
 }

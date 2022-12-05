@@ -63,7 +63,7 @@ public class BillDetailRepository {
 
     public List<BillDetailCustomModel> getListBill(String code) {
         Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery("select new com.CustomModels.BillDetailCustomModel(b.productDetails.code, b.productDetails.name, b.amount, b.productDetails.exportPrice, b.amount * b.productDetails.exportPrice) from com.Models.BillDetails b where b.bill.code =: code");
+        Query query = session.createQuery("select new com.CustomModels.BillDetailCustomModel(b.productDetails.code, b.productDetails.name, b.amount, b.productDetails.exportPrice, b.promotion.decreaseNumber) from com.Models.BillDetails b where b.bill.code =: code");
         query.setParameter("code", code);
         List<BillDetailCustomModel> list = query.getResultList();
         return list;
@@ -101,7 +101,7 @@ public class BillDetailRepository {
     public Double sumDonGia(String codeHD) {
         Double id;
         try (Session session = HibernateUtil.getFACTORY().openSession()) {
-            TypedQuery<Double> query = session.createQuery("select sum(amount * unitPrice) from BillDetails where bill.code =: codeHD", Double.class);
+            TypedQuery<Double> query = session.createQuery("select sum(amount * (unitPrice - (unitPrice / 100 * promotion.decreaseNumber))) from BillDetails where bill.code =: codeHD", Double.class);
             query.setParameter("codeHD", codeHD);
             id = query.getSingleResult();
         }
@@ -117,15 +117,15 @@ public class BillDetailRepository {
 
     public List<Double> sumDate(Date date) {
         Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery("select sum (b.amount * b.unitPrice) from BillDetails b where b.bill.dateOfPayment =: date");
+        Query query = session.createQuery("select sum(amount * (unitPrice - (unitPrice / 100 * promotion.decreaseNumber))) from BillDetails b where b.bill.dateOfPayment =: date");
         query.setParameter("date", date);
         List<Double> list = query.getResultList();
         return list;
     }
 
-    public String sumMonth = "select sum (b.amount * b.unitPrice) from BillDetails b where month(b.bill.dateOfPayment) = ";
+    public String sumMonth = "select sum(amount * (unitPrice - (unitPrice / 100 * promotion.decreaseNumber))) from BillDetails b where month(b.bill.dateOfPayment) = ";
 
-    public String sumYear = "select sum (b.amount * b.unitPrice) from BillDetails b where year(b.bill.dateOfPayment) = ";
+    public String sumYear = "select sum(amount * (unitPrice - (unitPrice / 100 * promotion.decreaseNumber))) from BillDetails b where year(b.bill.dateOfPayment) = ";
 
     public List<Double> sum(int date, String select) {
         Session session = HibernateUtil.getFACTORY().openSession();
