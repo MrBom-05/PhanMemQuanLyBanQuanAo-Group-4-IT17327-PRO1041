@@ -52,6 +52,11 @@ public class BillServiceImplement implements BillService {
         return billRepository.update(code, status, ngayThanhToan, billRepository.ngayNhan);
     }
 
+    @Override
+    public boolean updateHuy(String code, String note, int status) {
+        return billRepository.updateHuy(code, note, status);
+    }
+
 
     @Override
     public String getByID(String code) {
@@ -67,9 +72,49 @@ public class BillServiceImplement implements BillService {
     @Override
     public boolean checkStatus(String code) {
         int check = billRepository.checkStatus(code);
-        if (check != 1){
+        if (check == 1){
             return false;
         }
         return true;
+    }
+
+    @Override
+    public List<Bill> sumAllThanhCong() {
+        return billRepository.sumAll(1);
+    }
+
+    @Override
+    public List<Bill> sumAllHuy() {
+        return billRepository.sumAll(2);
+    }
+
+    @Override
+    public List<Bill> sumNgayThanhCong(Date date) {
+        return billRepository.sumNgay(1, date);
+    }
+
+    @Override
+    public List<Bill> sumNgayHuy(Date date) {
+        return billRepository.sumNgay(2, date);
+    }
+
+    @Override
+    public List<Bill> sumThangThanhCong(int date) {
+        return billRepository.sum(1, date, billRepository.sumThang);
+    }
+
+    @Override
+    public List<Bill> sumThangHuy(int date) {
+        return billRepository.sum(2, date, billRepository.sumThang);
+    }
+
+    @Override
+    public List<Bill> sumNamThanhCong(int date) {
+        return billRepository.sum(1, date, billRepository.sumNam);
+    }
+
+    @Override
+    public List<Bill> sumNamHuy(int date) {
+        return billRepository.sum(2, date, billRepository.sumNam);
     }
 }

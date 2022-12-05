@@ -82,6 +82,23 @@ public class BillRepository {
         }
     }
 
+    public boolean updateHuy(String code, String note, int status) {
+        Transaction transaction = null;
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("update Bill set note =: note, status =: status where code =: code");
+            query.setParameter("note", note);
+            query.setParameter("status", status);
+            query.setParameter("code", code);
+            query.executeUpdate();
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public String getByID(String code) {
         String id;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
@@ -98,13 +115,43 @@ public class BillRepository {
         return list;
     }
 
-    public int checkStatus(String code) {
-        int id;
+    public Integer checkStatus(String code) {
+        Integer id;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
-            TypedQuery<Integer> query = session.createQuery("select status from Bill where code =: code", int.class);
+            TypedQuery<Integer> query = session.createQuery("select status from Bill where code =: code", Integer.class);
             query.setParameter("code", code);
             id = query.getSingleResult();
         }
         return id;
+    }
+
+    public List<Bill> sumAll(int status) {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery("from Bill where status =: status");
+        query.setParameter("status", status);
+        List<Bill> list = query.getResultList();
+        return list;
+    }
+
+    public List<Bill> sumNgay(int status, Date date) {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery("from Bill where status =: status and dateOfPayment =: date");
+        query.setParameter("status", status);
+        query.setParameter("date", date);
+        List<Bill> list = query.getResultList();
+        return list;
+    }
+
+    public String sumThang = "from Bill where status =: status and month(dateOfPayment) =: date";
+
+    public String sumNam = "from Bill where status =: status and year(dateOfPayment) =: date";
+
+    public List<Bill> sum(int status, int date, String select) {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery(select);
+        query.setParameter("status", status);
+        query.setParameter("date", date);
+        List<Bill> list = query.getResultList();
+        return list;
     }
 }

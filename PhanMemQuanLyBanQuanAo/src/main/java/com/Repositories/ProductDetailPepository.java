@@ -119,34 +119,34 @@ public class ProductDetailPepository {
         return list;
     }
 
-    public List<ProductDetailCustomModel> getListByProductType(String data) {
+    public List<ProductDetailCustomModel> getListByProductType(String type) {
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery(getListByProductType);
-        query.setParameter("productType", data);
+        query.setParameter("productType", type);
         List<ProductDetailCustomModel> list = query.getResultList();
         return list;
     }
 
-    public List<ProductDetailCustomModel> getListBySize(String data ) {
+    public List<ProductDetailCustomModel> getListBySize(String size) {
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery(getListBySize);
-        query.setParameter("size", data);
+        query.setParameter("size", size);
         List<ProductDetailCustomModel> list = query.getResultList();
         return list;
     }
 
-    public List<ProductDetailCustomModel> getListByColor(String data) {
+    public List<ProductDetailCustomModel> getListByColor(String color) {
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery(getListByColor);
-        query.setParameter("color", data);
+        query.setParameter("color", color);
         List<ProductDetailCustomModel> list = query.getResultList();
         return list;
     }
 
-    public List<ProductDetailCustomModel> getListBySubstance(String data) {
+    public List<ProductDetailCustomModel> getListBySubstance(String substance) {
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery(getListBySubstance);
-        query.setParameter("substance", data);
+        query.setParameter("substance", substance);
         List<ProductDetailCustomModel> list = query.getResultList();
         return list;
     }
