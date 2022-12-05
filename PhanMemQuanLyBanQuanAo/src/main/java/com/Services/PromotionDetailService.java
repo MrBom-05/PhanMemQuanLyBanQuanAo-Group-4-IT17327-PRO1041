@@ -9,4 +9,6 @@ public interface PromotionDetailService {
     public boolean insert(PromotionDetails promotionDetails);
 
     public boolean delete(String codeSP, String codeKM);
+
+    public String getByID(String code);
 }
