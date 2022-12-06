@@ -110,7 +110,7 @@ public class BillDetailRepository {
 
     public List<BillDetailWithProductDetailCustomModel> getListThongKe(String ngayBatDau, String ngayKetThuc) {
         Session session = HibernateUtil.getFACTORY().openSession();
-        Query query = session.createQuery("select new com.CustomModels.BillDetailWithProductDetailCustomModel(b.productDetails.code, sum(b.amount)) from com.Models.BillDetails b where b.bill.dateOfPayment between '" + ngayBatDau + "' and '" + ngayKetThuc + "' group by b.productDetails.code");
+        Query query = session.createQuery("select new com.CustomModels.BillDetailWithProductDetailCustomModel(b.productDetails.code, sum(b.amount) as tong) from com.Models.BillDetails b where b.bill.dateOfPayment between '" + ngayBatDau + "' and '" + ngayKetThuc + "' group by b.productDetails.code order by tong desc");
         List<BillDetailWithProductDetailCustomModel> list = query.getResultList();
         return list;
     }
