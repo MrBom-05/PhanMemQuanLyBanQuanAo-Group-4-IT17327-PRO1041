@@ -87,6 +87,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
     public TrangChu(String ma, String hoTen, int chucVu) {
         initComponents();
+        tabbedPaneDatHang.setEnabled(false);
         lblMaNhanVienPanelMain.setText(ma);
         lblHoTenNVPanelMain.setText(hoTen);
         if (chucVu == 0) {
@@ -441,7 +442,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         jScrollPane14 = new javax.swing.JScrollPane();
         tblSanPhamPanelHoaDon = new javax.swing.JTable();
         jPanel19 = new javax.swing.JPanel();
-        jTabbedPane3 = new javax.swing.JTabbedPane();
+        tabbedPaneDatHang = new javax.swing.JTabbedPane();
         jPanel20 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -2044,7 +2045,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                 .addContainerGap())
         );
 
-        jTabbedPane3.addTab("Hóa Đơn", jPanel20);
+        tabbedPaneDatHang.addTab("Hóa Đơn", jPanel20);
 
         jPanel21.setBackground(new java.awt.Color(246, 248, 250));
 
@@ -2257,7 +2258,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
                 .addContainerGap())
         );
 
-        jTabbedPane3.addTab("Đặt Hàng", jPanel21);
+        tabbedPaneDatHang.addTab("Đặt Hàng", jPanel21);
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -2265,14 +2266,14 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane3)
+                .addComponent(tabbedPaneDatHang)
                 .addContainerGap())
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane3)
+                .addComponent(tabbedPaneDatHang)
                 .addContainerGap())
         );
 
@@ -5681,7 +5682,6 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JLabel lblHoTenNVPanelMain;
     private javax.swing.JLabel lblMaNVPanelLichSu;
     private javax.swing.JLabel lblMaNhanVienPanelMain;
@@ -5724,6 +5724,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
     private javax.swing.JRadioButton rdoNuPanelNhanVien;
     private javax.swing.JSpinner spnPhanTramKhuyenMaiPanelKhuyenMai;
     private javax.swing.JSpinner spnSoLuongPanelSanPham;
+    private javax.swing.JTabbedPane tabbedPaneDatHang;
     private javax.swing.JTable tblChiTietSanPhamPanelSanPham;
     private javax.swing.JTable tblDoanhThuPanelThongKe;
     private javax.swing.JTable tblGioHangPanelHoaDon;
