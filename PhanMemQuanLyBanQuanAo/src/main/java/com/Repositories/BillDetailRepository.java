@@ -68,6 +68,7 @@ public class BillDetailRepository {
         List<BillDetailCustomModel> list = query.getResultList();
         return list;
     }
+
     public List<BillDetails> getList() {
         Session session = HibernateUtil.getFACTORY().openSession();
         Query query = session.createQuery("from BillDetails");
@@ -142,5 +143,40 @@ public class BillDetailRepository {
         query.setParameter("code", code);
         List<ProductDetailCustomModel> list = query.getResultList();
         return list;
+    }
+
+    public List<Integer> getListDoanhThu(int year) {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery("select distinct month(b.bill.dateOfPayment) from BillDetails b where year(b.bill.dateOfPayment) =: year");
+        query.setParameter("year", year);
+        List<Integer> list = query.getResultList();
+        return list;
+    }
+
+    public Long getSoLuongDoanhThu(int month) {
+        Long id;
+        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+            TypedQuery<Long> query = session.createQuery("select sum(b.amount) from BillDetails b where month(b.bill.dateOfPayment) = " + month, Long.class);
+            id = query.getSingleResult();
+        }
+        return id;
+    }
+
+    public Double getGiaBan(int month) {
+        Double id;
+        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+            TypedQuery<Double> query = session.createQuery("select sum(b.amount * b.unitPrice) from BillDetails b where month(b.bill.dateOfPayment) = " + month, Double.class);
+            id = query.getSingleResult();
+        }
+        return id;
+    }
+
+    public Double getGiaGiam(int month) {
+        Double id;
+        try (Session session = HibernateUtil.getFACTORY().openSession()) {
+            TypedQuery<Double> query = session.createQuery("select sum(b.amount * (b.unitPrice / 100 * b.promotion.decreaseNumber)) from BillDetails b where month(b.bill.dateOfPayment) = " + month, Double.class);
+            id = query.getSingleResult();
+        }
+        return id;
     }
 }

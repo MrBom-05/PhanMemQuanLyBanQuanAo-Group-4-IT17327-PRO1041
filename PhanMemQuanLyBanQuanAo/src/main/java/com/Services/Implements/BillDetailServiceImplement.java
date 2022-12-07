@@ -78,4 +78,24 @@ public class BillDetailServiceImplement implements BillDetailService {
     public List<ProductDetailCustomModel> getListBillPanelLichSu(String code) {
         return billDetailRepository.getListBillPanelLichSu(code);
     }
+
+    @Override
+    public List<Integer> getListDoanhThu(int year) {
+        return billDetailRepository.getListDoanhThu(year);
+    }
+
+    @Override
+    public Long getSoLuongDoanhThu(int month) {
+        return billDetailRepository.getSoLuongDoanhThu(month);
+    }
+
+    @Override
+    public Double getGiaBan(int month) {
+        return billDetailRepository.getGiaBan(month);
+    }
+
+    @Override
+    public Double getGiaGiam(int month) {
+        return billDetailRepository.getGiaGiam(month);
+    }
 }
