@@ -36,4 +36,11 @@ public interface BillDetailService {
 
     public List<ProductDetailCustomModel> getListBillPanelLichSu(String code);
 
+    public List<Integer> getListDoanhThu(int year);
+
+    public Long getSoLuongDoanhThu(int month);
+
+    public Double getGiaBan(int month);
+
+    public Double getGiaGiam(int month);
 }

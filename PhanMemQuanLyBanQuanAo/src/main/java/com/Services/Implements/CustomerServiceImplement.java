@@ -52,6 +52,9 @@ public class CustomerServiceImplement implements CustomerService {
 
     @Override
     public String getByEmail(String phoneNumber) {
+        if (!checkCustomer(phoneNumber)) {
+            return "hhh@gmail.com";
+        }
         return customerRepository.getBy(phoneNumber, customerRepository.getByEmail);
     }
 
