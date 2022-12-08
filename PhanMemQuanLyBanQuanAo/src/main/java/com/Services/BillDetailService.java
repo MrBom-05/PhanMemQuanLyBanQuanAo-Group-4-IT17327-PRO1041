@@ -1,8 +1,10 @@
 package com.Services;
 
 import com.CustomModels.BillDetailCustomModel;
+import com.CustomModels.BillDetailWithProductDetailCustomModel;
 import com.Models.BillDetails;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface BillDetailService {
@@ -16,5 +18,19 @@ public interface BillDetailService {
     public Integer getSoLuong(String codeSP, String codeHD);
 
     public boolean update(String codeSp, String codeHd, int soLuong);
+
+    public Double sumDonGia(String codeHD);
+
+    public List<BillDetailWithProductDetailCustomModel> getListThongKe(Date ngayBatDau, Date ngayKetThuc);
+
+    public boolean delete(String idBill, String idProduct);
+
+    public List<Double> sumDate(Date date);
+
+    public List<Double> sumMonth(int date);
+
+    public List<Double> sumYear(int date);
+
+    public List<BillDetails> getList();
 
 }

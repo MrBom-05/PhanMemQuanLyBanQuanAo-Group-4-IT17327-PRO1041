@@ -5,6 +5,7 @@ import com.Models.Bill;
 import com.Repositories.BillRepository;
 import com.Services.BillService;
 
+import java.sql.Date;
 import java.util.List;
 
 public class BillServiceImplement implements BillService {
@@ -27,12 +28,17 @@ public class BillServiceImplement implements BillService {
     }
 
     @Override
-    public boolean update(String code, int status) {
-        return billRepository.update(code, status);
+    public boolean update(String code, int status, Date ngayThanhToan) {
+        return billRepository.update(code, status, ngayThanhToan);
     }
 
     @Override
     public String getByID(String code) {
         return billRepository.getByID(code);
+    }
+
+    @Override
+    public List<Integer> getYear() {
+        return billRepository.getYear();
     }
 }
