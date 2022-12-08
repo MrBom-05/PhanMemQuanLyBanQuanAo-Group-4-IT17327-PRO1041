@@ -21,14 +21,19 @@ public class BillCustomModel {
     private int trangThai;
 
     public String trangThaiHD(int trangThai) {
-        if (trangThai == 1) {
-            return "Thành Công";
-        } else if (trangThai == 2) {
-            return "Đã hủy";
-        } else if (trangThai == 3) {
-            return "Đang giao hàng";
-        } else if (trangThai == 0) {
-            return "Chờ thanh toán";
+        switch (trangThai) {
+            case 1 -> {
+                return "Đã Thanh Toán";
+            }
+            case 2 -> {
+                return "Đã hủy";
+            }
+            case 3 -> {
+                return "Đang giao hàng";
+            }
+            case 0 -> {
+                return "Chờ thanh toán";
+            }
         }
         return null;
     }
