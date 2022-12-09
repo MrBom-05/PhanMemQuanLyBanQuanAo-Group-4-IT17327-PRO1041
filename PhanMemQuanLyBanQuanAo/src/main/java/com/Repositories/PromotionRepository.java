@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import java.sql.Date;
 import java.util.List;
 
 public class PromotionRepository {
@@ -43,11 +44,11 @@ public class PromotionRepository {
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             Query query = session.createQuery("update Promotion set code =: code, name =: name, "
-                    + "DecreaseNumber =: DecreaseNumber, startDay =: startDay, endDay =: endDay, "
+                    + "decreaseNumber =: decreaseNumber, startDay =: startDay, endDay =: endDay, "
                     + "status =: status where code =: code");
             query.setParameter("code", promotion.getCode());
             query.setParameter("name", promotion.getName());
-            query.setParameter("DecreaseNumber", promotion.getDecreaseNumber());
+            query.setParameter("decreaseNumber", promotion.getDecreaseNumber());
             query.setParameter("startDay", promotion.getStartDay());
             query.setParameter("endDay", promotion.getEndDay());
             query.setParameter("status", promotion.getStatus());
@@ -68,6 +69,22 @@ public class PromotionRepository {
             Query query = session.createQuery("update Promotion set status =: status where code =: code");
             query.setParameter("status", status);
             query.setParameter("code", code);
+            query.executeUpdate();
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean hideDate(Date date, int status) {
+        Transaction transaction = null;
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("update Promotion set status =: status where endDay <: date");
+            query.setParameter("status", status);
+            query.setParameter("date", date);
             query.executeUpdate();
             transaction.commit();
             return true;
