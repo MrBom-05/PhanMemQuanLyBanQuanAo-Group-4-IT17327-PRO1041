@@ -4,6 +4,7 @@ import com.Models.Promotion;
 import com.Repositories.PromotionRepository;
 import com.Services.PromotionService;
 
+import java.sql.Date;
 import java.util.List;
 
 public class PromotionServiceImplement implements PromotionService {
@@ -38,6 +39,11 @@ public class PromotionServiceImplement implements PromotionService {
     @Override
     public boolean hideOrShow(String code, int status) {
         return promotionRepository.hideOrShow(code, status);
+    }
+
+    @Override
+    public boolean hideDate(Date date, int status) {
+        return promotionRepository.hideDate(date, status);
     }
 
     @Override
