@@ -2,6 +2,7 @@ package com.Services;
 
 import com.CustomModels.BillDetailCustomModel;
 import com.CustomModels.BillDetailWithProductDetailCustomModel;
+import com.CustomModels.ProductDetailCustomModel;
 import com.Models.BillDetails;
 
 import java.sql.Date;
@@ -21,7 +22,7 @@ public interface BillDetailService {
 
     public Double sumDonGia(String codeHD);
 
-    public List<BillDetailWithProductDetailCustomModel> getListThongKe(Date ngayBatDau, Date ngayKetThuc);
+    public List<BillDetailWithProductDetailCustomModel> getListThongKe(String ngayBatDau, String ngayKetThuc);
 
     public boolean delete(String idBill, String idProduct);
 
@@ -33,4 +34,13 @@ public interface BillDetailService {
 
     public List<BillDetails> getList();
 
+    public List<ProductDetailCustomModel> getListBillPanelLichSu(String code);
+
+    public List<Integer> getListDoanhThu(int year);
+
+    public Long getSoLuongDoanhThu(int month);
+
+    public Double getGiaBan(int month);
+
+    public Double getGiaGiam(int month);
 }

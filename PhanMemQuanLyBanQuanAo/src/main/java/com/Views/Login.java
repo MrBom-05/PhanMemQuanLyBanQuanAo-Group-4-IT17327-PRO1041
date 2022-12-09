@@ -1,7 +1,10 @@
 package com.Views;
 
+import com.Models.Promotion;
 import com.Models.Staff;
+import com.Services.Implements.PromotionServiceImplement;
 import com.Services.Implements.StaffServiceImplement;
+import com.Services.PromotionService;
 import com.Services.StaffService;
 import com.Utilities.LogicUtil;
 
@@ -12,11 +15,14 @@ public class Login extends javax.swing.JFrame {
 
     private StaffService staffService = new StaffServiceImplement();
 
+    private PromotionService promotionService = new PromotionServiceImplement();
+
     private LogicUtil logicUtil = new LogicUtil();
 
     public Login() {
         initComponents();
-        staffService.getList();
+        Promotion promotion = new Promotion("KM0001", 0, 3);
+        promotionService.insert(promotion);
     }
 
     private void loadAccountStaff(List<Staff> list) {
@@ -178,8 +184,8 @@ public class Login extends javax.swing.JFrame {
         String email = txtUsername.getText();
         String matKhau = logicUtil.taoMaHoa(txtPassword.getText());
 
-        if (email.trim().length() == 0 || matKhau.trim().length() == 0) {
-            JOptionPane.showMessageDialog(this, "Không được để trống", "Thông báo", HEIGHT);
+        if (email.trim().length() == 0 || txtPassword.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(this, "Không được để trống");
             return;
         }
 

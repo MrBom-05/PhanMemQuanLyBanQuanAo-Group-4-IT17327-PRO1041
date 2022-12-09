@@ -1,9 +1,27 @@
 package com.Views;
 
+import com.Models.Staff;
+import com.Services.Implements.StaffServiceImplement;
+import com.Services.StaffService;
+import com.Utilities.LogicUtil;
+
+import javax.swing.*;
+import java.util.Random;
+
 public class QuenMatKhau extends javax.swing.JFrame {
+
+    private LogicUtil logicUtil = new LogicUtil();
+
+    private StaffService staffService = new StaffServiceImplement();
 
     public QuenMatKhau() {
         initComponents();
+    }
+    
+    public String ranDomCaptcha() {
+        Random random = new Random();
+        int captcha = random.nextInt(100000, 1000000);
+        return String.valueOf(captcha);
     }
 
     @SuppressWarnings("unchecked")
@@ -25,8 +43,8 @@ public class QuenMatKhau extends javax.swing.JFrame {
         txtXBMatKhauPanelDoiMatKhau = new javax.swing.JPasswordField();
         txtCaptchaPanelDoiMatKhau = new javax.swing.JTextField();
         jLabel41 = new javax.swing.JLabel();
-        txtLoadCaptchaPanelDoiMatKhau = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
+        lblMaXacNhan = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -82,12 +100,12 @@ public class QuenMatKhau extends javax.swing.JFrame {
         jLabel41.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel41.setText("Quên Mật Khẩu");
 
-        txtLoadCaptchaPanelDoiMatKhau.setEditable(false);
-        txtLoadCaptchaPanelDoiMatKhau.setBackground(new java.awt.Color(0, 153, 0));
-        txtLoadCaptchaPanelDoiMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
         jLabel42.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel42.setText("Tài khoản");
+
+        lblMaXacNhan.setBackground(new java.awt.Color(246, 248, 250));
+        lblMaXacNhan.setForeground(new java.awt.Color(246, 248, 250));
+        lblMaXacNhan.setText(" ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -102,7 +120,8 @@ public class QuenMatKhau extends javax.swing.JFrame {
                             .addComponent(jLabel45)
                             .addComponent(jLabel46)
                             .addComponent(jLabel44)
-                            .addComponent(jLabel41))
+                            .addComponent(jLabel41)
+                            .addComponent(lblMaXacNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -110,10 +129,8 @@ public class QuenMatKhau extends javax.swing.JFrame {
                                 .addComponent(txtMatKhauMoiPanelDoiMatKhau)
                                 .addComponent(txtXBMatKhauPanelDoiMatKhau, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(txtCaptchaPanelDoiMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCaptchaPanelDoiMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtLoadCaptchaPanelDoiMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(20, 20, 20)
                                     .addComponent(btnLoadCaptchaPanelDoiMatKhau)))
                             .addComponent(jLabel60)
                             .addComponent(jLabel59)
@@ -130,9 +147,9 @@ public class QuenMatKhau extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel41)
-                .addGap(19, 19, 19)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
                         .addComponent(jLabel59)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel60)
@@ -152,10 +169,13 @@ public class QuenMatKhau extends javax.swing.JFrame {
                             .addComponent(txtXBMatKhauPanelDoiMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(29, 29, 29)
                         .addComponent(btnLoadCaptchaPanelDoiMatKhau))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtLoadCaptchaPanelDoiMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtCaptchaPanelDoiMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel46)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(lblMaXacNhan)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCaptchaPanelDoiMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel46))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLuuPanelDoiMatKhau)
@@ -179,11 +199,37 @@ public class QuenMatKhau extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoadCaptchaPanelDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadCaptchaPanelDoiMatKhauActionPerformed
-        // TODO add your handling code here:
+        String email = txtTaiKhoanPanelDoiMatKhau.getText();
+        if (!staffService.checkAccountStaff(email)){
+            JOptionPane.showMessageDialog(this, "Tài khoản không tồn tại");
+            return;
+        }
+        lblMaXacNhan.setText(ranDomCaptcha());
+        logicUtil.codeVerification(email, lblMaXacNhan.getText());
+        JOptionPane.showMessageDialog(this, "Mã xác nhận đã được gửi đến email của bạn");
     }//GEN-LAST:event_btnLoadCaptchaPanelDoiMatKhauActionPerformed
 
     private void btnLuuPanelDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuPanelDoiMatKhauActionPerformed
-        // TODO add your handling code here:
+        String email = txtTaiKhoanPanelDoiMatKhau.getText();
+        String matKhauMoi = txtMatKhauMoiPanelDoiMatKhau.getText();
+        String xacNhanMatKhau = txtXBMatKhauPanelDoiMatKhau.getText();
+        String captcha = txtCaptchaPanelDoiMatKhau.getText();
+        if (!staffService.checkAccountStaff(email)){
+            JOptionPane.showMessageDialog(this, "Tài khoản không tồn tại");
+            return;
+        }
+        if (captcha.equals(lblMaXacNhan.getText())) {
+            if (matKhauMoi.equals(xacNhanMatKhau)) {
+                staffService.updatePassword(email, logicUtil.taoMaHoa(matKhauMoi));
+                JOptionPane.showMessageDialog(this, "Đổi mật khẩu thành công");
+                new Login().setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Mật khẩu mới không khớp");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Mã xác nhận không đúng");
+        }
     }//GEN-LAST:event_btnLuuPanelDoiMatKhauActionPerformed
 
     private void btnThoatPanelDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatPanelDoiMatKhauActionPerformed
@@ -205,8 +251,8 @@ public class QuenMatKhau extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblMaXacNhan;
     private javax.swing.JTextField txtCaptchaPanelDoiMatKhau;
-    private javax.swing.JTextField txtLoadCaptchaPanelDoiMatKhau;
     private javax.swing.JPasswordField txtMatKhauMoiPanelDoiMatKhau;
     private javax.swing.JTextField txtTaiKhoanPanelDoiMatKhau;
     private javax.swing.JPasswordField txtXBMatKhauPanelDoiMatKhau;

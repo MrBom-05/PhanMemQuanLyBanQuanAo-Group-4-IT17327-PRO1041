@@ -22,6 +22,36 @@ public class ProductDetailServiceImplement implements ProductDetailService {
     }
 
     @Override
+    public List<ProductDetailCustomModel> getListByCode(String code) {
+        return productDetailPepository.getListByCode(code);
+    }
+
+    @Override
+    public List<ProductDetailCustomModel> getListByName(String name) {
+        return productDetailPepository.getListByName(name);
+    }
+
+    @Override
+    public List<ProductDetailCustomModel> getListByProductType(String data) {
+        return productDetailPepository.getListByProductType(data);
+    }
+
+    @Override
+    public List<ProductDetailCustomModel> getListBySize(String data) {
+        return productDetailPepository.getListBySize(data);
+    }
+
+    @Override
+    public List<ProductDetailCustomModel> getListByColor(String data) {
+        return productDetailPepository.getListByColor(data);
+    }
+
+    @Override
+    public List<ProductDetailCustomModel> getListBySubstance(String data) {
+        return productDetailPepository.getListBySubstance(data);
+    }
+
+    @Override
     public boolean insert(ProductDetails productDetails) {
         return productDetailPepository.insert(productDetails);
     }
@@ -59,5 +89,30 @@ public class ProductDetailServiceImplement implements ProductDetailService {
     @Override
     public Integer getBySoLuong(String code) {
         return productDetailPepository.getBySoLuong(code);
+    }
+
+    @Override
+    public String getByNameProduct(String code) {
+        return productDetailPepository.getByName(code, productDetailPepository.getByNameProduct);
+    }
+
+    @Override
+    public String getByNameType(String code) {
+        return productDetailPepository.getByName(code, productDetailPepository.getByNameType);
+    }
+
+    @Override
+    public String getByNameSize(String code) {
+        return productDetailPepository.getByName(code, productDetailPepository.getByNameSize);
+    }
+
+    @Override
+    public String getByNameColor(String code) {
+        return productDetailPepository.getByName(code, productDetailPepository.getByNameColor);
+    }
+
+    @Override
+    public String getByNameSubtance(String code) {
+        return productDetailPepository.getByName(code, productDetailPepository.getByNameSubtance);
     }
 }

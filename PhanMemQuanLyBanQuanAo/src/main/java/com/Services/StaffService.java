@@ -30,5 +30,8 @@ public interface StaffService {
 
     public List<Staff> getAccountStaffQR(String code);
 
+    public boolean updatePassword(String username, String password);
+
     public String getByID(String code);
+
 }

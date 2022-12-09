@@ -22,6 +22,11 @@ public class StaffServiceImplement implements StaffService {
     }
 
     @Override
+    public boolean hideOrShow(String code, int status) {
+        return staffRepository.hideOrShow(code, status);
+    }
+
+    @Override
     public List<StaffCustomModel> getList() {
         return staffRepository.getList(1);
     }
@@ -67,13 +72,13 @@ public class StaffServiceImplement implements StaffService {
     }
 
     @Override
-    public String getByID(String code) {
-        return staffRepository.getByID(code);
+    public boolean updatePassword(String username, String password) {
+        return staffRepository.updatePassword(username, password);
     }
 
     @Override
-    public boolean hideOrShow(String code, int status) {
-        return staffRepository.hideOrShow(code, status);
+    public String getByID(String code) {
+        return staffRepository.getByID(code);
     }
 
 }

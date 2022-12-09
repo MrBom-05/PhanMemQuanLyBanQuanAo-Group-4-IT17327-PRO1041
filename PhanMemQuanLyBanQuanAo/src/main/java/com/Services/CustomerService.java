@@ -22,7 +22,9 @@ public interface CustomerService {
 
     public String getByID(String phoneNumber);
 
+    public String getByEmail(String phoneNumber);
+
     public String getByName(String phoneNumber);
 
-    public List<Customer> checkCustomer(String phone);
+    public boolean checkCustomer(String phone);
 }

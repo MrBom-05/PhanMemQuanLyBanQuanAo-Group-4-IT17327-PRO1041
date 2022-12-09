@@ -11,6 +11,18 @@ public interface ProductDetailService {
 
     public List<ProductDetailCustomModel> getListProductDetalHide();
 
+    public List<ProductDetailCustomModel> getListByCode(String code);
+
+    public List<ProductDetailCustomModel> getListByName(String name);
+
+    public List<ProductDetailCustomModel> getListByProductType(String data);
+
+    public List<ProductDetailCustomModel> getListBySize(String data);
+
+    public List<ProductDetailCustomModel> getListByColor(String data);
+
+    public List<ProductDetailCustomModel> getListBySubstance(String data);
+
     public boolean insert(ProductDetails productDetails);
 
     public boolean update(ProductDetails productDetails, String code);
@@ -26,4 +38,14 @@ public interface ProductDetailService {
     public Float getByDonGia(String code);
 
     public Integer getBySoLuong(String code);
+
+    public String getByNameProduct(String code);
+
+    public String getByNameType(String code);
+
+    public String getByNameSize(String code);
+
+    public String getByNameColor(String code);
+
+    public String getByNameSubtance(String code);
 }

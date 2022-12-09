@@ -54,6 +54,9 @@ public class Bill implements Serializable {
     @Column(name = "Status")
     private int status;
 
+    @Column(name = "Address", columnDefinition = "Nvarchar(MAX)")
+    private String address;
+
     @Column(name = "Note", columnDefinition = "Nvarchar(MAX)")
     private String note;
 
@@ -66,26 +69,29 @@ public class Bill implements Serializable {
     @OneToMany(mappedBy = "bill", fetch = FetchType.LAZY)
     private List<BillDetails> listBillDetails;
 
-    public Bill(Customer customer, Staff staff, String code, Date dateCreated, int status, String note, String nameCustomer, String phoneNumberCustomer) {
+    public Bill(Customer customer, Staff staff, String code, Date dateCreated, int status, String address, String note, String nameCustomer, String phoneNumberCustomer) {
         this.customer = customer;
         this.staff = staff;
         this.code = code;
         this.dateCreated = dateCreated;
         this.status = status;
+        this.address = address;
         this.note = note;
         this.nameCustomer = nameCustomer;
         this.phoneNumberCustomer = phoneNumberCustomer;
     }
 
-    public Bill(Staff staff, String code, Date dateCreated, int status, String note, String nameCustomer, String phoneNumberCustomer) {
+    public Bill(Staff staff, String code, Date dateCreated, int status, String address, String note, String nameCustomer, String phoneNumberCustomer) {
         this.staff = staff;
         this.code = code;
         this.dateCreated = dateCreated;
         this.status = status;
+        this.address = address;
         this.note = note;
         this.nameCustomer = nameCustomer;
         this.phoneNumberCustomer = phoneNumberCustomer;
     }
+
 
     public Bill(String id) {
         this.id = id;

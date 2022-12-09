@@ -2,6 +2,7 @@ package com.Services.Implements;
 
 import com.CustomModels.BillDetailCustomModel;
 import com.CustomModels.BillDetailWithProductDetailCustomModel;
+import com.CustomModels.ProductDetailCustomModel;
 import com.Models.BillDetails;
 import com.Repositories.BillDetailRepository;
 import com.Services.BillDetailService;
@@ -44,7 +45,7 @@ public class BillDetailServiceImplement implements BillDetailService {
     }
 
     @Override
-    public List<BillDetailWithProductDetailCustomModel> getListThongKe(Date ngayBatDau, Date ngayKeThuc) {
+    public List<BillDetailWithProductDetailCustomModel> getListThongKe(String ngayBatDau, String ngayKeThuc) {
         return billDetailRepository.getListThongKe(ngayBatDau, ngayKeThuc);
     }
 
@@ -60,16 +61,41 @@ public class BillDetailServiceImplement implements BillDetailService {
 
     @Override
     public List<Double> sumMonth(int date) {
-        return billDetailRepository.sumMonth(date);
+        return billDetailRepository.sum(date, billDetailRepository.sumMonth);
     }
 
     @Override
     public List<Double> sumYear(int date) {
-        return billDetailRepository.sumYear(date);
+        return billDetailRepository.sum(date, billDetailRepository.sumYear);
     }
 
     @Override
     public List<BillDetails> getList() {
         return billDetailRepository.getList();
+    }
+
+    @Override
+    public List<ProductDetailCustomModel> getListBillPanelLichSu(String code) {
+        return billDetailRepository.getListBillPanelLichSu(code);
+    }
+
+    @Override
+    public List<Integer> getListDoanhThu(int year) {
+        return billDetailRepository.getListDoanhThu(year);
+    }
+
+    @Override
+    public Long getSoLuongDoanhThu(int month) {
+        return billDetailRepository.getSoLuongDoanhThu(month);
+    }
+
+    @Override
+    public Double getGiaBan(int month) {
+        return billDetailRepository.getGiaBan(month);
+    }
+
+    @Override
+    public Double getGiaGiam(int month) {
+        return billDetailRepository.getGiaGiam(month);
     }
 }
