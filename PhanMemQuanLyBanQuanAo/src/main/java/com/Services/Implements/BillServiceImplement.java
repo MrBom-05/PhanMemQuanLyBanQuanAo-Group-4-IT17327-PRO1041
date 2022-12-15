@@ -53,8 +53,8 @@ public class BillServiceImplement implements BillService {
     }
 
     @Override
-    public boolean updateHuy(String code, String note, int status) {
-        return billRepository.updateHuy(code, note, status);
+    public boolean updateHuy(String code, String note, int status, Date date) {
+        return billRepository.updateHuy(code, note, status, date);
     }
 
 

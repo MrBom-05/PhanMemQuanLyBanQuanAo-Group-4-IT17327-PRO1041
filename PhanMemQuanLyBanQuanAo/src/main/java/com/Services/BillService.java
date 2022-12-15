@@ -24,7 +24,7 @@ public interface BillService {
 
     public boolean updateDaNhan(String code, int status, Date ngayThanhToan);
 
-    public boolean updateHuy(String code, String note, int status);
+    public boolean updateHuy(String code, String note, int status, Date date);
 
     public String getByID(String code);
 
