@@ -4637,7 +4637,7 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
         String input = JOptionPane.showInputDialog("Lý do muốn hủy hóa đơn ?");
         if (input.trim().length() == 0) return;
-        if (billService.updateHuy(maHD, input, 2)) {
+        if (billService.updateHuy(maHD, input, 2, getNgayHienTai())) {
             loadDataHoaDonPanelHoaDon(billService.getListBill());
             JOptionPane.showMessageDialog(this, "Hủy thành công");
         } else {

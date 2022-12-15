@@ -82,14 +82,15 @@ public class BillRepository {
         }
     }
 
-    public boolean updateHuy(String code, String note, int status) {
+    public boolean updateHuy(String code, String note, int status, Date date) {
         Transaction transaction = null;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("update Bill set note =: note, status =: status where code =: code");
+            Query query = session.createQuery("update Bill set note =: note, status =: status, dateOfPayment =: date where code =: code");
             query.setParameter("note", note);
             query.setParameter("status", status);
             query.setParameter("code", code);
+            query.setParameter("date", date);
             query.executeUpdate();
             transaction.commit();
             return true;
