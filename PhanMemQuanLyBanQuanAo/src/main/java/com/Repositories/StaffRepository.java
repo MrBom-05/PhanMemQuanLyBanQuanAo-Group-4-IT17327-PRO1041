@@ -1,6 +1,7 @@
 package com.Repositories;
 
 import com.CustomModels.StaffCustomModel;
+import com.Models.Size;
 import com.Models.Staff;
 import com.Utilities.HibernateUtil;
 import java.util.List;
@@ -21,6 +22,13 @@ public class StaffRepository {
                 + " s.code, concat(s.lastName, ' ', s.firstName), s.dateOfBirth, s.sex, s.phoneNumber, s.email, s.address, s.role) "
                 + " from com.Models.Staff s where s.status = " + status);
         List<StaffCustomModel> list = query.getResultList();
+        return list;
+    }
+
+    public List<Staff> getList() {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery("from Staff");
+        List<Staff> list = query.getResultList();
         return list;
     }
 

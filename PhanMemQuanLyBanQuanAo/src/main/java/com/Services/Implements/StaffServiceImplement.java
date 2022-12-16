@@ -32,6 +32,11 @@ public class StaffServiceImplement implements StaffService {
     }
 
     @Override
+    public List<Staff> getListStaff() {
+        return staffRepository.getList();
+    }
+
+    @Override
     public List<StaffCustomModel> getListStaffOff() {
         return staffRepository.getList(0);
     }

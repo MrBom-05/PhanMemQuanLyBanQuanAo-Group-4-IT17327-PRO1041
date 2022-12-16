@@ -5179,13 +5179,13 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
 
     private String codeStaffTangDan() {
         String code = "";
-        List<StaffCustomModel> list = staffService.getList();
+        List<Staff> list = staffService.getListStaff();
         if (list.isEmpty()) {
             code = "NV0001";
         } else {
             int max = 0;
-            for (StaffCustomModel staffCustomModel : list) {
-                int so = Integer.parseInt(staffCustomModel.getMaNV().substring(2));
+            for (Staff staffCustomModel : list) {
+                int so = Integer.parseInt(staffCustomModel.getCode().substring(2));
                 if (so > max) {
                     max = so;
                 }
