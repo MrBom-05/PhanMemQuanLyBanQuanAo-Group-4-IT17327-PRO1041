@@ -26,14 +26,18 @@ public interface StaffService {
 
     public boolean checkAccountStaff(String email);
 
-    public String getByPassword(String email);
+    public String getByPasswordEmail(String email);
+
+    public String getByPasswordID(String id);
 
     public boolean checkAccountStaffQR(String code);
 
     public List<Staff> getAccountStaffQR(String code);
 
-    public boolean updatePassword(String username, String password);
+    public boolean updatePassword(String id, String password);
 
     public String getByID(String code);
+
+    public List<Staff> getListByID(String id);
 
 }

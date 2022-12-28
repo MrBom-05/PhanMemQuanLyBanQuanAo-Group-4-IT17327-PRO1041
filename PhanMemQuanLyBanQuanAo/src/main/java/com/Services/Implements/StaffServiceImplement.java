@@ -62,9 +62,15 @@ public class StaffServiceImplement implements StaffService {
     }
 
     @Override
-    public String getByPassword(String email) {
-        return staffRepository.getByPassword(email);
+    public String getByPasswordEmail(String email) {
+        return staffRepository.getByPassword(email, staffRepository.getByPasswordEmail);
     }
+
+    @Override
+    public String getByPasswordID(String id) {
+        return staffRepository.getByPassword(id, staffRepository.getByPasswordID);
+    }
+
 
     @Override
     public boolean checkAccountStaffQR(String code) {
@@ -77,13 +83,18 @@ public class StaffServiceImplement implements StaffService {
     }
 
     @Override
-    public boolean updatePassword(String username, String password) {
-        return staffRepository.updatePassword(username, password);
+    public boolean updatePassword(String id, String password) {
+        return staffRepository.updatePassword(id, password);
     }
 
     @Override
     public String getByID(String code) {
         return staffRepository.getByID(code);
+    }
+
+    @Override
+    public List<Staff> getListByID(String id) {
+        return staffRepository.getListByID(id);
     }
 
 }

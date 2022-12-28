@@ -121,10 +121,14 @@ public class StaffRepository {
         return true;
     }
 
-    public String getByPassword(String email) {
+    public String getByPasswordEmail = "select password from Staff where email =: email";
+
+    public String getByPasswordID = "select password from Staff where id =: email";
+
+    public String getByPassword(String email, String select) {
         String password;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
-            TypedQuery<String> query = session.createQuery("select password from Staff where email =: email", String.class);
+            TypedQuery<String> query = session.createQuery(select, String.class);
             query.setParameter("email", email);
             password = query.getSingleResult();
         }
@@ -150,13 +154,15 @@ public class StaffRepository {
         List<Staff> list = query.getResultList();
         return list;
     }
-    public boolean updatePassword(String username, String password) {
+
+
+    public boolean updatePassword(String id, String password) {
         Transaction transaction = null;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("update Staff set password =: password where email =: email");
+            Query query = session.createQuery("update Staff set password =: password where id =: id");
             query.setParameter("password", password);
-            query.setParameter("email", username);
+            query.setParameter("id", id);
             query.executeUpdate();
             transaction.commit();
             return true;
@@ -173,5 +179,13 @@ public class StaffRepository {
             id = query.getSingleResult();
         }
         return id;
+    }
+
+    public List<Staff> getListByID(String id) {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        Query query = session.createQuery("from Staff where id =: id");
+        query.setParameter("id", id);
+        List<Staff> list = query.getResultList();
+        return list;
     }
 }

@@ -28,10 +28,10 @@ public class Login extends javax.swing.JFrame {
     private void loadAccountStaff(List<Staff> list) {
         for (Staff staff : list) {
             int chucVu = staff.getRole();
-            String hoTen = staff.getLastName() + " " + staff.getFirstName();
+//            String hoTen = staff.getLastName() + " " + staff.getFirstName();
             String ma = staff.getCode();
             if (staff.getStatus() == 1) {
-                new TrangChu(ma, hoTen, chucVu).setVisible(true);
+                new TrangChu(ma, chucVu).setVisible(true);
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Tài khoản này không có quyền truy cập");
@@ -196,7 +196,7 @@ public class Login extends javax.swing.JFrame {
         }
 
         if (staffService.checkAccountStaff(email)) {
-            if (matKhau.equals(staffService.getByPassword(email))) {
+            if (matKhau.equals(staffService.getByPasswordEmail(email))) {
                 loadAccountStaff(staffService.getAccountStaff(email, matKhau));
             } else {
                 JOptionPane.showMessageDialog(this, "Sai mật khẩu");

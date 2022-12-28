@@ -96,10 +96,10 @@ public class QRCode extends javax.swing.JFrame implements Runnable, ThreadFactor
     private void loadAccountStaff(List<Staff> list) {
         for (Staff staff : list) {
             int chucVu = staff.getRole();
-            String hoTen = staff.getLastName() + " " + staff.getFirstName();
+//            String hoTen = staff.getLastName() + " " + staff.getFirstName();
             String ma = staff.getCode();
             if (staff.getStatus() == 1) {
-                new TrangChu(ma, hoTen, chucVu).setVisible(true);
+                new TrangChu(ma, chucVu).setVisible(true);
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Tài khoản này không có quyền truy cập");

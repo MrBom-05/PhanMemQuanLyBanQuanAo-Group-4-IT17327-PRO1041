@@ -1,0 +1,36 @@
+
+[
+java:S11924"FDefine a constant instead of duplicating this literal "email" 4 times.(¹•Ú-
+w
+java:S1488"\Immediately return this expression instead of assigning it to the temporary variable "list".(øà×Ïÿÿÿÿÿ
+w
+java:S1488e"\Immediately return this expression instead of assigning it to the temporary variable "list".(­Ùëµüÿÿÿÿ
+x
+java:S1488’"\Immediately return this expression instead of assigning it to the temporary variable "list".(­Ùëµüÿÿÿÿ
+
+java:S1488´"\Immediately return this expression instead of assigning it to the temporary variable "list".(­Ùëµüÿÿÿÿ8×§ÌÓÕ0
+u
+java:S1104R"ZMake getByFirstName a static final constant or non-public and provide accessors if needed.(í˜ëÇÿÿÿÿÿ
+t
+java:S1104S"YMake getByLastName a static final constant or non-public and provide accessors if needed.(¸™úÿÿÿÿ
+s
+java:S1104t"^Make getByPasswordEmail a static final constant or non-public and provide accessors if needed.(ì‡“`
+q
+java:S1104v"[Make getByPasswordID a static final constant or non-public and provide accessors if needed.(£Àçõ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¸ƒ–Ùøÿÿÿÿ
+g
+java:S2095a"EUse try-with-resources or close this "Session" in a "finally" clause.(Î¤üÕøÿÿÿÿ8Ä¨‡ÓÕ0
+`
+java:S2095j"EUse try-with-resources or close this "Session" in a "finally" clause.(Î¤üÕøÿÿÿÿ
+a
+java:S2095„"EUse try-with-resources or close this "Session" in a "finally" clause.(Î¤üÕøÿÿÿÿ
+a
+java:S2095"EUse try-with-resources or close this "Session" in a "finally" clause.(Î¤üÕøÿÿÿÿ
+a
+java:S2095±"EUse try-with-resources or close this "Session" in a "finally" clause.(Î¤üÕøÿÿÿÿ
+`
+java:S2095"EUse try-with-resources or close this "Session" in a "finally" clause.(Î¤üÕøÿÿÿÿ
+\
+java:S1126n"AReplace this if-then-else statement by a single return statement.(ªÜ÷Şùÿÿÿÿ
+]
+java:S1126ˆ"AReplace this if-then-else statement by a single return statement.(ªÜ÷Şùÿÿÿÿ
