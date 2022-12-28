@@ -1,0 +1,5 @@
+
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(îĞ’È
+l	java:S1164"WRename this field "ExpectedDate" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ĞÔ¶
+[	java:S107H"AConstructor has 9 parameters, which is greater than 7 authorized.(ß–½íùÿÿÿÿ
+V	java:S107T"AConstructor has 8 parameters, which is greater than 7 authorized.(£›Å
