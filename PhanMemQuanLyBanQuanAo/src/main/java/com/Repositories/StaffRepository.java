@@ -42,7 +42,7 @@ public class StaffRepository {
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             Query query = session.createQuery("update Staff set firstName =: firstName, lastName =: lastName"
-                    + ", dateOfBirth =: ngaySinh, phoneNumber =: sdt, email =: email, address =: diaChi,sex =:gt,"
+                    + ", dateOfBirth =: ngaySinh, phoneNumber =: sdt, email =: email, address =: diaChi, sex =: gt,"
                     + " role =: chucVu where code =: code");
             query.setParameter("firstName", staff.getFirstName());
             query.setParameter("lastName", staff.getLastName());
@@ -52,6 +52,29 @@ public class StaffRepository {
             query.setParameter("email", staff.getEmail());
             query.setParameter("diaChi", staff.getAddress());
             query.setParameter("chucVu", staff.getRole());
+            query.setParameter("code", code);
+            query.executeUpdate();
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean updatePanelViewAccount(String code, Staff staff) {
+        Transaction transaction = null;
+        try ( Session session = HibernateUtil.getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("update Staff set firstName =: firstName, lastName =: lastName"
+                    + ", dateOfBirth =: ngaySinh, phoneNumber =: sdt, email =: email, address =: diaChi, sex =: gt where code =: code");
+            query.setParameter("firstName", staff.getFirstName());
+            query.setParameter("lastName", staff.getLastName());
+            query.setParameter("ngaySinh", staff.getDateOfBirth());
+            query.setParameter("gt", staff.getSex());
+            query.setParameter("sdt", staff.getPhoneNumber());
+            query.setParameter("email", staff.getEmail());
+            query.setParameter("diaChi", staff.getAddress());
             query.setParameter("code", code);
             query.executeUpdate();
             transaction.commit();

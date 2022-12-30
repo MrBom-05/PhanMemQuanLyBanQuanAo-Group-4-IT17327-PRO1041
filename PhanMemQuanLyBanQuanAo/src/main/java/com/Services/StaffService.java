@@ -38,4 +38,6 @@ public interface StaffService {
 
     public List<Staff> getListByID(String id);
 
+    public boolean updatePanelViewAccount(String code, Staff staff);
+
 }

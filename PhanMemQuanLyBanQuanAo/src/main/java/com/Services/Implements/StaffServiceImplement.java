@@ -92,4 +92,9 @@ public class StaffServiceImplement implements StaffService {
         return staffRepository.getListByID(id);
     }
 
+    @Override
+    public boolean updatePanelViewAccount(String code, Staff staff) {
+        return staffRepository.updatePanelViewAccount(code, staff);
+    }
+
 }

@@ -1,0 +1,42 @@
+
+]
+java:S11924"GDefine a constant instead of duplicating this literal "codeSP" 3 times.(ªìÅà
+b
+java:S11925"GDefine a constant instead of duplicating this literal "codeHD" 4 times.(´Ş”ıÿÿÿÿ
+q
+java:S1488D"\Immediately return this expression instead of assigning it to the temporary variable "list".(áÀÔ
+r
+java:S1488K"\Immediately return this expression instead of assigning it to the temporary variable "list".(¡Á¶
+w
+java:S1488s"\Immediately return this expression instead of assigning it to the temporary variable "list".( ÄÌûÿÿÿÿ
+r
+java:S1488{"\Immediately return this expression instead of assigning it to the temporary variable "list".(°•¥¾
+s
+java:S1488†"\Immediately return this expression instead of assigning it to the temporary variable "list".(°•¥¾
+x
+java:S1488"\Immediately return this expression instead of assigning it to the temporary variable "list".(ğÜç—ùÿÿÿÿ
+x
+java:S1488˜"\Immediately return this expression instead of assigning it to the temporary variable "list".(¾»‹†ûÿÿÿÿ
+j
+java:S1104"TMake sumMonth a static final constant or non-public and provide accessors if needed.(„ü¤­
+o
+java:S1104"SMake sumYear a static final constant or non-public and provide accessors if needed.(‘ò©Œÿÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¸ƒ–Ùøÿÿÿÿ
+`
+java:S2095P"EUse try-with-resources or close this "Session" in a "finally" clause.(Î¤üÕøÿÿÿÿ
+`
+java:S2095A"EUse try-with-resources or close this "Session" in a "finally" clause.(Î¤üÕøÿÿÿÿ
+`
+java:S2095q"EUse try-with-resources or close this "Session" in a "finally" clause.(Î¤üÕøÿÿÿÿ
+`
+java:S2095I"EUse try-with-resources or close this "Session" in a "finally" clause.(Î¤üÕøÿÿÿÿ
+`
+java:S2095x"EUse try-with-resources or close this "Session" in a "finally" clause.(Î¤üÕøÿÿÿÿ
+a
+java:S2095„"EUse try-with-resources or close this "Session" in a "finally" clause.(Î¤üÕøÿÿÿÿ
+a
+java:S2095•"EUse try-with-resources or close this "Session" in a "finally" clause.(Î¤üÕøÿÿÿÿ
+a
+java:S2095"EUse try-with-resources or close this "Session" in a "finally" clause.(Î¤üÕøÿÿÿÿ
+\
+java:S1126U"AReplace this if-then-else statement by a single return statement.(ªÜ÷Şùÿÿÿÿ

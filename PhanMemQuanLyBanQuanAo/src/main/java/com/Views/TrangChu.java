@@ -5581,8 +5581,44 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
         }
     }
 
+    private Staff getPanelViewAccount() {
+        String ho = txtHoPanelViewAccount.getText();
+        String ten = txtTenPanelViewAccount.getText();
+        String gioiTinh = rdoNamPanelViewAccount.isSelected() ? "Nam" : "Nữ";
+        String ngaySinh = ((JTextField) txtNgaySinhNhanVienPanelViewAccount.getDateEditor().getUiComponent()).getText();
+        String sdt = txtSDTPanelViewAccount.getText();
+        String email = txtEmailPanelViewAccount.getText();
+        String diaChi = txtDiaChiPanelViewAccount.getText();
+
+        if (ho.equals("") || ten.equals("") || ngaySinh.equals("") || sdt.equals("") || email.equals("") || diaChi.equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin");
+            return null;
+        } else if (email.matches("^[a-zA-Z0-9]+@[a-zA-Z0-9]+(\\.[a-zA-Z0-9]+)$") == false) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng email");
+            return null;
+        } else if (sdt.matches("^[0-9]{10}$") == false) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng số điện thoại");
+            return null;
+        } else if (ngaySinh.matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}$") == false) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng ngày sinh");
+            return null;
+        }
+
+        Date date = Date.valueOf(ngaySinh);
+        return new Staff("newid()", "", ten, ho, gioiTinh, date, diaChi, sdt, email, "", 1, 1);
+    }
+
     private void btnUpdateThongTinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateThongTinActionPerformed
-        // TODO add your handling code here:
+        Staff staff = getPanelViewAccount();
+        if (staff == null) {
+            return;
+        }
+        if (staffService.updatePanelViewAccount(txtMaNhanVienPanelViewAccount.getText(), staff)) {
+            setTextAccount(staffService.getListByID(staffService.getByID(lblMaNhanVienPanelMain.getText())));
+            JOptionPane.showMessageDialog(this, "Cập Nhật Thành Công");
+        } else {
+            JOptionPane.showMessageDialog(this, "Cập Nhật Thất Bại");
+        }
     }//GEN-LAST:event_btnUpdateThongTinActionPerformed
 
     private void btnLuuPanelDoiMatKhauActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnLuuPanelDoiMatKhauActionPerformed
@@ -5621,8 +5657,6 @@ public class TrangChu extends javax.swing.JFrame implements Runnable, ThreadFact
             new Login().setVisible(true);
             dispose();
             webcam.close();
-        } else {
-            return;
         }
     }//GEN-LAST:event_btnDangXuatActionPerformed
 
